@@ -1,0 +1,66 @@
+@import "../../styles/colors";
+
+.navbar {
+  //position: fixed;
+  top: 0;
+  padding: 0;
+  background-color: $bgdarkercolor;
+  width: 100%;
+  overflow: hidden;
+  height: 44px;
+
+  transition: height .15s ease-out;
+
+  a {
+    color: $textcolor;
+    float: left;
+    display: block;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+
+  a:hover {
+    background-color: $bgmouseovercolor;
+  }
+
+  fa-icon {
+    padding-top: 6px;
+    padding-right: 16px;
+    display: none;
+  }
+
+  @media screen and (max-width: 575px) {
+    a:not(:first-child) {
+      display: none;
+    }
+
+    fa-icon {
+      float: right;
+      display: block;
+    }
+  }
+
+  @media screen and (max-width: 575px) {
+    & {
+      transition: height 0.25s ease-in;
+    }
+
+    &.responsive {
+      position: relative;
+      height: 220px;
+
+      fa-icon {
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+
+      a {
+        float: none;
+        display: block;
+        text-align: left;
+      }
+    }
+  }
+}

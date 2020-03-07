@@ -1,1 +1,9 @@
-/* You can add global styles to this file, and also import other style files */
+@import '../node_modules/reset-css/sass/reset';
+@import 'styles/_colors.scss';
+@import 'styles/_fonts.scss';
+
+body {
+    background-color: $bgcolor;
+    color: $textcolor;
+    font-family: 'Montserrat', sans-serif;
+}
