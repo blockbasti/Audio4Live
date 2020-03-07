@@ -1,0 +1,19 @@
+{
+  "hosting": [
+    {
+      "target": "audio4live",
+      "public": "dist/audio4live",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    }
+  ]
+}

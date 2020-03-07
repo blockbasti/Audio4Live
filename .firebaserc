@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "audio4live-1d621"
+  },
+  "targets": {
+    "audio4live-1d621": {
+      "hosting": {
+        "audio4live": [
+          "audio4live-1d621"
+        ]
+      }
+    }
+  }
+}
