@@ -1,9 +1,19 @@
 <nav id="navbar" class="navbar">
-    <a class="logo" routerLink="/">Audio4Live</a>
-    <a routerLink="/buchen">Buchen</a>
-    <a routerLink="/leistungen">Leistungen</a>
-    <a routerLink="/profil">Profil</a>
-    <a routerLink="/referenzen">Referenzen</a>
+    <a class="logo" routerLink="/" (click)="closeNavBar()"><img src="../../assets/Logo_Text.svg" /></a>
+    <a class="navbar-toggle" (click)="toggleNavBar()"><fa-icon [icon]="faBars" size="2x"></fa-icon></a>
+    <ul class="main-nav" id="js-menu">
+        <li routerLinkActive="active-link">
+            <a class="nav-links" routerLink="/buchen" (click)="closeNavBar()">Buchen</a>
+        </li>
+        <li routerLinkActive="active-link">
+            <a class="nav-links" routerLink="/leistungen" (click)="closeNavBar()">Leistungen</a>
+        </li>
+        <li routerLinkActive="active-link">
+            <a class="nav-links" routerLink="/profil" (click)="closeNavBar()">Profil</a>
+        </li>
+        <li routerLinkActive="active-link">
+            <a class="nav-links" routerLink="/referenzen" (click)="closeNavBar()">Referenzen</a>
+        </li>
+    </ul>
 
-    <fa-icon [icon]="faBars" size="2x"></fa-icon>
 </nav>

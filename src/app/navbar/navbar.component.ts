@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Directive, ElementRef, HostListener } from '@angular/core';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { faBars } from '@fortawesome/free-solid-svg-icons/faBars';
 
 @Component({
   selector: 'navbar',
@@ -16,13 +15,18 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  @HostListener('click') showNavItems() {
-    var navbar = document.getElementById("navbar");
-    if (navbar.className === "navbar") {
-      navbar.className += " responsive";
-    } else {
-      navbar.className = "navbar";
-    }
+  toggleNavBar() {
+    let navbar = document.getElementById('navbar')
+    let mainNav = document.getElementById('js-menu')
+    mainNav.classList.toggle('active')
+    navbar.classList.toggle('active')
+  }
+
+  closeNavBar() {
+    let navbar = document.getElementById('navbar')
+    let mainNav = document.getElementById('js-menu')
+    mainNav.classList.remove('active')
+    navbar.classList.remove('active')
   }
 
 }
