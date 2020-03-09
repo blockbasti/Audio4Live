@@ -28,11 +28,11 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     FontAwesomeModule,
     AppRoutingModule,
     RouterModule.forRoot([
-      { path: '', component: LandingComponent, data: {animation: 'LandingPage'} },
-      { path: 'leistungen', component: LeistungenComponent,data: {animation: 'LeistungenPage'} },
-      { path: 'profil', component: ProfilComponent, data: {animation: 'ProfilPage'} },
-      { path: 'buchen', component: BuchenComponent, data: {animation: 'BuchenPage'} },
-      { path: 'referenzen', component: ReferenzenComponent, data: {animation: 'ReferenzenPage'} },
+      { path: '', component: LandingComponent, data: { animation: 'LandingPage' } },
+      { path: 'leistungen', component: LeistungenComponent, data: { animation: 'LeistungenPage' } },
+      { path: 'profil', component: ProfilComponent, data: { animation: 'ProfilPage' } },
+      { path: 'buchen', component: BuchenComponent, data: { animation: 'BuchenPage' } },
+      { path: 'referenzen', component: ReferenzenComponent, data: { animation: 'ReferenzenPage' } },
     ])
   ],
   providers: [],

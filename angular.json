@@ -23,6 +23,8 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "aot": true,
+            "sourceMap": false,
+            "extractLicenses": true,
             "assets": [
               "src/favicon.ico",
               "src/assets"

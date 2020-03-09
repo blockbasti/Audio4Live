@@ -1,10 +1,10 @@
-import { trigger, transition, style, query, animateChild, animate, group } from "@angular/animations";
+import { trigger, transition, style, query, animateChild, animate, group } from '@angular/animations';
 
 export const slideInAnimation =
     trigger('routeAnimations', [
         transition((fromState, toState) => {
-            let pages = ['LandingPage', 'BuchenPage', 'LeistungenPage', 'ProfilPage', 'ReferenzenPage'];
-            return pages.indexOf(fromState) < pages.indexOf(toState)
+            const pages = ['LandingPage', 'BuchenPage', 'LeistungenPage', 'ProfilPage', 'ReferenzenPage'];
+            return pages.indexOf(fromState) < pages.indexOf(toState);
         }, [
             style({ position: 'relative' }),
             query(':enter, :leave', [
@@ -30,8 +30,8 @@ export const slideInAnimation =
             query(':enter', animateChild()),
         ]),
         transition((fromState, toState) => {
-            let pages = ['LandingPage', 'BuchenPage', 'LeistungenPage', 'ProfilPage', 'ReferenzenPage'];
-            return pages.indexOf(fromState) > pages.indexOf(toState)
+            const pages = ['LandingPage', 'BuchenPage', 'LeistungenPage', 'ProfilPage', 'ReferenzenPage'];
+            return pages.indexOf(fromState) > pages.indexOf(toState);
         }, [
             style({ position: 'relative' }),
             query(':enter, :leave', [

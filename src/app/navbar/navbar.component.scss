@@ -5,6 +5,20 @@
   padding-bottom: 5px;
   transition: height .15s ease-in-out;
   height: 50px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+
+}
+
+.navbar-dark {
+  background-color: $bgcolor;
+  position: fixed;
+  box-shadow:
+    0 6.7px 5.3px rgba(0, 0, 0, 0.07),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.034),
+    0 100px 80px rgba(0, 0, 0, 0.024);
 }
 
 .main-nav {
@@ -15,7 +29,7 @@
     text-align: left;
     padding: 10px 17px;
   }
-  
+
   li:first-of-type {
     padding-top: 17px;
   }
@@ -30,9 +44,10 @@
 
 .logo {
   display: inline-block;
-  margin-top: 10px;
+  padding-top: 10px;
   margin-left: 20px;
   height: 30px;
+
   img {
     height: 30px;
   }
@@ -52,6 +67,7 @@ ul.active {
 }
 
 .navbar.active {
+  background-color: $bgcolor;
   height: 210px;
   transition: height .15s ease-out;
 }
@@ -74,6 +90,10 @@ ul.active {
     li:first-of-type {
       padding-top: 29px;
     }
+
+    li:hover {
+      background-color: $bgdarkercolor;
+    }
   }
 
   .main-nav li {
@@ -83,6 +103,10 @@ ul.active {
 
   .active-link {
     background-color: $color5;
+  }
+
+  .active-link:hover {
+    background-color: $color1;
   }
 
   .nav-links {
@@ -95,9 +119,5 @@ ul.active {
 
   .navbar-toggle {
     display: none;
-  }
-
-  .main-nav li:hover {
-    background-color: $bgdarkercolor;
   }
 }
