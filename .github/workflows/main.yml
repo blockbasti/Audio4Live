@@ -21,5 +21,7 @@ jobs:
 
       - name: npm install and npm run build
         run: |
+          npm install -g @angular/cli
+          npm i
           npm run build
           npm run lint
