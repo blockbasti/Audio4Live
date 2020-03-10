@@ -1,8 +1,5 @@
-name: Build
-on:
-  push:
-    branches:
-      - master
+name: Build and Lint
+on: [push, pull_request]
 
 jobs:
   build:
