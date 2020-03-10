@@ -1,123 +1,17 @@
-@import "../../styles/colors";
-
 .navbar {
-  //border: 1px solid $bgdarkercolor;
-  padding-bottom: 5px;
-  transition: height .15s ease-in-out;
-  height: 50px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-
+  background-color: transparent;
 }
 
-.navbar-dark {
-  background-color: $bgcolor;
-  position: fixed;
-  box-shadow:
-    0 6.7px 5.3px rgba(0, 0, 0, 0.07),
-    0 22.3px 17.9px rgba(0, 0, 0, 0.034),
-    0 100px 80px rgba(0, 0, 0, 0.024);
+.top-nav-collapse {
+  background-color: #2E2E2E;
 }
 
-.main-nav {
-  list-style-type: none;
-  display: none;
-
-  li {
-    text-align: left;
-    padding: 10px 17px;
-  }
-
-  li:first-of-type {
-    padding-top: 17px;
-  }
-}
-
-.nav-links,
-.logo {
-  text-decoration: none;
-  color: $textcolor;
-  font-size: 1.3rem;
-}
-
-.logo {
-  display: inline-block;
-  padding-top: 10px;
-  margin-left: 20px;
-  height: 30px;
-
-  img {
-    height: 30px;
-  }
-}
-
-.navbar-toggle {
-  position: absolute;
-  text-decoration: none;
-  top: 10px;
-  right: 20px;
-  cursor: pointer;
-  color: $textcolor;
-}
-
-ul.active {
-  display: block;
-}
-
-.navbar.active {
-  background-color: $bgcolor;
-  height: 210px;
-  transition: height .15s ease-out;
-}
-
-@media screen and (min-width: 800px) {
+@media only screen and (max-width: 768px) {
   .navbar {
-    display: flex;
-    justify-content: space-around;
-    padding-bottom: 0;
-    height: 55px;
-    align-items: flex-end;
+    background-color: #2E2E2E;
   }
+}
 
-  .main-nav {
-    display: flex;
-    margin-right: 30px;
-    flex-direction: row;
-    justify-content: flex-end;
-
-    li:first-of-type {
-      padding-top: 29px;
-    }
-
-    li:hover {
-      background-color: $bgdarkercolor;
-    }
-  }
-
-  .main-nav li {
-    margin: 0;
-    padding-top: 29px;
-  }
-
-  .active-link {
-    background-color: $color5;
-  }
-
-  .active-link:hover {
-    background-color: $color1;
-  }
-
-  .nav-links {
-    margin-left: 0px;
-  }
-
-  .logo {
-    margin-bottom: 10px;
-  }
-
-  .navbar-toggle {
-    display: none;
-  }
+.nav-link {
+  font-size: 1.5rem;
 }

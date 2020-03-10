@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -27,6 +29,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     BrowserAnimationsModule,
     FontAwesomeModule,
     AppRoutingModule,
+    MDBBootstrapModule.forRoot(),
     RouterModule.forRoot([
       { path: '', component: LandingComponent, data: { animation: 'LandingPage' } },
       { path: 'leistungen', component: LeistungenComponent, data: { animation: 'LeistungenPage' } },

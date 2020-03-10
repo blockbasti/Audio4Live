@@ -1,10 +1,8 @@
-@import '../node_modules/reset-css/sass/reset';
-@import 'styles/_colors.scss';
 @import 'styles/_fonts.scss';
+@import './app/navbar/navbar.component.scss';
 
 body {
-    background-color: $bgcolor;
-    color: $textcolor;
-    font-family: 'Oswald', sans-serif;
-    overflow-x: hidden;
+  color: #fff;
+  font-family: 'Oswald', sans-serif;
+  background-color: #212121;
 }
