@@ -1,3 +1,4 @@
+![Build and Lint](https://github.com/blockbasti/Audio4Live/workflows/Build%20and%20Lint/badge.svg?event=push)
 # Audio4live
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.5.
