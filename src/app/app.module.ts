@@ -3,7 +3,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -15,6 +14,8 @@ import { ReferenzenComponent } from './referenzen/referenzen.component';
 import { BuchenComponent } from './buchen/buchen.component';
 import { LandingComponent } from './landing/landing.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FooterComponent } from './footer/footer.component';
+import { DatenschutzComponent } from './datenschutz/datenschutz.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     NavbarComponent,
     ReferenzenComponent,
     BuchenComponent,
-    LandingComponent
+    LandingComponent,
+    FooterComponent,
+    DatenschutzComponent
   ],
   imports: [
     BrowserModule,

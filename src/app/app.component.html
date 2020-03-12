@@ -1,4 +1,6 @@
-<app-navbar></app-navbar>
-<div id='content' class="content" [@routeAnimations]="prepareRoute(outlet)">
+<app-navbar class="px-0"></app-navbar>
+<div id='content' class="content elegant-color-dark" [@routeAnimations]="prepareRoute(outlet)">
   <router-outlet #outlet="outlet"></router-outlet>
 </div>
+<app-footer></app-footer>
+<modal-datenschutz></modal-datenschutz>
