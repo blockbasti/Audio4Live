@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ModalDirective } from 'angular-bootstrap-md/lib/free/modals/modal.directive';
-import { DatenschutzModalServiceService } from '../datenschutz-modal-service.service';
+import { DatenschutzModalService } from '../datenschutz-modal.service';
 
 @Component({
-  selector: 'modal-datenschutz',
+  selector: 'app-datenschutz',
   templateUrl: './datenschutz.component.html',
   styleUrls: ['./datenschutz.component.scss']
 })
@@ -11,9 +11,9 @@ export class DatenschutzComponent implements OnInit {
   @ViewChild('datenschutzModal', { static: true })
   datenschutzModal: ModalDirective;
 
-  modalService: DatenschutzModalServiceService;
+  modalService: DatenschutzModalService;
 
-  constructor(modalService: DatenschutzModalServiceService) { 
+  constructor(modalService: DatenschutzModalService) {
     this.modalService = modalService;
   }
 

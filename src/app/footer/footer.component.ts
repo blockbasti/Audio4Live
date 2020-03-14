@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DatenschutzModalServiceService } from '../datenschutz-modal-service.service';
+import { DatenschutzModalService} from '../datenschutz-modal.service';
 
 
 @Component({
@@ -9,10 +9,10 @@ import { DatenschutzModalServiceService } from '../datenschutz-modal-service.ser
 })
 export class FooterComponent implements OnInit {
 
-  modalService: DatenschutzModalServiceService;
+  modalService: DatenschutzModalService;
 
 
-  constructor(modalService: DatenschutzModalServiceService) {
+  constructor(modalService: DatenschutzModalService) {
     this.modalService = modalService;
   }
 

@@ -3,6 +3,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
+import { AngularFireModule } from '@angular/fire';
+import { environment } from '../environments/environment';
+import { AngularFireAnalyticsModule, ScreenTrackingService, CONFIG, COLLECTION_ENABLED } from '@angular/fire/analytics';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -16,6 +20,7 @@ import { LandingComponent } from './landing/landing.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FooterComponent } from './footer/footer.component';
 import { DatenschutzComponent } from './datenschutz/datenschutz.component';
+import { ConsentComponent } from './consent/consent.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +30,8 @@ import { DatenschutzComponent } from './datenschutz/datenschutz.component';
     BuchenComponent,
     LandingComponent,
     FooterComponent,
-    DatenschutzComponent
+    DatenschutzComponent,
+    ConsentComponent
   ],
   imports: [
     BrowserModule,
@@ -33,6 +39,8 @@ import { DatenschutzComponent } from './datenschutz/datenschutz.component';
     FontAwesomeModule,
     AppRoutingModule,
     MDBBootstrapModule.forRoot(),
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAnalyticsModule,
     RouterModule.forRoot([
       { path: '', component: LandingComponent, data: { animation: 'LandingPage' } },
       { path: 'leistungen', component: LeistungenComponent, data: { animation: 'LeistungenPage' } },
@@ -41,7 +49,15 @@ import { DatenschutzComponent } from './datenschutz/datenschutz.component';
       { path: 'referenzen', component: ReferenzenComponent, data: { animation: 'ReferenzenPage' } },
     ])
   ],
-  providers: [],
+  providers: [{
+    provide: CONFIG, useValue: {
+      send_page_view: true,
+      allow_ad_personalization_signals: false,
+      anonymize_ip: true
+    },
+  },
+  { provide: COLLECTION_ENABLED, useValue: (localStorage.getItem('enableAnalytics') === 'true')},
+    ScreenTrackingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

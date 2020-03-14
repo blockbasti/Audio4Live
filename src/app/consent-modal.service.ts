@@ -4,16 +4,16 @@ import { ModalDirective } from 'angular-bootstrap-md/lib/free/modals/modal.direc
 @Injectable({
   providedIn: 'root'
 })
-export class DatenschutzModalServiceService {
-  datenschutzModal: ModalDirective;
+export class ConsentModalService {
+  consentModal: ModalDirective;
 
   constructor() { }
 
   setModal(modal: ModalDirective) {
-    this.datenschutzModal = modal;
+    this.consentModal = modal;
   }
 
   showModal() {
-    this.datenschutzModal.show();
+    this.consentModal.show();
   }
 }
