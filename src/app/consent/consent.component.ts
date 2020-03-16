@@ -24,15 +24,15 @@ export class ConsentComponent implements OnInit {
     this.modalService.setModal(this.consentModal);
   }
 
-  deny(){
+  deny() {
     this.analytics.setAnalyticsCollectionEnabled(false);
     localStorage.setItem('enableAnalytics', 'false');
     this.consentModal.hide();
   }
 
-  allow(){
+  allow() {
     this.analytics.setAnalyticsCollectionEnabled(true);
-    localStorage.setItem('enableAnalytics', 'true')
+    localStorage.setItem('enableAnalytics', 'true');
     this.consentModal.hide();
   }
 

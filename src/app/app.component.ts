@@ -26,7 +26,7 @@ export class AppComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    if(localStorage.getItem('enableAnalytics') === null){
+    if (localStorage.getItem('enableAnalytics') === null) {
       this.modalService.showModal();
     }
   }
