@@ -29,7 +29,7 @@
     "@fortawesome/free-brands-svg-icons": "^5.12.1",
     "@fortawesome/free-regular-svg-icons": "^5.12.1",
     "@fortawesome/free-solid-svg-icons": "^5.12.1",
-    "@types/chart.js": "^2.9.15",
+    "@types/chart.js": "^2.9.16",
     "angular-bootstrap-md": "^9.0.0",
     "animate.css": "^3.7.2",
     "chart.js": "^2.9.3",
