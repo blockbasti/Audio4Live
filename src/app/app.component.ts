@@ -12,10 +12,12 @@ import { ConsentModalService } from '../app/consent-modal.service';
     // animation triggers go here
   ]
 })
-export class AppComponent implements AfterViewInit {
+export class AppComponent implements OnInit, AfterViewInit {
   title = 'audio4live';
 
   modalService: ConsentModalService;
+
+  
 
   constructor(modalService: ConsentModalService) {
     this.modalService = modalService;
@@ -23,6 +25,19 @@ export class AppComponent implements AfterViewInit {
 
   prepareRoute(outlet: RouterOutlet) {
     return outlet && outlet.activatedRouteData && outlet.activatedRouteData.animation;
+  }
+
+  ngOnInit() {
+    let images = [
+      'https://placekitten.com/300/400',
+      '../assets/images/header.jpg',
+      '../assets/images/header2.jpg',
+      '../assets/images/header3.jpg',
+    ];
+    images.forEach(img => {
+      let image = new Image();
+      image.src = img;
+    });
   }
 
   ngAfterViewInit(): void {

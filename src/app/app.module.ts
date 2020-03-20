@@ -10,6 +10,10 @@ import { AngularFireAnalyticsModule, ScreenTrackingService, CONFIG, COLLECTION_E
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+import localeDe from '@angular/common/locales/de';
+registerLocaleData(localeDe);
+
+
 import { NavbarComponent } from './navbar/navbar.component';
 import { RouterModule } from '@angular/router';
 import { LeistungenComponent } from './leistungen/leistungen.component';
@@ -21,6 +25,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FooterComponent } from './footer/footer.component';
 import { DatenschutzComponent } from './datenschutz/datenschutz.component';
 import { ConsentComponent } from './consent/consent.component';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { registerLocaleData } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -47,7 +54,8 @@ import { ConsentComponent } from './consent/consent.component';
       { path: 'profil', component: ProfilComponent, data: { animation: 'ProfilPage' } },
       { path: 'buchen', component: BuchenComponent, data: { animation: 'BuchenPage' } },
       { path: 'referenzen', component: ReferenzenComponent, data: { animation: 'ReferenzenPage' } },
-    ])
+    ]),
+    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory })
   ],
   providers: [{
     provide: CONFIG, useValue: {
