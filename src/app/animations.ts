@@ -4,7 +4,7 @@ export const slideInAnimation =
     trigger('routeAnimations', [
         transition((fromState, toState) => {
             const pages = ['LandingPage', 'BuchenPage', 'LeistungenPage', 'ProfilPage', 'ReferenzenPage'];
-            return pages.indexOf(fromState) < pages.indexOf(toState);
+            return pages.indexOf(fromState) > pages.indexOf(toState);
         }, [
             style({ position: 'relative' }),
             query(':enter, :leave', [
@@ -31,7 +31,7 @@ export const slideInAnimation =
         ]),
         transition((fromState, toState) => {
             const pages = ['LandingPage', 'BuchenPage', 'LeistungenPage', 'ProfilPage', 'ReferenzenPage'];
-            return pages.indexOf(fromState) > pages.indexOf(toState);
+            return pages.indexOf(fromState) < pages.indexOf(toState);
         }, [
             style({ position: 'relative' }),
             query(':enter, :leave', [
