@@ -1,1 +1,22 @@
-<p>buchen works!</p>
+<div class="view5 intro2 min-vh-100">
+    <div class="full-bg-img">
+        <div class="mask rgba-black-strong flex-center min-vh-100">
+            <div class="container text-center white-text wow fadeInUp align-items-center ">
+                <div class="row">
+                    <div class="col-lg-8 col-md-12">
+                        <mdb-card class="elegant-color z-depth-3">
+                            <mdb-card-body>
+                                <mwl-calendar-month-view class="dark-theme" [locale]='locale'
+                                    [weekStartsOn]="weekStartsOn" [weekendDays]="weekendDays" [viewDate]="viewDate"
+                                    [events]="events" [activeDayIsOpen]="activeDayIsOpen" (beforeViewRender)="beforeMonthViewRender($event)">
+                                </mwl-calendar-month-view>
+                            </mdb-card-body>
+                        </mdb-card>
+                    </div>
+                    <div class="col-lg-6 col-md-12">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
