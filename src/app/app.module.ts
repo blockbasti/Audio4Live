@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule }   from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
@@ -45,6 +46,7 @@ import { registerLocaleData } from '@angular/common';
     BrowserAnimationsModule,
     FontAwesomeModule,
     AppRoutingModule,
+    FormsModule,
     MDBBootstrapModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAnalyticsModule,

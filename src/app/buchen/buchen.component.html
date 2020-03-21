@@ -1,22 +1,71 @@
 <div class="view5 intro2 min-vh-100">
     <div class="full-bg-img">
-        <div class="mask rgba-black-strong flex-center min-vh-100">
-            <div class="container text-center white-text wow fadeInUp align-items-center ">
-                <div class="row">
-                    <div class="col-lg-8 col-md-12">
-                        <mdb-card class="elegant-color z-depth-3">
-                            <mdb-card-body>
-                                <mwl-calendar-month-view class="dark-theme" [locale]='locale'
-                                    [weekStartsOn]="weekStartsOn" [weekendDays]="weekendDays" [viewDate]="viewDate"
-                                    [events]="events" [activeDayIsOpen]="activeDayIsOpen" (beforeViewRender)="beforeMonthViewRender($event)">
-                                </mwl-calendar-month-view>
-                            </mdb-card-body>
-                        </mdb-card>
-                    </div>
-                    <div class="col-lg-6 col-md-12">
-                    </div>
-                </div>
+        <div class="mask rgba-black-light flex-center flex-column justify-content-center min-vh-100">
+            <div class="text-center white-text wow fadeInUp align-content-center">
+                <h1 class="display-3">Interessiert?</h1>
+                <h2 class="display-4">Buchen Sie mich noch heute für Ihre Veranstaltung!</h2>
             </div>
+            <i class="fas fa-chevron-down fa-3x position-absolute" style="bottom: 1vh;"></i>
         </div>
     </div>
+</div>
+<div class="container my-5">
+    <div class="row mb-5">
+        <div class="col-12">
+            <mdb-card class="elegant-color z-depth-3">
+                <mdb-card-body>
+                    <mdb-card-title>
+                        <h3>Buchungsanfrage</h3>
+                    </mdb-card-title>
+                    <p class="text-light" style="font-size: 1.2rem !important;">
+                        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt
+                        ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo
+                        dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor
+                        sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
+                        invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
+                        justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem
+                        ipsum dolor sit amet.
+                    </p>
+                    <p class="text-light" style="font-size: 1.2rem !important;">
+                        <strong>Beachten Sie, dass ich ab 30km Anfahrt eine Kilometerpauschale von 0,30€/km veranschlage!</strong>
+                    </p>
+                </mdb-card-body>
+            </mdb-card>
+        </div>
+    </div>
+    <form #buchenForm="ngForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+            <div class="col-lg-8 col-md-12">
+                <mdb-card class="elegant-color z-depth-3">
+                    <mdb-card-body>
+                        <mwl-calendar-month-view class="dark-theme" [locale]='locale' [weekStartsOn]="weekStartsOn"
+                            [weekendDays]="weekendDays" [viewDate]="viewDate" [events]="events"
+                            [activeDayIsOpen]="activeDayIsOpen" (beforeViewRender)="beforeMonthViewRender($event)">
+                        </mwl-calendar-month-view>
+                    </mdb-card-body>
+                </mdb-card>
+            </div>
+            <div class="col-lg-4 col-md-12 mt-5 mt-lg-0">
+                <mdb-card class="elegant-color z-depth-3">
+                    <mdb-card-body>
+                        <label for="buchenFormEmail">E-Mail *</label>
+                        <input mdbInput type="email" [(ngModel)]="model.email" id="buchenFormEmail" name="email"
+                            class="form-control mb-4" placeholder="E-Mail" required>
+
+                        <!-- <mdb-error *ngIf="onBlur.invalid && (onBlur.dirty || onBlur.touched)">Input invalid</mdb-error>
+                        <mdb-success *ngIf="onBlur.valid && (onBlur.dirty || onBlur.touched)">Input valid</mdb-success> -->
+
+                        <label for="buchenFormMessage">Nachricht</label>
+                        <textarea mdbInput [(ngModel)]="model.message" id="buchenFormMessage" class="form-control mb-4"
+                            placeholder="Nachricht" name="message"></textarea>
+
+                        <button type="submit" (click)="onSubmit()" class="text-dark" mdbBtn type="button"
+                            color="blue-grey" block="true" [disabled]="!buchenForm.form.valid" mdbWavesEffect>
+                            <h4 class="mb-0">Jetzt buchen!</h4>
+                        </button>
+                    </mdb-card-body>
+                </mdb-card>
+            </div>
+        </div>
+    </form>
 </div>

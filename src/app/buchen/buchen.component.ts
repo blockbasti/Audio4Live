@@ -24,6 +24,9 @@ import {
   CalendarView,
   DAYS_OF_WEEK
 } from 'angular-calendar';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+
+import { Buchung } from '../buchung';
 
 const colors: any = {
   red: {
@@ -53,7 +56,6 @@ const colors: any = {
 })
 export class BuchenComponent implements OnInit, AfterViewInit {
 
-
   locale: string = 'de';
   view: CalendarView = CalendarView.Month;
   CalendarView = CalendarView;
@@ -65,7 +67,7 @@ export class BuchenComponent implements OnInit, AfterViewInit {
   weekendDays: number[] = [DAYS_OF_WEEK.SATURDAY, DAYS_OF_WEEK.SUNDAY];
 
   events: CalendarEvent[] = [
-    
+
   ];
 
   dateIsValid(date: Date): boolean {
@@ -82,12 +84,19 @@ export class BuchenComponent implements OnInit, AfterViewInit {
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit() {
     
   }
 
-  ngAfterViewInit():void {
+  ngAfterViewInit(): void {
 
+  }
+
+  model = new Buchung('', '');
+
+  submitted = false;
+  onSubmit(): void {
+    this.submitted = true;
   }
 
 }
