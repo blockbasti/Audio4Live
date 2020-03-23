@@ -28,7 +28,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    let images = [
+    /* let images = [
       'https://placekitten.com/300/400',
       '../assets/images/header.jpg',
       '../assets/images/header2.jpg',
@@ -37,7 +37,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     images.forEach(img => {
       let image = new Image();
       image.src = img;
-    });
+    }); */
   }
 
   ngAfterViewInit(): void {

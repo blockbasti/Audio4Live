@@ -27,45 +27,91 @@
                         ipsum dolor sit amet.
                     </p>
                     <p class="text-light" style="font-size: 1.2rem !important;">
-                        <strong>Beachten Sie, dass ich ab 30km Anfahrt eine Kilometerpauschale von 0,30€/km veranschlage!</strong>
+                        <strong>Beachten Sie, dass ich ab 30km Anfahrt eine Kilometerpauschale von 0,30€/km
+                            veranschlage!</strong>
                     </p>
                 </mdb-card-body>
             </mdb-card>
         </div>
     </div>
-    <form #buchenForm="ngForm" (ngSubmit)="onSubmit()">
-        <div class="row">
-            <div class="col-lg-8 col-md-12">
-                <mdb-card class="elegant-color z-depth-3">
-                    <mdb-card-body>
-                        <mwl-calendar-month-view class="dark-theme" [locale]='locale' [weekStartsOn]="weekStartsOn"
-                            [weekendDays]="weekendDays" [viewDate]="viewDate" [events]="events"
-                            [activeDayIsOpen]="activeDayIsOpen" (beforeViewRender)="beforeMonthViewRender($event)">
-                        </mwl-calendar-month-view>
-                    </mdb-card-body>
-                </mdb-card>
-            </div>
-            <div class="col-lg-4 col-md-12 mt-5 mt-lg-0">
-                <mdb-card class="elegant-color z-depth-3">
-                    <mdb-card-body>
+    <div class="row">
+        <div class="col-lg-8 col-md-12">
+            <mdb-card class="elegant-color z-depth-3">
+                <mdb-card-header>
+                    <h3 class="d-inline-block float-left m-0 pt-1">
+                        {{ viewDate | calendarDate:(view + 'ViewTitle'):'de' }}</h3>
+                    <div class="btn-group btn-group-sm float-right" role="group" aria-label="Kalender Navigation">
+                        <button mdbBtn type="button" color="blue-grey" size="sm" class="waves-light" mdbWavesEffect
+                            mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate">
+                            <mdb-icon fas size="2x" icon="angle-left"></mdb-icon>
+                        </button>
+                        <button mdbBtn type="button" color="blue-grey" size="sm" class="waves-light" mdbWavesEffect
+                            mwlCalendarToday [(viewDate)]="viewDate">
+                            <mdb-icon fas size="2x" icon="calendar-day"></mdb-icon>
+                        </button>
+                        <button mdbBtn type="button" color="blue-grey" size="sm" class="waves-light" mdbWavesEffect
+                            mwlCalendarNextView [view]="view" [(viewDate)]="viewDate">
+                            <mdb-icon fas size="2x" icon="angle-right"></mdb-icon>
+                        </button>
+                    </div>
+                </mdb-card-header>
+                <mdb-card-body>
+                    <mwl-calendar-month-view class="dark-theme" [locale]='locale' [weekStartsOn]="weekStartsOn"
+                        [weekendDays]="weekendDays" [viewDate]="viewDate" [events]="events" [refresh]="refresh"
+                        [activeDayIsOpen]="activeDayIsOpen" (dayClicked)="dayClicked($event.day)"
+                        (beforeViewRender)="beforeMonthViewRender($event)">
+                    </mwl-calendar-month-view>
+                </mdb-card-body>
+            </mdb-card>
+        </div>
+        <div class="col-lg-4 col-md-12 mt-5 mt-lg-0">
+            <mdb-card class="elegant-color z-depth-3">
+                <mdb-card-body>
+                    <form #buchenForm="ngForm" (ngSubmit)="onSubmit()">
                         <label for="buchenFormEmail">E-Mail *</label>
                         <input mdbInput type="email" [(ngModel)]="model.email" id="buchenFormEmail" name="email"
                             class="form-control mb-4" placeholder="E-Mail" required>
 
-                        <!-- <mdb-error *ngIf="onBlur.invalid && (onBlur.dirty || onBlur.touched)">Input invalid</mdb-error>
-                        <mdb-success *ngIf="onBlur.valid && (onBlur.dirty || onBlur.touched)">Input valid</mdb-success> -->
+                        <label for="buchenFormPhone">Telefonnummer</label>
+                        <input mdbInput type="tel" [(ngModel)]="model.phone" id="buchenFormPhone" name="phone"
+                            class="form-control mb-4" placeholder="Telefonnummer">
+
+                        <label for="buchenFormLocation">Veranstaltungsort</label>
+                        <input mdbInput type="text" [(ngModel)]="model.location" id="buchenFormLocation" name="location"
+                            class="form-control mb-4" placeholder="Ort">
+
+                        <label for="buchenFormDate">Datum</label>
+                        <p id="buchenFormDate">
+                            {{displaySelectedDate()}}
+                        </p>
+
+                        <div class="mb-4 form-group" id="buchenFormTimes">
+                            <label for="timeStart">vorraussichtlicher Beginn</label>
+                            <input id="timeStart" class="form-control" type="text" mdbInput placeholder="Beginn"
+                                maxlength="5" aria-label="24hr format" [ngxTimepicker]="timeStart" [format]="24"
+                                readonly name="timeStart">
+                            
+                            <label for="timeEnd">vorraussichtliches Ende</label>
+                            <input id="timeEnd" class="form-control" type="text" mdbInput placeholder="Ende"
+                                aria-label="24hr format" [ngxTimepicker]="timeEnd" [format]="24" readonly name="timeEnd">
+
+                            <ngx-material-timepicker #timeStart [theme]="darkTheme"></ngx-material-timepicker>
+                            <ngx-material-timepicker #timeEnd [theme]="darkTheme"></ngx-material-timepicker>
+                        </div>
 
                         <label for="buchenFormMessage">Nachricht</label>
                         <textarea mdbInput [(ngModel)]="model.message" id="buchenFormMessage" class="form-control mb-4"
                             placeholder="Nachricht" name="message"></textarea>
 
+                        <p>Disclaimer Lorem ipsum dolor sit amet, consetetur sadipscing elitr</p>
+                        
                         <button type="submit" (click)="onSubmit()" class="text-dark" mdbBtn type="button"
                             color="blue-grey" block="true" [disabled]="!buchenForm.form.valid" mdbWavesEffect>
-                            <h4 class="mb-0">Jetzt buchen!</h4>
+                            <h4 class="mb-0">Jetzt anfragen!</h4>
                         </button>
-                    </mdb-card-body>
-                </mdb-card>
-            </div>
+                    </form>
+                </mdb-card-body>
+            </mdb-card>
         </div>
-    </form>
+    </div>
 </div>

@@ -27,7 +27,7 @@
   // Everything else below is just themes the demo, it's probably not relevant to your app
   background-color: $bg-dark-primary;
   color: $text-color;
-  
+
   :focus {
     outline: none;
   }
@@ -54,6 +54,10 @@
     border-color: $border-color;
   }
 
+  .cal-cell-row:hover {
+    background-color: $bg-dark-primary !important;
+  }
+
   .nav-tabs .nav-link:hover,
   .nav-tabs .nav-link:focus {
     border-color: $border-color;
@@ -63,7 +67,12 @@
     background-color: lighten($color: $bg-dark-secondary, $amount: 5);
     pointer-events: none;
   }
-  
+
+  .cal-day-selected,
+  .cal-day-selected:hover {
+    background-color: deeppink !important;
+  }
+
   .cal-disabled .cal-day-number {
     opacity: 0.1;
   }
