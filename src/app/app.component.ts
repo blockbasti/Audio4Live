@@ -2,6 +2,7 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { slideInAnimation } from './animations';
 import { ConsentModalService } from './shared/consent-modal.service';
+import { PreloadImgService } from './preload-img.service';
 
 @Component({
   selector: 'app-root',
@@ -17,10 +18,11 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   modalService: ConsentModalService;
 
-  
+  preloadService: PreloadImgService;
 
-  constructor(modalService: ConsentModalService) {
+  constructor(modalService: ConsentModalService, preloadImageService: PreloadImgService) {
     this.modalService = modalService;
+    this.preloadService = preloadImageService;
   }
 
   prepareRoute(outlet: RouterOutlet) {
@@ -28,21 +30,13 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    /* let images = [
-      'https://placekitten.com/300/400',
-      '../assets/images/header.jpg',
-      '../assets/images/header2.jpg',
-      '../assets/images/header3.jpg',
-    ];
-    images.forEach(img => {
-      let image = new Image();
-      image.src = img;
-    }); */
+
   }
 
   ngAfterViewInit(): void {
     if (localStorage.getItem('enableAnalytics') === null) {
       this.modalService.showModal();
     }
+    this.preloadService.preloadImages();
   }
 }
