@@ -1,0 +1,35 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+import { LeistungenComponent } from './leistungen/leistungen.component';
+import { ProfilComponent } from './profil/profil.component';
+import { ReferenzenComponent } from './referenzen/referenzen.component';
+import { LandingComponent } from './landing/landing.component';
+
+import { PagesRoutingModule } from './pages-routing.module';
+
+import { CollapseModule, CardsModule, ButtonsModule, IconsModule } from 'angular-bootstrap-md';
+
+@NgModule({
+  declarations: [
+    ReferenzenComponent,
+    LandingComponent,
+    LeistungenComponent,
+    ProfilComponent
+  ],
+  imports: [
+    CommonModule,
+    PagesRoutingModule,
+    CollapseModule,
+    CardsModule,
+    ButtonsModule,
+    IconsModule,
+  ],
+  exports: [
+    ReferenzenComponent,
+    LandingComponent,
+    LeistungenComponent,
+    ProfilComponent
+  ]
+})
+export class PagesModule { }

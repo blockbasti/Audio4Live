@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { slideInAnimation } from './animations';
-import { ConsentModalService } from '../app/consent-modal.service';
+import { ConsentModalService } from './shared/consent-modal.service';
 
 @Component({
   selector: 'app-root',

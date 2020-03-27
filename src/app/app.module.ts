@@ -1,69 +1,32 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { MDBBootstrapModule } from 'angular-bootstrap-md';
-import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import { AngularFireAnalyticsModule, ScreenTrackingService, CONFIG, COLLECTION_ENABLED } from '@angular/fire/analytics';
 
 import { AppRoutingModule } from './app-routing.module';
+
 import { AppComponent } from './app.component';
-
-import localeDe from '@angular/common/locales/de';
-registerLocaleData(localeDe);
-
-
-import { NavbarComponent } from './navbar/navbar.component';
-import { RouterModule, PreloadAllModules } from '@angular/router';
-import { LeistungenComponent } from './leistungen/leistungen.component';
-import { ProfilComponent } from './profil/profil.component';
-import { ReferenzenComponent } from './referenzen/referenzen.component';
-import { BuchenComponent } from './buchen/buchen.component';
-import { LandingComponent } from './landing/landing.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { FooterComponent } from './footer/footer.component';
-import { DatenschutzComponent } from './datenschutz/datenschutz.component';
-import { ConsentComponent } from './consent/consent.component';
-import { CalendarModule, DateAdapter } from 'angular-calendar';
-import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
-import { registerLocaleData } from '@angular/common';
+import { BuchenModule } from './buchen/buchen.module';
+import { SharedModule } from './shared/shared.module';
+import { PagesModule } from './pages/pages.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent,
-    ReferenzenComponent,
-    BuchenComponent,
-    LandingComponent,
-    FooterComponent,
-    DatenschutzComponent,
-    ConsentComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    FontAwesomeModule,
     AppRoutingModule,
-    FormsModule,
-    NgxMaterialTimepickerModule,
-    MDBBootstrapModule.forRoot(),
+    PagesModule,
+    BuchenModule,
+    SharedModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireAnalyticsModule,
-    RouterModule.forRoot([
-      { path: '', component: LandingComponent, data: { animation: 'LandingPage' } },
-      { path: 'leistungen', component: LeistungenComponent, data: { animation: 'LeistungenPage' } },
-      { path: 'profil', component: ProfilComponent, data: { animation: 'ProfilPage' } },
-      { path: 'buchen', component: BuchenComponent, data: { animation: 'BuchenPage' } },
-      { path: 'referenzen', component: ReferenzenComponent, data: { animation: 'ReferenzenPage' } },
-    ], {
-      scrollPositionRestoration: 'top',
-      preloadingStrategy: PreloadAllModules
-
-    }),
-    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory })
+    AngularFireAnalyticsModule
   ],
   providers: [{
     provide: CONFIG, useValue: {

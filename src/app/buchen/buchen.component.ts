@@ -1,63 +1,41 @@
-import { Component, OnInit, ViewChild, AfterContentInit, AfterViewInit, Injectable } from '@angular/core';
+import { Component, OnInit, AfterViewInit, Injectable } from '@angular/core';
 
+import { AngularFirestore } from '@angular/fire/firestore';
+import 'firebase/firestore';
+
+import {SubmitService} from './submit.service';
+
+import { ChangeDetectionStrategy } from '@angular/core';
 import {
-  ChangeDetectionStrategy,
-  TemplateRef
-} from '@angular/core';
-import {
-  startOfDay,
-  endOfDay,
-  subDays,
-  addDays,
   endOfMonth,
   isSameDay,
-  isSameMonth,
-  addHours,
-  subWeeks,
   format,
   startOfMonth,
   getWeeksInMonth,
   addWeeks,
   Interval,
-  eachDayOfInterval,
   isWithinInterval,
   closestIndexTo,
   isBefore,
   isAfter,
-  isThisSecond
+  areIntervalsOverlapping,
+  addHours,
+  addMinutes
 } from 'date-fns';
 import { Subject } from 'rxjs';
 import {
   CalendarEvent,
-  CalendarEventAction,
-  CalendarEventTimesChangedEvent,
   CalendarMonthViewDay,
   CalendarDateFormatter,
   CalendarView,
   DAYS_OF_WEEK,
   CalendarUtils
 } from 'angular-calendar';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { GetMonthViewArgs, MonthView } from 'calendar-utils';
 
-import { Buchung } from '../buchung';
+import { Buchung } from './buchung';
 import { de } from 'date-fns/locale';
 import { NgxMaterialTimepickerTheme } from 'ngx-material-timepicker';
-
-const colors: any = {
-  red: {
-    primary: '#ad2121',
-    secondary: '#FAE3E3'
-  },
-  blue: {
-    primary: '#1e90ff',
-    secondary: '#D1E8FF'
-  },
-  yellow: {
-    primary: '#e3bc08',
-    secondary: '#FDF1BA'
-  }
-};
 
 @Injectable()
 export class MyCalendarUtils extends CalendarUtils {
@@ -104,24 +82,26 @@ export class BuchenComponent implements OnInit, AfterViewInit {
   weekStartsOn: number = DAYS_OF_WEEK.MONDAY;
   weekendDays: number[] = [DAYS_OF_WEEK.SATURDAY, DAYS_OF_WEEK.SUNDAY];
 
+  blocker: Interval[];
+
   events: CalendarEvent[] = [
 
   ];
 
   darkTheme: NgxMaterialTimepickerTheme = {
     container: {
-        bodyBackgroundColor: '#424242',
-        buttonColor: '#fff'
+      bodyBackgroundColor: '#424242',
+      buttonColor: '#fff'
     },
     dial: {
-        dialBackgroundColor: '#555',
+      dialBackgroundColor: '#555',
     },
     clockFace: {
-        clockFaceBackgroundColor: '#555',
-        clockHandColor: '#9fbd90',
-        clockFaceTimeInactiveColor: '#fff'
+      clockFaceBackgroundColor: '#555',
+      clockHandColor: '#9fbd90',
+      clockFaceTimeInactiveColor: '#fff'
     }
-};
+  };
 
   selectedMonthViewDay: CalendarMonthViewDay;
   selectedInterval: Interval = undefined;
@@ -130,9 +110,24 @@ export class BuchenComponent implements OnInit, AfterViewInit {
     return date > this.minDate;
   }
 
+  dateIsBlocked(date: Date): boolean {
+    if (!this.blocker) return false;
+    return this.blocker.some(intv => {
+      return isWithinInterval(date, intv);
+    });
+  }
+
+  containsBlockedDate(interval: Interval): boolean {
+    return this.blocker.some(blocker => {
+      return areIntervalsOverlapping(blocker, interval, { inclusive: true });
+    })
+  }
+
   dayClicked(day: CalendarMonthViewDay): void {
-    if (!this.dateIsValid(day.date)) return;
+    if (!this.dateIsValid(day.date) || this.dateIsBlocked(day.date)) return;
     this.selectedMonthViewDay = day;
+
+    const oldInterval = Object.assign({}, this.selectedInterval);
 
     if (this.selectedInterval === undefined) {
       this.selectedInterval = {
@@ -140,41 +135,68 @@ export class BuchenComponent implements OnInit, AfterViewInit {
         end: day.date
       }
       this.refresh.next();
+      this.model.date = this.selectedInterval;
       return;
     }
 
     if (isBefore(day.date, this.selectedInterval.start)) {
       this.selectedInterval.start = day.date;
+      if (this.containsBlockedDate(this.selectedInterval)) {
+        this.selectedInterval = oldInterval;
+        return;
+      }
       this.refresh.next();
+      this.model.date = this.selectedInterval;
       return;
     }
 
     if (isAfter(day.date, this.selectedInterval.end)) {
       this.selectedInterval.end = day.date;
+      if (this.containsBlockedDate(this.selectedInterval)) {
+        this.selectedInterval = oldInterval;
+        return;
+      }
       this.refresh.next();
+      this.model.date = this.selectedInterval;
       return;
     }
 
     if (isWithinInterval(day.date, this.selectedInterval)) {
-      if(isSameDay(this.selectedInterval.start,this.selectedInterval.end) && isSameDay(day.date, this.selectedInterval.end)){
+      if (isSameDay(this.selectedInterval.start, this.selectedInterval.end) && isSameDay(day.date, this.selectedInterval.end)) {
         this.selectedInterval = undefined;
         this.refresh.next();
+        this.model.date = this.selectedInterval;
         return;
       }
       if (isSameDay(day.date, this.selectedInterval.end) || isSameDay(day.date, this.selectedInterval.start)) {
         this.selectedInterval.start = day.date;
         this.selectedInterval.end = day.date;
+        if (this.containsBlockedDate(this.selectedInterval)) {
+          this.selectedInterval = oldInterval;
+          return;
+        }
         this.refresh.next();
+        this.model.date = this.selectedInterval;
         return;
       }
 
       if (closestIndexTo(day.date, [this.selectedInterval.start, this.selectedInterval.end]) === 0) {
         this.selectedInterval.start = day.date;
+        if (this.containsBlockedDate(this.selectedInterval)) {
+          this.selectedInterval = oldInterval;
+          return;
+        }
         this.refresh.next();
+        this.model.date = this.selectedInterval;
         return;
       } else {
         this.selectedInterval.end = day.date;
+        if (this.containsBlockedDate(this.selectedInterval)) {
+          this.selectedInterval = oldInterval;
+          return;
+        }
         this.refresh.next();
+        this.model.date = this.selectedInterval;
         return;
       }
     }
@@ -184,7 +206,9 @@ export class BuchenComponent implements OnInit, AfterViewInit {
     body.forEach(day => {
       if (!this.dateIsValid(day.date)) {
         day.cssClass = 'cal-disabled';
-      } else if (
+      } else if (this.dateIsBlocked(day.date)) {
+        day.cssClass = 'cal-blocked';
+      } else if (this.selectedInterval !== undefined &&
         isWithinInterval(day.date, this.selectedInterval)
       ) {
         day.cssClass = 'cal-day-selected';
@@ -192,7 +216,9 @@ export class BuchenComponent implements OnInit, AfterViewInit {
     });
   }
 
-  constructor() { }
+  constructor(private afs: AngularFirestore, private submitService: SubmitService) {
+    afs.collection<any>('blocker', ref => ref.where('start', '>=', new Date())).valueChanges().subscribe(blocker => { this.blocker = blocker.map(b => { return { start: (b.start as firebase.firestore.Timestamp).toDate(), end: (b.end as firebase.firestore.Timestamp).toDate() } }); this.refresh.next() });
+  }
 
   ngOnInit() {
 
@@ -202,24 +228,42 @@ export class BuchenComponent implements OnInit, AfterViewInit {
 
   }
 
-  displaySelectedDate(): string{
-    
-    if(this.selectedInterval === undefined){
+  displaySelectedDate(): string {
+
+    if (this.selectedInterval === undefined) {
       return 'kein Datum gewählt'
     }
 
     if (isSameDay(this.selectedInterval.start, this.selectedInterval.end)) {
-      return format(this.selectedInterval.start, 'dd. LLL yyy', {locale: de});
+      return format(this.selectedInterval.start, 'dd. LLL yyy', { locale: de });
     }
 
-    return format(this.selectedInterval.start, 'dd. LLL yyy', {locale: de}) + ' - ' + format(this.selectedInterval.end, 'dd. LLL yyy', {locale: de});
+    return format(this.selectedInterval.start, 'dd. LLL yyy', { locale: de }) + ' - ' + format(this.selectedInterval.end, 'dd. LLL yyy', { locale: de });
 
   }
 
   model = new Buchung();
 
+  times = {start: '', end: ''};
+
   submitted = false;
   onSubmit(): void {
+    if(this.times.start !== ''){
+      this.model.date.start = addHours(this.model.date.start, Number.parseInt(this.times.start.split(':')[0]));
+      this.model.date.start = addMinutes(this.model.date.start, Number.parseInt(this.times.start.split(':')[1]));
+    }
+
+    if(this.times.end !== ''){
+      this.model.date.end = addHours(this.model.date.end, Number.parseInt(this.times.end.split(':')[0]));
+      this.model.date.end = addMinutes(this.model.date.end, Number.parseInt(this.times.end.split(':')[1]));
+    }
+    
+    this.submitService.submitForm(this.model).subscribe((v) => {
+      this.model = new Buchung();
+      this.selectedInterval = undefined;
+      this.times = {start: '', end: ''};
+      this.refresh.next();
+    });
     this.submitted = true;
   }
 

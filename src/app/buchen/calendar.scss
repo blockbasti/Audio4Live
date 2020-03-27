@@ -68,12 +68,21 @@
     pointer-events: none;
   }
 
+  .cal-blocked {
+    background-color: #ef9a9a;
+    pointer-events: none;
+  }
+
   .cal-day-selected,
   .cal-day-selected:hover {
-    background-color: deeppink !important;
+    background-color: #4fc3f7 !important;
+  }
+
+  .cal-day-selected .cal-day-number {
+    color: #000;
   }
 
   .cal-disabled .cal-day-number {
-    opacity: 0.1;
+    opacity: 0.3;
   }
 }

@@ -70,15 +70,15 @@
                     <form #buchenForm="ngForm" (ngSubmit)="onSubmit()">
                         <label for="buchenFormEmail">E-Mail *</label>
                         <input mdbInput type="email" [(ngModel)]="model.email" id="buchenFormEmail" name="email"
-                            class="form-control mb-4" placeholder="E-Mail" required>
+                            class="form-control mb-4" placeholder="E-Mail" required maxlength="150">
 
                         <label for="buchenFormPhone">Telefonnummer</label>
                         <input mdbInput type="tel" [(ngModel)]="model.phone" id="buchenFormPhone" name="phone"
-                            class="form-control mb-4" placeholder="Telefonnummer">
+                            class="form-control mb-4" placeholder="Telefonnummer" maxlength="50">
 
                         <label for="buchenFormLocation">Veranstaltungsort</label>
                         <input mdbInput type="text" [(ngModel)]="model.location" id="buchenFormLocation" name="location"
-                            class="form-control mb-4" placeholder="Ort">
+                            class="form-control mb-4" placeholder="Ort" maxlength="150">
 
                         <label for="buchenFormDate">Datum</label>
                         <p id="buchenFormDate">
@@ -87,13 +87,13 @@
 
                         <div class="mb-4 form-group" id="buchenFormTimes">
                             <label for="timeStart">vorraussichtlicher Beginn</label>
-                            <input id="timeStart" class="form-control" type="text" mdbInput placeholder="Beginn"
+                            <input id="timeStart" class="form-control" type="text" mdbInput placeholder="Beginn" [(ngModel)]='times.start'
                                 maxlength="5" aria-label="24hr format" [ngxTimepicker]="timeStart" [format]="24"
                                 readonly name="timeStart">
                             
                             <label for="timeEnd">vorraussichtliches Ende</label>
                             <input id="timeEnd" class="form-control" type="text" mdbInput placeholder="Ende"
-                                aria-label="24hr format" [ngxTimepicker]="timeEnd" [format]="24" readonly name="timeEnd">
+                                aria-label="24hr format" [ngxTimepicker]="timeEnd" [format]="24" readonly name="timeEnd" [(ngModel)]='times.end'>
 
                             <ngx-material-timepicker #timeStart [theme]="darkTheme"></ngx-material-timepicker>
                             <ngx-material-timepicker #timeEnd [theme]="darkTheme"></ngx-material-timepicker>
@@ -101,7 +101,7 @@
 
                         <label for="buchenFormMessage">Nachricht</label>
                         <textarea mdbInput [(ngModel)]="model.message" id="buchenFormMessage" class="form-control mb-4"
-                            placeholder="Nachricht" name="message"></textarea>
+                            placeholder="Nachricht" name="message" maxlength="10000"></textarea>
 
                         <p>Disclaimer Lorem ipsum dolor sit amet, consetetur sadipscing elitr</p>
                         
