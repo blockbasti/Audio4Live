@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, Injectable } from '@angular/core';
+import { Component, OnInit, AfterViewInit, Injectable, ViewChild, ElementRef } from '@angular/core';
 
 import { AngularFirestore } from '@angular/fire/firestore';
 import 'firebase/firestore';
@@ -68,7 +68,7 @@ export class MyCalendarUtils extends CalendarUtils {
     }
   ]
 })
-export class BuchenComponent implements OnInit, AfterViewInit {
+export class BuchenComponent {
 
   refresh: Subject<any> = new Subject();
 
@@ -220,14 +220,6 @@ export class BuchenComponent implements OnInit, AfterViewInit {
     afs.collection<any>('blocker', ref => ref.where('start', '>=', new Date())).valueChanges().subscribe(blocker => { this.blocker = blocker.map(b => { return { start: (b.start as firebase.firestore.Timestamp).toDate(), end: (b.end as firebase.firestore.Timestamp).toDate() } }); this.refresh.next() });
   }
 
-  ngOnInit() {
-
-  }
-
-  ngAfterViewInit(): void {
-
-  }
-
   displaySelectedDate(): string {
 
     if (this.selectedInterval === undefined) {
@@ -246,7 +238,8 @@ export class BuchenComponent implements OnInit, AfterViewInit {
 
   times = {start: '', end: ''};
 
-  submitted = false;
+  @ViewChild('alert', { static: true }) alert: ElementRef;
+
   onSubmit(): void {
     if(this.times.start !== ''){
       this.model.date.start = addHours(this.model.date.start, Number.parseInt(this.times.start.split(':')[0]));
@@ -258,13 +251,19 @@ export class BuchenComponent implements OnInit, AfterViewInit {
       this.model.date.end = addMinutes(this.model.date.end, Number.parseInt(this.times.end.split(':')[1]));
     }
     
-    this.submitService.submitForm(this.model).subscribe((v) => {
+    this.submitService.submitForm(this.model).subscribe((_v) => {
+      this.alert.nativeElement.classList.add('show');
+      this.alert.nativeElement.classList.remove('d-none');
+      setTimeout(() => {
+        this.alert.nativeElement.classList.remove('show');
+        this.alert.nativeElement.classList.add('d-none');
+      },10000);
+
       this.model = new Buchung();
       this.selectedInterval = undefined;
       this.times = {start: '', end: ''};
       this.refresh.next();
     });
-    this.submitted = true;
   }
 
 }

@@ -109,6 +109,11 @@
                             color="blue-grey" block="true" [disabled]="!buchenForm.form.valid" mdbWavesEffect>
                             <h4 class="mb-0">Jetzt anfragen!</h4>
                         </button>
+
+                        <div #alert class="alert alert-dark mt-3 alert-dismissible fade d-none" role="alert">
+                            <b>Ihre Anfrage war erfolgreich!</b><br/>Sie erhalten in Kürze nochmal eine E&#8209;Mail mit Ihren eingegeben Informationen.<br/>
+                            Ich werde mich in den nächsten Tagen mit Ihnen in Verbindung setzen.
+                        </div>
                     </form>
                 </mdb-card-body>
             </mdb-card>
