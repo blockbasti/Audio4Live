@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
-import { CardsModule, ModalModule, NavbarModule, IconsModule } from 'angular-bootstrap-md';
+import { CardsModule, ModalModule, NavbarModule, IconsModule, ButtonsModule } from 'angular-bootstrap-md';
 
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
@@ -25,6 +25,7 @@ import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
     ModalModule.forRoot(),
     NavbarModule,
     IconsModule,
+    ButtonsModule,
     AngularFireAnalyticsModule
   ],
   exports: [
