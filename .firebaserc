@@ -7,6 +7,26 @@
       "hosting": {
         "audio4live": [
           "audio4live-1d621"
+        ],
+        "headers": [
+          {
+            "source": "**/*.@(eot|otf|ttf|ttc|woff|font.css)",
+            "headers": [
+              {
+                "key": "Access-Control-Allow-Origin",
+                "value": "*"
+              }
+            ]
+          },
+          {
+            "source": "**/*.@(jpg|jpeg|gif|png)",
+            "headers": [
+              {
+                "key": "Cache-Control",
+                "value": "max-age=7200"
+              }
+            ]
+          }
         ]
       }
     }

@@ -98,7 +98,7 @@ export class BuchenComponent {
     },
     clockFace: {
       clockFaceBackgroundColor: '#555',
-      clockHandColor: '#9fbd90',
+      clockHandColor: '#78909c',
       clockFaceTimeInactiveColor: '#fff'
     }
   };
