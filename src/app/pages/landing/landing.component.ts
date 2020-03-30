@@ -1,7 +1,8 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-landing',
+  encapsulation: ViewEncapsulation.None,
   templateUrl: './landing.component.html',
   styleUrls: ['./landing.component.scss']
 })

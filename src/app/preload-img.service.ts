@@ -8,16 +8,18 @@ export class PreloadImgService {
   constructor() { }
 
   private images = [
-    '/assets/images/header.jpg',
-    '/assets/images/header2.jpg',
-    '/assets/images/header3.jpg',
-    '/assets/images/header4.jpg',
+    'speaker1',
+    'speaker2',
+    'drums',
+    'fader',
+    'colors'
   ]
 
   preloadImages(){
+    let format = document.getElementsByTagName('html')[0].classList.contains('webp') ? '.webp' : '.jpg';
     this.images.forEach(img => {
       const image = new Image();
-      image.src = img;
+      image.src = '/assets/images/' + img + format;
     });
   }
 }

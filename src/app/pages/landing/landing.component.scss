@@ -1,5 +1,11 @@
-.view {
-  background: url("/assets/images/header.jpg")no-repeat center center;
+.no-webp .view {
+  background: url("/assets/images/fader.jpg") no-repeat center center;
+  background-size: cover;
+  height: 100vh;
+}
+
+.webp .view {
+  background: url("/assets/images/fader.webp") no-repeat center center;
   background-size: cover;
   height: 100vh;
 }

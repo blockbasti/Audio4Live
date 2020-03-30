@@ -6,7 +6,7 @@ export class Buchung {
         public email: string = '',
         public phone: string = '',
         public message: string = '',
-        public date: Interval = undefined,
+        public date?: Interval,
         public location: string = ''
     ){
     }

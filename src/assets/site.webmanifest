@@ -1,7 +1,7 @@
 {
     "name": "Audio4Live",
     "short_name": "Audio4Live",
-    "start_url": "https://audio4live.de/",
+    "start_url": "/",
     "icons": [
         {
             "src": "../assets/android-chrome-192x192.png",

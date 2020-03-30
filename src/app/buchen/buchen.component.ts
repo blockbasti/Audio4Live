@@ -1,9 +1,9 @@
-import { Component, OnInit, AfterViewInit, Injectable, ViewChild, ElementRef } from '@angular/core';
+import { Component, Injectable, ViewChild, ElementRef, ViewEncapsulation } from '@angular/core';
 
 import { AngularFirestore } from '@angular/fire/firestore';
 import 'firebase/firestore';
 
-import {SubmitService} from './submit.service';
+import { SubmitService } from './submit.service';
 
 import { ChangeDetectionStrategy } from '@angular/core';
 import {
@@ -42,7 +42,7 @@ export class MyCalendarUtils extends CalendarUtils {
   getMonthView(args: GetMonthViewArgs): MonthView {
     args.viewStart = startOfMonth(args.viewDate);
     // always display 5 weeks in calendar
-    let weeksInMonth = getWeeksInMonth(args.viewDate, { weekStartsOn: DAYS_OF_WEEK.MONDAY });
+    const weeksInMonth = getWeeksInMonth(args.viewDate, { weekStartsOn: DAYS_OF_WEEK.MONDAY });
     if (weeksInMonth <= 5) {
       args.viewEnd = addWeeks(endOfMonth(args.viewDate), 1);
     } else {
@@ -56,6 +56,7 @@ export class MyCalendarUtils extends CalendarUtils {
 @Component({
   selector: 'app-buchen',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
   templateUrl: './buchen.component.html',
   styleUrls: ['./buchen.component.scss'],
   providers: [
@@ -70,15 +71,26 @@ export class MyCalendarUtils extends CalendarUtils {
 })
 export class BuchenComponent {
 
+  constructor(private afs: AngularFirestore, private submitService: SubmitService) {
+    afs.collection<any>('blocker', ref => ref.where('start', '>=', new Date()))
+      .valueChanges().
+      subscribe(blocker => {
+        this.blocker = blocker.map(b => {
+          return { start: (b.start as firebase.firestore.Timestamp).toDate(), end: (b.end as firebase.firestore.Timestamp).toDate() }
+        });
+        this.refresh.next();
+      });
+  }
+
   refresh: Subject<any> = new Subject();
 
-  locale: string = 'de';
+  locale = 'de';
   view: CalendarView = CalendarView.Month;
   CalendarView = CalendarView;
   viewDate: Date = new Date();
   minDate: Date = new Date();
 
-  activeDayIsOpen: boolean = false;
+  activeDayIsOpen = false;
   weekStartsOn: number = DAYS_OF_WEEK.MONDAY;
   weekendDays: number[] = [DAYS_OF_WEEK.SATURDAY, DAYS_OF_WEEK.SUNDAY];
 
@@ -105,6 +117,12 @@ export class BuchenComponent {
 
   selectedMonthViewDay: CalendarMonthViewDay;
   selectedInterval: Interval = undefined;
+
+  model = new Buchung();
+
+  times = { start: '', end: '' };
+
+  @ViewChild('alert', { static: true }) alert: ElementRef;
 
   dateIsValid(date: Date): boolean {
     return date > this.minDate;
@@ -216,10 +234,6 @@ export class BuchenComponent {
     });
   }
 
-  constructor(private afs: AngularFirestore, private submitService: SubmitService) {
-    afs.collection<any>('blocker', ref => ref.where('start', '>=', new Date())).valueChanges().subscribe(blocker => { this.blocker = blocker.map(b => { return { start: (b.start as firebase.firestore.Timestamp).toDate(), end: (b.end as firebase.firestore.Timestamp).toDate() } }); this.refresh.next() });
-  }
-
   displaySelectedDate(): string {
 
     if (this.selectedInterval === undefined) {
@@ -230,38 +244,33 @@ export class BuchenComponent {
       return format(this.selectedInterval.start, 'dd. LLL yyy', { locale: de });
     }
 
-    return format(this.selectedInterval.start, 'dd. LLL yyy', { locale: de }) + ' - ' + format(this.selectedInterval.end, 'dd. LLL yyy', { locale: de });
+    return format(this.selectedInterval.start, 'dd. LLL yyy', { locale: de }) +
+      ' - ' + format(this.selectedInterval.end, 'dd. LLL yyy', { locale: de });
 
   }
 
-  model = new Buchung();
-
-  times = {start: '', end: ''};
-
-  @ViewChild('alert', { static: true }) alert: ElementRef;
-
   onSubmit(): void {
-    if(this.times.start !== ''){
-      this.model.date.start = addHours(this.model.date.start, Number.parseInt(this.times.start.split(':')[0]));
-      this.model.date.start = addMinutes(this.model.date.start, Number.parseInt(this.times.start.split(':')[1]));
+    if (this.times.start !== '') {
+      this.model.date.start = addHours(this.model.date.start, Number.parseInt(this.times.start.split(':')[0],10));
+      this.model.date.start = addMinutes(this.model.date.start, Number.parseInt(this.times.start.split(':')[1],10));
     }
 
-    if(this.times.end !== ''){
-      this.model.date.end = addHours(this.model.date.end, Number.parseInt(this.times.end.split(':')[0]));
-      this.model.date.end = addMinutes(this.model.date.end, Number.parseInt(this.times.end.split(':')[1]));
+    if (this.times.end !== '') {
+      this.model.date.end = addHours(this.model.date.end, Number.parseInt(this.times.end.split(':')[0],10));
+      this.model.date.end = addMinutes(this.model.date.end, Number.parseInt(this.times.end.split(':')[1],10));
     }
-    
+
     this.submitService.submitForm(this.model).subscribe((_v) => {
       this.alert.nativeElement.classList.add('show');
       this.alert.nativeElement.classList.remove('d-none');
       setTimeout(() => {
         this.alert.nativeElement.classList.remove('show');
         this.alert.nativeElement.classList.add('d-none');
-      },10000);
+      }, 10000);
 
       this.model = new Buchung();
       this.selectedInterval = undefined;
-      this.times = {start: '', end: ''};
+      this.times = { start: '', end: '' };
       this.refresh.next();
     });
   }

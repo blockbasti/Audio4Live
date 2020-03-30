@@ -20,7 +20,7 @@ import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
   imports: [
     CommonModule,
     RouterModule,
-    //MDBBootstrapModule.forRoot(),
+    // MDBBootstrapModule.forRoot(),
     CardsModule,
     ModalModule.forRoot(),
     NavbarModule,

@@ -7,7 +7,7 @@ import { Buchung } from './buchung';
 })
 export class SubmitService {
 
-  url: string = 'https://us-central1-audio4live-1d621.cloudfunctions.net/submit';
+  url = 'https://us-central1-audio4live-1d621.cloudfunctions.net/submit';
 
   constructor(private http: HttpClient) { }
 
