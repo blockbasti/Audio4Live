@@ -36,6 +36,7 @@ import { GetMonthViewArgs, MonthView } from 'calendar-utils';
 import { Buchung } from './buchung';
 import { de } from 'date-fns/locale';
 import { NgxMaterialTimepickerTheme } from 'ngx-material-timepicker';
+import { AngularFireAnalytics } from '@angular/fire/analytics';
 
 @Injectable()
 export class MyCalendarUtils extends CalendarUtils {
@@ -71,7 +72,8 @@ export class MyCalendarUtils extends CalendarUtils {
 })
 export class BuchenComponent {
 
-  constructor(private afs: AngularFirestore, private submitService: SubmitService) {
+  constructor(private afs: AngularFirestore, private submitService: SubmitService, analytics: AngularFireAnalytics) {
+    this.analytics = analytics;
     afs.collection<any>('blocker', ref => ref.where('start', '>=', new Date()))
       .valueChanges().
       subscribe(blocker => {
@@ -81,6 +83,8 @@ export class BuchenComponent {
         this.refresh.next();
       });
   }
+
+  analytics: AngularFireAnalytics;
 
   refresh: Subject<any> = new Subject();
 
@@ -261,6 +265,7 @@ export class BuchenComponent {
     }
 
     this.submitService.submitForm(this.model).subscribe((_v) => {
+      this.analytics.logEvent('booking');
       this.alert.nativeElement.classList.add('show');
       this.alert.nativeElement.classList.remove('d-none');
       setTimeout(() => {
