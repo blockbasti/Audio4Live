@@ -18,10 +18,10 @@ const cors = require('cors')({
 const db = admin.firestore();
 
 export const submit = functions.https.onRequest((req, res) => {
-    
-    cors(req,res, () => {
-        if(req.method !== 'POST') return res.status(403);
-        
+
+    cors(req, res, () => {
+        if (req.method !== 'POST') return res.status(403);
+
         /* Email to customer */
         db.collection('mail').add({
             to: req.body.email,
@@ -29,8 +29,8 @@ export const submit = functions.https.onRequest((req, res) => {
                 name: 'booking',
                 data: {
                     date: {
-                        start: format(new Date(req.body.date.start),'dd.MM.yyyy HH:mm'),
-                        end: format(new Date(req.body.date.end),'dd.MM.yyyy HH:mm')
+                        start: format(new Date(req.body.date.start), 'dd.MM.yyyy HH:mm'),
+                        end: format(new Date(req.body.date.end), 'dd.MM.yyyy HH:mm')
                     },
                     location: req.body.location,
                     message: req.body.message
@@ -51,5 +51,25 @@ export const submit = functions.https.onRequest((req, res) => {
         });
 
         return res.sendStatus(200);
+    })
+});
+
+import axios from 'axios';
+export const verify = functions.https.onRequest((req, res) => {
+
+    cors(req, res, () => {
+
+        const data = {
+            secret: functions.config().recaptcha.key,
+            response: req.query['response'],
+            remoteip: req.ip
+        };
+
+        axios.post('https://www.google.com/recaptcha/api/siteverify?secret=' + data.secret + '&response=' + data.response + '&remoteip=' + data.remoteip).then(resp => {
+            if (resp.data.success === true) res.sendStatus(200)
+            else res.sendStatus(400);
+        }).catch(() => {
+            res.sendStatus(500);
+        })
     })
 });
