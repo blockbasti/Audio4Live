@@ -1,0 +1,56 @@
+<div style="height: 75px;"></div>
+
+<div class="container min-vh-100">
+    <div class="row mt-2">
+        <div class="col-12 col-sm-4">
+            <h1>Admin</h1>
+        </div>
+        <div class="col-12 col-sm-4">
+            <span class="h-100 align-bottom">{{user?.email}}</span>
+        </div>
+        <div class="col-12 col-sm-4"><button mdbBtn color="blue-grey" class="" type="button"
+                (click)="signout()">Abmelden</button></div>
+    </div>
+    <div class="row">
+        <div class="container">
+            <div class="row" *ngFor='let booking of bookings; let i=index'>
+                <div class="col-6">
+                    <mdb-card class="elegant-color">
+                        <mdb-card-header>
+                            <mdb-card-title>
+                                <h3 class="m-0">Buchung #{{i+1}}</h3>
+                            </mdb-card-title>
+                        </mdb-card-header>
+                        
+                        <mdb-card-body>
+                            <table mdbTable>
+                                <tbody class="text-white">
+                                    <tr mdbTableCol>
+                                        <td>Datum</td>
+                                        <td>{{formatDate(booking.date.start)}} - {{formatDate(booking.date.end)}}</td>
+                                    </tr>
+                                    <tr mdbTableCol>
+                                        <td>Ort</td>
+                                        <td>{{booking.location}}</td>
+                                    </tr>
+                                    <tr mdbTableCol>
+                                        <td>Email</td>
+                                        <td>{{booking.email}}</td>
+                                    </tr>
+                                    <tr mdbTableCol>
+                                        <td>Telefonnummer</td>
+                                        <td>{{booking.phone}}</td>
+                                    </tr>
+                                    <tr mdbTableCol>
+                                        <td>Nachricht</td>
+                                        <td>{{booking.message}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </mdb-card-body>
+                    </mdb-card>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

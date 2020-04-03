@@ -10,9 +10,8 @@ import { AngularFireAnalyticsModule, ScreenTrackingService, CONFIG, COLLECTION_E
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { BuchenModule } from './buchen/buchen.module';
 import { SharedModule } from './shared/shared.module';
-import { PagesModule } from './pages/pages.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -22,8 +21,7 @@ import { PagesModule } from './pages/pages.module';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    PagesModule,
-    BuchenModule,
+    HttpClientModule,
     SharedModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAnalyticsModule

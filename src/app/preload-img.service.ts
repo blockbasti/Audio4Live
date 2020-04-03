@@ -16,7 +16,7 @@ export class PreloadImgService {
   ]
 
   preloadImages(){
-    let format = document.getElementsByTagName('html')[0].classList.contains('webp') ? '.webp' : '.jpg';
+    const format = document.getElementsByTagName('html')[0].classList.contains('webp') ? '.webp' : '.jpg';
     this.images.forEach(img => {
       const image = new Image();
       image.src = '/assets/images/' + img + format;

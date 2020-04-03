@@ -71,7 +71,6 @@ export class MyCalendarUtils extends CalendarUtils {
   ]
 })
 export class BuchenComponent {
-
   constructor(private afs: AngularFirestore, private submitService: SubmitService, analytics: AngularFireAnalytics) {
     this.analytics = analytics;
     afs.collection<any>('blocker', ref => ref.where('start', '>=', new Date()))
@@ -83,6 +82,7 @@ export class BuchenComponent {
         this.refresh.next();
       });
   }
+
 
   analytics: AngularFireAnalytics;
 
@@ -253,15 +253,27 @@ export class BuchenComponent {
 
   }
 
+  captchaSuccess: boolean = false;
+  captchaResponse: string = ''; 
+  resolved(captchaResponse: string) {
+    fetch('https://us-central1-audio4live-1d621.cloudfunctions.net/verify?response=' + captchaResponse).then(resp => {
+      if(resp.ok){
+        this.captchaSuccess = true;
+      } else {
+        this.captchaSuccess = false;
+      }
+    }).catch(() => this.captchaSuccess = false);
+  }
+
   onSubmit(): void {
     if (this.times.start !== '') {
-      this.model.date.start = addHours(this.model.date.start, Number.parseInt(this.times.start.split(':')[0],10));
-      this.model.date.start = addMinutes(this.model.date.start, Number.parseInt(this.times.start.split(':')[1],10));
+      this.model.date.start = addHours(this.model.date.start, Number.parseInt(this.times.start.split(':')[0], 10));
+      this.model.date.start = addMinutes(this.model.date.start, Number.parseInt(this.times.start.split(':')[1], 10));
     }
 
     if (this.times.end !== '') {
-      this.model.date.end = addHours(this.model.date.end, Number.parseInt(this.times.end.split(':')[0],10));
-      this.model.date.end = addMinutes(this.model.date.end, Number.parseInt(this.times.end.split(':')[1],10));
+      this.model.date.end = addHours(this.model.date.end, Number.parseInt(this.times.end.split(':')[0], 10));
+      this.model.date.end = addMinutes(this.model.date.end, Number.parseInt(this.times.end.split(':')[1], 10));
     }
 
     this.submitService.submitForm(this.model).subscribe((_v) => {

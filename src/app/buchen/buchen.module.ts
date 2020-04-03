@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule, registerLocaleData } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 
 import { BuchenRoutingModule } from './buchen-routing.module';
 import { BuchenComponent } from './buchen.component';
@@ -12,12 +11,14 @@ import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
 
 import localeDe from '@angular/common/locales/de';
-import { ButtonsModule, CardsModule, ModalModule, IconsModule, InputsModule } from 'angular-bootstrap-md';
-import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
 registerLocaleData(localeDe);
 
+import { ButtonsModule, CardsModule, ModalModule, IconsModule, InputsModule } from 'angular-bootstrap-md';
+
+import { RecaptchaModule , RecaptchaFormsModule, RECAPTCHA_LANGUAGE } from 'ng-recaptcha';
 
 @NgModule({
   declarations: [BuchenComponent],
@@ -31,13 +32,17 @@ registerLocaleData(localeDe);
     IconsModule,
     InputsModule,
     ModalModule.forRoot(),
-    HttpClientModule,
     AngularFirestoreModule,
     CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
-    AngularFireAnalyticsModule
+    AngularFireAnalyticsModule,
+    RecaptchaModule,
+    RecaptchaFormsModule
   ],
-  exports:  [
-    BuchenComponent
-  ]
+  providers: [
+    {
+      provide: RECAPTCHA_LANGUAGE,
+      useValue: 'de',
+    }
+  ],
 })
 export class BuchenModule { }
