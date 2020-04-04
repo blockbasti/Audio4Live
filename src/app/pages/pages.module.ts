@@ -8,7 +8,7 @@ import { LandingComponent } from './landing/landing.component';
 
 import { PagesRoutingModule } from './pages-routing.module';
 
-import { CollapseModule, CardsModule, ButtonsModule, IconsModule } from 'angular-bootstrap-md';
+import { CollapseModule, CardsModule, ButtonsModule, IconsModule, CarouselModule } from 'angular-bootstrap-md';
 
 @NgModule({
   declarations: [
@@ -24,6 +24,7 @@ import { CollapseModule, CardsModule, ButtonsModule, IconsModule } from 'angular
     CardsModule,
     ButtonsModule,
     IconsModule,
+    CarouselModule
   ],
   exports: [
     ReferenzenComponent,
