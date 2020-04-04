@@ -253,16 +253,15 @@ export class BuchenComponent {
 
   }
 
-  captchaSuccess: boolean = false;
   captchaResponse: string = ''; 
   resolved(captchaResponse: string) {
     fetch('https://us-central1-audio4live-1d621.cloudfunctions.net/verify?response=' + captchaResponse).then(resp => {
       if(resp.ok){
-        this.captchaSuccess = true;
+        this.captchaResponse = captchaResponse;
       } else {
-        this.captchaSuccess = false;
+        this.captchaResponse = '';
       }
-    }).catch(() => this.captchaSuccess = false);
+    }).catch(() => this.captchaResponse = '');
   }
 
   onSubmit(): void {

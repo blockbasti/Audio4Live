@@ -148,7 +148,9 @@
 
                         <p>Disclaimer Lorem ipsum dolor sit amet, consetetur sadipscing elitr</p>
 
-                        <re-captcha (resolved)="resolved($event)" siteKey="6LchheYUAAAAABK3F5HtlemJkmwOL2DkJ1yZ8rer" [theme]="'dark'" required [(ngModel)]="captchaResponse" name="captcha"></re-captcha>
+                        <div class="d-flex justify-content-center">
+                            <re-captcha (resolved)="resolved($event)" siteKey="6LchheYUAAAAABK3F5HtlemJkmwOL2DkJ1yZ8rer" [theme]="'dark'" required [(ngModel)]="captchaResponse" name="captcha"></re-captcha>
+                        </div>
 
                         <button type="submit" (click)="onSubmit()" class="text-dark" mdbBtn type="button"
                             color="blue-grey" block="true" [disabled]="!buchenForm.form.valid" mdbWavesEffect>
