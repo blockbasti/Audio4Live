@@ -26,6 +26,8 @@ import { RecaptchaModule , RecaptchaFormsModule, RECAPTCHA_LANGUAGE } from 'ng-r
     CommonModule,
     BuchenRoutingModule,
     FormsModule,
+    RecaptchaModule,
+    RecaptchaFormsModule,
     NgxMaterialTimepickerModule.setLocale('de-DE'),
     ButtonsModule,
     CardsModule,
@@ -34,9 +36,7 @@ import { RecaptchaModule , RecaptchaFormsModule, RECAPTCHA_LANGUAGE } from 'ng-r
     ModalModule.forRoot(),
     AngularFirestoreModule,
     CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
-    AngularFireAnalyticsModule,
-    RecaptchaModule,
-    RecaptchaFormsModule
+    AngularFireAnalyticsModule  
   ],
   providers: [
     {

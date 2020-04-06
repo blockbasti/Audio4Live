@@ -73,7 +73,7 @@ export class MyCalendarUtils extends CalendarUtils {
 export class BuchenComponent {
   constructor(private afs: AngularFirestore, private submitService: SubmitService, analytics: AngularFireAnalytics) {
     this.analytics = analytics;
-    afs.collection<any>('blocker', ref => ref.where('start', '>=', new Date()))
+    afs.collection<any>('blocker', ref => ref.where('end', '>=', new Date()))
       .valueChanges().
       subscribe(blocker => {
         this.blocker = blocker.map(b => {

@@ -7,3 +7,12 @@
   background: url("/assets/images/speaker1.webp") no-repeat center center;
   background-size: cover;
 }
+
+.custom-control-input:checked ~ .custom-control-label::before {
+  border-color: #607d8b;
+  background-color: #607d8b;
+}
+
+.custom-switch .custom-control-input:disabled:checked ~ .custom-control-label::before {
+  background-color: darken($color: #607d8b, $amount: 3);
+}

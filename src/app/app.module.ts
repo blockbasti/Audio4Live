@@ -13,6 +13,8 @@ import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 
+import { ɵe as TIME_LOCALE } from 'ngx-material-timepicker';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,14 +29,23 @@ import { HttpClientModule } from '@angular/common/http';
     AngularFireAnalyticsModule
   ],
   providers: [{
-    provide: CONFIG, useValue: {
+    provide: CONFIG,
+    useValue: {
       send_page_view: true,
       allow_ad_personalization_signals: false,
       anonymize_ip: true
     },
   },
-  { provide: COLLECTION_ENABLED, useValue: (localStorage.getItem('enableAnalytics') === 'true') },
-    ScreenTrackingService],
+  {
+    provide: COLLECTION_ENABLED,
+    useValue: (localStorage.getItem('enableAnalytics') === 'true')
+  },
+  {
+    provide: TIME_LOCALE,
+    useValue: ''
+  },
+    ScreenTrackingService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -18,17 +18,19 @@
                         <h3>Buchungsanfrage</h3>
                     </mdb-card-title>
                     <p class="text-light" style="font-size: 1.2rem !important;">
-                        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt
-                        ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo
-                        dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor
-                        sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-                        invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
-                        justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem
-                        ipsum dolor sit amet.
+                        Sie suchen eine engagierte technische Fachkraft zum Aufbau und der Durchführung Ihrer
+                        Veranstaltung? Als nebenberuflicher Veranstaltungstechniker kann ich zuverlässig Ihre
+                        Vorstellungen umsetzen. Mein Tätigkeitsbereich bezieht sich überwiegend auf Erfurt und
+                        Thüringen.
+                        <br />
+                        Teilen Sie mit bitte nachfolgend Ihrer Terminvorstellungen und die von Ihnen gewünschten
+                        Leistungen mit. Freie Termine erkennen Sie im nachfolgenden Kalender an einem dunkel
+                        hinterlegten
+                        Feld, rot hinterlegte Felder sind belegt.
                     </p>
                     <p class="text-light" style="font-size: 1.2rem !important;">
-                        <strong>Beachten Sie, dass ich ab 30km Anfahrt eine Kilometerpauschale von 0,30€/km
-                            veranschlage!</strong>
+                        <strong>Bitte beachten Sie,
+                            dass ab 30km eine Anfahrtspauschale von 0,30€/km zusätzlich berechnet wird.</strong>
                     </p>
                 </mdb-card-body>
             </mdb-card>
@@ -44,8 +46,7 @@
                             {{ viewDate | calendarDate:(view + 'ViewTitle'):'de' }}
                         </h3>
 
-                        <div class="btn-group btn-group-sm" role="group"
-                            aria-label="Kalender Navigation">
+                        <div class="btn-group btn-group-sm" role="group" aria-label="Kalender Navigation">
                             <button mdbBtn type="button" color="blue-grey" size="sm" class="waves-light" mdbWavesEffect
                                 mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate">
                                 <mdb-icon fas size="2x" icon="angle-left"></mdb-icon>
@@ -82,7 +83,12 @@
 
                         <label for="buchenFormPhone">Telefonnummer</label>
                         <input mdbInput type="tel" [(ngModel)]="model.phone" id="buchenFormPhone" name="phone"
-                            class="form-control mb-4" placeholder="Telefonnummer" maxlength="50">
+                            class="form-control mb-2" placeholder="Telefonnummer" maxlength="50">
+
+                        <div class="custom-control custom-switch mb-4">
+                            <input type="checkbox" class="custom-control-input" id="customSwitches" name="call" [(ngModel)]="model.call" [disabled]="model.phone === ''">
+                            <label class="custom-control-label" for="customSwitches">Rückrufwunsch</label>
+                        </div>
 
                         <label for="buchenFormLocation">Veranstaltungsort</label>
                         <input mdbInput type="text" [(ngModel)]="model.location" id="buchenFormLocation" name="location"
@@ -146,10 +152,13 @@
                         <textarea mdbInput [(ngModel)]="model.message" id="buchenFormMessage" class="form-control mb-4"
                             placeholder="Nachricht" name="message" maxlength="10000"></textarea>
 
-                        <p>Disclaimer Lorem ipsum dolor sit amet, consetetur sadipscing elitr</p>
+                        <p class="text-center">Aufgrund der manuellen Bearbeitung kann es zu Zeitverzögerungen zwischen
+                            Eingang und
+                            Auftragsbestätigung kommen. Fehleinträge und Absagen sind vorbehalten.</p>
 
-                        <div class="d-flex justify-content-center">
-                            <re-captcha (resolved)="resolved($event)" siteKey="6LchheYUAAAAABK3F5HtlemJkmwOL2DkJ1yZ8rer" [theme]="'dark'" required [(ngModel)]="captchaResponse" name="captcha"></re-captcha>
+                        <div class="d-flex justify-content-center mb-2">
+                            <re-captcha (resolved)="resolved($event)" siteKey="6LchheYUAAAAABK3F5HtlemJkmwOL2DkJ1yZ8rer"
+                                [theme]="'dark'" required [(ngModel)]="captchaResponse" name="captcha"></re-captcha>
                         </div>
 
                         <button type="submit" (click)="onSubmit()" class="text-dark" mdbBtn type="button"
