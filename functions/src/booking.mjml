@@ -1,0 +1,114 @@
+<mjml>
+  <mj-head>
+    <mj-title>Buchungsanfrage Audio4Live</mj-title>
+    <mj-preview>
+      Vielen Dank für Ihre Anfrage bei Audio4Live!
+    </mj-preview>
+    <mj-font name="Lato" href="https://fonts.googleapis.com/css2?family=Lato:wght@400&display=swap" />
+
+    <mj-attributes>
+      <mj-all font-family="Lato, sans-serif" color="#ffffff" />
+    </mj-attributes>
+  </mj-head>
+  <mj-body background-color="#2E2E2E">
+    <!-- Header -->
+    <mj-section background-color="#212121">
+      <mj-column vertical-align="middle">
+        <mj-image alt="Audio4Live" width="300px" src="https://audio4live-1d621.web.app/assets/images/Logo2_Text.png">
+      </mj-column>
+    </mj-section>
+
+    <!-- Hero -->
+    <mj-hero mode="fixed-height" height="150px" background-color="#212121" background-position="top center" background-url="https://audio4live-1d621.web.app/assets/images/fader.jpg">
+      <mj-text align="center" font-size="20px" padding-top="30px" color="#ffffff">
+        <h1>Vielen Dank für Ihre Anfrage!</h1>
+      </mj-text>
+    </mj-hero>
+
+    <!-- Salutation -->
+    <mj-section background-color="#212121" padding-bottom="0px">
+      <mj-column>
+        <mj-text>
+          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <!-- Booking -->
+    <mj-section background-color="#212121" padding-top="0px">
+      <mj-column>
+        <mj-text padding-bottom="0px">
+          <h2>Anfragedaten</h2>
+        </mj-text>
+        <mj-table padding-top="0px">
+          <tbody>
+            <tr>
+              <td style="text-align: right; padding-right: 10px;">
+                <b>Datum</b>
+              </td>
+              <td>
+                {{date}}
+              </td>
+            </tr>
+            <tr>
+              <td style="text-align: right; padding-right: 10px;vertical-align: top;width:100px;">
+                <b>Kontaktdaten</b>
+              </td>
+              <td>
+                {{email}}<br />
+                {{phone}} {{callback}}
+              </td>
+            </tr>
+            <tr>
+              <td style="text-align: right; padding-right: 10px;">
+                <b>Ort</b>
+              </td>
+              <td>
+                {{location}}
+              </td>
+            </tr>
+            <tr>
+              <td style="text-align: right; padding-right: 10px;vertical-align: top;">
+                <b>Nachricht</b>
+              </td>
+              <td>
+                {{message}}
+              </td>
+            </tr>
+          </tbody>
+        </mj-table>
+      </mj-column>
+    </mj-section>
+
+    <!-- Greeting -->
+    <mj-section background-color="#212121" padding-top="0px">
+      <mj-column>
+        <mj-text>
+          Mit freundlichen Grüßen<br />
+          <br />
+          <b>Johannes Tschiersch</b>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <!-- Footer -->
+    <mj-section background-color="#2E2E2E">
+      <mj-column>
+        <mj-text>
+          ©2020&nbsp;Audio4Live
+        </mj-text>
+      </mj-column>
+
+      <mj-column>
+        <mj-text align="center">
+          <a style="color: white; text-decoration: none" href="https://audio4live.de/">Audio4Live.de</a>
+        </mj-text>
+      </mj-column>
+      <mj-column>
+        <mj-text align="center">
+          <a style="color: white; text-decoration: none" href="https://audio4live.de/impressum">Impressum</a>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>
