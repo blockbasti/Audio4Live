@@ -86,7 +86,8 @@
                             class="form-control mb-2" placeholder="Telefonnummer" maxlength="50">
 
                         <div class="custom-control custom-switch mb-4">
-                            <input type="checkbox" class="custom-control-input" id="customSwitches" name="call" [(ngModel)]="model.call" [disabled]="model.phone === ''">
+                            <input type="checkbox" class="custom-control-input" id="customSwitches" name="call"
+                                [(ngModel)]="model.call" [disabled]="model.phone === ''">
                             <label class="custom-control-label" for="customSwitches">Rückrufwunsch</label>
                         </div>
 
@@ -108,9 +109,10 @@
 
                                 <input id="timeStart" class="form-control border-0" type="text" mdbInput
                                     placeholder="Start" aria-label="24hr format" [ngxTimepicker]="timeStart"
-                                    [format]="24" readonly name="timeStart" [(ngModel)]='times.start' />
+                                    [format]="24" readonly name="timeStart" [(ngModel)]='model.times.start'
+                                    [disabled]="!model.date" />
                                 <div class="input-group-append">
-                                    <button mdbBtn color="blue-grey" (click)="times.start=''" size="md"
+                                    <button mdbBtn color="blue-grey" (click)="model.times.start=''" size="md"
                                         class="m-0 px-2 py-2 border-0" type="button">
                                         <mdb-icon fas icon="backspace"></mdb-icon>
                                     </button>
@@ -125,9 +127,9 @@
 
                                 <input id="timeEnd" class="form-control border-0 border-left-1" type="text" mdbInput
                                     placeholder="Ende" aria-label="24hr format" [ngxTimepicker]="timeEnd" [format]="24"
-                                    readonly name="timeEnd" [(ngModel)]='times.end' />
+                                    readonly name="timeEnd" [(ngModel)]='model.times.end' [disabled]="!model.date" />
                                 <div class="input-group-append">
-                                    <button mdbBtn color="blue-grey" (click)="times.end=''" size="md"
+                                    <button mdbBtn color="blue-grey" (click)="model.times.end=''" size="md"
                                         class="m-0 px-2 py-2 border-0" type="button">
                                         <mdb-icon fas icon="backspace"></mdb-icon>
                                     </button>

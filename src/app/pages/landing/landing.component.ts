@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { DatenschutzModalService } from '../../shared/datenschutz-modal.service';
 
 @Component({
   selector: 'app-landing',
@@ -8,10 +10,13 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 })
 export class LandingComponent implements OnInit {
 
-  constructor() { }
+  constructor(route: ActivatedRoute, modalService: DatenschutzModalService) {
+    route.data.subscribe(data => {
+      if (data.openPrivacy) modalService.showModal()
+    })
+  }
 
   ngOnInit(): void {
-
   }
 
 }

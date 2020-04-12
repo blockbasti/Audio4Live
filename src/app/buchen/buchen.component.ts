@@ -1,7 +1,7 @@
 import { Component, Injectable, ViewChild, ElementRef, ViewEncapsulation } from '@angular/core';
 
 import { AngularFirestore } from '@angular/fire/firestore';
-import 'firebase/firestore';
+//import 'firebase/firestore';
 
 import { SubmitService } from './submit.service';
 
@@ -18,9 +18,7 @@ import {
   closestIndexTo,
   isBefore,
   isAfter,
-  areIntervalsOverlapping,
-  addHours,
-  addMinutes
+  areIntervalsOverlapping
 } from 'date-fns';
 import { Subject } from 'rxjs';
 import {
@@ -123,8 +121,6 @@ export class BuchenComponent {
   selectedInterval: Interval = undefined;
 
   model = new Buchung();
-
-  times = { start: '', end: '' };
 
   @ViewChild('alert', { static: true }) alert: ElementRef;
 
@@ -265,15 +261,15 @@ export class BuchenComponent {
   }
 
   onSubmit(): void {
-    if (this.times.start !== '') {
-      this.model.date.start = addHours(this.model.date.start, Number.parseInt(this.times.start.split(':')[0], 10));
-      this.model.date.start = addMinutes(this.model.date.start, Number.parseInt(this.times.start.split(':')[1], 10));
+    /* if (this.model.times.start !== '') {
+      this.model.date.start = addHours(this.model.date.start, Number.parseInt(this.model.times.start.split(':')[0], 10));
+      this.model.date.start = addMinutes(this.model.date.start, Number.parseInt(this.model.times.start.split(':')[1], 10));
     }
 
-    if (this.times.end !== '') {
-      this.model.date.end = addHours(this.model.date.end, Number.parseInt(this.times.end.split(':')[0], 10));
-      this.model.date.end = addMinutes(this.model.date.end, Number.parseInt(this.times.end.split(':')[1], 10));
-    }
+    if (this.model.times.end !== '') {
+      this.model.date.end = addHours(this.model.date.end, Number.parseInt(this.model.times.end.split(':')[0], 10));
+      this.model.date.end = addMinutes(this.model.date.end, Number.parseInt(this.model.times.end.split(':')[1], 10));
+    } */
 
     this.submitService.submitForm(this.model).subscribe((_v) => {
       this.analytics.logEvent('booking');
@@ -286,7 +282,6 @@ export class BuchenComponent {
 
       this.model = new Buchung();
       this.selectedInterval = undefined;
-      this.times = { start: '', end: '' };
       this.refresh.next();
     });
   }
