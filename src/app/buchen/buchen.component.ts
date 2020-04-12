@@ -282,6 +282,7 @@ export class BuchenComponent {
 
       this.model = new Buchung();
       this.selectedInterval = undefined;
+      this.captchaResponse = '';
       this.refresh.next();
     });
   }
