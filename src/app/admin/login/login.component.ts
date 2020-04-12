@@ -9,7 +9,7 @@ import { auth } from 'firebase/app';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private auth: AngularFireAuth) { }
+  constructor(private fireauth: AngularFireAuth) { }
 
   credentials = { email: '', password: '' }
 
@@ -17,8 +17,8 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.auth.signInWithEmailAndPassword(this.credentials.email, this.credentials.password).then(cred => {
-      this.auth.setPersistence(auth.Auth.Persistence.SESSION).then(() => {
+    this.fireauth.signInWithEmailAndPassword(this.credentials.email, this.credentials.password).then(cred => {
+      this.fireauth.setPersistence(auth.Auth.Persistence.SESSION).then(() => {
         window.location.replace('/admin');
       });
     });

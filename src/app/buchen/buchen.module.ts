@@ -36,7 +36,7 @@ import { RecaptchaModule , RecaptchaFormsModule, RECAPTCHA_LANGUAGE } from 'ng-r
     ModalModule.forRoot(),
     AngularFirestoreModule,
     CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
-    AngularFireAnalyticsModule  
+    AngularFireAnalyticsModule
   ],
   providers: [
     {

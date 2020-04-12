@@ -16,14 +16,17 @@ export class AdminComponent implements OnInit {
 
   constructor(private auth: AngularFireAuth, private db: AngularFirestore) { }
 
-  user? : firebase.User;
+  user?: firebase.User;
   bookings?: Buchung[];
 
   ngOnInit(): void {
     this.auth.currentUser.then(user => this.user = user);
     this.db.collection<any>('booking').valueChanges().subscribe(bookings => {
       this.bookings = bookings.map(b => {
-        b.date = { start: (b.date.start as firebase.firestore.Timestamp).toDate(), end: (b.date.end as firebase.firestore.Timestamp).toDate() }
+        b.date = {
+          start: (b.date.start as firebase.firestore.Timestamp).toDate(),
+          end: (b.date.end as firebase.firestore.Timestamp).toDate()
+        }
         return b as Buchung;
       })
     });

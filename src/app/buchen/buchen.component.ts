@@ -1,7 +1,7 @@
 import { Component, Injectable, ViewChild, ElementRef, ViewEncapsulation } from '@angular/core';
 
 import { AngularFirestore } from '@angular/fire/firestore';
-//import 'firebase/firestore';
+// import 'firebase/firestore';
 
 import { SubmitService } from './submit.service';
 
@@ -123,6 +123,8 @@ export class BuchenComponent {
   model = new Buchung();
 
   @ViewChild('alert', { static: true }) alert: ElementRef;
+
+  captchaResponse = '';
 
   dateIsValid(date: Date): boolean {
     return date > this.minDate;
@@ -248,8 +250,6 @@ export class BuchenComponent {
       ' - ' + format(this.selectedInterval.end, 'dd. LLL yyy', { locale: de });
 
   }
-
-  captchaResponse: string = ''; 
   resolved(captchaResponse: string) {
     fetch('https://us-central1-audio4live-1d621.cloudfunctions.net/verify?response=' + captchaResponse).then(resp => {
       if(resp.ok){
