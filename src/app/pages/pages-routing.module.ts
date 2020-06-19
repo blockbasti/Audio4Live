@@ -10,7 +10,9 @@ const routes: Routes = [{ path: 'profil', component: ProfilComponent, data: { an
 { path: 'leistungen', component: LeistungenComponent, data: { animation: 'LeistungenPage' } },
 { path: 'referenzen', component: ReferenzenComponent, data: { animation: 'ReferenzenPage' } },
 { path: '', component: LandingComponent, data: { animation: 'LandingPage' } },
-{ path: 'datenschutz', component: LandingComponent, data: {openPrivacy: true}}];
+{ path: 'datenschutz', component: LandingComponent, data: { openPrivacy: true } },
+{ path: 'impressum', component: LandingComponent, data: { openImprint: true } }];
+
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

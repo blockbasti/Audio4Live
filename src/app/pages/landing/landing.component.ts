@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DatenschutzModalService } from '../../shared/datenschutz-modal.service';
+import { ImpressumModalService } from 'src/app/shared/impressum-modal.service';
 
 @Component({
   selector: 'app-landing',
@@ -10,9 +11,10 @@ import { DatenschutzModalService } from '../../shared/datenschutz-modal.service'
 })
 export class LandingComponent implements OnInit {
 
-  constructor(route: ActivatedRoute, modalService: DatenschutzModalService) {
+  constructor(route: ActivatedRoute, datenschutzModalService: DatenschutzModalService, impressumModalService: ImpressumModalService) {
     route.data.subscribe(data => {
-      if (data.openPrivacy) { modalService.showModal(); }
+      if (data.openPrivacy) { datenschutzModalService.showModal(); }
+      if (data.openImprint) { impressumModalService.showModal(); }
     });
   }
 
