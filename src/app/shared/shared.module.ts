@@ -9,12 +9,14 @@ import { FooterComponent } from './footer/footer.component';
 import { DatenschutzComponent } from './datenschutz/datenschutz.component';
 import { ConsentComponent } from './consent/consent.component';
 import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
+import { ImpressumComponent } from './impressum/impressum.component';
 
 @NgModule({
   declarations: [
     NavbarComponent,
     FooterComponent,
     DatenschutzComponent,
+    ImpressumComponent,
     ConsentComponent
   ],
   imports: [
@@ -32,6 +34,7 @@ import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
     NavbarComponent,
     FooterComponent,
     DatenschutzComponent,
+    ImpressumComponent,
     ConsentComponent,
     RouterModule
   ]

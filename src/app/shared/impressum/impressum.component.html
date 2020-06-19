@@ -1,0 +1,20 @@
+<div style="overflow-y: auto" mdbModal #impressumModal="mdbModal" class="modal fade right" tabindex="-1" role="dialog"
+    aria-labelledby="modalImpressumLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close pull-right" aria-label="Schließen" (click)="impressumModal.hide()">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title w-100 text-dark" id="modalImpressumLabel">Impressum</h4>
+            </div>
+            <div class="modal-body text-dark">
+
+            </div>
+            <div class="modal-footer justify-content-center">
+                <button type="button" mdbBtn color="elegant" class="waves-light" aria-label="Schließen"
+                    (click)="impressumModal.hide()" mdbWavesEffect>Schließen</button>
+            </div>
+        </div>
+    </div>
+</div>

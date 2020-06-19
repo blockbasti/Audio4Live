@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DatenschutzModalService} from '../datenschutz-modal.service';
+import { DatenschutzModalService } from '../datenschutz-modal.service';
+import { ImpressumModalService } from '../impressum-modal.service';
 
 @Component({
   selector: 'app-footer',
@@ -8,18 +9,23 @@ import { DatenschutzModalService} from '../datenschutz-modal.service';
 })
 export class FooterComponent implements OnInit {
 
-  modalService: DatenschutzModalService;
+  datenschutzModalService: DatenschutzModalService;
+  impressumModalService: ImpressumModalService;
 
-
-  constructor(modalService: DatenschutzModalService) {
-    this.modalService = modalService;
+  constructor(datenschutzModalService: DatenschutzModalService, impressumModalService: ImpressumModalService) {
+    this.datenschutzModalService = datenschutzModalService;
+    this.impressumModalService = impressumModalService;
   }
 
   ngOnInit(): void {
   }
 
-  openModal() {
-    this.modalService.showModal();
+  openDatenschutzModal() {
+    this.datenschutzModalService.showModal();
+  }
+
+  openImpressumModal() {
+    this.impressumModalService.showModal();
   }
 
 }
