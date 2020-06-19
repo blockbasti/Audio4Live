@@ -11,7 +11,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private fireauth: AngularFireAuth) { }
 
-  credentials = { email: '', password: '' }
+  credentials = { email: '', password: '' };
 
   ngOnInit(): void {
   }

@@ -13,7 +13,7 @@ export class PreloadImgService {
     'drums',
     'fader',
     'colors'
-  ]
+  ];
 
   preloadImages(){
     const format = document.getElementsByTagName('html')[0].classList.contains('webp') ? '.webp' : '.jpg';

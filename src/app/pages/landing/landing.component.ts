@@ -12,8 +12,8 @@ export class LandingComponent implements OnInit {
 
   constructor(route: ActivatedRoute, modalService: DatenschutzModalService) {
     route.data.subscribe(data => {
-      if (data.openPrivacy) modalService.showModal()
-    })
+      if (data.openPrivacy) { modalService.showModal(); }
+    });
   }
 
   ngOnInit(): void {

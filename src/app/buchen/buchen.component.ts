@@ -24,7 +24,6 @@ import { Subject } from 'rxjs';
 import {
   CalendarEvent,
   CalendarMonthViewDay,
-  CalendarDateFormatter,
   CalendarView,
   DAYS_OF_WEEK,
   CalendarUtils
@@ -60,9 +59,6 @@ export class MyCalendarUtils extends CalendarUtils {
   styleUrls: ['./buchen.component.scss'],
   providers: [
     {
-      provide: CalendarDateFormatter
-    },
-    {
       provide: CalendarUtils,
       useClass: MyCalendarUtils
     }
@@ -75,12 +71,11 @@ export class BuchenComponent {
       .valueChanges().
       subscribe(blocker => {
         this.blocker = blocker.map(b => {
-          return { start: (b.start as firebase.firestore.Timestamp).toDate(), end: (b.end as firebase.firestore.Timestamp).toDate() }
+          return { start: (b.start as firebase.firestore.Timestamp).toDate(), end: (b.end as firebase.firestore.Timestamp).toDate() };
         });
-        this.refresh.next();
+        this.refresh.next(null);
       });
   }
-
 
   analytics: AngularFireAnalytics;
 
@@ -98,9 +93,7 @@ export class BuchenComponent {
 
   blocker: Interval[];
 
-  events: CalendarEvent[] = [
-
-  ];
+  events: CalendarEvent[] = [];
 
   darkTheme: NgxMaterialTimepickerTheme = {
     container: {
@@ -131,7 +124,7 @@ export class BuchenComponent {
   }
 
   dateIsBlocked(date: Date): boolean {
-    if (!this.blocker) return false;
+    if (!this.blocker) { return false; }
     return this.blocker.some(intv => {
       return isWithinInterval(date, intv);
     });
@@ -140,11 +133,11 @@ export class BuchenComponent {
   containsBlockedDate(interval: Interval): boolean {
     return this.blocker.some(blocker => {
       return areIntervalsOverlapping(blocker, interval, { inclusive: true });
-    })
+    });
   }
 
   dayClicked(day: CalendarMonthViewDay): void {
-    if (!this.dateIsValid(day.date) || this.dateIsBlocked(day.date)) return;
+    if (!this.dateIsValid(day.date) || this.dateIsBlocked(day.date)) { return; }
     this.selectedMonthViewDay = day;
 
     const oldInterval = Object.assign({}, this.selectedInterval);
@@ -153,8 +146,8 @@ export class BuchenComponent {
       this.selectedInterval = {
         start: day.date,
         end: day.date
-      }
-      this.refresh.next();
+      };
+      this.refresh.next(null);
       this.model.date = this.selectedInterval;
       return;
     }
@@ -165,7 +158,7 @@ export class BuchenComponent {
         this.selectedInterval = oldInterval;
         return;
       }
-      this.refresh.next();
+      this.refresh.next(null);
       this.model.date = this.selectedInterval;
       return;
     }
@@ -176,7 +169,7 @@ export class BuchenComponent {
         this.selectedInterval = oldInterval;
         return;
       }
-      this.refresh.next();
+      this.refresh.next(null);
       this.model.date = this.selectedInterval;
       return;
     }
@@ -184,7 +177,7 @@ export class BuchenComponent {
     if (isWithinInterval(day.date, this.selectedInterval)) {
       if (isSameDay(this.selectedInterval.start, this.selectedInterval.end) && isSameDay(day.date, this.selectedInterval.end)) {
         this.selectedInterval = undefined;
-        this.refresh.next();
+        this.refresh.next(null);
         this.model.date = this.selectedInterval;
         return;
       }
@@ -195,7 +188,7 @@ export class BuchenComponent {
           this.selectedInterval = oldInterval;
           return;
         }
-        this.refresh.next();
+        this.refresh.next(null);
         this.model.date = this.selectedInterval;
         return;
       }
@@ -206,7 +199,7 @@ export class BuchenComponent {
           this.selectedInterval = oldInterval;
           return;
         }
-        this.refresh.next();
+        this.refresh.next(null);
         this.model.date = this.selectedInterval;
         return;
       } else {
@@ -215,7 +208,7 @@ export class BuchenComponent {
           this.selectedInterval = oldInterval;
           return;
         }
-        this.refresh.next();
+        this.refresh.next(null);
         this.model.date = this.selectedInterval;
         return;
       }
@@ -239,7 +232,7 @@ export class BuchenComponent {
   displaySelectedDate(): string {
 
     if (this.selectedInterval === undefined) {
-      return 'kein Datum gewählt'
+      return 'kein Datum gewählt';
     }
 
     if (isSameDay(this.selectedInterval.start, this.selectedInterval.end)) {
@@ -252,7 +245,7 @@ export class BuchenComponent {
   }
   resolved(captchaResponse: string) {
     fetch('https://us-central1-audio4live-1d621.cloudfunctions.net/verify?response=' + captchaResponse).then(resp => {
-      if(resp.ok){
+      if (resp.ok){
         this.captchaResponse = captchaResponse;
       } else {
         this.captchaResponse = '';
@@ -271,7 +264,7 @@ export class BuchenComponent {
       this.model.date.end = addMinutes(this.model.date.end, Number.parseInt(this.model.times.end.split(':')[1], 10));
     } */
 
-    this.submitService.submitForm(this.model).subscribe((_v) => {
+    this.submitService.submitForm(this.model).subscribe((_) => {
       this.analytics.logEvent('booking');
       this.alert.nativeElement.classList.add('show');
       this.alert.nativeElement.classList.remove('d-none');
@@ -283,7 +276,7 @@ export class BuchenComponent {
       this.model = new Buchung();
       this.selectedInterval = undefined;
       this.captchaResponse = '';
-      this.refresh.next();
+      this.refresh.next(null);
     });
   }
 

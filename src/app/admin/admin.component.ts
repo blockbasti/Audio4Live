@@ -26,9 +26,9 @@ export class AdminComponent implements OnInit {
         b.date = {
           start: (b.date.start as firebase.firestore.Timestamp).toDate(),
           end: (b.date.end as firebase.firestore.Timestamp).toDate()
-        }
+        };
         return b as Buchung;
-      })
+      });
     });
   }
 
