@@ -1,4 +1,4 @@
-@import "~angular-calendar/scss/angular-calendar.scss";
+@import '~angular-calendar/scss/angular-calendar.scss';
 
 .dark-theme {
   // First define some global color variables for your app, these are just for the demo, they can be anything you like
@@ -20,7 +20,7 @@
       border-color: $border-color,
       gray: $bg-dark-secondary,
       today-bg: $bg-dark-secondary,
-      event-color-primary: $bg-dark-secondary
+      event-color-primary: $bg-dark-secondary,
     )
   );
 

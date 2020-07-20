@@ -4,13 +4,10 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
   selector: 'app-profil',
   encapsulation: ViewEncapsulation.None,
   templateUrl: './profil.component.html',
-  styleUrls: ['./profil.component.scss']
+  styleUrls: ['./profil.component.scss'],
 })
 export class ProfilComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

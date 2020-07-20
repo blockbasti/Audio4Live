@@ -4,13 +4,10 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
   selector: 'app-referenzen',
   encapsulation: ViewEncapsulation.None,
   templateUrl: './referenzen.component.html',
-  styleUrls: ['./referenzen.component.scss']
+  styleUrls: ['./referenzen.component.scss'],
 })
 export class ReferenzenComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

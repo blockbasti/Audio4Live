@@ -12,13 +12,7 @@ import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
 import { ImpressumComponent } from './impressum/impressum.component';
 
 @NgModule({
-  declarations: [
-    NavbarComponent,
-    FooterComponent,
-    DatenschutzComponent,
-    ImpressumComponent,
-    ConsentComponent
-  ],
+  declarations: [NavbarComponent, FooterComponent, DatenschutzComponent, ImpressumComponent, ConsentComponent],
   imports: [
     CommonModule,
     RouterModule,
@@ -28,15 +22,8 @@ import { ImpressumComponent } from './impressum/impressum.component';
     NavbarModule,
     IconsModule,
     ButtonsModule,
-    AngularFireAnalyticsModule
+    AngularFireAnalyticsModule,
   ],
-  exports: [
-    NavbarComponent,
-    FooterComponent,
-    DatenschutzComponent,
-    ImpressumComponent,
-    ConsentComponent,
-    RouterModule
-  ]
+  exports: [NavbarComponent, FooterComponent, DatenschutzComponent, ImpressumComponent, ConsentComponent, RouterModule],
 })
-export class SharedModule { }
+export class SharedModule {}

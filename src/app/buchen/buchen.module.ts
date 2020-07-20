@@ -18,7 +18,7 @@ registerLocaleData(localeDe);
 
 import { ButtonsModule, CardsModule, ModalModule, IconsModule, InputsModule } from 'angular-bootstrap-md';
 
-import { RecaptchaModule , RecaptchaFormsModule, RECAPTCHA_LANGUAGE } from 'ng-recaptcha';
+import { RecaptchaModule, RecaptchaFormsModule, RECAPTCHA_LANGUAGE } from 'ng-recaptcha';
 
 @NgModule({
   declarations: [BuchenComponent],
@@ -36,13 +36,13 @@ import { RecaptchaModule , RecaptchaFormsModule, RECAPTCHA_LANGUAGE } from 'ng-r
     ModalModule.forRoot(),
     AngularFirestoreModule,
     CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
-    AngularFireAnalyticsModule
+    AngularFireAnalyticsModule,
   ],
   providers: [
     {
       provide: RECAPTCHA_LANGUAGE,
       useValue: 'de',
-    }
+    },
   ],
 })
-export class BuchenModule { }
+export class BuchenModule {}

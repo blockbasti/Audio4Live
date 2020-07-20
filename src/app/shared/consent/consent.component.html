@@ -1,28 +1,54 @@
-<div mdbModal #consentModal="mdbModal" class="modal fade bottom text-dark" tabindex="-1" role="dialog"
-    aria-labelledby="consentModalLabel" aria-hidden="true" [config]='{backdrop: false, ignoreBackdropClick: true}'>
-    <div class="modal-dialog modal-sm modal-frame modal-bottom" role="document">
-        <div class="modal-content">
-            <!-- <div class="modal-header">
+<div
+  mdbModal
+  #consentModal="mdbModal"
+  class="modal fade bottom text-dark"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="consentModalLabel"
+  aria-hidden="true"
+  [config]="{ backdrop: false, ignoreBackdropClick: true }"
+>
+  <div class="modal-dialog modal-sm modal-frame modal-bottom" role="document">
+    <div class="modal-content">
+      <!-- <div class="modal-header">
                 button type="button" class="close pull-right" size="sm" aria-label="Close" (click)="consentModal.hide()">
                     <span aria-hidden="true">×</span>
                 </button>
                 <h5 class="modal-title w-100" id="consentModalLabel">Datenschutzhinweis</h5>
             </div> -->
-            <div class="modal-body">
-                <small>
-                    Diese Webseite verwendet Cookies und Google Analytics um Informationen über die Nutzung zu erhalten.
-                    Sollten Sie dies nicht wünschen, können sie hierfür die Zustimmung verweigern.
-                    Weitere Informationen, sowie eine Möglichkeit um Ihre Zustimmung zu ändern, erhalten Sie in den
-                    Datenschutzhinweisen.
-                </small>
-            </div>
-            <div class="modal-footer">
-                <button type="button" size="sm" mdbBtn color="blue-grey" class="waves-light" aria-label="Ablehnen"
-                    (click)="deny()" mdbWavesEffect>Ablehnen</button>
-                <button mdbBtn size="sm" class="relative waves-light" type="button" color="light-green" mdbWavesEffect
-                    aria-label="Zustimmen" (click)="allow()">Zustimmen</button>
-
-            </div>
-        </div>
+      <div class="modal-body">
+        <small>
+          Diese Webseite verwendet Cookies und Google Analytics um Informationen über die Nutzung zu erhalten. Sollten
+          Sie dies nicht wünschen, können sie hierfür die Zustimmung verweigern. Weitere Informationen, sowie eine
+          Möglichkeit um Ihre Zustimmung zu ändern, erhalten Sie in den Datenschutzhinweisen.
+        </small>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          size="sm"
+          mdbBtn
+          color="blue-grey"
+          class="waves-light"
+          aria-label="Ablehnen"
+          (click)="deny()"
+          mdbWavesEffect
+        >
+          Ablehnen
+        </button>
+        <button
+          mdbBtn
+          size="sm"
+          class="relative waves-light"
+          type="button"
+          color="light-green"
+          mdbWavesEffect
+          aria-label="Zustimmen"
+          (click)="allow()"
+        >
+          Zustimmen
+        </button>
+      </div>
     </div>
+  </div>
 </div>

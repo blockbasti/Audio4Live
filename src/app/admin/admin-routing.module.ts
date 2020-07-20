@@ -9,12 +9,22 @@ const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['admin/login']
 const redirectLoggedInToAdmin = () => redirectLoggedInTo(['admin']);
 
 const routes: Routes = [
-  { path: '', component: AdminComponent,      canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin } },
-  { path: 'login', component: LoginComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectLoggedInToAdmin }}
+  {
+    path: '',
+    component: AdminComponent,
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin },
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectLoggedInToAdmin },
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AdminRoutingModule { }
+export class AdminRoutingModule {}

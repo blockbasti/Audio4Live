@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 import { ModalDirective } from 'angular-bootstrap-md/lib/free/modals/modal.directive';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ImpressumModalService {
   impressumModal: ModalDirective;
 
-  constructor() { }
+  constructor() {}
 
   setModal(modal: ModalDirective) {
     this.impressumModal = modal;

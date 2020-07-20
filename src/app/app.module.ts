@@ -14,11 +14,10 @@ import { SharedModule } from './shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 
 import { ɵe as TIME_LOCALE } from 'ngx-material-timepicker';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -26,26 +25,28 @@ import { ɵe as TIME_LOCALE } from 'ngx-material-timepicker';
     HttpClientModule,
     SharedModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireAnalyticsModule
+    AngularFireAnalyticsModule,
   ],
-  providers: [{
-    provide: CONFIG,
-    useValue: {
-      send_page_view: true,
-      allow_ad_personalization_signals: false,
-      anonymize_ip: true
+  providers: [
+    {
+      provide: CONFIG,
+      useValue: {
+        send_page_view: true,
+        allow_ad_personalization_signals: false,
+        anonymize_ip: true,
+      },
     },
-  },
-  {
-    provide: COLLECTION_ENABLED,
-    useValue: (localStorage.getItem('enableAnalytics') === 'true')
-  },
-  {
-    provide: TIME_LOCALE,
-    useValue: ''
-  },
-    ScreenTrackingService
+    {
+      provide: COLLECTION_ENABLED,
+      useValue: localStorage.getItem('enableAnalytics') === 'true',
+    },
+    {
+      provide: TIME_LOCALE,
+      useValue: '',
+    },
+    { provide: MAT_DATE_LOCALE, useValue: 'de-DE' },
+    ScreenTrackingService,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

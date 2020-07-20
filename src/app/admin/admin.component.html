@@ -1,56 +1,107 @@
 <div style="height: 75px;"></div>
 
-<div class="container min-vh-100">
-    <div class="row mt-2">
-        <div class="col-12 col-sm-4">
-            <h1>Admin</h1>
-        </div>
-        <div class="col-12 col-sm-4">
-            <span class="h-100 align-bottom">{{user?.email}}</span>
-        </div>
-        <div class="col-12 col-sm-4"><button mdbBtn color="blue-grey" class="" type="button"
-                (click)="signout()">Abmelden</button></div>
+<div class="container" style="height: 100vh;">
+  <div class="row mt-2">
+    <div class="col-12 col-sm-4">
+      <h1>Admin</h1>
     </div>
-    <div class="row">
-        <div class="container">
-            <div class="row" *ngFor='let booking of bookings; let i=index'>
-                <div class="col-6">
-                    <mdb-card class="elegant-color">
-                        <mdb-card-header>
-                            <mdb-card-title>
-                                <h3 class="m-0">Buchung #{{i+1}}</h3>
-                            </mdb-card-title>
-                        </mdb-card-header>
-                        
-                        <mdb-card-body>
-                            <table mdbTable>
-                                <tbody class="text-white">
-                                    <tr mdbTableCol>
-                                        <td>Datum</td>
-                                        <td>{{formatDate(booking.date.start)}} - {{formatDate(booking.date.end)}}</td>
-                                    </tr>
-                                    <tr mdbTableCol>
-                                        <td>Ort</td>
-                                        <td>{{booking.location}}</td>
-                                    </tr>
-                                    <tr mdbTableCol>
-                                        <td>Email</td>
-                                        <td>{{booking.email}}</td>
-                                    </tr>
-                                    <tr mdbTableCol>
-                                        <td>Telefonnummer</td>
-                                        <td>{{booking.phone}}</td>
-                                    </tr>
-                                    <tr mdbTableCol>
-                                        <td>Nachricht</td>
-                                        <td>{{booking.message}}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </mdb-card-body>
-                    </mdb-card>
+    <div class="col-12 col-sm-4">
+      <span class="h-100 align-bottom">{{ user?.email }}</span>
+    </div>
+    <div class="col-12 col-sm-4">
+      <button mdbBtn color="blue-grey" class="" type="button" (click)="signout()">Abmelden</button>
+    </div>
+  </div>
+  <div class="row overflow-auto">
+    <div class="container">
+      <div class="row">
+        <div class="col my-3">
+          <mdb-card class="elegant-color">
+            <mdb-card-header>
+              <mdb-card-title>
+                <h3 class="m-0">Blocker</h3>
+              </mdb-card-title>
+            </mdb-card-header>
+
+            <mdb-card-body>
+              <div class="container">
+                <div class="row">
+                  <div class="col-3">
+                    <mat-form-field appearance="fill">
+                      <mat-label>Datumsbereich</mat-label>
+                      <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
+                        <input matStartDate formControlName="start" placeholder="Start date">
+                        <input matEndDate formControlName="end" placeholder="End date">
+                      </mat-date-range-input>
+                      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                      <mat-date-range-picker #picker></mat-date-range-picker>
+
+                      <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')">Ungültiger Starttag
+                      </mat-error>
+                      <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')">Ungültiger Endtag</mat-error>
+                    </mat-form-field>
+                    <br />
+                    <button type="button" mdbBtn color="blue-grey" mdbWavesEffect
+                      (click)="addBlocker()">Hinzufügen</button>
+                  </div>
+                  <div class="col">
+                    <ul class="list-group ml-5">
+                      <li class="list-group-item grey darken-3" *ngFor="let block of blocker; let i = index">
+                        {{ formatDate(block.interval.start, false) }} - {{ formatDate(block.interval.end, false) }} <mdb-badge
+                          class="close" pill="true" danger="true" (click)="deleteBlocker(block.id)"><span aria-hidden="true">×</span></mdb-badge>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
-            </div>
+              </div>
+
+            </mdb-card-body>
+          </mdb-card>
         </div>
+      </div>
     </div>
+  </div>
+  <div class="row overflow-auto mt-3" style="height: 80vh;">
+    <div class="container">
+      <div class="row" *ngFor="let booking of bookings; let i = index">
+        <div class="col my-3">
+          <mdb-card class="elegant-color">
+            <mdb-card-header>
+              <mdb-card-title>
+                <h3 class="m-0">Buchung #{{ i + 1 }}</h3>
+              </mdb-card-title>
+            </mdb-card-header>
+
+            <mdb-card-body>
+              <table mdbTable>
+                <tbody class="text-white">
+                  <tr mdbTableCol>
+                    <td>Datum</td>
+                    <td>{{ formatDate(booking.date.start, true) }} - {{ formatDate(booking.date.end, true) }}</td>
+                  </tr>
+                  <tr mdbTableCol>
+                    <td>Ort</td>
+                    <td>{{ booking.location }}</td>
+                  </tr>
+                  <tr mdbTableCol>
+                    <td>Email</td>
+                    <td>{{ booking.email }}</td>
+                  </tr>
+                  <tr mdbTableCol>
+                    <td>Telefonnummer</td>
+                    <td>{{ booking.phone }}</td>
+                  </tr>
+                  <tr mdbTableCol>
+                    <td>Nachricht</td>
+                    <td>{{ booking.message }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </mdb-card-body>
+          </mdb-card>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>

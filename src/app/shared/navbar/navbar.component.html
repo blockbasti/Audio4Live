@@ -1,25 +1,28 @@
 <!-- https://itnext.io/how-to-build-a-responsive-navbar-using-flexbox-and-javascript-eb0af24f19bf -->
-<mdb-navbar SideClass="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar intro-fixed-nav"
-    [containerInside]="false">
-    <mdb-navbar-brand>
-        <a class="logo navbar-brand" [routerLink]="'/'"><img style="height: 30px;" class="d-block align-top" alt="Audio4Live"
-                src="/assets/images/Logo2_Text.svg" /></a>
-    </mdb-navbar-brand>
+<mdb-navbar
+  SideClass="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar intro-fixed-nav"
+  [containerInside]="false"
+>
+  <mdb-navbar-brand>
+    <a class="logo navbar-brand" [routerLink]="'/'"
+      ><img style="height: 30px;" class="d-block align-top" alt="Audio4Live" src="/assets/images/Logo2_Text.svg"
+    /></a>
+  </mdb-navbar-brand>
 
-    <links>
-        <ul class="navbar-nav">
-            <li class="nav-item" routerLinkActive="active">
-                <a class="nav-link" [routerLink]="'/anfragen'">Anfragen</a>
-            </li>
-            <li class="nav-item" routerLinkActive="active">
-                <a class="nav-link" [routerLink]="'/leistungen'">Leistungen</a>
-            </li>
-            <li class="nav-item" routerLinkActive="active">
-                <a class="nav-link" [routerLink]="'/profil'">Profil</a>
-            </li>
-            <li class="nav-item" routerLinkActive="active">
-                <a class="nav-link" [routerLink]="'/referenzen'">Referenzen</a>
-            </li>
-        </ul>
-    </links>
+  <links>
+    <ul class="navbar-nav">
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="'/anfragen'">Anfragen</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="'/leistungen'">Leistungen</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="'/profil'">Profil</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="'/referenzen'">Referenzen</a>
+      </li>
+    </ul>
+  </links>
 </mdb-navbar>

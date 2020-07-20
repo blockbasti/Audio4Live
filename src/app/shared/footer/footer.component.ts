@@ -5,10 +5,9 @@ import { ImpressumModalService } from '../impressum-modal.service';
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
-  styleUrls: ['./footer.component.scss']
+  styleUrls: ['./footer.component.scss'],
 })
 export class FooterComponent implements OnInit {
-
   datenschutzModalService: DatenschutzModalService;
   impressumModalService: ImpressumModalService;
 
@@ -17,8 +16,7 @@ export class FooterComponent implements OnInit {
     this.impressumModalService = impressumModalService;
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   openDatenschutzModal() {
     this.datenschutzModalService.showModal();
@@ -27,5 +25,4 @@ export class FooterComponent implements OnInit {
   openImpressumModal() {
     this.impressumModalService.showModal();
   }
-
 }

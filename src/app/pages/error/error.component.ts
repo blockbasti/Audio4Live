@@ -4,14 +4,10 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
   selector: 'app-error',
   encapsulation: ViewEncapsulation.None,
   templateUrl: './error.component.html',
-  styleUrls: ['./error.component.scss']
+  styleUrls: ['./error.component.scss'],
 })
 export class ErrorComponent implements OnInit {
+  constructor() {}
 
-  constructor() {
-  }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

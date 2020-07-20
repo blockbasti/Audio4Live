@@ -18,16 +18,12 @@ import {
   closestIndexTo,
   isBefore,
   isAfter,
-  areIntervalsOverlapping
+  areIntervalsOverlapping,
+  isThisMonth,
+  addMonths,
 } from 'date-fns';
 import { Subject } from 'rxjs';
-import {
-  CalendarEvent,
-  CalendarMonthViewDay,
-  CalendarView,
-  DAYS_OF_WEEK,
-  CalendarUtils
-} from 'angular-calendar';
+import { CalendarEvent, CalendarMonthViewDay, CalendarView, DAYS_OF_WEEK, CalendarUtils } from 'angular-calendar';
 import { GetMonthViewArgs, MonthView } from 'calendar-utils';
 
 import { Buchung } from './buchung';
@@ -60,18 +56,22 @@ export class MyCalendarUtils extends CalendarUtils {
   providers: [
     {
       provide: CalendarUtils,
-      useClass: MyCalendarUtils
-    }
-  ]
+      useClass: MyCalendarUtils,
+    },
+  ],
 })
 export class BuchenComponent {
   constructor(private afs: AngularFirestore, private submitService: SubmitService, analytics: AngularFireAnalytics) {
     this.analytics = analytics;
-    afs.collection<any>('blocker', ref => ref.where('end', '>=', new Date()))
-      .valueChanges().
-      subscribe(blocker => {
-        this.blocker = blocker.map(b => {
-          return { start: (b.start as firebase.firestore.Timestamp).toDate(), end: (b.end as firebase.firestore.Timestamp).toDate() };
+    afs
+      .collection<any>('blocker', (ref) => ref.where('end', '>=', new Date()))
+      .valueChanges()
+      .subscribe((blocker) => {
+        this.blocker = blocker.map((b) => {
+          return {
+            start: (b.start as firebase.firestore.Timestamp).toDate(),
+            end: (b.end as firebase.firestore.Timestamp).toDate(),
+          };
         });
         this.refresh.next(null);
       });
@@ -98,7 +98,7 @@ export class BuchenComponent {
   darkTheme: NgxMaterialTimepickerTheme = {
     container: {
       bodyBackgroundColor: '#424242',
-      buttonColor: '#fff'
+      buttonColor: '#fff',
     },
     dial: {
       dialBackgroundColor: '#555',
@@ -106,8 +106,8 @@ export class BuchenComponent {
     clockFace: {
       clockFaceBackgroundColor: '#555',
       clockHandColor: '#78909c',
-      clockFaceTimeInactiveColor: '#fff'
-    }
+      clockFaceTimeInactiveColor: '#fff',
+    },
   };
 
   selectedMonthViewDay: CalendarMonthViewDay;
@@ -120,24 +120,28 @@ export class BuchenComponent {
   captchaResponse = '';
 
   dateIsValid(date: Date): boolean {
-    return date > this.minDate;
+    return date > this.minDate && date < addMonths(Date.now(), 2);
   }
 
   dateIsBlocked(date: Date): boolean {
-    if (!this.blocker) { return false; }
-    return this.blocker.some(intv => {
+    if (!this.blocker) {
+      return false;
+    }
+    return this.blocker.some((intv) => {
       return isWithinInterval(date, intv);
     });
   }
 
   containsBlockedDate(interval: Interval): boolean {
-    return this.blocker.some(blocker => {
+    return this.blocker.some((blocker) => {
       return areIntervalsOverlapping(blocker, interval, { inclusive: true });
     });
   }
 
   dayClicked(day: CalendarMonthViewDay): void {
-    if (!this.dateIsValid(day.date) || this.dateIsBlocked(day.date)) { return; }
+    if (!this.dateIsValid(day.date) || this.dateIsBlocked(day.date)) {
+      return;
+    }
     this.selectedMonthViewDay = day;
 
     const oldInterval = Object.assign({}, this.selectedInterval);
@@ -145,7 +149,7 @@ export class BuchenComponent {
     if (this.selectedInterval === undefined) {
       this.selectedInterval = {
         start: day.date,
-        end: day.date
+        end: day.date,
       };
       this.refresh.next(null);
       this.model.date = this.selectedInterval;
@@ -175,7 +179,10 @@ export class BuchenComponent {
     }
 
     if (isWithinInterval(day.date, this.selectedInterval)) {
-      if (isSameDay(this.selectedInterval.start, this.selectedInterval.end) && isSameDay(day.date, this.selectedInterval.end)) {
+      if (
+        isSameDay(this.selectedInterval.start, this.selectedInterval.end) &&
+        isSameDay(day.date, this.selectedInterval.end)
+      ) {
         this.selectedInterval = undefined;
         this.refresh.next(null);
         this.model.date = this.selectedInterval;
@@ -215,22 +222,23 @@ export class BuchenComponent {
     }
   }
 
+  isThisMonth(date: Date) {
+    return isThisMonth(date);
+  }
+
   beforeMonthViewRender({ body }: { body: CalendarMonthViewDay[] }): void {
-    body.forEach(day => {
+    body.forEach((day) => {
       if (!this.dateIsValid(day.date)) {
         day.cssClass = 'cal-disabled';
       } else if (this.dateIsBlocked(day.date)) {
         day.cssClass = 'cal-blocked';
-      } else if (this.selectedInterval !== undefined &&
-        isWithinInterval(day.date, this.selectedInterval)
-      ) {
+      } else if (this.selectedInterval !== undefined && isWithinInterval(day.date, this.selectedInterval)) {
         day.cssClass = 'cal-day-selected';
       }
     });
   }
 
   displaySelectedDate(): string {
-
     if (this.selectedInterval === undefined) {
       return 'kein Datum gewählt';
     }
@@ -239,18 +247,22 @@ export class BuchenComponent {
       return format(this.selectedInterval.start, 'dd. LLL yyy', { locale: de });
     }
 
-    return format(this.selectedInterval.start, 'dd. LLL yyy', { locale: de }) +
-      ' - ' + format(this.selectedInterval.end, 'dd. LLL yyy', { locale: de });
-
+    return (
+      format(this.selectedInterval.start, 'dd. LLL yyy', { locale: de }) +
+      ' - ' +
+      format(this.selectedInterval.end, 'dd. LLL yyy', { locale: de })
+    );
   }
   resolved(captchaResponse: string) {
-    fetch('https://us-central1-audio4live-1d621.cloudfunctions.net/verify?response=' + captchaResponse).then(resp => {
-      if (resp.ok){
-        this.captchaResponse = captchaResponse;
-      } else {
-        this.captchaResponse = '';
-      }
-    }).catch(() => this.captchaResponse = '');
+    fetch('https://us-central1-audio4live-1d621.cloudfunctions.net/verify?response=' + captchaResponse)
+      .then((resp) => {
+        if (resp.ok) {
+          this.captchaResponse = captchaResponse;
+        } else {
+          this.captchaResponse = '';
+        }
+      })
+      .catch(() => (this.captchaResponse = ''));
   }
 
   onSubmit(): void {
@@ -279,5 +291,4 @@ export class BuchenComponent {
       this.refresh.next(null);
     });
   }
-
 }

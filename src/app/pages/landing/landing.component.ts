@@ -7,18 +7,23 @@ import { ImpressumModalService } from 'src/app/shared/impressum-modal.service';
   selector: 'app-landing',
   encapsulation: ViewEncapsulation.None,
   templateUrl: './landing.component.html',
-  styleUrls: ['./landing.component.scss']
+  styleUrls: ['./landing.component.scss'],
 })
 export class LandingComponent implements OnInit {
-
-  constructor(route: ActivatedRoute, datenschutzModalService: DatenschutzModalService, impressumModalService: ImpressumModalService) {
-    route.data.subscribe(data => {
-      if (data.openPrivacy) { datenschutzModalService.showModal(); }
-      if (data.openImprint) { impressumModalService.showModal(); }
+  constructor(
+    route: ActivatedRoute,
+    datenschutzModalService: DatenschutzModalService,
+    impressumModalService: ImpressumModalService
+  ) {
+    route.data.subscribe((data) => {
+      if (data.openPrivacy) {
+        datenschutzModalService.showModal();
+      }
+      if (data.openImprint) {
+        impressumModalService.showModal();
+      }
     });
   }
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

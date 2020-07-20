@@ -11,25 +11,8 @@ import { PagesRoutingModule } from './pages-routing.module';
 import { CardsModule, ButtonsModule, IconsModule, CarouselModule } from 'angular-bootstrap-md';
 
 @NgModule({
-  declarations: [
-    ReferenzenComponent,
-    LandingComponent,
-    LeistungenComponent,
-    ProfilComponent
-  ],
-  imports: [
-    CommonModule,
-    PagesRoutingModule,
-    CardsModule,
-    ButtonsModule,
-    IconsModule,
-    CarouselModule
-  ],
-  exports: [
-    ReferenzenComponent,
-    LandingComponent,
-    LeistungenComponent,
-    ProfilComponent
-  ]
+  declarations: [ReferenzenComponent, LandingComponent, LeistungenComponent, ProfilComponent],
+  imports: [CommonModule, PagesRoutingModule, CardsModule, ButtonsModule, IconsModule, CarouselModule],
+  exports: [ReferenzenComponent, LandingComponent, LeistungenComponent, ProfilComponent],
 })
-export class PagesModule { }
+export class PagesModule {}

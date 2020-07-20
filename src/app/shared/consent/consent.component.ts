@@ -6,7 +6,7 @@ import { AngularFireAnalytics } from '@angular/fire/analytics';
 @Component({
   selector: 'app-consent',
   templateUrl: './consent.component.html',
-  styleUrls: ['./consent.component.scss']
+  styleUrls: ['./consent.component.scss'],
 })
 export class ConsentComponent implements OnInit {
   @ViewChild('consentModal', { static: true })
@@ -35,5 +35,4 @@ export class ConsentComponent implements OnInit {
     localStorage.setItem('enableAnalytics', 'true');
     this.consentModal.hide();
   }
-
 }

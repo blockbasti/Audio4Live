@@ -9,9 +9,9 @@ import { PreloadImgService } from './preload-img.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   animations: [
-    slideInAnimation
+    slideInAnimation,
     // animation triggers go here
-  ]
+  ],
 })
 export class AppComponent implements OnInit, AfterViewInit {
   title = 'audio4live';
@@ -29,9 +29,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     return outlet && outlet.activatedRouteData && outlet.activatedRouteData.animation;
   }
 
-  ngOnInit() {
-
-  }
+  ngOnInit() {}
 
   ngAfterViewInit(): void {
     if (localStorage.getItem('enableAnalytics') === null) {

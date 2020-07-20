@@ -4,13 +4,10 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
   selector: 'app-leistungen',
   encapsulation: ViewEncapsulation.None,
   templateUrl: './leistungen.component.html',
-  styleUrls: ['./leistungen.component.scss']
+  styleUrls: ['./leistungen.component.scss'],
 })
 export class LeistungenComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

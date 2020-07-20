@@ -6,16 +6,17 @@ import { ProfilComponent } from './profil/profil.component';
 import { ReferenzenComponent } from './referenzen/referenzen.component';
 import { LandingComponent } from './landing/landing.component';
 
-const routes: Routes = [{ path: 'profil', component: ProfilComponent, data: { animation: 'ProfilPage', openPrivacy: false } },
-{ path: 'leistungen', component: LeistungenComponent, data: { animation: 'LeistungenPage' } },
-{ path: 'referenzen', component: ReferenzenComponent, data: { animation: 'ReferenzenPage' } },
-{ path: '', component: LandingComponent, data: { animation: 'LandingPage' } },
-{ path: 'datenschutz', component: LandingComponent, data: { openPrivacy: true } },
-{ path: 'impressum', component: LandingComponent, data: { openImprint: true } }];
-
+const routes: Routes = [
+  { path: 'profil', component: ProfilComponent, data: { animation: 'ProfilPage', openPrivacy: false } },
+  { path: 'leistungen', component: LeistungenComponent, data: { animation: 'LeistungenPage' } },
+  { path: 'referenzen', component: ReferenzenComponent, data: { animation: 'ReferenzenPage' } },
+  { path: '', component: LandingComponent, data: { animation: 'LandingPage' } },
+  { path: 'datenschutz', component: LandingComponent, data: { openPrivacy: true } },
+  { path: 'impressum', component: LandingComponent, data: { openImprint: true } },
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class PagesRoutingModule { }
+export class PagesRoutingModule {}

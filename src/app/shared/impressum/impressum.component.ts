@@ -5,7 +5,7 @@ import { ImpressumModalService } from '../impressum-modal.service';
 @Component({
   selector: 'app-impressum',
   templateUrl: './impressum.component.html',
-  styleUrls: ['./impressum.component.scss']
+  styleUrls: ['./impressum.component.scss'],
 })
 export class ImpressumComponent implements OnInit {
   @ViewChild('impressumModal', { static: true })
@@ -20,5 +20,4 @@ export class ImpressumComponent implements OnInit {
   ngOnInit(): void {
     this.modalService.setModal(this.impressumModal);
   }
-
 }

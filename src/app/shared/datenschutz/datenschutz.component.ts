@@ -3,11 +3,10 @@ import { ModalDirective } from 'angular-bootstrap-md/lib/free/modals/modal.direc
 import { DatenschutzModalService } from '../datenschutz-modal.service';
 import { AngularFireAnalytics } from '@angular/fire/analytics';
 
-
 @Component({
   selector: 'app-datenschutz',
   templateUrl: './datenschutz.component.html',
-  styleUrls: ['./datenschutz.component.scss']
+  styleUrls: ['./datenschutz.component.scss'],
 })
 export class DatenschutzComponent implements OnInit {
   @ViewChild('datenschutzModal', { static: true })
@@ -25,10 +24,9 @@ export class DatenschutzComponent implements OnInit {
     this.modalService.setModal(this.datenschutzModal);
   }
 
-  disableAnalytics(){
+  disableAnalytics() {
     localStorage.setItem('enableAnalytics', 'false');
     this.analytics.setAnalyticsCollectionEnabled(false);
     alert('Google Analytics wurde deaktiviert!');
   }
-
 }
