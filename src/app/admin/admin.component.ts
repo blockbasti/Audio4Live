@@ -67,7 +67,7 @@ export class AdminComponent implements OnInit {
   }
 
   formatDate(date: Date, hours: boolean): string {
-    if (hours) return format(date, 'dd.MM.yyyy HH:mm'); else return format(date, 'dd.MM.yyyy');
+    if (hours) { return format(date, 'dd.MM.yyyy HH:mm'); } else { return format(date, 'dd.MM.yyyy'); }
   }
 
   addBlocker() {
@@ -77,6 +77,6 @@ export class AdminComponent implements OnInit {
 
   deleteBlocker(id: string) {
     this.db.doc(`blocker/${id}`).delete().then(() => {
-    })
+    });
   }
 }

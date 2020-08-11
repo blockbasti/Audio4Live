@@ -1,9 +1,15 @@
-<footer class="page-footer font-small elegant-color-dark w-100">
-  <div class="footer-copyright text-center py-3">
-    ©2020&nbsp;
-    <img alt="Audio4Live Logo" class="align-baseline" src="/assets/images/Logo2.svg" style="height: 1rem;" />&nbsp;
-    Audio4Live
-    <a class="pl-5" (click)="openDatenschutzModal()">Datenschutz</a>
-    <a class="pl-5" (click)="openImpressumModal()">Impressum</a>
+<footer class="page-footer font-small elegant-color-dark w-100 footer-copyright">
+  <div class="text-center py-3 container w-100">
+    <div class="row">
+      <div class="col-sm-6">©2020&nbsp;
+        <img alt="Audio4Live Logo" class="align-baseline" src="/assets/images/Logo2.svg" style="height: 1rem;" />&nbsp;
+        Audio4Live</div>
+
+      <div class="col-sm-6">
+        <a (click)="openDatenschutzModal()">Datenschutz</a>
+        <a class="pl-3" (click)="openImpressumModal()">Impressum</a>
+      </div>
+
+    </div>
   </div>
 </footer>
