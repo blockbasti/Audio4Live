@@ -115,10 +115,25 @@
       <mdb-card class="elegant-color z-depth-3">
         <mdb-card-body>
           <form #buchenForm="ngForm" (ngSubmit)="onSubmit()">
+            <label for="buchenFormName">Name *</label>
+            <input
+              mdbInput
+              type="text"
+              autocomplete="name"
+              [(ngModel)]="model.name"
+              id="buchenFormName"
+              name="name"
+              class="form-control mb-4"
+              placeholder="Name"
+              required
+              maxlength="150"
+            />
+
             <label for="buchenFormEmail">E-Mail *</label>
             <input
               mdbInput
               type="email"
+              autocomplete="email"
               [(ngModel)]="model.email"
               id="buchenFormEmail"
               name="email"
@@ -132,6 +147,7 @@
             <input
               mdbInput
               type="tel"
+              autocomplete="tel"
               [(ngModel)]="model.phone"
               id="buchenFormPhone"
               name="phone"
@@ -161,7 +177,7 @@
               name="location"
               class="form-control mb-4"
               placeholder="Ort"
-              maxlength="150"
+              maxlength="500"
             />
 
             <label for="buchenFormDate">Datum</label>
@@ -250,10 +266,10 @@
               ></ngx-material-timepicker>
 
               <ng-template #cancelBtn>
-                <button mdbBtn type="button" color="blue-grey">Abbrechen</button>
+                <button mdbBtn class="px-2" size="sm" type="button" color="blue-grey">Abbrechen</button>
               </ng-template>
               <ng-template #confirmBtn>
-                <button mdbBtn type="button" color="blue-grey">Bestätigen</button>
+                <button mdbBtn class="px-2" size="sm" type="button" color="blue-grey">Bestätigen</button>
               </ng-template>
             </div>
 

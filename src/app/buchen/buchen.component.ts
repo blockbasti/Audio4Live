@@ -253,6 +253,7 @@ export class BuchenComponent {
       format(this.selectedInterval.end, 'dd. LLL yyy', { locale: de })
     );
   }
+
   resolved(captchaResponse: string) {
     fetch('https://us-central1-audio4live-1d621.cloudfunctions.net/verify?response=' + captchaResponse)
       .then((resp) => {

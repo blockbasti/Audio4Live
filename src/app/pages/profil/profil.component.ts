@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, ViewChild, ElementRef } from '@angular/core';
+import { Component, ViewEncapsulation, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 
 @Component({
   selector: 'app-profil',
@@ -6,13 +6,10 @@ import { Component, OnInit, ViewEncapsulation, ViewChild, ElementRef } from '@an
   templateUrl: './profil.component.html',
   styleUrls: ['./profil.component.scss'],
 })
-export class ProfilComponent implements OnInit {
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+export class ProfilComponent implements AfterViewInit {
   @ViewChild('imgprofil') img: ElementRef;
+
+  constructor() { }
 
   ngAfterViewInit(): void {
     if (document.documentElement.classList.contains('webp')) {

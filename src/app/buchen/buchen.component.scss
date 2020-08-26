@@ -16,3 +16,7 @@
 .custom-switch .custom-control-input:disabled:checked ~ .custom-control-label::before {
   background-color: darken($color: #607d8b, $amount: 3);
 }
+
+.timepicker__actions {
+  justify-content: center !important;
+}

@@ -62,11 +62,12 @@ export const submit = functions.https.onRequest((req, res) => {
       template: {
         name: 'booking',
         data: {
+          name: req.body.name,
           date: datestring,
           phone: req.body.phone,
           email: req.body.email,
           callback: req.body.phone !== '' ? (req.body.call ? '(Rückruf gewünscht)' : '(kein Rückruf)') : '',
-          location: req.body.location,
+          location: req.body.location !== '' ? req.body.location : 'kein Ort angegeben',
           message: req.body.message,
         },
       },
@@ -78,6 +79,7 @@ export const submit = functions.https.onRequest((req, res) => {
         start: new Date(date.start),
         end: new Date(date.end),
       },
+      name: req.body.name,
       email: req.body.email,
       location: req.body.location,
       phone: req.body.phone,
