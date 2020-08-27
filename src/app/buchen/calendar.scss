@@ -5,7 +5,7 @@
   $bg-dark-primary: #1f262d;
   $bg-dark-secondary: #394046;
   $bg-active: #2c343a;
-  $text-color: #d5d6d7;
+  $text-color: #ffffff;
   $border-color: rgba(0, 0, 0, 0.6);
 
   // Call the calendar mixin with a sass color map of your theme. Every property is optional.
@@ -15,7 +15,7 @@
     (
       bg-primary: $bg-dark-primary,
       bg-secondary: $bg-dark-secondary,
-      weekend-color: indianred,
+      weekend-color: tomato,
       bg-active: $bg-active,
       border-color: $border-color,
       gray: $bg-dark-secondary,
@@ -64,7 +64,7 @@
   }
 
   .cal-disabled {
-    background-color: lighten($color: $bg-dark-secondary, $amount: 5);
+    background-color: lighten($color: $bg-dark-secondary, $amount: 3);
     pointer-events: none;
   }
 
@@ -83,10 +83,11 @@
   }
 
   .cal-disabled .cal-day-number {
-    opacity: 0.3;
+    opacity: 1;
   }
 
   .cal-day-number {
     margin: 0;
+    opacity: 1 !important ;
   }
 }

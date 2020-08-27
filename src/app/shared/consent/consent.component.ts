@@ -18,20 +18,18 @@ export class ConsentComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     if (localStorage.getItem('enableAnalytics') === null) this.card.nativeElement.classList.add('d-flex');
-    else this.card.nativeElement.classList.add('d-none');
+    else this.card.nativeElement.remove();
   }
 
   deny() {
     this.analytics.setAnalyticsCollectionEnabled(false);
     localStorage.setItem('enableAnalytics', 'false');
-    this.card.nativeElement.classList.remove('d-flex');
-    this.card.nativeElement.classList.add('d-none');
+    this.card.nativeElement.remove();
   }
 
   allow() {
     this.analytics.setAnalyticsCollectionEnabled(true);
     localStorage.setItem('enableAnalytics', 'true');
-    this.card.nativeElement.classList.remove('d-flex');
-    this.card.nativeElement.classList.add('d-none');
+    this.card.nativeElement.remove();
   }
 }
