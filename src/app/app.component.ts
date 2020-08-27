@@ -1,7 +1,6 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { slideInAnimation } from './animations';
-import { ConsentModalService } from './shared/consent-modal.service';
 import { PreloadImgService } from './preload-img.service';
 
 @Component({
@@ -16,12 +15,10 @@ import { PreloadImgService } from './preload-img.service';
 export class AppComponent implements OnInit, AfterViewInit {
   title = 'audio4live';
 
-  modalService: ConsentModalService;
 
   preloadService: PreloadImgService;
 
-  constructor(modalService: ConsentModalService, preloadImageService: PreloadImgService) {
-    this.modalService = modalService;
+  constructor(preloadImageService: PreloadImgService) {
     this.preloadService = preloadImageService;
   }
 
@@ -32,9 +29,6 @@ export class AppComponent implements OnInit, AfterViewInit {
   ngOnInit() {}
 
   ngAfterViewInit(): void {
-    if (localStorage.getItem('enableAnalytics') === null) {
-      this.modalService.showModal();
-    }
     this.preloadService.preloadImages();
   }
 }

@@ -8,6 +8,22 @@
         "audio4live": [
           "audio4live-1d621"
         ],
+        "public": "dist/assets",
+        "ignore": [
+          "firebase.json",
+          "**/.*",
+          "**/node_modules/**"
+        ],
+        "redirects": [
+          {
+            "source": "/robots.txt",
+            "destination": "/assets/robots.txt"
+          },
+          {
+            "source": "**",
+            "destination": "/index.html"
+          }
+        ],
         "headers": [
           {
             "source": "**/*.@(eot|otf|ttf|ttc|woff|font.css)",
@@ -15,15 +31,28 @@
               {
                 "key": "Access-Control-Allow-Origin",
                 "value": "*"
+              },
+              {
+                "key": "Cache-Control",
+                "value": "max-age=604800"
               }
             ]
           },
           {
-            "source": "**/*.@(jpg|jpeg|gif|png)",
+            "source": "**/*.@(jpg|jpeg|gif|png|svg|webp|js|css|eot|otf|ttf|ttc|woff|woff2|font.css)",
             "headers": [
               {
                 "key": "Cache-Control",
-                "value": "max-age=7200"
+                "value": "max-age=604800"
+              }
+            ]
+          },
+          {
+            "source": "**.*",
+            "headers": [
+              {
+                "key": "Cache-Control",
+                "value": "max-age=604800"
               }
             ]
           }

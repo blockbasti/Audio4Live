@@ -1,6 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { ConsentModalService } from '../consent-modal.service';
-import { ModalDirective } from 'angular-bootstrap-md/lib/free/modals/modal.directive';
+import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+
 import { AngularFireAnalytics } from '@angular/fire/analytics';
 
 @Component({
@@ -8,31 +7,31 @@ import { AngularFireAnalytics } from '@angular/fire/analytics';
   templateUrl: './consent.component.html',
   styleUrls: ['./consent.component.scss'],
 })
-export class ConsentComponent implements OnInit {
-  @ViewChild('consentModal', { static: true })
-  consentModal: ModalDirective;
+export class ConsentComponent implements AfterViewInit {
+  @ViewChild('consent', { read: ElementRef }) card: ElementRef<HTMLDivElement>;
 
-  modalService: ConsentModalService;
   analytics: AngularFireAnalytics;
 
-  constructor(modalService: ConsentModalService, analytics: AngularFireAnalytics) {
-    this.modalService = modalService;
+  constructor(analytics: AngularFireAnalytics) {
     this.analytics = analytics;
   }
 
-  ngOnInit(): void {
-    this.modalService.setModal(this.consentModal);
+  ngAfterViewInit(): void {
+    if (localStorage.getItem('enableAnalytics') === null) this.card.nativeElement.classList.add('d-flex');
+    else this.card.nativeElement.classList.add('d-none');
   }
 
   deny() {
     this.analytics.setAnalyticsCollectionEnabled(false);
     localStorage.setItem('enableAnalytics', 'false');
-    this.consentModal.hide();
+    this.card.nativeElement.classList.remove('d-flex');
+    this.card.nativeElement.classList.add('d-none');
   }
 
   allow() {
     this.analytics.setAnalyticsCollectionEnabled(true);
     localStorage.setItem('enableAnalytics', 'true');
-    this.consentModal.hide();
+    this.card.nativeElement.classList.remove('d-flex');
+    this.card.nativeElement.classList.add('d-none');
   }
 }
