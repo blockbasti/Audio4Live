@@ -14,19 +14,27 @@
     <!-- Header -->
     <mj-section background-color="#212121">
       <mj-column vertical-align="middle">
-        <mj-image alt="Audio4Live" width="300px" src="https://audio4live-1d621.web.app/assets/images/Logo2_Text.png">
       </mj-column>
     </mj-section>
 
     <!-- Hero -->
-    <mj-hero mode="fixed-height" height="150px" background-color="#212121" background-position="top center" background-url="https://audio4live-1d621.web.app/assets/images/fader.jpg">
-      <mj-text align="center" font-size="20px" padding-top="30px" color="#ffffff">
-        <h1>Vielen Dank für Ihre Anfrage!</h1>
+    <mj-hero mode="fluid-height" background-height="150px" background-color="#212121" background-position="center center" background-url="https://audio4live-1d621.web.app/assets/images/header.jpg">
+      <mj-text align="center" padding-top="25px" color="#ffffff">
+        <h1>&zwnj;</h1>
       </mj-text>
     </mj-hero>
 
     <!-- Salutation -->
-    <mj-section background-color="#212121" padding-bottom="0px">
+    <mj-section background-color="#212121" padding-top="0" padding-bottom="0px">
+      <mj-column>
+        <mj-text>
+          <h1>Vielen Dank für Ihre Anfrage!</h1>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <!-- Salutation -->
+    <mj-section background-color="#212121" padding-top="0" padding-bottom="0px">
       <mj-column>
         <mj-text>
           Sehr geehrte/r Herr/Frau {{name}},

@@ -3,7 +3,7 @@
   "scripts": {
     "lint": "tslint --project tsconfig.json",
     "build": "tsc",
-    "mjml": "mjml ./src/booking.mjml -o ./src/booking.html --config.minify",
+    "mjml": "mjml ./src/booking.mjml -o ./src/booking.html --config.minify true --config.minifyOptions='{\"minifyCSS\": true, \"removeEmptyAttributes\": false}'",
     "serve": "npm run build && firebase emulators:start --only functions",
     "shell": "npm run build && firebase functions:shell",
     "start": "npm run shell",
