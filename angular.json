@@ -39,9 +39,6 @@
               "node_modules/angular-bootstrap-md/assets/scss/mdb.scss",
               "node_modules/animate.css/animate.css",
               "src/styles.scss"
-            ],
-            "scripts": [
-              "src/lib/modernizr.js"
             ]
           },
           "configurations": {

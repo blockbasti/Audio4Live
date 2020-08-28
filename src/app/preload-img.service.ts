@@ -9,10 +9,9 @@ export class PreloadImgService {
   private images = ['speaker1', 'speaker2', 'drums', 'fader', 'colors', 'profil'];
 
   preloadImages() {
-    const format = document.documentElement.classList.contains('webp') ? '.webp' : '.jpg';
     this.images.forEach((img) => {
       const image = new Image();
-      image.src = '/assets/images/' + img + format;
+      image.src = '/assets/images/' + img + '.webp';
     });
   }
 }

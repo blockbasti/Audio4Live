@@ -17,7 +17,7 @@
   "dependencies": {
     "axios": "^0.20.0",
     "cors": "^2.8.5",
-    "date-fns": "^2.15.0",
+    "date-fns": "^2.16.0",
     "date-fns-tz": "^1.0.10",
     "firebase-admin": "^9.1.1",
     "firebase-functions": "^3.11.0",

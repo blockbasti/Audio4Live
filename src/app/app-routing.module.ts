@@ -9,10 +9,14 @@ const routes: Routes = [
   { path: '**', component: ErrorComponent, data: { animation: 'LandingPage' } },
 ];
 
+import { QuicklinkModule, QuicklinkStrategy } from 'ngx-quicklink';
+
 @NgModule({
   imports: [
+    QuicklinkModule,
     RouterModule.forRoot(routes, {
       scrollPositionRestoration: 'top',
+      preloadingStrategy: QuicklinkStrategy
     }),
   ],
   exports: [RouterModule],

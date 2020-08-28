@@ -15,7 +15,6 @@ import { PreloadImgService } from './preload-img.service';
 export class AppComponent implements OnInit, AfterViewInit {
   title = 'audio4live';
 
-
   preloadService: PreloadImgService;
 
   constructor(preloadImageService: PreloadImgService) {
@@ -26,9 +25,12 @@ export class AppComponent implements OnInit, AfterViewInit {
     return outlet && outlet.activatedRouteData && outlet.activatedRouteData.animation;
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   ngAfterViewInit(): void {
-    this.preloadService.preloadImages();
+    window.addEventListener('load', () => {
+      console.log('loaded');
+      this.preloadService.preloadImages();
+    })
   }
 }
