@@ -25,7 +25,6 @@ jobs:
           npx ng build --prod
       
       - name: lint
-        continue-on-error: true
         run: |
           npx ng lint
 
