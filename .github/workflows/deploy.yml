@@ -21,13 +21,13 @@ jobs:
 
       - name: npm install
         run: |
-          npm ci
+          npm ci && npm install firebase-tools
       
       - name: Deploy
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
         run: |
-          firebase deploy --token "$FIREBASE_TOKEN" --non-interactive
+          npx firebase deploy --token "$FIREBASE_TOKEN" --non-interactive
           
       - name: Audit URLs using Lighthouse
         uses: treosh/lighthouse-ci-action@v3
