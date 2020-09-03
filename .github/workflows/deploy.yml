@@ -21,7 +21,7 @@ jobs:
 
       - name: npm install
         run: |
-          npm ci && npm install firebase-tools
+          npm ci && cd functions/ && npm ci && cd .. && npm install firebase-tools
       
       - name: Deploy
         env:
