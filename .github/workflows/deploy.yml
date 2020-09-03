@@ -29,15 +29,15 @@ jobs:
         run: |
           firebase deploy --token "$FIREBASE_TOKEN" --non-interactive
           
-      - name: Audit Lighthouse
-        uses: jakejarvis/lighthouse-action@master
+      - name: Audit URLs using Lighthouse
+        uses: treosh/lighthouse-ci-action@v3
         with:
-          url: 'https://audio4live-1d621.web.app/'
-        
-      - name: Lighthouse Report
-        uses: actions/upload-artifact@master
-        with:
-          name: report
-          path: './report'
+          runs: 3
+          urls: |
+            https://audio4live-1d621.web.app/
+            https://audio4live-1d621.web.app/buchen
+            https://audio4live-1d621.web.app/profil
+            https://audio4live-1d621.web.app/leistungen
+          uploadArtifacts: true # save results as an action artifacts
 
           
