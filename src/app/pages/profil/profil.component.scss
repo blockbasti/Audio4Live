@@ -1,5 +1,10 @@
-.view2 {
+.webp .view2 {
   background: url('/assets/images/drums.webp') no-repeat center center;
+  background-size: cover;
+}
+
+.no-webp .view2 {
+  background: url('/assets/images/drums.jpg') no-repeat center center;
   background-size: cover;
 }
 

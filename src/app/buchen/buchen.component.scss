@@ -1,4 +1,9 @@
-.view5 {
+.no-webp .view5 {
+  background: url('/assets/images/speaker1.jpg') no-repeat center center;
+  background-size: cover;
+}
+
+.webp .view5 {
   background: url('/assets/images/speaker1.webp') no-repeat center center;
   background-size: cover;
 }
