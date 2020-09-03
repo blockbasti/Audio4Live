@@ -1,0 +1,43 @@
+
+name: Deploy
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Node $
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: npm install
+        run: |
+          npm ci
+      
+      - name: Deploy
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+        run: |
+          firebase deploy --token "$FIREBASE_TOKEN" --non-interactive
+          
+      - name: Audit Lighthouse
+        uses: jakejarvis/lighthouse-action@master
+        with:
+          url: 'https://audio4live-1d621.web.app/'
+        
+      - name: Lighthouse Report
+        uses: actions/upload-artifact@master
+        with:
+          name: report
+          path: './report'
+
+          
