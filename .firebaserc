@@ -1,5 +1,63 @@
 {
   "projects": {
-    "audio4live": "audio4live-1d621"
+    "default": "audio4live-1d621"
+  },
+  "targets": {
+    "audio4live-1d621": {
+      "hosting": {
+        "audio4live": [
+          "audio4live-1d621"
+        ],
+        "public": "dist/assets",
+        "ignore": [
+          "firebase.json",
+          "**/.*",
+          "**/node_modules/**"
+        ],
+        "redirects": [
+          {
+            "source": "/robots.txt",
+            "destination": "/assets/robots.txt"
+          },
+          {
+            "source": "**",
+            "destination": "/index.html"
+          }
+        ],
+        "headers": [
+          {
+            "source": "**/*.@(eot|otf|ttf|ttc|woff|font.css)",
+            "headers": [
+              {
+                "key": "Access-Control-Allow-Origin",
+                "value": "*"
+              },
+              {
+                "key": "Cache-Control",
+                "value": "max-age=31536000"
+              }
+            ]
+          },
+          {
+            "source": "**/*.@(jpg|jpeg|gif|png|svg|webp|js|css|eot|otf|ttf|ttc|woff|woff2|font.css)",
+            "headers": [
+              {
+                "key": "Cache-Control",
+                "value": "max-age=31536000"
+              }
+            ]
+          },
+          {
+            "source": "**.*",
+            "headers": [
+              {
+                "key": "Cache-Control",
+                "value": "max-age=31536000"
+              }
+            ]
+          }
+        ]
+      }
+    }
   }
 }
