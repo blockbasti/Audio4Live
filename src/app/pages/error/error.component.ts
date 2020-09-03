@@ -2,7 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-error',
-  //encapsulation: ViewEncapsulation.None,
+  // encapsulation: ViewEncapsulation.None,
   templateUrl: './error.component.html',
   styleUrls: ['./error.component.scss'],
 })

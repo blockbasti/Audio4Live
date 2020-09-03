@@ -30,6 +30,6 @@ export class AppComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     window.addEventListener('load', () => {
       this.preloadService.preloadImages();
-    })
+    });
   }
 }
