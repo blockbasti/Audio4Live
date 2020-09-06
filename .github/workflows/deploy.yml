@@ -22,13 +22,13 @@ jobs:
       - name: npm install
         run: |
           npm ci && cd functions/ && npm ci && cd .. && npm install firebase-tools
-      
+
       - name: Deploy
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
         run: |
           npx firebase deploy --token "$FIREBASE_TOKEN" --non-interactive
-          
+
       - name: Audit URLs using Lighthouse
         uses: treosh/lighthouse-ci-action@v3
         with:
@@ -39,5 +39,3 @@ jobs:
             https://audio4live-1d621.web.app/profil
             https://audio4live-1d621.web.app/leistungen
           uploadArtifacts: true # save results as an action artifacts
-
-          

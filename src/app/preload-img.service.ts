@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class PreloadImgService {
   constructor() {}
 
-  private images = [/* 'speaker1', */ 'speaker2', 'drums', 'fader' /* 'colors' */, , 'profil'];
+  private images = [/* 'speaker2', */ 'speaker1', 'drums', 'fader' /* 'colors' */, , 'profil'];
 
   preloadImages() {
     const format = document.documentElement.classList.contains('webp') ? '.webp' : '.jpg';
