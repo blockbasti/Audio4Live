@@ -255,6 +255,7 @@ export class BuchenComponent {
   }
 
   resolved(captchaResponse: string) {
+    if (captchaResponse === null) { return; }
     fetch('https://us-central1-audio4live-1d621.cloudfunctions.net/verify?response=' + captchaResponse)
       .then((resp) => {
         if (resp.ok) {

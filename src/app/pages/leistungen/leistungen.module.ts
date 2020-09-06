@@ -6,13 +6,8 @@ import { LeistungenComponent } from './leistungen.component';
 
 import { CardsModule } from 'angular-bootstrap-md';
 
-
 @NgModule({
   declarations: [LeistungenComponent],
-  imports: [
-    CommonModule,
-    LeistungenRoutingModule,
-    CardsModule
-  ]
+  imports: [CommonModule, LeistungenRoutingModule, CardsModule],
 })
-export class LeistungenModule { }
+export class LeistungenModule {}

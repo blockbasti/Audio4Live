@@ -17,8 +17,11 @@ export class ConsentComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    if (localStorage.getItem('enableAnalytics') === null) { this.card.nativeElement.classList.add('d-flex'); }
-    else { this.card.nativeElement.remove(); }
+    if (localStorage.getItem('enableAnalytics') === null) {
+      this.card.nativeElement.classList.add('d-flex');
+    } else {
+      this.card.nativeElement.remove();
+    }
   }
 
   deny() {

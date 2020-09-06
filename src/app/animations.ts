@@ -27,7 +27,9 @@ export const slideInAnimation = trigger('routeAnimations', [
   ),
   transition(
     (fromState, toState) => {
-      if (fromState === null) { return; }
+      if (fromState === null) {
+        return;
+      }
       const pages = ['LandingPage', 'BuchenPage', 'LeistungenPage', 'ProfilPage', 'ReferenzenPage'];
       return pages.indexOf(fromState) < pages.indexOf(toState);
     },

@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 
-import { AngularFirestore, AngularFirestoreDocument, DocumentReference } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/firestore';
 import 'firebase/firestore';
 import { Buchung } from '../buchen/buchung';
 
-import { format } from 'date-fns';
+import { format, addWeeks } from 'date-fns';
 import { Subject } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { FormGroup, FormControl } from '@angular/forms';
 
@@ -17,17 +18,16 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class AdminComponent implements OnInit {
   constructor(private auth: AngularFireAuth, private db: AngularFirestore) {
-    db
-      .collection<any>('blocker', (ref) => ref.where('end', '>=', new Date()))
+    db.collection<any>('blocker', (ref) => ref.where('end', '>=', new Date()))
       .valueChanges({ idField: 'id' })
       .subscribe((blocker) => {
         this.blocker = blocker.map((b) => {
           return {
             interval: {
               start: (b.start as firebase.firestore.Timestamp).toDate(),
-              end: (b.end as firebase.firestore.Timestamp).toDate()
+              end: (b.end as firebase.firestore.Timestamp).toDate(),
             },
-            id: b.id
+            id: b.id,
           };
         });
         this.refresh.next(null);
@@ -36,27 +36,58 @@ export class AdminComponent implements OnInit {
 
   refresh: Subject<any> = new Subject();
   user?: firebase.User;
-  bookings?: Buchung[];
-  blocker: { interval: Interval, id: string }[];
+
+  bookings: {
+    name: string;
+    email: string;
+    phone: string;
+    call: boolean;
+    message: string;
+    date?: Interval;
+    location: string;
+    times: {
+      start: string;
+      end: string;
+    };
+    id: string;
+  }[];
+
+  blocker: { interval: Interval; id: string }[];
 
   range = new FormGroup({
     start: new FormControl(),
-    end: new FormControl()
+    end: new FormControl(),
   });
 
   ngOnInit(): void {
     this.auth.currentUser.then((user) => (this.user = user));
     this.db
       .collection<any>('booking')
-      .valueChanges()
-      .subscribe((bookings) => {
-        this.bookings = bookings.map((b) => {
-          b.date = {
+      .snapshotChanges()
+      .pipe(
+        map((actions) =>
+          actions.map((action) => {
+            return action;
+          })
+        )
+      )
+      .subscribe((rb) => {
+        const arr: { [key: string]: Buchung } = {};
+        rb.forEach((srb) => {
+          const b = srb.payload.doc.data();
+          const buchung: Buchung = b as Buchung;
+          buchung.date = {
             start: (b.date.start as firebase.firestore.Timestamp).toDate(),
             end: (b.date.end as firebase.firestore.Timestamp).toDate(),
           };
-          return b as Buchung;
+          arr[srb.payload.doc.id] = buchung;
         });
+
+        this.bookings = [
+          ...Object.entries(arr).map((b) => {
+            return { id: b[0], ...b[1] };
+          }),
+        ];
       });
   }
 
@@ -67,7 +98,11 @@ export class AdminComponent implements OnInit {
   }
 
   formatDate(date: Date, hours: boolean): string {
-    if (hours) { return format(date, 'dd.MM.yyyy HH:mm'); } else { return format(date, 'dd.MM.yyyy'); }
+    if (hours) {
+      return format(date, 'dd.MM.yyyy HH:mm');
+    } else {
+      return format(date, 'dd.MM.yyyy');
+    }
   }
 
   addBlocker() {
@@ -75,8 +110,28 @@ export class AdminComponent implements OnInit {
     this.range.setValue([{ start: null }, { end: null }]);
   }
 
-  deleteBlocker(id: string) {
-    this.db.doc(`blocker/${id}`).delete().then(() => {
+  nextWeek() {
+    this.range.setValue({
+      start: addWeeks(new Date(this.range.get('start').value), 1).toISOString(),
+      end: addWeeks(new Date(this.range.get('end').value), 1).toISOString(),
     });
+  }
+
+  deleteBooking(id: string) {
+    if (confirm('Wirklich löschen?')) {
+      this.db
+        .doc(`booking/${id}`)
+        .delete()
+        .then(() => {});
+    }
+  }
+
+  deleteBlocker(id: string) {
+    if (confirm('Wirklich löschen?')) {
+      this.db
+        .doc(`blocker/${id}`)
+        .delete()
+        .then(() => {});
+    }
   }
 }

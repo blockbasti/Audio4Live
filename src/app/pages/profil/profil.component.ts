@@ -9,13 +9,12 @@ import { Component, ViewEncapsulation, ViewChild, ElementRef, AfterViewInit } fr
 export class ProfilComponent implements AfterViewInit {
   @ViewChild('imgprofil') img: ElementRef;
 
-  constructor() { }
+  constructor() {}
 
   ngAfterViewInit(): void {
     if (document.documentElement.classList.contains('webp')) {
       this.img.nativeElement.src = this.img.nativeElement.getAttribute('data-webp');
-    }
-    else {
+    } else {
       this.img.nativeElement.src = this.img.nativeElement.getAttribute('data-jpg');
     }
   }

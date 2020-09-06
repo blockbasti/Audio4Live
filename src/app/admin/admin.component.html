@@ -1,6 +1,6 @@
-<div style="height: 75px;"></div>
+<div style="height: 75px"></div>
 
-<div class="container" style="height: 100vh;">
+<div class="container">
   <div class="row mt-2">
     <div class="col-12 col-sm-4">
       <h1>Admin</h1>
@@ -26,55 +26,84 @@
             <mdb-card-body>
               <div class="container">
                 <div class="row">
-                  <div class="col-3">
+                  <div class="col-sm-12 col-md-4">
                     <mat-form-field appearance="fill">
                       <mat-label>Datumsbereich</mat-label>
                       <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
-                        <input matStartDate formControlName="start" placeholder="Start date">
-                        <input matEndDate formControlName="end" placeholder="End date">
+                        <input matStartDate formControlName="start" placeholder="Start date" />
+                        <input matEndDate formControlName="end" placeholder="End date" />
                       </mat-date-range-input>
                       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                       <mat-date-range-picker #picker></mat-date-range-picker>
 
-                      <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')">Ungültiger Starttag
+                      <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')"
+                        >Ungültiger Starttag
                       </mat-error>
                       <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')">Ungültiger Endtag</mat-error>
                     </mat-form-field>
                     <br />
-                    <button type="button" mdbBtn color="blue-grey" mdbWavesEffect
-                      (click)="addBlocker()">Hinzufügen</button>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                      <button type="button" size="sm" mdbBtn color="blue-grey" mdbWavesEffect (click)="addBlocker()">
+                        Hinzufügen
+                      </button>
+                      <button type="button" size="sm" mdbBtn color="blue-grey" mdbWavesEffect (click)="nextWeek()">
+                        nächste Woche
+                      </button>
+                    </div>
                   </div>
-                  <div class="col">
-                    <ul class="list-group ml-5">
+                  <div class="col-sm-12 col-md-8 mt-3 mt-md-0">
+                    <ul class="list-group ml-sm-0 ml-md-5">
                       <li class="list-group-item grey darken-3" *ngFor="let block of blocker; let i = index">
-                        {{ formatDate(block.interval.start, false) }} - {{ formatDate(block.interval.end, false) }} <mdb-badge
-                          class="close" pill="true" danger="true" (click)="deleteBlocker(block.id)"><span aria-hidden="true">×</span></mdb-badge>
+                        {{ formatDate(block.interval.start, false) }} - {{ formatDate(block.interval.end, false) }}
+                        <mdb-badge
+                          style="cursor: pointer"
+                          class="close"
+                          pill="true"
+                          danger="true"
+                          (click)="deleteBlocker(block.id)"
+                          ><span aria-hidden="true">×</span></mdb-badge
+                        >
                       </li>
                     </ul>
                   </div>
                 </div>
               </div>
-
             </mdb-card-body>
           </mdb-card>
         </div>
       </div>
     </div>
   </div>
-  <div class="row overflow-auto mt-3" style="height: 80vh;">
+  <div class="row overflow-auto mt-3" style="height: 80vh">
     <div class="container">
       <div class="row" *ngFor="let booking of bookings; let i = index">
         <div class="col my-3">
           <mdb-card class="elegant-color">
             <mdb-card-header>
-              <mdb-card-title>
+              <mdb-card-title class="d-flex justify-content-between mb-0">
                 <h3 class="m-0">Buchung #{{ i + 1 }}</h3>
+                <mdb-badge
+                  style="cursor: pointer"
+                  class="close"
+                  pill="true"
+                  danger="true"
+                  (click)="deleteBooking(booking.id)"
+                >
+                  <span aria-hidden="true">×</span>
+                </mdb-badge>
               </mdb-card-title>
             </mdb-card-header>
 
             <mdb-card-body>
               <table mdbTable>
+                <colgroup>
+                  <col width="15%" />
+                </colgroup>
                 <tbody class="text-white">
+                  <tr mdbTableCol>
+                    <td>Name</td>
+                    <td>{{ booking.name }}</td>
+                  </tr>
                   <tr mdbTableCol>
                     <td>Datum</td>
                     <td>{{ formatDate(booking.date.start, true) }} - {{ formatDate(booking.date.end, true) }}</td>
@@ -103,5 +132,4 @@
       </div>
     </div>
   </div>
-
 </div>

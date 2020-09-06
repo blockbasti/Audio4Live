@@ -1,92 +1,100 @@
 <!DOCTYPE html>
 <html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <title>Audio4Live Veranstaltungstechnik</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="Description"
+      content="Audio4Live Veranstaltungstechnik - Licht- und Tontechnik für Ihre Veranstaltung"
+    />
+    <meta name="”keywords”" content="”Veranstaltungstechnik," Events, Lichttechnik, Tontechnik, Konzerte” />
+    <meta name="”author”" content="”Johannes" Tschiersch” />
 
-<head>
-  <meta charset="utf-8" />
-  <title>Audio4Live Veranstaltungstechnik</title>
-  <base href="/" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="Description" content="Audio4Live Veranstaltungstechnik - Licht- und Tontechnik für Ihre Veranstaltung">
-  <meta name=”keywords” content=”Veranstaltungstechnik, Events, Lichttechnik, Tontechnik, Konzerte”>
-  <meta name=”author” content=”Johannes Tschiersch”>
+    <meta property="og:title" content="Audio4Live Veranstaltungstechnik" />
+    <meta property="og:image" content="https://audio4live.de/assets/images/header_lg.jpg" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://audio4live.de/" />
+    <meta property="og:site_name" content="Audio4Live" />
+    <meta
+      property="“og:description“"
+      content="Audio4Live Veranstaltungstechnik - Licht- und Tontechnik für Ihre Veranstaltung"
+    />
 
-  <meta property="og:title" content="Audio4Live Veranstaltungstechnik" />
-  <meta property="og:image" content="https://audio4live.de/assets/images/header_lg.jpg" />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://audio4live.de/" />
-  <meta property="og:site_name" content="Audio4Live" />
-  <meta property=“og:description“ content="Audio4Live Veranstaltungstechnik - Licht- und Tontechnik für Ihre Veranstaltung" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Audio4Live Veranstaltungstechnik" />
+    <meta
+      name="twitter:description"
+      content="Audio4Live Veranstaltungstechnik - Licht- und Tontechnik für Ihre Veranstaltung"
+    />
+    <meta name="twitter:image" content="https://audio4live.de/assets/images/header_lg.jpg" />
 
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Audio4Live Veranstaltungstechnik" />
-  <meta name="twitter:description" content="Audio4Live Veranstaltungstechnik - Licht- und Tontechnik für Ihre Veranstaltung" />
-  <meta name="twitter:image" content="https://audio4live.de/assets/images/header_lg.jpg" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png" />
+    <link rel="manifest" href="assets/site.webmanifest" />
+    <link rel="mask-icon" href="assets/safari-pinned-tab.svg" color="#333333" />
+    <meta name="apple-mobile-web-app-title" content="Audio4Live" />
+    <meta name="application-name" content="Audio4Live" />
+    <meta name="msapplication-TileColor" content="#333333" />
+    <meta name="theme-color" content="#333333" />
 
-  <link rel="icon" type="image/x-icon" href="favicon.ico" />
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png" />
-  <link rel="manifest" href="assets/site.webmanifest" />
-  <link rel="mask-icon" href="assets/safari-pinned-tab.svg" color="#333333" />
-  <meta name="apple-mobile-web-app-title" content="Audio4Live" />
-  <meta name="application-name" content="Audio4Live" />
-  <meta name="msapplication-TileColor" content="#333333" />
-  <meta name="theme-color" content="#333333" />
+    <link rel="dns-prefetch" href="https://firebaseinstallations.googleapis.com" />
+    <link rel="preconnect" href="https://firebaseinstallations.googleapis.com" crossorigin />
+    <link rel="dns-prefetch" href="https://ajax.googleapis.com" />
+    <link rel="preconnect" href="https://ajax.googleapis.com" crossorigin />
 
-  <link rel="dns-prefetch" href="https://firebaseinstallations.googleapis.com">
-  <link rel="preconnect" href="https://firebaseinstallations.googleapis.com" crossorigin>
-  <link rel="dns-prefetch" href="https://ajax.googleapis.com">
-  <link rel="preconnect" href="https://ajax.googleapis.com" crossorigin>
+    <link rel="preload" href="/assets/fonts/lato-regular.woff2" as="font" crossorigin />
+    <link rel="preload" href="/assets/fonts/lato-bold.woff2" as="font" crossorigin />
+    <link rel="preload" href="/assets/images/fader.webp" as="image" type="image/webp" crossorigin />
+    <style>
+      @font-face {
+        font-family: 'Lato';
+        src: url('/assets/fonts/lato-bold.woff2') format('woff2'), url('/assets/fonts/lato-bold.woff') format('woff');
+        font-weight: bold;
+        font-style: normal;
+        font-display: swap;
+      }
 
-  <link rel="preload" href="/assets/fonts/lato-regular.woff2" as="font" crossorigin>
-  <link rel="preload" href="/assets/fonts/lato-bold.woff2" as="font" crossorigin>
-  <link rel="preload" href="/assets/images/fader.webp" as="image" type="image/webp" crossorigin>
-  <style>
-    @font-face {
-      font-family: "Lato";
-      src: url("/assets/fonts/lato-bold.woff2") format("woff2"), url("/assets/fonts/lato-bold.woff") format("woff");
-      font-weight: bold;
-      font-style: normal;
-      font-display: swap;
-    }
+      @font-face {
+        font-family: 'Lato';
+        src: url('/assets/fonts/lato-regular.woff2') format('woff2'),
+          url('/assets/fonts/lato-regular.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+      }
 
-    @font-face {
-      font-family: "Lato";
-      src: url("/assets/fonts/lato-regular.woff2") format("woff2"), url("/assets/fonts/lato-regular.woff") format("woff");
-      font-weight: normal;
-      font-style: normal;
-      font-display: swap;
-    }
+      @font-face {
+        font-family: 'Material Icons';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/materialicons/v55/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2) format('woff2');
+      }
 
-    @font-face {
-      font-family: 'Material Icons';
-      font-style: normal;
-      font-weight: 400;
-      font-display: swap;
-      src: url(https://fonts.gstatic.com/s/materialicons/v55/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2) format('woff2');
-    }
+      .material-icons {
+        font-family: 'Material Icons';
+        font-weight: normal;
+        font-style: normal;
+        font-size: 24px;
+        line-height: 1;
+        letter-spacing: normal;
+        text-transform: none;
+        display: inline-block;
+        white-space: nowrap;
+        word-wrap: normal;
+        direction: ltr;
+        -webkit-font-feature-settings: 'liga';
+        -webkit-font-smoothing: antialiased;
+      }
+    </style>
+  </head>
 
-    .material-icons {
-      font-family: 'Material Icons';
-      font-weight: normal;
-      font-style: normal;
-      font-size: 24px;
-      line-height: 1;
-      letter-spacing: normal;
-      text-transform: none;
-      display: inline-block;
-      white-space: nowrap;
-      word-wrap: normal;
-      direction: ltr;
-      -webkit-font-feature-settings: 'liga';
-      -webkit-font-smoothing: antialiased;
-    }
-  </style>
-</head>
-
-<body class="elegant-color-dark text-white">
-  <app-root></app-root>
-  <noscript>Please enable JavaScript to continue using this application.</noscript>
-</body>
-
+  <body class="elegant-color-dark text-white">
+    <app-root></app-root>
+    <noscript>Please enable JavaScript to continue using this application.</noscript>
+  </body>
 </html>

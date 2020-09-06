@@ -1,6 +1,5 @@
 <mdb-card #consent class="consent">
   <mdb-card-body>
-
     <!--Title-->
     <mdb-card-title>
       <h2 class="h4-responsive text-center text-dark">Datenschutzhinweis</h2>
@@ -9,18 +8,32 @@
     <!--Text-->
     <mdb-card-text>
       <p class="text-dark">
-        Diese Webseite verwendet Cookies und Google Analytics um Informationen über die Nutzung zu erhalten. Sollten
-        Sie dies nicht wünschen, können sie hierfür die Zustimmung verweigern. Weitere Informationen, sowie eine
-        Möglichkeit um Ihre Zustimmung zu ändern, erhalten Sie in den Datenschutzhinweisen.
+        Diese Webseite verwendet Cookies und Google Analytics um Informationen über die Nutzung zu erhalten. Sollten Sie
+        dies nicht wünschen, können sie hierfür die Zustimmung verweigern. Weitere Informationen, sowie eine Möglichkeit
+        um Ihre Zustimmung zu ändern, erhalten Sie in den Datenschutzhinweisen.
       </p>
     </mdb-card-text>
 
-    <button type="button" mdbBtn color="blue-grey" class="waves-light text-dark"
-      aria-label="Ablehnen" (click)="deny()" mdbWavesEffect>
+    <button
+      type="button"
+      mdbBtn
+      color="blue-grey"
+      class="waves-light text-dark"
+      aria-label="Ablehnen"
+      (click)="deny()"
+      mdbWavesEffect
+    >
       Ablehnen
     </button>
-    <button mdbBtn class="relative waves-light text-reset text-dark" type="button"
-      color="light-green" mdbWavesEffect aria-label="Zustimmen" (click)="allow()">
+    <button
+      mdbBtn
+      class="relative waves-light text-reset text-dark"
+      type="button"
+      color="light-green"
+      mdbWavesEffect
+      aria-label="Zustimmen"
+      (click)="allow()"
+    >
       Zustimmen
     </button>
   </mdb-card-body>

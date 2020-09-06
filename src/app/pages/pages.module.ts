@@ -8,4 +8,4 @@ import { CardsModule, ButtonsModule, IconsModule, CarouselModule } from 'angular
 @NgModule({
   imports: [CommonModule, PagesRoutingModule, CardsModule, ButtonsModule, IconsModule, CarouselModule],
 })
-export class PagesModule { }
+export class PagesModule {}

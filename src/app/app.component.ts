@@ -25,7 +25,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     return outlet && outlet.activatedRouteData && outlet.activatedRouteData.animation;
   }
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   ngAfterViewInit(): void {
     window.addEventListener('load', () => {

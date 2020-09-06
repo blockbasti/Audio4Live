@@ -16,7 +16,7 @@ import { QuicklinkModule, QuicklinkStrategy } from 'ngx-quicklink';
     QuicklinkModule,
     RouterModule.forRoot(routes, {
       scrollPositionRestoration: 'top',
-      preloadingStrategy: QuicklinkStrategy
+      preloadingStrategy: QuicklinkStrategy,
     }),
   ],
   exports: [RouterModule],

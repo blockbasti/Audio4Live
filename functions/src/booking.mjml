@@ -1,9 +1,7 @@
 <mjml>
   <mj-head>
     <mj-title>Buchungsanfrage Audio4Live</mj-title>
-    <mj-preview>
-      Vielen Dank für Ihre Anfrage bei Audio4Live!
-    </mj-preview>
+    <mj-preview> Vielen Dank für Ihre Anfrage bei Audio4Live! </mj-preview>
     <mj-font name="Lato" href="https://fonts.googleapis.com/css2?family=Lato:wght@400&display=swap" />
 
     <mj-attributes>
@@ -13,12 +11,17 @@
   <mj-body background-color="#2E2E2E">
     <!-- Header -->
     <mj-section background-color="#212121">
-      <mj-column vertical-align="middle">
-      </mj-column>
+      <mj-column vertical-align="middle"> </mj-column>
     </mj-section>
 
     <!-- Hero -->
-    <mj-hero mode="fluid-height" background-height="150px" background-color="#212121" background-position="center center" background-url="https://audio4live-1d621.web.app/assets/images/header.jpg">
+    <mj-hero
+      mode="fluid-height"
+      background-height="150px"
+      background-color="#212121"
+      background-position="center center"
+      background-url="https://audio4live-1d621.web.app/assets/images/header.jpg"
+    >
       <mj-text align="center" padding-top="25px" color="#ffffff">
         <h1>&zwnj;</h1>
       </mj-text>
@@ -38,7 +41,7 @@
       <mj-column>
         <mj-text>
           Sehr geehrte/r Herr/Frau {{name}},
-          <br><br>
+          <br /><br />
           ich werde mich in den nächsten Tagen mit Ihnen in Verbindung setzen, um das weitere Vorgehen zu besprechen.
           Sollten Sie noch Fragen, Änderungen oder Anmerkungen haben, so können Sie gerne auf diese E-Mail antworten.
         </mj-text>
@@ -54,15 +57,13 @@
         <mj-table padding-top="0px">
           <tbody>
             <tr>
-              <td style="text-align: right; padding-right: 10px;">
+              <td style="text-align: right; padding-right: 10px">
                 <b>Datum</b>
               </td>
-              <td>
-                {{date}}
-              </td>
+              <td>{{date}}</td>
             </tr>
             <tr>
-              <td style="text-align: right; padding-right: 10px;vertical-align: top;width:100px;">
+              <td style="text-align: right; padding-right: 10px; vertical-align: top; width: 100px">
                 <b>Kontaktdaten</b>
               </td>
               <td>
@@ -71,20 +72,16 @@
               </td>
             </tr>
             <tr>
-              <td style="text-align: right; padding-right: 10px;">
+              <td style="text-align: right; padding-right: 10px">
                 <b>Ort</b>
               </td>
-              <td>
-                {{location}}
-              </td>
+              <td>{{location}}</td>
             </tr>
             <tr>
-              <td style="text-align: right; padding-right: 10px;vertical-align: top;">
+              <td style="text-align: right; padding-right: 10px; vertical-align: top">
                 <b>Nachricht</b>
               </td>
-              <td>
-                {{message}}
-              </td>
+              <td>{{message}}</td>
             </tr>
           </tbody>
         </mj-table>
@@ -105,9 +102,7 @@
     <!-- Footer -->
     <mj-section background-color="#2E2E2E">
       <mj-column>
-        <mj-text>
-          ©2020&nbsp;Audio4Live
-        </mj-text>
+        <mj-text> ©2020&nbsp;Audio4Live </mj-text>
       </mj-column>
 
       <mj-column>

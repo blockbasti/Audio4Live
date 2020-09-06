@@ -8,10 +8,6 @@ import { CardsModule } from 'angular-bootstrap-md';
 
 @NgModule({
   declarations: [ProfilComponent],
-  imports: [
-    CommonModule,
-    ProfilRoutingModule,
-    CardsModule
-  ]
+  imports: [CommonModule, ProfilRoutingModule, CardsModule],
 })
-export class ProfilModule { }
+export class ProfilModule {}
