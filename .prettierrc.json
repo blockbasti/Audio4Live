@@ -1,6 +1,6 @@
 {
   "singleQuote": true,
-  "printWidth": 150,
+  "printWidth": 140,
   "bracketSpacing": true,
   "proseWrap": "always",
   "plugins": ["prettier-plugin-organize-imports"]

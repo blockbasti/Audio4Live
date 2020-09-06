@@ -219,7 +219,7 @@ export class BuchenComponent {
     return isThisMonth(date);
   }
 
-  isRangeMonth(date: Date){
+  isRangeMonth(date: Date) {
     return isSameMonth(date, addMonths(Date.now(), 3));
   }
 
@@ -245,7 +245,9 @@ export class BuchenComponent {
     }
 
     return (
-      format(this.selectedInterval.start, 'dd. LLL yyy', { locale: de }) + ' - ' + format(this.selectedInterval.end, 'dd. LLL yyy', { locale: de })
+      format(this.selectedInterval.start, 'dd. LLL yyy', { locale: de }) +
+      ' - ' +
+      format(this.selectedInterval.end, 'dd. LLL yyy', { locale: de })
     );
   }
 

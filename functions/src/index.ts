@@ -99,7 +99,14 @@ export const verify = functions.https.onRequest((req, res) => {
     };
 
     axios
-      .post('https://www.google.com/recaptcha/api/siteverify?secret=' + data.secret + '&response=' + data.response + '&remoteip=' + data.remoteip)
+      .post(
+        'https://www.google.com/recaptcha/api/siteverify?secret=' +
+          data.secret +
+          '&response=' +
+          data.response +
+          '&remoteip=' +
+          data.remoteip
+      )
       .then((resp) => {
         if (resp.data.success === true) res.sendStatus(200);
         else res.sendStatus(400);
