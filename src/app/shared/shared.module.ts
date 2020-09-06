@@ -1,15 +1,13 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
-
-import { CardsModule, ModalModule, NavbarModule, IconsModule, ButtonsModule } from 'angular-bootstrap-md';
-
-import { NavbarComponent } from './navbar/navbar.component';
-import { FooterComponent } from './footer/footer.component';
-import { DatenschutzComponent } from './datenschutz/datenschutz.component';
-import { ConsentComponent } from './consent/consent.component';
+import { NgModule } from '@angular/core';
 import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
+import { RouterModule } from '@angular/router';
+import { ButtonsModule, CardsModule, IconsModule, ModalModule, NavbarModule } from 'angular-bootstrap-md';
+import { ConsentComponent } from './consent/consent.component';
+import { DatenschutzComponent } from './datenschutz/datenschutz.component';
+import { FooterComponent } from './footer/footer.component';
 import { ImpressumComponent } from './impressum/impressum.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [NavbarComponent, FooterComponent, DatenschutzComponent, ImpressumComponent, ConsentComponent],

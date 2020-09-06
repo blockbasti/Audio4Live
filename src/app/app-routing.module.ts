@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
+import { QuicklinkModule, QuicklinkStrategy } from 'ngx-quicklink';
 import { ErrorComponent } from './pages/error/error.component';
 
 const routes: Routes = [
@@ -8,8 +9,6 @@ const routes: Routes = [
   { path: 'admin', loadChildren: () => import('./admin/admin.module').then((m) => m.AdminModule) },
   { path: '**', component: ErrorComponent, data: { animation: 'LandingPage' } },
 ];
-
-import { QuicklinkModule, QuicklinkStrategy } from 'ngx-quicklink';
 
 @NgModule({
   imports: [

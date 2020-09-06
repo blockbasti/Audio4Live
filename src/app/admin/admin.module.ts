@@ -1,16 +1,15 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { AdminRoutingModule } from './admin-routing.module';
-import { AdminComponent } from './admin.component';
-import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { NgModule } from '@angular/core';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-import { LoginComponent } from './login/login.component';
-import { InputsModule, ButtonsModule, CardsModule, TableModule, BadgeModule } from 'angular-bootstrap-md';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
-import { MatNativeDateModule } from '@angular/material/core';
+import { BadgeModule, ButtonsModule, CardsModule, InputsModule, TableModule } from 'angular-bootstrap-md';
+import { AdminRoutingModule } from './admin-routing.module';
+import { AdminComponent } from './admin.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [AdminComponent, LoginComponent],

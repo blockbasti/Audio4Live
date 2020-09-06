@@ -1,10 +1,8 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { NgModule } from '@angular/core';
+import { CardsModule } from 'angular-bootstrap-md';
 import { ProfilRoutingModule } from './profil-routing.module';
 import { ProfilComponent } from './profil.component';
-
-import { CardsModule } from 'angular-bootstrap-md';
 
 @NgModule({
   declarations: [ProfilComponent],

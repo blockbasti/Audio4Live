@@ -1,9 +1,7 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { NgModule } from '@angular/core';
+import { ButtonsModule, CardsModule, CarouselModule, IconsModule } from 'angular-bootstrap-md';
 import { PagesRoutingModule } from './pages-routing.module';
-
-import { CardsModule, ButtonsModule, IconsModule, CarouselModule } from 'angular-bootstrap-md';
 
 @NgModule({
   imports: [CommonModule, PagesRoutingModule, CardsModule, ButtonsModule, IconsModule, CarouselModule],

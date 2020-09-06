@@ -1,20 +1,15 @@
-import { BrowserModule } from '@angular/platform-browser';
-
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-
 import { AngularFireModule } from '@angular/fire';
+import { AngularFireAnalyticsModule, COLLECTION_ENABLED, CONFIG, ScreenTrackingService } from '@angular/fire/analytics';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ɵe as TIME_LOCALE } from 'ngx-material-timepicker';
 import { environment } from '../environments/environment';
-import { AngularFireAnalyticsModule, ScreenTrackingService, CONFIG, COLLECTION_ENABLED } from '@angular/fire/analytics';
-
 import { AppRoutingModule } from './app-routing.module';
-
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
-import { HttpClientModule } from '@angular/common/http';
-
-import { ɵe as TIME_LOCALE } from 'ngx-material-timepicker';
-import { MAT_DATE_LOCALE } from '@angular/material/core';
 
 @NgModule({
   declarations: [AppComponent],

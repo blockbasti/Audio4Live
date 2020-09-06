@@ -1,7 +1,7 @@
-import * as functions from 'firebase-functions';
-
-import { format, addHours, addMinutes, isSameDay } from 'date-fns';
+import axios from 'axios';
+import { addHours, addMinutes, format, isSameDay } from 'date-fns';
 import { utcToZonedTime } from 'date-fns-tz';
+import * as functions from 'firebase-functions';
 
 const admin = require('firebase-admin');
 admin.initializeApp(functions.config().firebase);
@@ -90,7 +90,6 @@ export const submit = functions.https.onRequest((req, res) => {
   });
 });
 
-import axios from 'axios';
 export const verify = functions.https.onRequest((req, res) => {
   cors(req, res, () => {
     const data = {
@@ -100,14 +99,7 @@ export const verify = functions.https.onRequest((req, res) => {
     };
 
     axios
-      .post(
-        'https://www.google.com/recaptcha/api/siteverify?secret=' +
-          data.secret +
-          '&response=' +
-          data.response +
-          '&remoteip=' +
-          data.remoteip
-      )
+      .post('https://www.google.com/recaptcha/api/siteverify?secret=' + data.secret + '&response=' + data.response + '&remoteip=' + data.remoteip)
       .then((resp) => {
         if (resp.data.success === true) res.sendStatus(200);
         else res.sendStatus(400);

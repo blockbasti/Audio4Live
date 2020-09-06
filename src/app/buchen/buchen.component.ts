@@ -1,35 +1,30 @@
-import { Component, Injectable, ViewChild, ElementRef, ViewEncapsulation } from '@angular/core';
-
+import { ChangeDetectionStrategy, Component, ElementRef, Injectable, ViewChild, ViewEncapsulation } from '@angular/core';
+import { AngularFireAnalytics } from '@angular/fire/analytics';
 import { AngularFirestore } from '@angular/fire/firestore';
-// import 'firebase/firestore';
-
-import { SubmitService } from './submit.service';
-
-import { ChangeDetectionStrategy } from '@angular/core';
-import {
-  endOfMonth,
-  isSameDay,
-  format,
-  startOfMonth,
-  getWeeksInMonth,
-  addWeeks,
-  Interval,
-  isWithinInterval,
-  closestIndexTo,
-  isBefore,
-  isAfter,
-  areIntervalsOverlapping,
-  isThisMonth,
-  addMonths,
-} from 'date-fns';
-import { Subject } from 'rxjs';
-import { CalendarEvent, CalendarMonthViewDay, CalendarView, DAYS_OF_WEEK, CalendarUtils } from 'angular-calendar';
+import { CalendarEvent, CalendarMonthViewDay, CalendarUtils, CalendarView, DAYS_OF_WEEK } from 'angular-calendar';
 import { GetMonthViewArgs, MonthView } from 'calendar-utils';
-
-import { Buchung } from './buchung';
+import {
+  addMonths,
+  addWeeks,
+  areIntervalsOverlapping,
+  closestIndexTo,
+  endOfMonth,
+  format,
+  getWeeksInMonth,
+  Interval,
+  isAfter,
+  isBefore,
+  isSameDay,
+  isThisMonth,
+  isWithinInterval,
+  startOfMonth,
+} from 'date-fns';
 import { de } from 'date-fns/locale';
 import { NgxMaterialTimepickerTheme } from 'ngx-material-timepicker';
-import { AngularFireAnalytics } from '@angular/fire/analytics';
+import { Subject } from 'rxjs';
+import { Buchung } from './buchung';
+// import 'firebase/firestore';
+import { SubmitService } from './submit.service';
 
 @Injectable()
 export class MyCalendarUtils extends CalendarUtils {
@@ -179,10 +174,7 @@ export class BuchenComponent {
     }
 
     if (isWithinInterval(day.date, this.selectedInterval)) {
-      if (
-        isSameDay(this.selectedInterval.start, this.selectedInterval.end) &&
-        isSameDay(day.date, this.selectedInterval.end)
-      ) {
+      if (isSameDay(this.selectedInterval.start, this.selectedInterval.end) && isSameDay(day.date, this.selectedInterval.end)) {
         this.selectedInterval = undefined;
         this.refresh.next(null);
         this.model.date = this.selectedInterval;
@@ -248,14 +240,14 @@ export class BuchenComponent {
     }
 
     return (
-      format(this.selectedInterval.start, 'dd. LLL yyy', { locale: de }) +
-      ' - ' +
-      format(this.selectedInterval.end, 'dd. LLL yyy', { locale: de })
+      format(this.selectedInterval.start, 'dd. LLL yyy', { locale: de }) + ' - ' + format(this.selectedInterval.end, 'dd. LLL yyy', { locale: de })
     );
   }
 
   resolved(captchaResponse: string) {
-    if (captchaResponse === null) { return; }
+    if (captchaResponse === null) {
+      return;
+    }
     fetch('https://us-central1-audio4live-1d621.cloudfunctions.net/verify?response=' + captchaResponse)
       .then((resp) => {
         if (resp.ok) {

@@ -36,31 +36,20 @@
                       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                       <mat-date-range-picker #picker></mat-date-range-picker>
 
-                      <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')"
-                        >Ungültiger Starttag
-                      </mat-error>
+                      <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')">Ungültiger Starttag </mat-error>
                       <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')">Ungültiger Endtag</mat-error>
                     </mat-form-field>
                     <br />
                     <div class="btn-group" role="group" aria-label="Basic example">
-                      <button type="button" size="sm" mdbBtn color="blue-grey" mdbWavesEffect (click)="addBlocker()">
-                        Hinzufügen
-                      </button>
-                      <button type="button" size="sm" mdbBtn color="blue-grey" mdbWavesEffect (click)="nextWeek()">
-                        nächste Woche
-                      </button>
+                      <button type="button" size="sm" mdbBtn color="blue-grey" mdbWavesEffect (click)="addBlocker()">Hinzufügen</button>
+                      <button type="button" size="sm" mdbBtn color="blue-grey" mdbWavesEffect (click)="nextWeek()">nächste Woche</button>
                     </div>
                   </div>
                   <div class="col-sm-12 col-md-8 mt-3 mt-md-0">
                     <ul class="list-group ml-sm-0 ml-md-5">
                       <li class="list-group-item grey darken-3" *ngFor="let block of blocker; let i = index">
                         {{ formatDate(block.interval.start, false) }} - {{ formatDate(block.interval.end, false) }}
-                        <mdb-badge
-                          style="cursor: pointer"
-                          class="close"
-                          pill="true"
-                          danger="true"
-                          (click)="deleteBlocker(block.id)"
+                        <mdb-badge style="cursor: pointer" class="close" pill="true" danger="true" (click)="deleteBlocker(block.id)"
                           ><span aria-hidden="true">×</span></mdb-badge
                         >
                       </li>
@@ -82,13 +71,7 @@
             <mdb-card-header>
               <mdb-card-title class="d-flex justify-content-between mb-0">
                 <h3 class="m-0">Buchung #{{ i + 1 }}</h3>
-                <mdb-badge
-                  style="cursor: pointer"
-                  class="close"
-                  pill="true"
-                  danger="true"
-                  (click)="deleteBooking(booking.id)"
-                >
+                <mdb-badge style="cursor: pointer" class="close" pill="true" danger="true" (click)="deleteBooking(booking.id)">
                   <span aria-hidden="true">×</span>
                 </mdb-badge>
               </mdb-card-title>

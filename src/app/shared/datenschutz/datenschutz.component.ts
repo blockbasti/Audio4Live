@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { AngularFireAnalytics } from '@angular/fire/analytics';
 import { ModalDirective } from 'angular-bootstrap-md/lib/free/modals/modal.directive';
 import { DatenschutzModalService } from '../datenschutz-modal.service';
-import { AngularFireAnalytics } from '@angular/fire/analytics';
 
 @Component({
   selector: 'app-datenschutz',

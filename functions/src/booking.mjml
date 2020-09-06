@@ -42,8 +42,8 @@
         <mj-text>
           Sehr geehrte/r Herr/Frau {{name}},
           <br /><br />
-          ich werde mich in den nächsten Tagen mit Ihnen in Verbindung setzen, um das weitere Vorgehen zu besprechen.
-          Sollten Sie noch Fragen, Änderungen oder Anmerkungen haben, so können Sie gerne auf diese E-Mail antworten.
+          ich werde mich in den nächsten Tagen mit Ihnen in Verbindung setzen, um das weitere Vorgehen zu besprechen. Sollten Sie noch Fragen,
+          Änderungen oder Anmerkungen haben, so können Sie gerne auf diese E-Mail antworten.
         </mj-text>
       </mj-column>
     </mj-section>

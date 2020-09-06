@@ -1,24 +1,18 @@
-import { NgModule } from '@angular/core';
 import { CommonModule, registerLocaleData } from '@angular/common';
-
+import localeDe from '@angular/common/locales/de';
+import { NgModule } from '@angular/core';
+import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { FormsModule } from '@angular/forms';
+import { ButtonsModule, CardsModule, IconsModule, InputsModule, ModalModule } from 'angular-bootstrap-md';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { RecaptchaFormsModule, RecaptchaModule, RECAPTCHA_LANGUAGE } from 'ng-recaptcha';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { BuchenRoutingModule } from './buchen-routing.module';
 import { BuchenComponent } from './buchen.component';
 
-import { FormsModule } from '@angular/forms';
-
-import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
-import { CalendarModule, DateAdapter } from 'angular-calendar';
-import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
-
-import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
-
-import localeDe from '@angular/common/locales/de';
 registerLocaleData(localeDe);
-
-import { ButtonsModule, CardsModule, ModalModule, IconsModule, InputsModule } from 'angular-bootstrap-md';
-
-import { RecaptchaModule, RecaptchaFormsModule, RECAPTCHA_LANGUAGE } from 'ng-recaptcha';
 
 @NgModule({
   declarations: [BuchenComponent],

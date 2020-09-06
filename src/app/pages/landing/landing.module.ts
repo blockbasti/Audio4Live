@@ -1,9 +1,8 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { NgModule } from '@angular/core';
+import { ButtonsModule, CardsModule } from 'angular-bootstrap-md';
 import { LandingRoutingModule } from './landing-routing.module';
 import { LandingComponent } from './landing.component';
-import { CardsModule, ButtonsModule } from 'angular-bootstrap-md';
 
 @NgModule({
   declarations: [LandingComponent],

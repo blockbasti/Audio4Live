@@ -1,15 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-
 import { AngularFirestore } from '@angular/fire/firestore';
+import { FormControl, FormGroup } from '@angular/forms';
+import { addWeeks, format } from 'date-fns';
 import 'firebase/firestore';
-import { Buchung } from '../buchen/buchung';
-
-import { format, addWeeks } from 'date-fns';
 import { Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
-
-import { FormGroup, FormControl } from '@angular/forms';
+import { Buchung } from '../buchen/buchung';
 
 @Component({
   selector: 'app-admin',
@@ -106,11 +103,17 @@ export class AdminComponent implements OnInit {
   }
 
   addBlocker() {
+    if (!this.range.get('start').value || !this.range.get('end').value) {
+      return;
+    }
     this.db.collection<any>('blocker').add({ start: this.range.get('start').value, end: this.range.get('end').value });
     this.range.setValue([{ start: null }, { end: null }]);
   }
 
   nextWeek() {
+    if (!this.range.get('start').value || !this.range.get('end').value) {
+      return;
+    }
     this.range.setValue({
       start: addWeeks(new Date(this.range.get('start').value), 1).toISOString(),
       end: addWeeks(new Date(this.range.get('end').value), 1).toISOString(),

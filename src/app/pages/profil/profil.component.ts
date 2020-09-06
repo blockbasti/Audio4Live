@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-profil',

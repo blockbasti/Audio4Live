@@ -1,5 +1,4 @@
-import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
-
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { AngularFireAnalytics } from '@angular/fire/analytics';
 
 @Component({
