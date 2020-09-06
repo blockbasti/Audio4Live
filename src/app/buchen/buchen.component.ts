@@ -15,6 +15,7 @@ import {
   isAfter,
   isBefore,
   isSameDay,
+  isSameMonth,
   isThisMonth,
   isWithinInterval,
   startOfMonth,
@@ -115,7 +116,7 @@ export class BuchenComponent {
   captchaResponse = '';
 
   dateIsValid(date: Date): boolean {
-    return date > this.minDate && date < addMonths(Date.now(), 2);
+    return date > this.minDate && date < addMonths(Date.now(), 3);
   }
 
   dateIsBlocked(date: Date): boolean {
@@ -216,6 +217,10 @@ export class BuchenComponent {
 
   isThisMonth(date: Date) {
     return isThisMonth(date);
+  }
+
+  isRangeMonth(date: Date){
+    return isSameMonth(date, addMonths(Date.now(), 3));
   }
 
   beforeMonthViewRender({ body }: { body: CalendarMonthViewDay[] }): void {

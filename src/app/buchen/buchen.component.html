@@ -89,6 +89,7 @@
                 [(viewDate)]="viewDate"
                 aria-label="nächster Monat"
                 tabindex="0"
+                [disabled]="isRangeMonth(viewDate)"
               >
                 <mdb-icon fas size="2x" icon="angle-right"></mdb-icon>
               </button>
