@@ -2,6 +2,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAnalyticsModule, COLLECTION_ENABLED, CONFIG, ScreenTrackingService } from '@angular/fire/analytics';
+import { AngularFirePerformanceModule, DATA_COLLECTION_ENABLED, PerformanceMonitoringService } from '@angular/fire/performance';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -21,6 +22,7 @@ import { SharedModule } from './shared/shared.module';
     SharedModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAnalyticsModule,
+    AngularFirePerformanceModule
   ],
   providers: [
     {
@@ -36,11 +38,16 @@ import { SharedModule } from './shared/shared.module';
       useValue: localStorage.getItem('enableAnalytics') === 'true',
     },
     {
+      provide: DATA_COLLECTION_ENABLED,
+      useValue: localStorage.getItem('enableAnalytics') === 'true',
+    },
+    {
       provide: TIME_LOCALE,
       useValue: '',
     },
     { provide: MAT_DATE_LOCALE, useValue: 'de-DE' },
     ScreenTrackingService,
+    PerformanceMonitoringService
   ],
   bootstrap: [AppComponent],
 })

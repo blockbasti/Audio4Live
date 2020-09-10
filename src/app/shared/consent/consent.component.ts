@@ -9,6 +9,7 @@ import { AngularFireAnalytics } from '@angular/fire/analytics';
 export class ConsentComponent implements AfterViewInit {
   @ViewChild('consent', { read: ElementRef }) card: ElementRef<HTMLDivElement>;
 
+  @ViewChild('btnAccept', { read: ElementRef }) accept: ElementRef<HTMLButtonElement>;
   analytics: AngularFireAnalytics;
 
   constructor(analytics: AngularFireAnalytics) {
@@ -18,6 +19,7 @@ export class ConsentComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     if (localStorage.getItem('enableAnalytics') === null) {
       this.card.nativeElement.classList.add('d-flex');
+      this.accept.nativeElement.focus();
     } else {
       this.card.nativeElement.remove();
     }
