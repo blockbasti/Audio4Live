@@ -59,7 +59,7 @@
     "inquirer-autocomplete-prompt": "^1.1.0",
     "lint-staged": "^10.3.0",
     "modernizr": "^3.11.3",
-    "prettier": "2.1.1",
+    "prettier": "2.1.2",
     "prettier-plugin-organize-imports": "^1.1.1",
     "source-map-explorer": "^2.5.0",
     "ts-node": "^9.0.0",
