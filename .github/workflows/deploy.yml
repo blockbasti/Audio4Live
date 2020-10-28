@@ -1,9 +1,10 @@
 
 name: Deploy
 on:
-  push:
-    branches:
-      - master
+  schedule:
+    # Every day at 1am
+    - cron: '0 1 * * *'
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -19,9 +20,10 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: npm install
-        run: |
-          npm ci && cd functions/ && npm ci && cd .. && npm install firebase-tools
+      - uses: bahmutov/npm-install@v1
+      - uses: bahmutov/npm-install@v1
+        with:
+          working-directory: functions
 
       - name: Deploy
         env:
@@ -39,3 +41,8 @@ jobs:
             https://audio4live-1d621.web.app/profil
             https://audio4live-1d621.web.app/leistungen
           uploadArtifacts: true # save results as an action artifacts
+
+      - name: Remove old artifacts
+        uses: c-hive/gha-remove-artifacts@v1
+        with:
+          age: '1 month'
