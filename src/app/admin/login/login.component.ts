@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { auth } from 'firebase/app';
+import firebase from 'firebase/app';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.fireauth.signInWithEmailAndPassword(this.credentials.email, this.credentials.password).then((cred) => {
-      this.fireauth.setPersistence(auth.Auth.Persistence.SESSION).then(() => {
+      this.fireauth.setPersistence(firebase.auth.Auth.Persistence.SESSION).then(() => {
         window.location.replace('/admin');
       });
     });

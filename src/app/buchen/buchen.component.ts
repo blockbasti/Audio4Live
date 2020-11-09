@@ -21,10 +21,10 @@ import {
   startOfMonth,
 } from 'date-fns';
 import { de } from 'date-fns/locale';
+import firebase from 'firebase/app';
 import { NgxMaterialTimepickerTheme } from 'ngx-material-timepicker';
 import { Subject } from 'rxjs';
 import { Buchung } from './buchung';
-// import 'firebase/firestore';
 import { SubmitService } from './submit.service';
 
 @Injectable()

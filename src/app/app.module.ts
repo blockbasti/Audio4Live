@@ -22,7 +22,7 @@ import { SharedModule } from './shared/shared.module';
     SharedModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAnalyticsModule,
-    AngularFirePerformanceModule
+    AngularFirePerformanceModule,
   ],
   providers: [
     {
@@ -47,7 +47,7 @@ import { SharedModule } from './shared/shared.module';
     },
     { provide: MAT_DATE_LOCALE, useValue: 'de-DE' },
     ScreenTrackingService,
-    PerformanceMonitoringService
+    PerformanceMonitoringService,
   ],
   bootstrap: [AppComponent],
 })

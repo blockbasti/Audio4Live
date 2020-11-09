@@ -3,7 +3,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { FormControl, FormGroup } from '@angular/forms';
 import { addWeeks, format } from 'date-fns';
-import 'firebase/firestore';
+import firebase from 'firebase/app';
 import { Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Buchung } from '../buchen/buchung';
