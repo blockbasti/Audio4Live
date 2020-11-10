@@ -4,8 +4,6 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
-    ignore:
-      - dependency-name: "angular/*"
 
   - package-ecosystem: "npm"
     directory: "/functions"
