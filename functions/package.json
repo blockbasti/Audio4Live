@@ -19,7 +19,7 @@
     "cors": "^2.8.5",
     "date-fns": "^2.16.1",
     "date-fns-tz": "^1.0.12",
-    "firebase-admin": "^9.4.0",
+    "firebase-admin": "^9.4.1",
     "firebase-functions": "^3.11.0",
     "mjml": "^4.7.1"
   },
