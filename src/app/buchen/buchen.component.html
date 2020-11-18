@@ -1,20 +1,21 @@
 <div class="d-block d-md-none" style="height: 63px"></div>
-<header class="view5 intro2 min-vh-100">
-  <div class="full-bg-img">
-    <div class="mask rgba-black-light flex-center flex-column justify-content-center min-vh-100">
-      <div class="text-center white-text wow fadeInUp align-content-center d-none d-lg-block w-75">
-        <!-- <h1 class="display-3">Interessiert?</h1> -->
-        <h2 class="display-3">Sie suchen eine engagierte technische Fachkraft zum Aufbau und der Durchführung Ihrer Veranstaltung?</h2>
-      </div>
-      <div class="text-center white-text wow fadeInUp align-content-center d-lg-none d-md-block">
-        <!-- <h1 class="display-3">Interessiert?</h1> -->
-        <h2 class="">Sie suchen eine engagierte technische Fachkraft für Ihre Veranstaltung?</h2>
-      </div>
-      <i class="fas fa-chevron-down fa-3x position-absolute" style="bottom: 1vh"></i>
+<header class="intro2 min-vh-100">
+  <div class="flex-center flex-column justify-content-center min-vh-100">
+    <picture class="intro-image vignette-radial">
+      <source srcset="/assets/images/speaker1.webp" type="image/webp" />
+      <source srcset="/assets/images/speaker1.jpg" type="image/jpeg" />
+      <img class="intro-image vignette-radial" src="/assets/images/speaker1.jpg" alt="" (load)="loaded()" />
+    </picture>
+    <div class="text-center white-text wow fadeInUp align-content-center d-none d-lg-block w-75" style="z-index: 1">
+      <h2 class="display-3">Sie suchen eine engagierte technische Fachkraft zum Aufbau und der Durchführung Ihrer Veranstaltung?</h2>
     </div>
+    <div class="text-center white-text wow fadeInUp align-content-center d-lg-none d-md-block" style="z-index: 1">
+      <h2 class="">Sie suchen eine engagierte technische Fachkraft für Ihre Veranstaltung?</h2>
+    </div>
+    <i class="fas fa-chevron-down fa-3x position-absolute" style="bottom: 1vh" style="z-index: 1; bottom: 0"></i>
   </div>
 </header>
-<main class="container my-5">
+<main class="container my-5" style="z-index: 1">
   <div class="row mb-5">
     <div class="col-12">
       <mdb-card class="elegant-color z-depth-3">

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-leistungen',
@@ -6,8 +6,13 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
   templateUrl: './leistungen.component.html',
   styleUrls: ['./leistungen.component.scss'],
 })
-export class LeistungenComponent implements OnInit {
+export class LeistungenComponent {
   constructor() {}
 
-  ngOnInit(): void {}
+  loaded() {
+    document.getElementById('loader')?.classList.add('hidden');
+    setTimeout(() => {
+      document.getElementById('loader')?.remove();
+    }, 2000);
+  }
 }

@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { slideInAnimation } from './animations';
 import { PreloadImgService } from './preload-img.service';
@@ -7,12 +7,9 @@ import { PreloadImgService } from './preload-img.service';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  animations: [
-    slideInAnimation,
-    // animation triggers go here
-  ],
+  animations: [slideInAnimation],
 })
-export class AppComponent implements OnInit, AfterViewInit {
+export class AppComponent implements OnInit {
   title = 'audio4live';
 
   preloadService: PreloadImgService;
@@ -25,11 +22,13 @@ export class AppComponent implements OnInit, AfterViewInit {
     return outlet && outlet.activatedRouteData && outlet.activatedRouteData.animation;
   }
 
-  ngOnInit() {}
-
-  ngAfterViewInit(): void {
-    window.addEventListener('load', () => {
-      this.preloadService.preloadImages();
-    });
+  ngOnInit() {
+    this.preloadService.preloadImages();
+    setTimeout(()=>{
+      document.getElementById('loader')?.classList.add('hidden');
+    setTimeout(() => {
+      document.getElementById('loader')?.remove();
+    }, 2000);
+    },10000)
   }
 }

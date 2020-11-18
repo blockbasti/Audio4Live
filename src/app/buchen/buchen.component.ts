@@ -115,6 +115,13 @@ export class BuchenComponent {
 
   captchaResponse = '';
 
+  loaded() {
+    document.getElementById('loader')?.classList.add('hidden');
+    setTimeout(() => {
+      document.getElementById('loader')?.remove();
+    }, 2000);
+  }
+
   dateIsValid(date: Date): boolean {
     return date > this.minDate && date < addMonths(Date.now(), 3);
   }

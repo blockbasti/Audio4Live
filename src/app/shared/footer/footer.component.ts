@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { DatenschutzModalService } from '../datenschutz-modal.service';
 import { ImpressumModalService } from '../impressum-modal.service';
 
@@ -7,7 +7,7 @@ import { ImpressumModalService } from '../impressum-modal.service';
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss'],
 })
-export class FooterComponent implements OnInit {
+export class FooterComponent {
   datenschutzModalService: DatenschutzModalService;
   impressumModalService: ImpressumModalService;
 
@@ -15,8 +15,6 @@ export class FooterComponent implements OnInit {
     this.datenschutzModalService = datenschutzModalService;
     this.impressumModalService = impressumModalService;
   }
-
-  ngOnInit(): void {}
 
   openDatenschutzModal() {
     this.datenschutzModalService.showModal();

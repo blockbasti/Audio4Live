@@ -1,56 +1,57 @@
-<div class="view2 intro2 min-vh-100">
-  <div class="full-bg-img">
-    <div class="mask rgba-black-light flex-center min-vh-100">
-      <div class="container text-center white-text wow fadeInUp align-items-center">
-        <div class="d-block d-md-none" style="height: 63px"></div>
+<div class="intro2 min-vh-100">
+  <div class="flex-center min-vh-100">
+    <picture class="intro-image vignette-radial">
+      <source srcset="/assets/images/drums.webp" type="image/webp" />
+      <source srcset="/assets/images/drums.jpg" type="image/jpeg" />
+      <img class="intro-image vignette-radial" src="/assets/images/drums.jpg" alt="" (load)="loaded()" />
+    </picture>
+    <div class="container text-center white-text wow fadeInUp align-items-center" style="z-index: 1">
+      <div class="d-block d-md-none" style="height: 63px"></div>
 
-        <div class="row mb-5">
-          <div class="col-lg-12 col-md-12 mt-5 mt-md-0">
-            <mdb-card class="elegant-color z-depth-3">
-              <mdb-card-body class="container">
-                <mdb-card-text>
-                  <div class="row">
-                    <div class="col-lg-5 col-md-12 d-flex align-items-center justify-content-center">
-                      <img
-                        #imgprofil
-                        class="align-middle img-Profil"
-                        data-jpg="/assets/images/profil.jpg"
-                        data-webp="/assets/images/profil.webp"
-                        alt="Johannes Tschiersch"
-                      />
-                    </div>
-
-                    <main class="col-lg-7 col-md-12 mt-3 mt-lg-0 text-white">
-                      <h3>Profil</h3>
-                      <ul class="list-group w-100 mb-3">
-                        <li class="list-group-item grey darken-3 mb-0">Johannes Tschiersch</li>
-                        <li class="list-group-item grey darken-3 mb-0">geboren 1998</li>
-                        <li class="list-group-item grey darken-3 mb-0">Abitur 2017</li>
-                      </ul>
-
-                      <h3>Qualifizierungen</h3>
-                      <ul class="list-group w-100 mb-3">
-                        <li class="list-group-item grey darken-3 mb-0">Fachkraft für Veranstaltungstechnik</li>
-                        <li class="list-group-item grey darken-3 mb-0">Elektrofachkraft für Veranstaltungstechnik</li>
-                        <li class="list-group-item grey darken-3 mb-0">mit Flurfördermittelschein</li>
-                        <li class="list-group-item grey darken-3 mb-0">mit Bedienerausweis für Hebebühnen</li>
-                      </ul>
-
-                      <h3>Referenzen</h3>
-                      <ul class="list-group w-100">
-                        <li class="list-group-item grey darken-3 mb-0">
-                          2019 - Abschlussprojekt Felix Lobrecht in der Weimarhalle - <b>Tonsystemer</b>
-                        </li>
-                        <li class="list-group-item grey darken-3 mb-0">2018 - "The Iron Maidens" - <b>Monitormix</b></li>
-                        <li class="list-group-item grey darken-3 mb-0">2018/19 - Christina Rommel - <b>Lichtoperator</b></li>
-                        <li class="list-group-item grey darken-3 mb-0">2019 - Kirmes Elxleben - <b>Soundoperator</b></li>
-                      </ul>
-                    </main>
+      <div class="row mb-5">
+        <div class="col-lg-12 col-md-12 mt-5 mt-md-0">
+          <mdb-card class="elegant-color z-depth-3">
+            <mdb-card-body class="container">
+              <mdb-card-text>
+                <div class="row">
+                  <div class="col-lg-5 col-md-12 d-flex align-items-center justify-content-center">
+                    <picture class="align-middle img-Profil">
+                      <source srcset="/assets/images/profil.webp" type="image/webp" />
+                      <source srcset="/assets/images/profil.jpg" type="image/jpeg" />
+                      <img class="align-middle img-Profil" src="/assets/images/profil.jpg" alt="Johannes Tschiersch" />
+                    </picture>
                   </div>
-                </mdb-card-text>
-              </mdb-card-body>
-            </mdb-card>
-          </div>
+
+                  <main class="col-lg-7 col-md-12 mt-3 mt-lg-0 text-white">
+                    <h3>Profil</h3>
+                    <ul class="list-group w-100 mb-3">
+                      <li class="list-group-item grey darken-3 mb-0">Johannes Tschiersch</li>
+                      <li class="list-group-item grey darken-3 mb-0">geboren 1998</li>
+                      <li class="list-group-item grey darken-3 mb-0">Abitur 2017</li>
+                    </ul>
+
+                    <h3>Qualifizierungen</h3>
+                    <ul class="list-group w-100 mb-3">
+                      <li class="list-group-item grey darken-3 mb-0">Fachkraft für Veranstaltungstechnik</li>
+                      <li class="list-group-item grey darken-3 mb-0">Elektrofachkraft für Veranstaltungstechnik</li>
+                      <li class="list-group-item grey darken-3 mb-0">mit Flurfördermittelschein</li>
+                      <li class="list-group-item grey darken-3 mb-0">mit Bedienerausweis für Hebebühnen</li>
+                    </ul>
+
+                    <h3>Referenzen</h3>
+                    <ul class="list-group w-100">
+                      <li class="list-group-item grey darken-3 mb-0">
+                        2019 - Abschlussprojekt Felix Lobrecht in der Weimarhalle - <b>Tonsystemer</b>
+                      </li>
+                      <li class="list-group-item grey darken-3 mb-0">2018 - "The Iron Maidens" - <b>Monitormix</b></li>
+                      <li class="list-group-item grey darken-3 mb-0">2018/19 - Christina Rommel - <b>Lichtoperator</b></li>
+                      <li class="list-group-item grey darken-3 mb-0">2019 - Kirmes Elxleben - <b>Soundoperator</b></li>
+                    </ul>
+                  </main>
+                </div>
+              </mdb-card-text>
+            </mdb-card-body>
+          </mdb-card>
         </div>
       </div>
     </div>

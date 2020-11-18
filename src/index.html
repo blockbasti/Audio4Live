@@ -39,7 +39,7 @@
 
     <link rel="preload" href="/assets/fonts/lato-regular.woff2" as="font" crossorigin="anonymous" type="font/woff2" />
     <link rel="preload" href="/assets/fonts/lato-bold.woff2" as="font" crossorigin="anonymous" type="font/woff2" />
-    <link rel="preload" href="/assets/images/fader.webp" as="image" type="image/webp" />
+
     <style>
       @font-face {
         font-family: 'Lato';
@@ -56,34 +56,122 @@
         font-style: normal;
         font-display: swap;
       }
+    </style>
 
-      @font-face {
-        font-family: 'Material Icons';
-        font-style: normal;
-        font-weight: 400;
-        font-display: swap;
-        src: url(https://fonts.gstatic.com/s/materialicons/v55/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2) format('woff2');
+    <style type="text/css">
+      body,
+      html {
+        height: 100%;
       }
 
-      .material-icons {
-        font-family: 'Material Icons';
-        font-weight: normal;
-        font-style: normal;
-        font-size: 24px;
-        line-height: 1;
-        letter-spacing: normal;
-        text-transform: none;
-        display: inline-block;
-        white-space: nowrap;
-        word-wrap: normal;
-        direction: ltr;
-        -webkit-font-feature-settings: 'liga';
-        -webkit-font-smoothing: antialiased;
+      .app-loading {
+        position: fixed;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        width: 100%;
+        background-color: #212121;
+        z-index: 2000;
+      }
+
+      .app-loading.hidden {
+        visibility: hidden;
+        opacity: 0;
+        transition: visibility 0s 2s, opacity 1s linear 1s;
+      }
+
+      .app-loading .spinner {
+        height: 200px;
+        width: 200px;
+        animation: rotate 2s linear infinite;
+        transform-origin: center center;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+
+        opacity: 1;
+        animation-name: fadeInOpacity;
+        animation-iteration-count: 1;
+        animation-timing-function: ease-in;
+        animation-duration: 2s;
+      }
+
+      .app-loading.hidden .spinner {
+        display: none;
+      }
+
+      .app-loading .spinner .path {
+        stroke-dasharray: 1, 200;
+        stroke-dashoffset: 0;
+        animation: dash 1.5s ease-in-out infinite;
+        stroke-linecap: round;
+        stroke: #ddd;
+      }
+
+      .logo-loading {
+        width: 100px;
+        height: 100px;
+        background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACsAAAAuCAYAAACxkOBzAAAABmJLR0QA/wD/AP+gvaeTAAAClElEQVRYhe2Yv2sTYRjHv++v5Fprmga1FtFiKahpFZxERAtKXQVx1M1/QaiLxYK7grOLgksXcZAOCiLFzeJmoNBSa42VxrZpLnnv3h8OFXF4k2sl195BPpDp+UI+OR6e58kR62++Bs9chzEGLhjn4OIeIeSxs94GbBhOAXYCWmm3A6MI5AyH9D378GYGc++cOXJnUuH2g7g8t1EBs8/uC7x6Kpz189dAJp57NF6L9tKRjYuObFykSpaH1Vqu1BjFui+dgUF5jB+PWcJIKRaDIaz4l5z1vBzFqWotl6onmzJZxlXLBCE2dgvO3av+XxhXFF6P3zpF3Pu6nTAR/R1ej5+yNkgRPJTKW9MF/FADzkDBHIj9Bxlt6YbJYaWJg9YFBFJ5XIc680v3YVX1O4Nbpid+WaVY1Rxs6pDVfdCBzqSrDSIT1iKs1u5uLZevxiVhgeJOcpxmvZaja/7tZ1QWV0cAjLTFrAk/S8st68zzfE4Ea7kUKgtlVBbKbRX7HwhnKlU9mypZ3tgKzaZ3Akuh+0RMAlnVj3o1zNHegfz0mcuD8R8rbYAywV4Ux4bXi1eG9tslEk4IqVtrL96aHJ9d+LTcW/q4xBvVvW+Jb19WsfZ1vWmdMKo4ABBCStbagbPjp28MXzg5ppU5tGeWADLd/NybJx+Ksy/nWmQy/t8NRggJAUz/+ewpsi4fYQdbLF2ja78FAMBo0O2r64izftjk0ZAmmwhZrSzb1Dl8b3LPHtUFhNJmU9UGHdndwiIuPwAQXSIh/24pItc9F7RzIsZGIkZXvQ4xHwzjfc19TLEGQWXDdt4ixkYiZCmlkdOAMqITISsEjZyzXd28lgjZnZIqWbLfAgAQhnbKAhNKwflSmTFQGWDmN9dh7Cw5vlNiAAAAAElFTkSuQmCC')
+          center center no-repeat;
+
+        opacity: 1;
+        animation-name: fadeInOpacity;
+        animation-iteration-count: 1;
+        animation-timing-function: ease-in;
+        animation-duration: 2s;
+      }
+
+      .app-loading.hidden .logo-loading {
+        display: none;
+      }
+
+      @keyframes rotate {
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes dash {
+        0% {
+          stroke-dasharray: 1, 200;
+          stroke-dashoffset: 0;
+        }
+
+        50% {
+          stroke-dasharray: 89, 200;
+          stroke-dashoffset: -35px;
+        }
+
+        100% {
+          stroke-dasharray: 89, 200;
+          stroke-dashoffset: -124px;
+        }
+      }
+
+      @keyframes fadeInOpacity {
+        0% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
       }
     </style>
   </head>
 
   <body class="elegant-color-dark text-white">
+    <div class="app-loading" id="loader">
+      <div class="logo-loading">
+        <svg class="spinner" viewBox="25 25 50 50">
+          <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+        </svg>
+      </div>
+    </div>
     <app-root></app-root>
     <noscript>Bitte aktivieren Sie JavaScript um auf die Webseite zuzugreifen!</noscript>
   </body>

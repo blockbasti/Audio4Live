@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import firebase from 'firebase/app';
 
@@ -7,12 +7,10 @@ import firebase from 'firebase/app';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   constructor(private fireauth: AngularFireAuth) {}
 
   credentials = { email: '', password: '' };
-
-  ngOnInit(): void {}
 
   login() {
     this.fireauth.signInWithEmailAndPassword(this.credentials.email, this.credentials.password).then((cred) => {

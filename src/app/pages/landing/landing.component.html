@@ -1,24 +1,24 @@
-<header class="view0 intro2">
-  <div class="full-bg-img">
-    <div class="mask rgba-black-light flex-center flex-column min-vh-100">
-      <div class="container text-center white-text wow fadeInUp align-content-around">
-        <div class="row justify-content-center">
-          <img alt="Audio4Live" class="d-block w-responsive mb-5 px-2" src="/assets/images/Logo2_Text.svg" />
-        </div>
-        <div class="row justify-content-center">
-          <h1
-            class="d-none d-md-block display-3"
-            style="font-weight: 800; -webkit-text-stroke-width: 2px; -webkit-text-stroke-color: black"
-          >
-            Ihr Partner für Veranstaltungstechnik!
-          </h1>
-          <h1 class="d-block d-md-none" style="font-weight: 800; -webkit-text-stroke-width: 2px; -webkit-text-stroke-color: black">
-            Ihr Partner für Veranstaltungs<wbr />technik!
-          </h1>
-        </div>
+<header class="intro2">
+  <div class="flex-center flex-column min-vh-100">
+    <picture class="intro-image vignette-radial">
+      <source srcset="/assets/images/fader.webp" type="image/webp" />
+      <source srcset="/assets/images/fader.jpg" type="image/jpeg" />
+      <img class="intro-image vignette-radial" src="/assets/images/fader.jpg" alt="" (load)="loaded()" />
+    </picture>
+    <div class="container text-center white-text wow fadeInUp align-content-around" style="z-index: 1">
+      <div class="row justify-content-center">
+        <img alt="Audio4Live" class="d-block w-responsive mb-5 px-2" src="/assets/images/Logo2_Text.svg" />
       </div>
-      <i class="fas fa-chevron-down fa-3x position-absolute" style="bottom: 1vh"></i>
+      <div class="row justify-content-center">
+        <h1 class="d-none d-md-block display-3" style="font-weight: 800; -webkit-text-stroke-width: 2px; -webkit-text-stroke-color: black">
+          Ihr Partner für Veranstaltungstechnik!
+        </h1>
+        <h1 class="d-block d-md-none" style="font-weight: 800; -webkit-text-stroke-width: 2px; -webkit-text-stroke-color: black">
+          Ihr Partner für Veranstaltungs<wbr />technik!
+        </h1>
+      </div>
     </div>
+    <i class="fas fa-chevron-down fa-3x position-absolute" style="z-index: 1; bottom: 1vh"></i>
   </div>
 </header>
 

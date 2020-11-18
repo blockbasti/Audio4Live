@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-profil',
@@ -6,16 +6,13 @@ import { AfterViewInit, Component, ElementRef, ViewChild, ViewEncapsulation } fr
   templateUrl: './profil.component.html',
   styleUrls: ['./profil.component.scss'],
 })
-export class ProfilComponent implements AfterViewInit {
-  @ViewChild('imgprofil') img: ElementRef;
-
+export class ProfilComponent {
   constructor() {}
 
-  ngAfterViewInit(): void {
-    if (document.documentElement.classList.contains('webp')) {
-      this.img.nativeElement.src = this.img.nativeElement.getAttribute('data-webp');
-    } else {
-      this.img.nativeElement.src = this.img.nativeElement.getAttribute('data-jpg');
-    }
+  loaded() {
+    document.getElementById('loader')?.classList.add('hidden');
+    setTimeout(() => {
+      document.getElementById('loader')?.remove();
+    }, 2000);
   }
 }
