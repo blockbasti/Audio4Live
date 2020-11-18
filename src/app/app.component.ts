@@ -24,11 +24,11 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.preloadService.preloadImages();
-    setTimeout(()=>{
-      document.getElementById('loader')?.classList.add('hidden');
     setTimeout(() => {
-      document.getElementById('loader')?.remove();
-    }, 2000);
-    },10000)
+      document.getElementById('loader')?.classList.add('hidden');
+      setTimeout(() => {
+        document.getElementById('loader')?.remove();
+      }, 2000);
+    }, 10000);
   }
 }
