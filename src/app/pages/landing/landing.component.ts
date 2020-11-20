@@ -1,6 +1,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ImpressumModalService } from 'src/app/shared/impressum-modal.service';
+import { PreloadImgService } from '../../preload-img.service';
 import { DatenschutzModalService } from '../../shared/datenschutz-modal.service';
 
 @Component({
@@ -10,7 +11,12 @@ import { DatenschutzModalService } from '../../shared/datenschutz-modal.service'
   styleUrls: ['./landing.component.scss'],
 })
 export class LandingComponent {
-  constructor(route: ActivatedRoute, datenschutzModalService: DatenschutzModalService, impressumModalService: ImpressumModalService) {
+  constructor(
+    route: ActivatedRoute,
+    datenschutzModalService: DatenschutzModalService,
+    impressumModalService: ImpressumModalService,
+    private preloadImageService: PreloadImgService
+  ) {
     route.data.subscribe((data) => {
       if (data.openPrivacy) {
         datenschutzModalService.showModal();
@@ -22,6 +28,7 @@ export class LandingComponent {
   }
 
   loaded() {
+    this.preloadImageService.preloadImages();
     document.getElementById('loader')?.classList.add('hidden');
     setTimeout(() => {
       document.getElementById('loader')?.remove();

@@ -24,6 +24,7 @@ import { de } from 'date-fns/locale';
 import firebase from 'firebase/app';
 import { NgxMaterialTimepickerTheme } from 'ngx-material-timepicker';
 import { Subject } from 'rxjs';
+import { PreloadImgService } from '../preload-img.service';
 import { Buchung } from './buchung';
 import { SubmitService } from './submit.service';
 
@@ -57,7 +58,12 @@ export class MyCalendarUtils extends CalendarUtils {
   ],
 })
 export class BuchenComponent {
-  constructor(private afs: AngularFirestore, private submitService: SubmitService, analytics: AngularFireAnalytics) {
+  constructor(
+    afs: AngularFirestore,
+    private submitService: SubmitService,
+    analytics: AngularFireAnalytics,
+    private preloadService: PreloadImgService
+  ) {
     this.analytics = analytics;
     afs
       .collection<any>('blocker', (ref) => ref.where('end', '>=', new Date()))
@@ -116,6 +122,7 @@ export class BuchenComponent {
   captchaResponse = '';
 
   loaded() {
+    this.preloadService.preloadImages();
     document.getElementById('loader')?.classList.add('hidden');
     setTimeout(() => {
       document.getElementById('loader')?.remove();

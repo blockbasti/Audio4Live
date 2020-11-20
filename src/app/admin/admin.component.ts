@@ -57,6 +57,11 @@ export class AdminComponent implements OnInit {
   });
 
   ngOnInit(): void {
+    document.getElementById('loader')?.classList.add('hidden');
+    setTimeout(() => {
+      document.getElementById('loader')?.remove();
+    }, 2000);
+
     this.auth.currentUser.then((user) => (this.user = user));
     this.db
       .collection<any>('booking')

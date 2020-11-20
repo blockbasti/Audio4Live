@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-error',
@@ -6,6 +6,13 @@ import { Component } from '@angular/core';
   templateUrl: './error.component.html',
   styleUrls: ['./error.component.scss'],
 })
-export class ErrorComponent {
+export class ErrorComponent implements OnInit {
   constructor() {}
+
+  ngOnInit(): void {
+    document.getElementById('loader')?.classList.add('hidden');
+    setTimeout(() => {
+      document.getElementById('loader')?.remove();
+    }, 2000);
+  }
 }

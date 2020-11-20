@@ -1,4 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
+import { PreloadImgService } from '../../preload-img.service';
 
 @Component({
   selector: 'app-leistungen',
@@ -7,9 +8,10 @@ import { Component, ViewEncapsulation } from '@angular/core';
   styleUrls: ['./leistungen.component.scss'],
 })
 export class LeistungenComponent {
-  constructor() {}
+  constructor(private PreloadImgService: PreloadImgService) {}
 
   loaded() {
+    this.PreloadImgService.preloadImages();
     document.getElementById('loader')?.classList.add('hidden');
     setTimeout(() => {
       document.getElementById('loader')?.remove();
