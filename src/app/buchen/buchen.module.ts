@@ -1,7 +1,6 @@
 import { CommonModule, registerLocaleData } from '@angular/common';
 import localeDe from '@angular/common/locales/de';
 import { NgModule } from '@angular/core';
-import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { FormsModule } from '@angular/forms';
 import { ButtonsModule, CardsModule, IconsModule, InputsModule, ModalModule } from 'angular-bootstrap-md';
@@ -30,7 +29,6 @@ registerLocaleData(localeDe);
     ModalModule.forRoot(),
     AngularFirestoreModule,
     CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
-    AngularFireAnalyticsModule,
   ],
   providers: [
     {

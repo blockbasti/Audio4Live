@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, ElementRef, Injectable, ViewChild, ViewEncapsulation } from '@angular/core';
-import { AngularFireAnalytics } from '@angular/fire/analytics';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { CalendarEvent, CalendarMonthViewDay, CalendarUtils, CalendarView, DAYS_OF_WEEK } from 'angular-calendar';
 import { GetMonthViewArgs, MonthView } from 'calendar-utils';
@@ -58,13 +57,7 @@ export class MyCalendarUtils extends CalendarUtils {
   ],
 })
 export class BuchenComponent {
-  constructor(
-    afs: AngularFirestore,
-    private submitService: SubmitService,
-    analytics: AngularFireAnalytics,
-    private preloadService: PreloadImgService
-  ) {
-    this.analytics = analytics;
+  constructor(afs: AngularFirestore, private submitService: SubmitService, private preloadService: PreloadImgService) {
     afs
       .collection<any>('blocker', (ref) => ref.where('end', '>=', new Date()))
       .valueChanges()
@@ -78,8 +71,6 @@ export class BuchenComponent {
         this.refresh.next(null);
       });
   }
-
-  analytics: AngularFireAnalytics;
 
   refresh: Subject<any> = new Subject();
 
@@ -281,18 +272,7 @@ export class BuchenComponent {
   }
 
   onSubmit(): void {
-    /* if (this.model.times.start !== '') {
-      this.model.date.start = addHours(this.model.date.start, Number.parseInt(this.model.times.start.split(':')[0], 10));
-      this.model.date.start = addMinutes(this.model.date.start, Number.parseInt(this.model.times.start.split(':')[1], 10));
-    }
-
-    if (this.model.times.end !== '') {
-      this.model.date.end = addHours(this.model.date.end, Number.parseInt(this.model.times.end.split(':')[0], 10));
-      this.model.date.end = addMinutes(this.model.date.end, Number.parseInt(this.model.times.end.split(':')[1], 10));
-    } */
-
     this.submitService.submitForm(this.model).subscribe((_) => {
-      this.analytics.logEvent('booking');
       this.alert.nativeElement.classList.add('show');
       this.alert.nativeElement.classList.remove('d-none');
       setTimeout(() => {
