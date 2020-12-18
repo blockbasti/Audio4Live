@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [14.x]
+        node-version: [15.x]
 
     steps:
       - uses: actions/checkout@v1
@@ -16,9 +16,10 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: npm install
-        run: |
-          npm ci
+      - uses: bahmutov/npm-install@v1
+      - uses: bahmutov/npm-install@v1
+        with:
+          working-directory: functions
 
       - name: build
         run: |
@@ -27,7 +28,7 @@ jobs:
       - name: lint
         run: |
           npx ng lint
-          
+
       - name: merge
         uses: ahmadnassri/action-dependabot-auto-merge@v2
         with:

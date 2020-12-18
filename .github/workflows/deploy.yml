@@ -2,8 +2,7 @@
 name: Deploy
 on:
   schedule:
-    # Every day at 1am
-    - cron: '0 1 * * *'
+    - cron: '0 3 * * 5'
   workflow_dispatch:
 
 jobs:
@@ -38,10 +37,11 @@ jobs:
           runs: 3
           urls: |
             https://audio4live-1d621.web.app/
-            https://audio4live-1d621.web.app/buchen
+            https://audio4live-1d621.web.app/anfragen
             https://audio4live-1d621.web.app/profil
             https://audio4live-1d621.web.app/leistungen
-          uploadArtifacts: true # save results as an action artifacts
+            https://audio4live-1d621.web.app/error
+          uploadArtifacts: true
 
       - name: Remove old artifacts
         uses: c-hive/gha-remove-artifacts@v1
