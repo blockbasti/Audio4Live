@@ -29,8 +29,8 @@ jobs:
         run: |
           npx ng lint
 
-      - name: merge
-        uses: ahmadnassri/action-dependabot-auto-merge@v2
-        with:
-          target: minor
-          github-token: ${{ secrets.TOKEN }}
+      #- name: merge
+      #  uses: ahmadnassri/action-dependabot-auto-merge@v2
+      #  with:
+      #    target: minor
+      #    github-token: ${{ secrets.TOKEN }}
