@@ -21,13 +21,23 @@ jobs:
         with:
           working-directory: functions
 
-      - name: build
+      - name: build (Frontend)
         run: |
           npx ng build --prod
 
-      - name: lint
+      - name: lint (Frontend)
         run: |
           npx ng lint
+
+      - name: build (Functions)
+        working-directory: ./functions
+        run: |
+          npm run build
+
+      - name: lint (Functions)
+        working-directory: ./functions
+        run: |
+          npm run lint
 
       - name: merge
         uses: ahmadnassri/action-dependabot-auto-merge@v2
