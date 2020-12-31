@@ -21,7 +21,7 @@
     "date-fns-tz": "^1.0.12",
     "firebase-admin": "^9.4.2",
     "firebase-functions": "^3.13.0",
-    "mjml": "^4.8.0"
+    "mjml": "^4.8.1"
   },
   "devDependencies": {
     "firebase-functions-test": "^0.2.3",
