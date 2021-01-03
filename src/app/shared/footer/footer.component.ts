@@ -8,10 +8,9 @@ import { ImpressumModalService } from '../impressum-modal.service';
   styleUrls: ['./footer.component.scss'],
 })
 export class FooterComponent {
-  datenschutzModalService: DatenschutzModalService;
-  impressumModalService: ImpressumModalService;
+  currentYear = new Date().getFullYear();
 
-  constructor(datenschutzModalService: DatenschutzModalService, impressumModalService: ImpressumModalService) {
+  constructor(private datenschutzModalService: DatenschutzModalService, private impressumModalService: ImpressumModalService) {
     this.datenschutzModalService = datenschutzModalService;
     this.impressumModalService = impressumModalService;
   }
