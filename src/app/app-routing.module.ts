@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
+import { CustomPreloadStrategy } from './custom-preload-strategy';
 import { ErrorComponent } from './pages/error/error.component';
 
 const routes: Routes = [
@@ -13,7 +14,7 @@ const routes: Routes = [
   imports: [
     RouterModule.forRoot(routes, {
       scrollPositionRestoration: 'top',
-      preloadingStrategy: PreloadAllModules,
+      preloadingStrategy: CustomPreloadStrategy,
     }),
   ],
   exports: [RouterModule],

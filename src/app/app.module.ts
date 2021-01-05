@@ -8,6 +8,7 @@ import { ɵe as TIME_LOCALE } from 'ngx-material-timepicker';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { CustomPreloadStrategy } from './custom-preload-strategy';
 import { SharedModule } from './shared/shared.module';
 
 @NgModule({
@@ -26,6 +27,7 @@ import { SharedModule } from './shared/shared.module';
       useValue: '',
     },
     { provide: MAT_DATE_LOCALE, useValue: 'de-DE' },
+    CustomPreloadStrategy
   ],
   bootstrap: [AppComponent],
 })
