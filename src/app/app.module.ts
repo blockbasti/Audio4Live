@@ -27,7 +27,7 @@ import { SharedModule } from './shared/shared.module';
       useValue: '',
     },
     { provide: MAT_DATE_LOCALE, useValue: 'de-DE' },
-    CustomPreloadStrategy
+    CustomPreloadStrategy,
   ],
   bootstrap: [AppComponent],
 })

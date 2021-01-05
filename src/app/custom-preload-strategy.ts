@@ -3,7 +3,6 @@ import { Observable, of } from 'rxjs';
 
 export class CustomPreloadStrategy implements PreloadingStrategy {
   preload(route: Route, load: Function): Observable<any> {
-
     const shouldPreload = () => {
       var connection = (navigator as any).connection;
       if (connection) {
