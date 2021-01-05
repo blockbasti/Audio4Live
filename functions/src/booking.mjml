@@ -20,7 +20,7 @@
       background-height="150px"
       background-color="#212121"
       background-position="center center"
-      background-url="https://audio4live-1d621.web.app/assets/images/header.jpg"
+      background-url="https://audio4live.de/assets/images/header.jpg"
     >
       <mj-text align="center" padding-top="25px" color="#ffffff">
         <h1>&zwnj;</h1>
@@ -100,9 +100,9 @@
     </mj-section>
 
     <!-- Footer -->
-    <mj-section background-color="#2E2E2E">
+    <mj-section background-color="#2A2A2A">
       <mj-column>
-        <mj-text> ©2020&nbsp;Audio4Live </mj-text>
+        <mj-text> ©2021&nbsp;Audio4Live </mj-text>
       </mj-column>
 
       <mj-column>
