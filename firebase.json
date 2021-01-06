@@ -10,6 +10,11 @@
           "source": "/robots.txt",
           "destination": "/assets/robots.txt",
           "type": 301
+        },
+        {
+          "source": "/sitemap.xml",
+          "destination": "/assets/sitemap.xml",
+          "type": 301
         }
       ],
       "rewrites": [
