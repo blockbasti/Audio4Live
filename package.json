@@ -40,7 +40,7 @@
     "ng-recaptcha": "^7.0.0",
     "ngx-material-timepicker": "^5.5.3",
     "rxjs": "^6.6.3",
-    "tslib": "^2.0.3",
+    "tslib": "^2.1.0",
     "zone.js": "^0.10.3"
   },
   "devDependencies": {
