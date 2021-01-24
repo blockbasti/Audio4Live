@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, ElementRef, Injectable, ViewChild, ViewEncapsulation } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { Title } from '@angular/platform-browser';
 import { CalendarEvent, CalendarMonthViewDay, CalendarUtils, CalendarView, DAYS_OF_WEEK } from 'angular-calendar';
 import { GetMonthViewArgs, MonthView } from 'calendar-utils';
 import {
@@ -57,7 +58,8 @@ export class MyCalendarUtils extends CalendarUtils {
   ],
 })
 export class BuchenComponent {
-  constructor(afs: AngularFirestore, private submitService: SubmitService, private preloadService: PreloadImgService) {
+  constructor(afs: AngularFirestore, private submitService: SubmitService, private preloadService: PreloadImgService, titleService: Title) {
+    titleService.setTitle('Buchungsanfrage - Audio4Live');
     afs
       .collection<any>('blocker', (ref) => ref.where('end', '>=', new Date()))
       .valueChanges()

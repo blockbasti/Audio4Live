@@ -1,4 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { ImpressumModalService } from 'src/app/shared/impressum-modal.service';
 import { PreloadImgService } from '../../preload-img.service';
@@ -15,8 +16,10 @@ export class LandingComponent {
     route: ActivatedRoute,
     datenschutzModalService: DatenschutzModalService,
     impressumModalService: ImpressumModalService,
-    private preloadImageService: PreloadImgService
+    private preloadImageService: PreloadImgService,
+    titleService: Title
   ) {
+    titleService.setTitle('Audio4Live Veranstaltungstechnik - Licht- und Tontechnik für Ihre Veranstaltung in Erfurt und Thüringen');
     route.data.subscribe((data) => {
       if (data.openPrivacy) {
         datenschutzModalService.showModal();
