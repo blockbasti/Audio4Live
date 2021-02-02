@@ -59,6 +59,7 @@ export const submit = functions.https.onRequest((req, res) => {
     /* Email to customer */
     db.collection('mail').add({
       to: req.body.email,
+      bcc: 'info@audio4live.de',
       template: {
         name: 'booking',
         data: {
