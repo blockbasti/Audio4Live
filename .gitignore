@@ -50,3 +50,4 @@ public
 functions/firebase-debug.log
 /.firebase
 firebase-debug.log
+functions/ui-debug.log

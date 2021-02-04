@@ -112,7 +112,6 @@ export class AdminComponent implements OnInit {
       return;
     }
     this.db.collection<any>('blocker').add({ start: this.range.get('start').value, end: this.range.get('end').value });
-    this.range.setValue([{ start: null }, { end: null }]);
   }
 
   nextWeek() {
