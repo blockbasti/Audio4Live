@@ -29,6 +29,7 @@ jobs:
           npx firebase deploy --token "$FIREBASE_TOKEN" --non-interactive --only functions
 
       - name: Audit URLs using Lighthouse
+        continue-on-error: true
         uses: treosh/lighthouse-ci-action@7.0.0
         with:
           runs: 3
@@ -41,6 +42,7 @@ jobs:
           uploadArtifacts: true
 
       - name: Remove old artifacts
+        continue-on-error: true
         uses: c-hive/gha-remove-artifacts@v1
         with:
           age: '1 month'
