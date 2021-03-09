@@ -1,7 +1,7 @@
 {
   "name": "functions",
   "scripts": {
-    "lint": "tslint --project tsconfig.json",
+    "lint": "eslint ./src/index.ts --fix",
     "build": "tsc",
     "mjml": "mjml ./src/booking.mjml -o ./src/booking.html --config.minify true --config.minifyOptions='{\"minifyCSS\": true, \"removeEmptyAttributes\": false}'",
     "serve": "npm run build && firebase emulators:start --only functions",
@@ -24,8 +24,11 @@
     "mjml": "^4.9.0"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.17.0",
+    "@typescript-eslint/parser": "^4.17.0",
+    "eslint": "^7.21.0",
+    "eslint-plugin-import": "^2.22.1",
     "firebase-functions-test": "^0.2.3",
-    "tslint": "^6.1.3",
     "typescript": "^4.2.3"
   },
   "private": true
