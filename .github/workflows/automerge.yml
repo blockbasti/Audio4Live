@@ -1,0 +1,15 @@
+name: Auto-merge minor/patch
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0/5 1 * * *"
+jobs:
+  test:
+    name: Auto-merge minor and patch updates
+    runs-on: ubuntu-latest
+    steps:
+      - uses: koj-co/dependabot-pr-action@master
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          merge-minor: true
+          merge-patch: true
