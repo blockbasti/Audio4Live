@@ -1,17 +1,10 @@
 {
   "hosting": [
     {
-      "predeploy": [
-        "npm run lint",
-        "npm run build"
-      ],
+      "predeploy": ["npm run lint", "npm run build"],
       "target": "audio4live",
       "public": "dist/audio4live",
-      "ignore": [
-        "firebase.json",
-        "**/.*",
-        "**/node_modules/**"
-      ],
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
       "redirects": [
         {
           "source": "/robots.txt",
@@ -66,10 +59,7 @@
     }
   ],
   "functions": {
-    "predeploy": [
-      "npm --prefix \"$RESOURCE_DIR\" run lint",
-      "npm --prefix \"$RESOURCE_DIR\" run build"
-    ],
+    "predeploy": ["npm --prefix \"$RESOURCE_DIR\" run lint", "npm --prefix \"$RESOURCE_DIR\" run build"],
     "source": "functions"
   },
   "emulators": {

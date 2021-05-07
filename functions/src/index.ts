@@ -7,7 +7,7 @@ const admin = require('firebase-admin');
 admin.initializeApp(functions.config().firebase);
 
 const cors = require('cors')({
-  origin: true
+  origin: true,
 });
 
 const db = admin.firestore();
@@ -18,7 +18,7 @@ export const submit = functions.https.onRequest((req, res) => {
 
     const date = {
       start: utcToZonedTime(req.body.date.start, 'Europe/Berlin'),
-      end: utcToZonedTime(req.body.date.end, 'Europe/Berlin')
+      end: utcToZonedTime(req.body.date.end, 'Europe/Berlin'),
     };
     const times = req.body.times;
 
@@ -69,22 +69,22 @@ export const submit = functions.https.onRequest((req, res) => {
           email: req.body.email,
           callback: req.body.phone !== '' ? (req.body.call ? '(Rückruf gewünscht)' : '(kein Rückruf)') : '',
           location: req.body.location !== '' ? req.body.location : 'kein Ort angegeben',
-          message: req.body.message
-        }
-      }
+          message: req.body.message,
+        },
+      },
     });
 
     /* Add to booking DB */
     db.collection('booking').add({
       date: {
         start: new Date(date.start),
-        end: new Date(date.end)
+        end: new Date(date.end),
       },
       name: req.body.name,
       email: req.body.email,
       location: req.body.location,
       phone: req.body.phone,
-      message: req.body.message
+      message: req.body.message,
     });
 
     return res.sendStatus(200);
@@ -96,7 +96,7 @@ export const verify = functions.https.onRequest((req, res) => {
     const data = {
       secret: functions.config().recaptcha.key,
       response: req.query['response'],
-      remoteip: req.ip
+      remoteip: req.ip,
     };
 
     axios
