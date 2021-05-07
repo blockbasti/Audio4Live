@@ -19,7 +19,7 @@ export class LandingComponent {
     private preloadImageService: PreloadImgService,
     titleService: Title
   ) {
-    titleService.setTitle('Audio4Live Veranstaltungstechnik - Licht- und Tontechnik für Ihre Veranstaltung in Erfurt und Thüringen');
+    titleService.setTitle('Audio4Live Veranstaltungstechnik');
     route.data.subscribe((data) => {
       if (data.openPrivacy) {
         datenschutzModalService.showModal();
