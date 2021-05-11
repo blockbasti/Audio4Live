@@ -57,7 +57,7 @@
     "@types/chart.js": "2.9.32",
     "@types/node": "15.0.2",
     "@typescript-eslint/eslint-plugin": "4.23.0",
-    "@typescript-eslint/parser": "4.22.1",
+    "@typescript-eslint/parser": "4.23.0",
     "eslint": "7.26.0",
     "firebase-tools": "9.10.2",
     "first-input-delay": "^0.1.3",
