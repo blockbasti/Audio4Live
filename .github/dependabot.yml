@@ -2,13 +2,13 @@ version: 2
 updates:
   - package-ecosystem: "npm"
     directory: "/"
-    open-pull-requests-limit: 20
+    open-pull-requests-limit: 99
     schedule:
       interval: "daily"
 
   - package-ecosystem: "npm"
     directory: "/functions"
-    open-pull-requests-limit: 20
+    open-pull-requests-limit: 99
     schedule:
       interval: "daily"
 
