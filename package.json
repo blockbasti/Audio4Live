@@ -56,7 +56,7 @@
     "@angular/language-service": "11.2.14",
     "@types/chart.js": "2.9.32",
     "@types/node": "15.12.1",
-    "@typescript-eslint/eslint-plugin": "4.25.0",
+    "@typescript-eslint/eslint-plugin": "4.26.0",
     "@typescript-eslint/parser": "4.25.0",
     "eslint": "7.28.0",
     "firebase-tools": "9.12.0",
