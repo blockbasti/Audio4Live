@@ -5,8 +5,8 @@
     "ng": "ng",
     "format": "prettier . --write",
     "start": "ng serve",
-    "start_prod": "ng serve --prod=true",
-    "build": "ng build --prod",
+    "start_prod": "ng serve --configuration production",
+    "build": "ng build --configuration production",
     "deploy": "ng run audio4live:deploy",
     "lint": "ng lint"
   },
