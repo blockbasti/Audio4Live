@@ -1,7 +1,7 @@
 import { CommonModule, registerLocaleData } from '@angular/common';
 import localeDe from '@angular/common/locales/de';
 import { NgModule } from '@angular/core';
-import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { FormsModule } from '@angular/forms';
 import { ButtonsModule, CardsModule, IconsModule, InputsModule, ModalModule } from 'angular-bootstrap-md';
 import { CalendarModule, DateAdapter } from 'angular-calendar';

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormControl, FormGroup } from '@angular/forms';
 import { addWeeks, format } from 'date-fns';
-import firebase from 'firebase/app';
+import firebase from 'firebase/compat/app';
 import { Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Buchung } from '../buchen/buchung';

@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, ElementRef, Injectable, ViewChild, ViewEncapsulation } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Title } from '@angular/platform-browser';
 import { CalendarEvent, CalendarMonthViewDay, CalendarUtils, CalendarView, DAYS_OF_WEEK } from 'angular-calendar';
 import { GetMonthViewArgs, MonthView } from 'calendar-utils';
@@ -21,7 +21,7 @@ import {
   startOfMonth,
 } from 'date-fns';
 import { de } from 'date-fns/locale';
-import firebase from 'firebase/app';
+import firebase from 'firebase/compat/app';
 import { NgxMaterialTimepickerTheme } from 'ngx-material-timepicker';
 import { Subject } from 'rxjs';
 import { PreloadImgService } from '../preload-img.service';
