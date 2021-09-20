@@ -20,7 +20,7 @@
     "date-fns": "2.24.0",
     "date-fns-tz": "1.1.6",
     "firebase-admin": "^9.11.1",
-    "firebase-functions": "^3.15.6",
+    "firebase-functions": "^3.15.7",
     "mjml": "^4.10.3"
   },
   "devDependencies": {
