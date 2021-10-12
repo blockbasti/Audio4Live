@@ -109,7 +109,7 @@ export const verify = functions.https.onRequest((req, res) => {
           data.remoteip
       )
       .then((resp) => {
-        if (resp.data.success === true) res.sendStatus(200);
+        if (resp.status === 200) res.sendStatus(200);
         else res.sendStatus(400);
       })
       .catch(() => {
