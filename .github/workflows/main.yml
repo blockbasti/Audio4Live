@@ -34,5 +34,6 @@ jobs:
 
       - name: lint (Functions)
         working-directory: ./functions
+        continue-on-error: true
         run: |
           npm run lint
