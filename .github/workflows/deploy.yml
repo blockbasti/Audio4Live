@@ -12,14 +12,27 @@ jobs:
     steps:
       - uses: actions/checkout@v2.4.0
 
-      - uses: actions/setup-node@v2.4.1
+      - name: Node $
+        uses: actions/setup-node@v2.4.1
         with:
           node-version: 16
+          cache: 'npm'
+          cache-dependency-path: |
+            package-lock.json
+            functions/package-lock.json
 
-      - uses: bahmutov/npm-install@v1
-      - uses: bahmutov/npm-install@v1
+      - name: Cache Angular build cache
+        uses: actions/cache@v2
         with:
-          working-directory: functions
+          path: /home/runner/work/Audio4Live/Audio4Live/.angular/.cache
+          key: ${{ runner.os }}-angular
+
+      - name: Install dependencies (Frontend)
+        run: npm ci
+
+      - name: Install dependencies (Functions)
+        working-directory: ./functions
+        run: npm ci
 
       - name: Deploy
         env:
