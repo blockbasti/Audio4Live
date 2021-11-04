@@ -11,14 +11,23 @@ jobs:
     steps:
       - uses: actions/checkout@v2.4.0
 
-      - uses: actions/setup-node@v2.4.1
+      - name: Node $
+        uses: actions/setup-node@v2.4.1
         with:
           node-version: 16
+          cache: 'npm'
+          cache-dependency-path: package-lock.json
 
-      - uses: bahmutov/npm-install@v1
+      - name: Cache Angular build cache
+        uses: actions/cache@v2
+        with:
+          path: /home/runner/work/Audio4Live/Audio4Live/.angular/.cache
+          key: ${{ runner.os }}-angular
+
+      - name: Install dependencies (Frontend)
+        run: npm ci
 
       - name: Deploy
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-        run: |
-          npx firebase hosting:channel:deploy dev --token "$FIREBASE_TOKEN" --non-interactive
+        run: npx firebase hosting:channel:deploy dev --token "$FIREBASE_TOKEN" --non-interactive
