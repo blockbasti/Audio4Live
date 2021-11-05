@@ -56,6 +56,7 @@ jobs:
 
       - name: Remove old artifacts
         continue-on-error: true
+        timeout-minutes: 2
         uses: c-hive/gha-remove-artifacts@v1.2.0
         with:
           age: '1 month'
