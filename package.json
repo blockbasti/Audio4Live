@@ -37,7 +37,7 @@
     "date-fns": "2.25.0",
     "firebase": "9.4.1",
     "hammerjs": "^2.0.8",
-    "ng-recaptcha": "^8.0.1",
+    "ng-recaptcha": "^9.0.0",
     "ngx-material-timepicker": "^5.5.3",
     "rxjs": "7.4.0",
     "tslib": "2.3.1",
