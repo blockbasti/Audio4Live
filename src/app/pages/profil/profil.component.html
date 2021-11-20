@@ -1,59 +1,68 @@
 <div class="intro2 min-vh-100">
-  <div class="flex-center min-vh-100">
-    <picture class="intro-image vignette-radial">
+  <div class="min-vh-100">
+    <picture class="intro-image-profile vignette-radial">
       <source srcset="/assets/images/drums.webp" type="image/webp" />
       <source srcset="/assets/images/drums.jpg" type="image/jpeg" />
-      <img class="intro-image vignette-radial" src="/assets/images/drums.jpg" alt="" (load)="loaded()" />
+      <img class="intro-image-profile vignette-radial" src="/assets/images/drums.jpg" alt="" (load)="loaded()" />
     </picture>
-    <div class="container text-center white-text wow fadeInUp align-items-center" style="z-index: 1">
+    <div class="container text-center white-text wow fadeInUp align-items-center mt-5">
       <div class="d-block d-md-none" style="height: 63px"></div>
 
       <div class="row mb-5">
-        <div class="col-lg-12 col-md-12 mt-5 mt-md-0">
-          <mdb-card class="elegant-color z-depth-3">
+        <div class="col-lg-12 col-md-12 mt-5">
+          <mdb-card class="elegant-color z-depth-3 ">
             <mdb-card-body class="container">
               <mdb-card-text>
-                <div class="row">
-                  <div class="col-lg-5 col-md-12 d-flex align-items-center justify-content-center">
+                <div class="row text-white">
+                  <div class="col-lg-5 col-md-12 flex-column justify-content-between">
                     <picture class="align-middle img-Profil mt-3">
-                      <source srcset="/assets/images/profil2.webp" type="image/webp" />
-                      <source srcset="/assets/images/profil2.jpg" type="image/jpeg" />
-                      <img class="align-middle img-Profil" src="/assets/images/profil2.jpg" alt="Johannes Tschiersch" />
+                      <source srcset="/assets/images/profil.webp" type="image/webp" />
+                      <source srcset="/assets/images/profil.jpg" type="image/jpeg" />
+                      <img class="align-middle img-Profil" src="/assets/images/profil.jpg" alt="Johannes Tschiersch" />
                     </picture>
-                  </div>
 
-                  <main class="col-lg-7 col-md-12 mt-3 mt-lg-0 text-white">
-                    <h3>Profil</h3>
                     <ul class="list-group w-100 mb-3">
                       <li class="list-group-item grey darken-3 mb-0">Johannes Tschiersch</li>
                       <li class="list-group-item grey darken-3 mb-0">geboren 1998</li>
                       <li class="list-group-item grey darken-3 mb-0">Abitur 2017</li>
                     </ul>
+                  </div>
 
-                    <h3>Qualifizierungen</h3>
-                    <ul class="list-group w-100 mb-3">
-                      <li class="list-group-item grey darken-3 mb-0">Fachkraft für Veranstaltungstechnik</li>
-                      <li class="list-group-item grey darken-3 mb-0">Elektrofachkraft für Veranstaltungstechnik</li>
-                      <li class="list-group-item grey darken-3 mb-0">mit Flurfördermittelschein</li>
-                      <li class="list-group-item grey darken-3 mb-0">mit Bedienerausweis für Hebebühnen</li>
-                      <li class="list-group-item grey darken-3 mb-0">
-                        Studium <i>Media and Acoustical Engineering</i> an der HS Mittweida (2020 - )
-                      </li>
-                    </ul>
+                  <main class="col-lg-7 col-md-12 mt-3 mt-lg-0 text-white d-flex flex-column justify-content-between">
+                    <span>
+                      <h3>Qualifizierungen</h3>
+                      <ul class="list-group w-100 mb-3">
+                        <li class="list-group-item grey darken-3 mb-0">Fachkraft für Veranstaltungstechnik</li>
+                        <li class="list-group-item grey darken-3 mb-0">Elektrofachkraft für Veranstaltungstechnik
+                        </li>
+                        <li class="list-group-item grey darken-3 mb-0">mit Flurfördermittelschein</li>
+                        <li class="list-group-item grey darken-3 mb-0">mit Bedienerausweis für Hebebühnen</li>
+                        <li class="list-group-item grey darken-3 mb-0">
+                          Studium <i>Media and Acoustical Engineering</i> an der HS Mittweida (2020 - )
+                        </li>
+                      </ul>
+                    </span>
 
-                    <h3>Referenzen</h3>
-                    <ul class="list-group w-100">
-                      <li class="list-group-item grey darken-3 mb-0">2018 - "The Iron Maidens" - <b>Monitormix</b></li>
-                      <li class="list-group-item grey darken-3 mb-0">2018 - "Musische Festtage des CJD" - <b>Lichtoperator</b></li>
-                      <li class="list-group-item grey darken-3 mb-0">2018/19 - Christina Rommel - <b>Lichtoperator</b></li>
-                      <li class="list-group-item grey darken-3 mb-0">2019 - Miller Anderson - <b>Soundoperator</b></li>
-                      <li class="list-group-item grey darken-3 mb-0">
-                        2019 - Abschlussprojekt Felix Lobrecht in der Weimarhalle - <b>Tonsystemer</b>
-                      </li>
-                      <li class="list-group-item grey darken-3 mb-0">
-                        2020 - "In aller Freundschaft – Die jungen Ärzte" - <b>Beleuchter</b>
-                      </li>
-                    </ul>
+                    <span>
+                      <h3>Referenzen</h3>
+                      <ul class="list-group w-100 mb-3">
+                        <li class="list-group-item grey darken-3 mb-0">2018 - "The Iron Maidens" - <b>Monitormix</b>
+                        </li>
+                        <li class="list-group-item grey darken-3 mb-0">2018 - "Musische Festtage des CJD" -
+                          <b>Lichtoperator</b>
+                        </li>
+                        <li class="list-group-item grey darken-3 mb-0">2018/19 - Christina Rommel - <b>Lichtoperator</b>
+                        </li>
+                        <li class="list-group-item grey darken-3 mb-0">2019 - Miller Anderson - <b>Soundoperator</b>
+                        </li>
+                        <li class="list-group-item grey darken-3 mb-0">
+                          2019 - Abschlussprojekt Felix Lobrecht in der Weimarhalle - <b>Tonsystemer</b>
+                        </li>
+                        <li class="list-group-item grey darken-3 mb-0">
+                          2020 - "In aller Freundschaft – Die jungen Ärzte" - <b>Beleuchter</b>
+                        </li>
+                      </ul>
+                    </span>
                   </main>
                 </div>
               </mdb-card-text>

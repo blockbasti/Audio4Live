@@ -7,7 +7,7 @@ export class PreloadImgService {
 
   hasPreloaded = false;
 
-  private images = ['speaker1', 'speaker2', 'drums', 'fader' /* 'colors' */, , /* 'profil', */ 'profil2'];
+  private images = ['speaker1', 'speaker2', 'drums', 'fader' ,'profil'];
 
   preloadImages() {
     if (this.hasPreloaded) return;
