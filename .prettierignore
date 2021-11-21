@@ -5,4 +5,4 @@ node_modules
 dist
 src/lib
 functions/src/booking.html
-/.angular/.cache
+.angular

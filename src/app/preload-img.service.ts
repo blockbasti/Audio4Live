@@ -7,7 +7,7 @@ export class PreloadImgService {
 
   hasPreloaded = false;
 
-  private images = ['speaker1', 'speaker2', 'drums', 'fader' ,'profil'];
+  private images = ['speaker1', 'speaker2', 'drums', 'fader', 'profil'];
 
   preloadImages() {
     if (this.hasPreloaded) return;
