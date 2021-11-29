@@ -20,7 +20,7 @@ jobs:
       - name: Cache Angular build cache
         uses: actions/cache@v2
         with:
-          path: /home/runner/work/Audio4Live/Audio4Live/.angular/.cache
+          path: /home/runner/work/Audio4Live/Audio4Live/.angular/cache
           key: ${{ runner.os }}-angular
 
       - name: Install dependencies (Frontend)
