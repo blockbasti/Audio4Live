@@ -55,7 +55,7 @@
     "@angular/compiler-cli": "13.0.2",
     "@angular/language-service": "13.1.0",
     "@types/chart.js": "2.9.34",
-    "@types/node": "16.11.12",
+    "@types/node": "16.11.13",
     "@typescript-eslint/eslint-plugin": "5.7.0",
     "@typescript-eslint/parser": "5.7.0",
     "eslint": "^8.4.1",
