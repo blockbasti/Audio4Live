@@ -18,7 +18,7 @@
     "axios": "^0.24.0",
     "cors": "^2.8.5",
     "date-fns": "2.27.0",
-    "date-fns-tz": "1.1.7",
+    "date-fns-tz": "1.2.0",
     "firebase-admin": "^10.0.1",
     "firebase-functions": "^3.16.0",
     "mjml": "^4.11.0"
