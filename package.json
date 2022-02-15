@@ -65,7 +65,7 @@
     "husky": "7.0.4",
     "inquirer-autocomplete-prompt": "^1.4.0",
     "lint-staged": "^12.3.4",
-    "modernizr": "3.11.8",
+    "modernizr": "3.12.0",
     "prettier": "2.5.1",
     "prettier-plugin-organize-imports": "^2.3.4",
     "source-map-explorer": "^2.5.2",
