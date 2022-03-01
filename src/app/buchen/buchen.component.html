@@ -19,11 +19,11 @@
 <main class="container my-5" style="z-index: 1">
   <div class="row mb-5">
     <div class="col-12">
-      <mdb-card class="elegant-color z-depth-3">
-        <mdb-card-body>
-          <mdb-card-title>
+      <div class="card elegant-color z-depth-3">
+        <div class="card-body">
+          <div class="card-title">
             <h3>Interessiert?</h3>
-          </mdb-card-title>
+          </div>
           <p class="text-light" style="font-size: 1.2rem !important">
             Als nebenberuflicher Veranstaltungstechniker kann ich zuverlässig Ihre Vorstellungen umsetzen. Mein
             Tätigkeitsbereich bezieht
@@ -37,20 +37,21 @@
             <strong>Bitte beachten Sie, dass ab 30km eine Anfahrtspauschale von 0,30€/km zusätzlich berechnet
               wird.</strong>
           </p>
-        </mdb-card-body>
-      </mdb-card>
+        </div>
+      </div>
     </div>
   </div>
   <div class="row">
     <div class="col-lg-8 col-md-12">
-      <mdb-card class="elegant-color z-depth-3">
-        <mdb-card-header>
+      <div class="card elegant-color z-depth-3">
+        <div class="card-header">
           <div class="d-flex flex-lg-row flex-column justify-content-between">
             <h3 class="text-center text-lg-left m-0 mb-3 mb-lg-0 pt-1">
               {{ viewDate | calendarDate: view + 'ViewTitle':'de' }}
             </h3>
 
             <div class="btn-group btn-group-sm" role="group" aria-label="Kalender Navigation">
+<<<<<<< HEAD
               <button [disabled]="isThisMonth(viewDate)" mdbBtn type="button" color="blue-grey" size="sm"
                 class="waves-light" mdbWavesEffect mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate"
                 aria-label="vorheriger Monat" tabindex="0">
@@ -73,13 +74,78 @@
             [weekendDays]="weekendDays" [viewDate]="viewDate" [events]="events" [refresh]="refresh"
             [activeDayIsOpen]="activeDayIsOpen" (dayClicked)="dayClicked($event.day)"
             (beforeViewRender)="beforeMonthViewRender($event)">
+=======
+              <button
+                [disabled]="isThisMonth(viewDate)"
+                mdbBtn
+                type="button"
+                color="blue-grey"
+                size="sm"
+                class="waves-light"
+
+                mwlCalendarPreviousView
+                [view]="view"
+                [(viewDate)]="viewDate"
+                aria-label="vorheriger Monat"
+                tabindex="0"
+              >
+                <i class="fas fa-2x fa-angle-left"></i>
+              </button>
+              <button
+                mdbBtn
+                type="button"
+                color="blue-grey"
+                size="sm"
+                class="waves-light"
+
+                mwlCalendarToday
+                [(viewDate)]="viewDate"
+                aria-label="aktueller Monat"
+                tabindex="0"
+              >
+                <i class="fas fa-2x fa-calendar-day"></i>
+              </button>
+              <button
+                #btnNextMonth
+                mdbBtn
+                type="button"
+                color="blue-grey"
+                size="sm"
+                class="waves-light"
+
+                mwlCalendarNextView
+                [view]="view"
+                [(viewDate)]="viewDate"
+                aria-label="nächster Monat"
+                tabindex="0"
+                [disabled]="isRangeMonth(viewDate)"
+              >
+                <i class="fas fa-2x fa-angle-right"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <mwl-calendar-month-view
+            class="dark-theme"
+            [locale]="locale"
+            [weekStartsOn]="weekStartsOn"
+            [weekendDays]="weekendDays"
+            [viewDate]="viewDate"
+            [events]="events"
+            [refresh]="refresh"
+            [activeDayIsOpen]="activeDayIsOpen"
+            (dayClicked)="dayClicked($event.day)"
+            (beforeViewRender)="beforeMonthViewRender($event)"
+          >
+>>>>>>> 5279b61 (WIP: migration)
           </mwl-calendar-month-view>
-        </mdb-card-body>
-      </mdb-card>
+        </div>
+      </div>
     </div>
     <div class="col-lg-4 col-md-12 mt-5 mt-lg-0">
-      <mdb-card class="elegant-color z-depth-3">
-        <mdb-card-body>
+      <div class="card elegant-color z-depth-3">
+        <div class="card-body">
           <form #buchenForm="ngForm" (ngSubmit)="onSubmit()">
             <label for="buchenFormName">Name *</label>
             <input mdbInput type="text" autocomplete="name" [(ngModel)]="model.name" id="buchenFormName" name="name"
@@ -169,6 +235,7 @@
                 [theme]="'dark'" required [(ngModel)]="captchaResponse" name="captcha"></re-captcha>
             </div>
 
+<<<<<<< HEAD
             <div class="custom-control custom-switch mb-4">
               <input type="checkbox" class="custom-control-input" id="customSwitchAGB" name="agb"
                 [(ngModel)]="model.agb" [disabled]="false" tabindex="0" required />
@@ -178,6 +245,20 @@
 
             <button type="submit" (click)="onSubmit()" class="text-dark" mdbBtn type="button" color="blue-grey"
               block="true" [disabled]="!buchenForm.form.valid" mdbWavesEffect tabindex="0">
+=======
+            <button
+              type="submit"
+              (click)="onSubmit()"
+              class="text-dark"
+              mdbBtn
+              type="button"
+              color="blue-grey"
+              block="true"
+              [disabled]="!buchenForm.form.valid"
+
+              tabindex="0"
+            >
+>>>>>>> 5279b61 (WIP: migration)
               <h4 class="mb-0">Jetzt anfragen!</h4>
             </button>
 
@@ -188,8 +269,8 @@
               Ich werde mich in den nächsten Tagen mit Ihnen in Verbindung setzen.
             </div>
           </form>
-        </mdb-card-body>
-      </mdb-card>
+        </div>
+      </div>
     </div>
   </div>
 </main>
