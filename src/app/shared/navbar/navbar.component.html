@@ -1,12 +1,12 @@
 <!-- https://itnext.io/how-to-build-a-responsive-navbar-using-flexbox-and-javascript-eb0af24f19bf -->
-<mdb-navbar SideClass="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar intro-fixed-nav" [containerInside]="false">
-  <mdb-navbar-brand>
+<div class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar intro-fixed-nav">
+  <div class="navbar-brand">
     <a tabindex="0" style="outline: none" class="logo navbar-brand" [routerLink]="'/'"
       ><img style="height: 30px" class="d-block align-top" alt="Audio4Live" src="/assets/images/Logo2_Text.svg"
     /></a>
-  </mdb-navbar-brand>
+  </div>
 
-  <links>
+  <div class="container-fluid">
     <ul class="navbar-nav">
       <li class="nav-item" routerLinkActive="active">
         <a tabindex="0" class="nav-link" [routerLink]="'/anfragen'">Anfragen</a>
@@ -18,5 +18,5 @@
         <a tabindex="0" class="nav-link" [routerLink]="'/profil'">Profil / Referenzen</a>
       </li>
     </ul>
-  </links>
-</mdb-navbar>
+  </div>
+</div>

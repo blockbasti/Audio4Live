@@ -18,11 +18,11 @@
 <main class="container my-5" style="z-index: 1">
   <div class="row mb-5">
     <div class="col-12">
-      <mdb-card class="elegant-color z-depth-3">
-        <mdb-card-body>
-          <mdb-card-title>
+      <div class="card elegant-color z-depth-3">
+        <div class="card-body">
+          <div class="card-title">
             <h3>Interessiert?</h3>
-          </mdb-card-title>
+          </div>
           <p class="text-light" style="font-size: 1.2rem !important">
             Als nebenberuflicher Veranstaltungstechniker kann ich zuverlässig Ihre Vorstellungen umsetzen. Mein Tätigkeitsbereich bezieht
             sich überwiegend auf Thüringen und Sachsen.
@@ -33,14 +33,14 @@
           <p class="text-light" style="font-size: 1.2rem !important">
             <strong>Bitte beachten Sie, dass ab 30km eine Anfahrtspauschale von 0,30€/km zusätzlich berechnet wird.</strong>
           </p>
-        </mdb-card-body>
-      </mdb-card>
+        </div>
+      </div>
     </div>
   </div>
   <div class="row">
     <div class="col-lg-8 col-md-12">
-      <mdb-card class="elegant-color z-depth-3">
-        <mdb-card-header>
+      <div class="card elegant-color z-depth-3">
+        <div class="card-header">
           <div class="d-flex flex-lg-row flex-column justify-content-between">
             <h3 class="text-center text-lg-left m-0 mb-3 mb-lg-0 pt-1">
               {{ viewDate | calendarDate: view + 'ViewTitle':'de' }}
@@ -54,14 +54,14 @@
                 color="blue-grey"
                 size="sm"
                 class="waves-light"
-                mdbWavesEffect
+
                 mwlCalendarPreviousView
                 [view]="view"
                 [(viewDate)]="viewDate"
                 aria-label="vorheriger Monat"
                 tabindex="0"
               >
-                <mdb-icon fas size="2x" icon="angle-left"></mdb-icon>
+                <i class="fas fa-2x fa-angle-left"></i>
               </button>
               <button
                 mdbBtn
@@ -69,13 +69,13 @@
                 color="blue-grey"
                 size="sm"
                 class="waves-light"
-                mdbWavesEffect
+
                 mwlCalendarToday
                 [(viewDate)]="viewDate"
                 aria-label="aktueller Monat"
                 tabindex="0"
               >
-                <mdb-icon fas size="2x" icon="calendar-day"></mdb-icon>
+                <i class="fas fa-2x fa-calendar-day"></i>
               </button>
               <button
                 #btnNextMonth
@@ -84,7 +84,7 @@
                 color="blue-grey"
                 size="sm"
                 class="waves-light"
-                mdbWavesEffect
+
                 mwlCalendarNextView
                 [view]="view"
                 [(viewDate)]="viewDate"
@@ -92,12 +92,12 @@
                 tabindex="0"
                 [disabled]="isRangeMonth(viewDate)"
               >
-                <mdb-icon fas size="2x" icon="angle-right"></mdb-icon>
+                <i class="fas fa-2x fa-angle-right"></i>
               </button>
             </div>
           </div>
-        </mdb-card-header>
-        <mdb-card-body>
+        </div>
+        <div class="card-body">
           <mwl-calendar-month-view
             class="dark-theme"
             [locale]="locale"
@@ -111,12 +111,12 @@
             (beforeViewRender)="beforeMonthViewRender($event)"
           >
           </mwl-calendar-month-view>
-        </mdb-card-body>
-      </mdb-card>
+        </div>
+      </div>
     </div>
     <div class="col-lg-4 col-md-12 mt-5 mt-lg-0">
-      <mdb-card class="elegant-color z-depth-3">
-        <mdb-card-body>
+      <div class="card elegant-color z-depth-3">
+        <div class="card-body">
           <form #buchenForm="ngForm" (ngSubmit)="onSubmit()">
             <label for="buchenFormName">Name *</label>
             <input
@@ -225,7 +225,7 @@
                     aria-label="Zeit löschen"
                     tabindex="0"
                   >
-                    <mdb-icon fas icon="backspace"></mdb-icon>
+                    <i class="fas fa-backspace"></i>
                   </button>
                 </div>
               </div>
@@ -261,7 +261,7 @@
                     aria-label="Zeit löschen"
                     tabindex="0"
                   >
-                    <mdb-icon fas icon="backspace"></mdb-icon>
+                    <i class="fas fa-backspace"></i>
                   </button>
                 </div>
               </div>
@@ -324,7 +324,7 @@
               color="blue-grey"
               block="true"
               [disabled]="!buchenForm.form.valid"
-              mdbWavesEffect
+
               tabindex="0"
             >
               <h4 class="mb-0">Jetzt anfragen!</h4>
@@ -336,8 +336,8 @@
               Ich werde mich in den nächsten Tagen mit Ihnen in Verbindung setzen.
             </div>
           </form>
-        </mdb-card-body>
-      </mdb-card>
+        </div>
+      </div>
     </div>
   </div>
 </main>

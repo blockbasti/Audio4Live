@@ -37,8 +37,7 @@
               "node_modules/angular-calendar/css/angular-calendar.css",
               "node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss",
               "node_modules/@fortawesome/fontawesome-free/scss/solid.scss",
-              "node_modules/angular-bootstrap-md/assets/scss/bootstrap/bootstrap.scss",
-              "node_modules/angular-bootstrap-md/assets/scss/mdb.scss",
+              "node_modules/mdb-angular-ui-kit/assets/scss/mdb.scss",
               "node_modules/animate.css/animate.css",
               "src/styles.scss"
             ],

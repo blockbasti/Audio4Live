@@ -16,14 +16,14 @@
     <div class="container">
       <div class="row">
         <div class="col my-3">
-          <mdb-card class="elegant-color">
-            <mdb-card-header>
-              <mdb-card-title>
+          <div class="card elegant-color">
+            <div class="card-header">
+              <div class="card-title">
                 <h3 class="m-0">Blocker</h3>
-              </mdb-card-title>
-            </mdb-card-header>
+              </div>
+            </div>
 
-            <mdb-card-body>
+            <div class="card-body">
               <div class="container">
                 <div class="row">
                   <div class="col-sm-12 col-md-4">
@@ -41,24 +41,24 @@
                     </mat-form-field>
                     <br />
                     <div class="btn-group" role="group">
-                      <button type="button" size="sm" mdbBtn color="blue-grey" mdbWavesEffect (click)="addBlocker()">Hinzufügen</button>
-                      <button type="button" size="sm" mdbBtn color="blue-grey" mdbWavesEffect (click)="nextWeek()">nächste Woche</button>
+                      <button type="button" size="sm" mdbBtn color="blue-grey"  (click)="addBlocker()">Hinzufügen</button>
+                      <button type="button" size="sm" mdbBtn color="blue-grey"  (click)="nextWeek()">nächste Woche</button>
                     </div>
                   </div>
                   <div class="col-sm-12 col-md-8 mt-3 mt-md-0 overflow-auto" style="height: 20vh">
                     <ul class="list-group">
                       <li class="list-group-item grey darken-3" *ngFor="let block of blocker; let i = index">
                         {{ formatDate(block.interval.start, false) }} - {{ formatDate(block.interval.end, false) }}
-                        <mdb-badge style="cursor: pointer" class="close" pill="true" danger="true" (click)="deleteBlocker(block.id)"
-                          ><span aria-hidden="true">×</span></mdb-badge
-                        >
+                        <div style="cursor: pointer" class="badge bg-danger rounded-pill close" (click)="deleteBlocker(block.id)">
+                          <span aria-hidden="true">×</span>
+                        </div>
                       </li>
                     </ul>
                   </div>
                 </div>
               </div>
-            </mdb-card-body>
-          </mdb-card>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -67,58 +67,56 @@
     <div class="container">
       <div class="row" *ngFor="let booking of bookings; let i = index">
         <div class="col my-3">
-          <mdb-card class="elegant-color">
-            <mdb-card-header>
-              <mdb-card-title class="d-flex justify-content-between mb-0">
+          <div class="card elegant-color">
+            <div class="card-header">
+              <div class="card-title d-flex justify-content-between mb-0">
                 <h3 class="m-0">Buchung #{{ i + 1 }}</h3>
-                <mdb-badge
+                <div
                   style="cursor: pointer"
-                  class="close"
+                  class="close badge bg-danger rounded-pill"
                   style="font-size: 1rem"
-                  pill="true"
-                  danger="true"
                   (click)="deleteBooking(booking.id)"
                 >
                   <span aria-hidden="true">×</span>
-                </mdb-badge>
-              </mdb-card-title>
-            </mdb-card-header>
+                </div>
+              </div>
+            </div>
 
-            <mdb-card-body class="p-0 px-md-3">
+            <div class="card-body p-0 px-md-3">
               <table mdbTable>
                 <colgroup>
                   <col style="width: max-content" />
                   <col />
                 </colgroup>
                 <tbody class="text-white">
-                  <tr mdbTableCol>
+                  <tr>
                     <td>Name</td>
                     <td>{{ booking.name }}</td>
                   </tr>
-                  <tr mdbTableCol>
+                  <tr>
                     <td>Datum</td>
                     <td>{{ formatDate(booking.date.start, true) }} - {{ formatDate(booking.date.end, true) }}</td>
                   </tr>
-                  <tr mdbTableCol>
+                  <tr>
                     <td>Ort</td>
                     <td>{{ booking.location }}</td>
                   </tr>
-                  <tr mdbTableCol>
+                  <tr>
                     <td>Email</td>
                     <td>{{ booking.email }}</td>
                   </tr>
-                  <tr mdbTableCol>
+                  <tr>
                     <td>Telefonnummer</td>
                     <td>{{ booking.phone }}</td>
                   </tr>
-                  <tr mdbTableCol>
+                  <tr>
                     <td>Nachricht</td>
                     <td>{{ booking.message }}</td>
                   </tr>
                 </tbody>
               </table>
-            </mdb-card-body>
-          </mdb-card>
+            </div>
+          </div>
         </div>
       </div>
     </div>

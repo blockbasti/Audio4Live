@@ -6,7 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
-import { BadgeModule, ButtonsModule, CardsModule, InputsModule, TableModule } from 'angular-bootstrap-md';
+import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from './admin.component';
 import { LoginComponent } from './login/login.component';
@@ -18,13 +18,9 @@ import { LoginComponent } from './login/login.component';
     AdminRoutingModule,
     AngularFirestoreModule,
     AngularFireAuthModule,
-    ButtonsModule,
-    CardsModule,
-    InputsModule.forRoot(),
     FormsModule,
-    BadgeModule,
+    MdbFormsModule,
     ReactiveFormsModule,
-    TableModule,
     MatNativeDateModule,
     MatDatepickerModule,
     MatInputModule,
