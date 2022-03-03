@@ -25,6 +25,7 @@ import firebase from 'firebase/compat/app';
 import { NgxMaterialTimepickerTheme } from 'ngx-material-timepicker';
 import { Subject } from 'rxjs';
 import { PreloadImgService } from '../preload-img.service';
+import { DatenschutzModalService } from '../shared/datenschutz-modal.service';
 import { Buchung } from './buchung';
 import { SubmitService } from './submit.service';
 
@@ -58,7 +59,7 @@ export class MyCalendarUtils extends CalendarUtils {
   ],
 })
 export class BuchenComponent {
-  constructor(afs: AngularFirestore, private submitService: SubmitService, private preloadService: PreloadImgService, titleService: Title) {
+  constructor(afs: AngularFirestore, private submitService: SubmitService, private preloadService: PreloadImgService, titleService: Title, public datenschutzModalService: DatenschutzModalService) {
     titleService.setTitle('Buchungsanfrage - Audio4Live');
     afs
       .collection<any>('blocker', (ref) => ref.where('end', '>=', new Date()))

@@ -9,6 +9,7 @@ export class Buchung {
     public message: string = '',
     public date?: Interval,
     public location: string = '',
-    public times = { start: '', end: '' }
+    public times = { start: '', end: '' },
+    public agb: boolean = false
   ) {}
 }
