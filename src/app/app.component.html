@@ -1,5 +1,5 @@
 <app-navbar class="px-0"></app-navbar>
-<div id="content" class="content bg-dark min-vh-100" [@routeAnimations]="prepareRoute(outlet)">
+<div id="content" class="content bg-dark" [@routeAnimations]="prepareRoute(outlet)">
   <router-outlet #outlet="outlet"></router-outlet>
 </div>
 <app-footer></app-footer>
