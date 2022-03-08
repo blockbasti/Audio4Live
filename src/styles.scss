@@ -1,6 +1,8 @@
 @import './app/shared/navbar/navbar.component.scss';
 @import './app/buchen/calendar.scss';
 
+@import "node_modules/mdb-angular-ui-kit/assets/scss/mdb.scss";
+
 html,
 body {
   height: 100%;
@@ -32,4 +34,12 @@ body {
   bottom: 0;
   right: 0;
   background: radial-gradient(circle, transparent 50%, black 150%);
+}
+
+.bg-blue-gray-200 {
+  background-color: $blue-gray-200;
+}
+
+.card.bg-dark{
+  background-color: $gray-800 !important;
 }
