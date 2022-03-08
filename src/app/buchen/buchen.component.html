@@ -51,30 +51,6 @@
             </h3>
 
             <div class="btn-group btn-group-sm" role="group" aria-label="Kalender Navigation">
-<<<<<<< HEAD
-              <button [disabled]="isThisMonth(viewDate)" mdbBtn type="button" color="blue-grey" size="sm"
-                class="waves-light" mdbWavesEffect mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate"
-                aria-label="vorheriger Monat" tabindex="0">
-                <mdb-icon fas size="2x" icon="angle-left"></mdb-icon>
-              </button>
-              <button mdbBtn type="button" color="blue-grey" size="sm" class="waves-light" mdbWavesEffect
-                mwlCalendarToday [(viewDate)]="viewDate" aria-label="aktueller Monat" tabindex="0">
-                <mdb-icon fas size="2x" icon="calendar-day"></mdb-icon>
-              </button>
-              <button #btnNextMonth mdbBtn type="button" color="blue-grey" size="sm" class="waves-light" mdbWavesEffect
-                mwlCalendarNextView [view]="view" [(viewDate)]="viewDate" aria-label="nächster Monat" tabindex="0"
-                [disabled]="isRangeMonth(viewDate)">
-                <mdb-icon fas size="2x" icon="angle-right"></mdb-icon>
-              </button>
-            </div>
-          </div>
-        </mdb-card-header>
-        <mdb-card-body>
-          <mwl-calendar-month-view class="dark-theme" [locale]="locale" [weekStartsOn]="weekStartsOn"
-            [weekendDays]="weekendDays" [viewDate]="viewDate" [events]="events" [refresh]="refresh"
-            [activeDayIsOpen]="activeDayIsOpen" (dayClicked)="dayClicked($event.day)"
-            (beforeViewRender)="beforeMonthViewRender($event)">
-=======
               <button
                 [disabled]="isThisMonth(viewDate)"
                 mdbBtn
@@ -138,7 +114,6 @@
             (dayClicked)="dayClicked($event.day)"
             (beforeViewRender)="beforeMonthViewRender($event)"
           >
->>>>>>> 5279b61 (WIP: migration)
           </mwl-calendar-month-view>
         </div>
       </div>
@@ -184,9 +159,17 @@
                   aria-label="Startzeit" [ngxTimepicker]="timeStart" [format]="24" readonly name="timeStart"
                   [(ngModel)]="model.times.start" [disabled]="!model.date" tabindex="0" />
                 <div class="input-group-append">
-                  <button mdbBtn color="blue-grey" (click)="model.times.start = ''" size="md"
-                    class="m-0 px-2 py-2 border-0" type="button" aria-label="Zeit löschen" tabindex="0">
-                    <mdb-icon fas icon="backspace"></mdb-icon>
+                  <button
+                    mdbBtn
+                    color="blue-grey"
+                    (click)="model.times.start = ''"
+                    size="md"
+                    class="m-0 px-2 py-2 border-0"
+                    type="button"
+                    aria-label="Zeit löschen"
+                    tabindex="0"
+                  >
+                    <i class="fas fa-backspace"></i>
                   </button>
                 </div>
               </div>
@@ -200,9 +183,17 @@
                   aria-label="Endzeit" [ngxTimepicker]="timeEnd" [format]="24" readonly name="timeEnd"
                   [(ngModel)]="model.times.end" [disabled]="!model.date" tabindex="0" />
                 <div class="input-group-append">
-                  <button mdbBtn color="blue-grey" (click)="model.times.end = ''" size="md"
-                    class="m-0 px-2 py-2 border-0" type="button" aria-label="Zeit löschen" tabindex="0">
-                    <mdb-icon fas icon="backspace"></mdb-icon>
+                  <button
+                    mdbBtn
+                    color="blue-grey"
+                    (click)="model.times.end = ''"
+                    size="md"
+                    class="m-0 px-2 py-2 border-0"
+                    type="button"
+                    aria-label="Zeit löschen"
+                    tabindex="0"
+                  >
+                    <i class="fas fa-backspace"></i>
                   </button>
                 </div>
               </div>
@@ -235,17 +226,13 @@
                 [theme]="'dark'" required [(ngModel)]="captchaResponse" name="captcha"></re-captcha>
             </div>
 
-<<<<<<< HEAD
             <div class="custom-control custom-switch mb-4">
-              <input type="checkbox" class="custom-control-input" id="customSwitchAGB" name="agb"
-                [(ngModel)]="model.agb" [disabled]="false" tabindex="0" required />
-              <label class="custom-control-label" for="customSwitchAGB">AGB und <u><a
-                  (click)="datenschutzModalService.showModal()">Datenschutzerklärung</a></u> gelesen und akzeptiert.</label>
-            </div>
+            <input type="checkbox" class="custom-control-input" id="customSwitchAGB" name="agb"
+              [(ngModel)]="model.agb" [disabled]="false" tabindex="0" required />
+            <label class="custom-control-label" for="customSwitchAGB">AGB und <u><a
+                (click)="datenschutzModalService.showModal()">Datenschutzerklärung</a></u> gelesen und akzeptiert.</label>
+          </div>
 
-            <button type="submit" (click)="onSubmit()" class="text-dark" mdbBtn type="button" color="blue-grey"
-              block="true" [disabled]="!buchenForm.form.valid" mdbWavesEffect tabindex="0">
-=======
             <button
               type="submit"
               (click)="onSubmit()"
@@ -258,7 +245,6 @@
 
               tabindex="0"
             >
->>>>>>> 5279b61 (WIP: migration)
               <h4 class="mb-0">Jetzt anfragen!</h4>
             </button>
 
