@@ -43,3 +43,13 @@ body {
 .card.bg-dark{
   background-color: $gray-800 !important;
 }
+
+.navbar-resp {
+  height: 60px;
+}
+
+@include media-breakpoint-down(md) {
+  .navbar-resp {
+    height: fit-content;
+  }
+}
