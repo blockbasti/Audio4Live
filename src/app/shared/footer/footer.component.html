@@ -1,4 +1,4 @@
-<footer class="page-footer font-small bg-dark w-100 footer-copyright position-relative fixed-bottom">
+<footer class="page-footer font-small bg-dark w-100 text-center text-lg-start">
   <div class="text-center py-3 container w-100">
     <div class="row">
       <div class="col-sm-4">
@@ -6,9 +6,9 @@
         <img alt="Audio4Live Logo" class="align-baseline" src="/assets/images/Logo2.svg" style="height: 1rem" />&nbsp; Audio4Live
       </div>
 
-      <div class="col-sm-4">
-        <a tabindex="0" (click)="openDatenschutzModal()">Datenschutz</a>
-        <a tabindex="0" class="pl-3" (click)="openImpressumModal()">Impressum</a>
+      <div class="col-sm-4 d-flex justify-content-evenly">
+        <a tabindex="0" (click)="openDatenschutzModal()" class="pe-auto text-white">Datenschutz</a>
+        <a tabindex="0" (click)="openImpressumModal()" class="text-white">Impressum</a>
       </div>
 
       <div class="col-sm-4">

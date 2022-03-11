@@ -3,7 +3,6 @@ import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-error',
-  // encapsulation: ViewEncapsulation.None,
   templateUrl: './error.component.html',
   styleUrls: ['./error.component.scss'],
 })

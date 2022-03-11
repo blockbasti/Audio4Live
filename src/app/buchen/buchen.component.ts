@@ -275,10 +275,8 @@ export class BuchenComponent {
 
   onSubmit(): void {
     this.submitService.submitForm(this.model).subscribe((_) => {
-      this.alert.nativeElement.classList.add('show');
       this.alert.nativeElement.classList.remove('d-none');
       setTimeout(() => {
-        this.alert.nativeElement.classList.remove('show');
         this.alert.nativeElement.classList.add('d-none');
       }, 10000);
 

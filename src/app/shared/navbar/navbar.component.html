@@ -1,4 +1,4 @@
-<nav class="navbar navbar-dark navbar-expand-lg sticky-top bg-dark p-0 navbar-resp">
+<nav class="navbar navbar-dark navbar-expand-lg sticky-top bg-dark p-0 navbar-resp shadow-5-strong">
   <div class="container-fluid">
     <div class="navbar-brand">
       <a tabindex="0" style="outline: none" class="navbar-brand me-0" [routerLink]="'/'">
@@ -6,24 +6,24 @@
       </a>
     </div>
 
-    <button class="navbar-toggler" type="button" (click)="navbar.toggle()" aria-expanded="false"
-      aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" (click)="navbar.toggle()" aria-expanded="false" aria-label="Toggle navigation">
       <i class="fas fa-bars"></i>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent" mdbCollapse #navbar="mdbCollapse">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0 mt-1">
         <li class="nav-item h4 mt-lg-3 mt-0">
-          <a tabindex="0" class="nav-link" [routerLink]="'/anfragen'" routerLinkActive="active">Anfragen</a>
-        </li>
-        <li class="nav-item h4 mt-lg-3 mt-0" >
-          <a tabindex="0" class="nav-link" [routerLink]="'/leistungen'" routerLinkActive="active">Leistungen</a>
+          <a tabindex="0" class="nav-link" [routerLink]="'/anfragen'" routerLinkActive="active" (click)="navbar.toggle()">Anfragen</a>
         </li>
         <li class="nav-item h4 mt-lg-3 mt-0">
-          <a tabindex="0" class="nav-link" [routerLink]="'/profil'" routerLinkActive="active">Profil / Referenzen</a>
+          <a tabindex="0" class="nav-link" [routerLink]="'/leistungen'" routerLinkActive="active" (click)="navbar.toggle()">Leistungen</a>
+        </li>
+        <li class="nav-item h4 mt-lg-3 mt-0">
+          <a tabindex="0" class="nav-link" [routerLink]="'/profil'" routerLinkActive="active" (click)="navbar.toggle()"
+            >Profil / Referenzen</a
+          >
         </li>
       </ul>
     </div>
-
   </div>
 </nav>
