@@ -4,7 +4,7 @@ import { PreloadImgService } from '../../preload-img.service';
 
 @Component({
   selector: 'app-profil',
-  encapsulation: ViewEncapsulation.None,
+
   templateUrl: './profil.component.html',
   styleUrls: ['./profil.component.scss'],
 })

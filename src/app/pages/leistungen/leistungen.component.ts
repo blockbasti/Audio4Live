@@ -4,7 +4,7 @@ import { PreloadImgService } from '../../preload-img.service';
 
 @Component({
   selector: 'app-leistungen',
-  encapsulation: ViewEncapsulation.None,
+
   templateUrl: './leistungen.component.html',
   styleUrls: ['./leistungen.component.scss'],
 })

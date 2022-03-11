@@ -312,8 +312,9 @@
                 [(ngModel)]="model.agb"
                 tabindex="0"
               />
-              <label class="form-check-label" for="checkAGB">
-                AGB und <u><a>Datenschutzerklärung</a></u> gelesen und akzeptiert.
+              <label class="form-check-label pe-none" for="checkAGB">
+                AGB und <u><a class="pe-auto text-white" (click)="openDatenschutzModal()">Datenschutzerklärung</a></u>
+                gelesen und akzeptiert.
               </label>
             </div>
 

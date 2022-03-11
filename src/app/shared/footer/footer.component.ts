@@ -18,21 +18,18 @@ export class FooterComponent {
     animation: true,
     backdrop: true,
     containerClass: 'right',
-    data: {
-      title: 'Custom title',
-    },
     ignoreBackdropClick: false,
     keyboard: true,
-    modalClass: 'modal-top-right',
+    modalClass: 'modal-top-right modal-dialog-scrollable',
   };
 
   constructor(private modalService: MdbModalService) {}
 
   openDatenschutzModal() {
-    //this.datenschutzModalRef = this.modalService.open(DatenschutzComponent, this.config);
+    this.datenschutzModalRef = this.modalService.open(DatenschutzComponent, this.config);
   }
 
   openImpressumModal() {
-    //this.impressumModalRef = this.modalService.open(ImpressumComponent, this.config);
+    this.impressumModalRef = this.modalService.open(ImpressumComponent, this.config);
   }
 }
