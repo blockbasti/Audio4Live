@@ -16,12 +16,11 @@ jobs:
         with:
           node-version: 16
           cache: 'npm'
-          cache-dependency-path: package-lock.json
 
       - name: Cache Angular build cache
         uses: actions/cache@v2
         with:
-          path: /home/runner/work/Audio4Live/Audio4Live/.angular/.cache
+          path: /home/runner/work/Audio4Live/Audio4Live/.angular/cache
           key: ${{ runner.os }}-angular
 
       - name: Install dependencies (Frontend)
