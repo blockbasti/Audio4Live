@@ -3,9 +3,11 @@ import localeDe from '@angular/common/locales/de';
 import { NgModule } from '@angular/core';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { FormsModule } from '@angular/forms';
-import { ButtonsModule, CardsModule, IconsModule, InputsModule, ModalModule } from 'angular-bootstrap-md';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { MdbCheckboxModule } from 'mdb-angular-ui-kit/checkbox';
+import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
+import { MdbModalModule } from 'mdb-angular-ui-kit/modal';
 import { RecaptchaFormsModule, RecaptchaModule, RECAPTCHA_LANGUAGE } from 'ng-recaptcha';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { BuchenRoutingModule } from './buchen-routing.module';
@@ -22,11 +24,9 @@ registerLocaleData(localeDe);
     RecaptchaModule,
     RecaptchaFormsModule,
     NgxMaterialTimepickerModule.setLocale('de-DE'),
-    ButtonsModule,
-    CardsModule,
-    IconsModule,
-    InputsModule,
-    ModalModule.forRoot(),
+    MdbFormsModule,
+    MdbModalModule,
+    MdbCheckboxModule,
     AngularFirestoreModule,
     CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
   ],

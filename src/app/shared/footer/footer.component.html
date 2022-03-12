@@ -1,4 +1,4 @@
-<footer class="page-footer font-small elegant-color w-100 footer-copyright position-relative">
+<footer class="page-footer font-small bg-dark w-100 text-center text-lg-start">
   <div class="text-center py-3 container w-100">
     <div class="row">
       <div class="col-sm-4">
@@ -6,14 +6,14 @@
         <img alt="Audio4Live Logo" class="align-baseline" src="/assets/images/Logo2.svg" style="height: 1rem" />&nbsp; Audio4Live
       </div>
 
-      <div class="col-sm-4">
-        <a tabindex="0" (click)="openDatenschutzModal()">Datenschutz</a>
-        <a tabindex="0" class="pl-3" (click)="openImpressumModal()">Impressum</a>
+      <div class="col-sm-4 d-flex justify-content-evenly">
+        <a tabindex="0" (click)="openDatenschutzModal()" class="pe-auto text-white text-decoration-underline">Datenschutz</a>
+        <a tabindex="0" (click)="openImpressumModal()" class="pe-auto text-white text-decoration-underline">Impressum</a>
       </div>
 
       <div class="col-sm-4">
         Design by
-        <a tabindex="0" class="font-weight-bold" href="https://github.com/blockbasti" rel="noopener nofollow" target="_blank"
+        <a tabindex="0" class="font-weight-bold text-white" href="https://github.com/blockbasti" rel="noopener nofollow" target="_blank"
           >Bastian Block</a
         >
       </div>

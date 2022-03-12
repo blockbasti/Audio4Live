@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterContentInit, Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { slideInAnimation } from './animations';
 
@@ -8,7 +8,7 @@ import { slideInAnimation } from './animations';
   styleUrls: ['./app.component.scss'],
   animations: [slideInAnimation],
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements AfterContentInit {
   title = 'audio4live';
 
   constructor() {}
@@ -17,12 +17,12 @@ export class AppComponent implements OnInit {
     return outlet && outlet.activatedRouteData && outlet.activatedRouteData.animation;
   }
 
-  ngOnInit() {
+  ngAfterContentInit() {
     setTimeout(() => {
       document.getElementById('loader')?.classList.add('hidden');
       setTimeout(() => {
         document.getElementById('loader')?.remove();
       }, 2000);
-    }, 10000);
+    }, 1500);
   }
 }

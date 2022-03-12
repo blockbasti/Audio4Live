@@ -1,22 +1,29 @@
-<!-- https://itnext.io/how-to-build-a-responsive-navbar-using-flexbox-and-javascript-eb0af24f19bf -->
-<mdb-navbar SideClass="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar intro-fixed-nav" [containerInside]="false">
-  <mdb-navbar-brand>
-    <a tabindex="0" style="outline: none" class="logo navbar-brand" [routerLink]="'/'"
-      ><img style="height: 30px" class="d-block align-top" alt="Audio4Live" src="/assets/images/Logo2_Text.svg"
-    /></a>
-  </mdb-navbar-brand>
+<nav class="navbar navbar-dark navbar-expand-lg sticky-top bg-dark p-0 navbar-resp shadow-5-strong">
+  <div class="container-fluid">
+    <div class="navbar-brand">
+      <a tabindex="0" style="outline: none" class="navbar-brand me-0" [routerLink]="'/'">
+        <img height="30" class="" alt="Audio4Live" src="/assets/images/Logo2_Text.svg" />
+      </a>
+    </div>
 
-  <links>
-    <ul class="navbar-nav">
-      <li class="nav-item" routerLinkActive="active">
-        <a tabindex="0" class="nav-link" [routerLink]="'/anfragen'">Anfragen</a>
-      </li>
-      <li class="nav-item" routerLinkActive="active">
-        <a tabindex="0" class="nav-link" [routerLink]="'/leistungen'">Leistungen</a>
-      </li>
-      <li class="nav-item" routerLinkActive="active">
-        <a tabindex="0" class="nav-link" [routerLink]="'/profil'">Profil / Referenzen</a>
-      </li>
-    </ul>
-  </links>
-</mdb-navbar>
+    <button class="navbar-toggler" type="button" (click)="navbar.toggle()" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent" mdbCollapse #navbar="mdbCollapse">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 mt-1">
+        <li class="nav-item h4 mt-lg-3 mt-0">
+          <a tabindex="0" class="nav-link" [routerLink]="'/anfragen'" routerLinkActive="active" (click)="navbar.toggle()">Anfragen</a>
+        </li>
+        <li class="nav-item h4 mt-lg-3 mt-0">
+          <a tabindex="0" class="nav-link" [routerLink]="'/leistungen'" routerLinkActive="active" (click)="navbar.toggle()">Leistungen</a>
+        </li>
+        <li class="nav-item h4 mt-lg-3 mt-0">
+          <a tabindex="0" class="nav-link" [routerLink]="'/profil'" routerLinkActive="active" (click)="navbar.toggle()"
+            >Profil / Referenzen</a
+          >
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

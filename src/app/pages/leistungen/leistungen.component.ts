@@ -1,10 +1,10 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { PreloadImgService } from '../../preload-img.service';
 
 @Component({
   selector: 'app-leistungen',
-  encapsulation: ViewEncapsulation.None,
+
   templateUrl: './leistungen.component.html',
   styleUrls: ['./leistungen.component.scss'],
 })

@@ -10,3 +10,15 @@
 .timepicker__actions {
   justify-content: center !important;
 }
+
+html.webp {
+  .intro-image-buchen {
+    background-image: url('/assets/images/speaker1.webp');
+    height: 100vh;
+  }
+}
+
+.intro-image-buchen {
+  background-image: url('/assets/images/speaker1.jpg');
+  height: 100vh;
+}

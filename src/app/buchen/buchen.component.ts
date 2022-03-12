@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ElementRef, Injectable, ViewChild, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, Injectable, ViewChild } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Title } from '@angular/platform-browser';
 import { CalendarEvent, CalendarMonthViewDay, CalendarUtils, CalendarView, DAYS_OF_WEEK } from 'angular-calendar';
@@ -22,10 +22,12 @@ import {
 } from 'date-fns';
 import { de } from 'date-fns/locale';
 import firebase from 'firebase/compat/app';
+import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { NgxMaterialTimepickerTheme } from 'ngx-material-timepicker';
 import { Subject } from 'rxjs';
 import { PreloadImgService } from '../preload-img.service';
-import { DatenschutzModalService } from '../shared/datenschutz-modal.service';
+import { DatenschutzComponent } from '../shared/datenschutz/datenschutz.component';
+import { ImpressumComponent } from '../shared/impressum/impressum.component';
 import { Buchung } from './buchung';
 import { SubmitService } from './submit.service';
 
@@ -48,7 +50,7 @@ export class MyCalendarUtils extends CalendarUtils {
 @Component({
   selector: 'app-buchen',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None,
+
   templateUrl: './buchen.component.html',
   styleUrls: ['./buchen.component.scss'],
   providers: [
@@ -59,7 +61,13 @@ export class MyCalendarUtils extends CalendarUtils {
   ],
 })
 export class BuchenComponent {
-  constructor(afs: AngularFirestore, private submitService: SubmitService, private preloadService: PreloadImgService, titleService: Title, public datenschutzModalService: DatenschutzModalService) {
+  constructor(
+    afs: AngularFirestore,
+    private submitService: SubmitService,
+    private preloadService: PreloadImgService,
+    titleService: Title,
+    private modalService: MdbModalService
+  ) {
     titleService.setTitle('Buchungsanfrage - Audio4Live');
     afs
       .collection<any>('blocker', (ref) => ref.where('end', '>=', new Date()))
@@ -74,6 +82,18 @@ export class BuchenComponent {
         this.refresh.next(null);
       });
   }
+
+  datenschutzModalRef: MdbModalRef<DatenschutzComponent> | null = null;
+  impressumModalRef: MdbModalRef<ImpressumComponent> | null = null;
+
+  config = {
+    animation: true,
+    backdrop: true,
+    containerClass: 'right',
+    ignoreBackdropClick: false,
+    keyboard: true,
+    modalClass: 'modal-top-right modal-dialog-scrollable',
+  };
 
   refresh: Subject<any> = new Subject();
 
@@ -274,12 +294,14 @@ export class BuchenComponent {
       .catch(() => (this.captchaResponse = ''));
   }
 
+  openDatenschutzModal() {
+    this.datenschutzModalRef = this.modalService.open(DatenschutzComponent, this.config);
+  }
+
   onSubmit(): void {
     this.submitService.submitForm(this.model).subscribe((_) => {
-      this.alert.nativeElement.classList.add('show');
       this.alert.nativeElement.classList.remove('d-none');
       setTimeout(() => {
-        this.alert.nativeElement.classList.remove('show');
         this.alert.nativeElement.classList.add('d-none');
       }, 10000);
 

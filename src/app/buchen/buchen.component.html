@@ -1,107 +1,179 @@
-<div class="d-block d-md-none" style="height: 63px"></div>
-<header class="intro2 min-vh-100">
-  <div class="flex-center flex-column justify-content-center min-vh-100">
-    <picture class="intro-image vignette-radial">
-      <source srcset="/assets/images/speaker1.webp" type="image/webp" />
-      <source srcset="/assets/images/speaker1.jpg" type="image/jpeg" />
-      <img class="intro-image vignette-radial" src="/assets/images/speaker1.jpg" alt="" (load)="loaded()" />
-    </picture>
-    <div class="text-center white-text wow fadeInUp align-content-center d-none d-lg-block w-75" style="z-index: 1">
-      <h2 class="display-3">Sie suchen eine engagierte technische Fachkraft zum Aufbau und der Durchführung Ihrer
-        Veranstaltung?</h2>
-    </div>
-    <div class="text-center white-text wow fadeInUp align-content-center d-lg-none d-md-block" style="z-index: 1">
-      <h2 class="">Sie suchen eine engagierte technische Fachkraft für Ihre Veranstaltung?</h2>
-    </div>
-    <i class="fas fa-chevron-down fa-3x position-absolute" style="bottom: 1vh" style="z-index: 1; bottom: 0"></i>
+<header class="bg-image intro-image-buchen vignette-radial">
+  <div class="container text-center white-text d-flex flex-column align-items-center justify-content-center min-vh-100">
+    <h2 class="display-3">Sie suchen eine engagierte technische Fachkraft zum Aufbau und der Durchführung Ihrer Veranstaltung?</h2>
+
+    <i class="fas fa-chevron-down fa-3x position-absolute" style="z-index: 1; bottom: 4.5vh"></i>
   </div>
 </header>
-<main class="container my-5" style="z-index: 1">
+
+<main class="container mt-5">
   <div class="row mb-5">
     <div class="col-12">
-      <mdb-card class="elegant-color z-depth-3">
-        <mdb-card-body>
-          <mdb-card-title>
+      <div class="card bg-dark shadow-5-strong">
+        <div class="card-body">
+          <div class="card-title">
             <h3>Interessiert?</h3>
-          </mdb-card-title>
+          </div>
           <p class="text-light" style="font-size: 1.2rem !important">
-            Als nebenberuflicher Veranstaltungstechniker kann ich zuverlässig Ihre Vorstellungen umsetzen. Mein
-            Tätigkeitsbereich bezieht
+            Als nebenberuflicher Veranstaltungstechniker kann ich zuverlässig Ihre Vorstellungen umsetzen. Mein Tätigkeitsbereich bezieht
             sich überwiegend auf Thüringen und Sachsen.
             <br />
-            Teilen Sie mit bitte nachfolgend Ihrer Terminvorstellungen und die von Ihnen gewünschten Leistungen mit.
-            Freie Termine erkennen
+            Teilen Sie mit bitte nachfolgend Ihrer Terminvorstellungen und die von Ihnen gewünschten Leistungen mit. Freie Termine erkennen
             Sie im nachfolgenden Kalender an einem dunkel hinterlegten Feld, rot hinterlegte Felder sind belegt.
           </p>
           <p class="text-light" style="font-size: 1.2rem !important">
-            <strong>Bitte beachten Sie, dass ab 30km eine Anfahrtspauschale von 0,30€/km zusätzlich berechnet
-              wird.</strong>
+            <strong>Bitte beachten Sie, dass ab 30km eine Anfahrtspauschale von 0,30€/km zusätzlich berechnet wird.</strong>
           </p>
-        </mdb-card-body>
-      </mdb-card>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="row">
+  <div class="row pb-4">
     <div class="col-lg-8 col-md-12">
-      <mdb-card class="elegant-color z-depth-3">
-        <mdb-card-header>
+      <div class="card bg-dark shadow-5-strong">
+        <div class="card-header">
           <div class="d-flex flex-lg-row flex-column justify-content-between">
             <h3 class="text-center text-lg-left m-0 mb-3 mb-lg-0 pt-1">
               {{ viewDate | calendarDate: view + 'ViewTitle':'de' }}
             </h3>
 
             <div class="btn-group btn-group-sm" role="group" aria-label="Kalender Navigation">
-              <button [disabled]="isThisMonth(viewDate)" mdbBtn type="button" color="blue-grey" size="sm"
-                class="waves-light" mdbWavesEffect mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate"
-                aria-label="vorheriger Monat" tabindex="0">
-                <mdb-icon fas size="2x" icon="angle-left"></mdb-icon>
+              <button
+                [disabled]="isThisMonth(viewDate)"
+                type="button"
+                class="btn btn-primary"
+                mwlCalendarPreviousView
+                [view]="view"
+                [(viewDate)]="viewDate"
+                aria-label="vorheriger Monat"
+                tabindex="0"
+              >
+                <i class="fas fa-2x fa-angle-left"></i>
               </button>
-              <button mdbBtn type="button" color="blue-grey" size="sm" class="waves-light" mdbWavesEffect
-                mwlCalendarToday [(viewDate)]="viewDate" aria-label="aktueller Monat" tabindex="0">
-                <mdb-icon fas size="2x" icon="calendar-day"></mdb-icon>
+              <button
+                type="button"
+                class="btn btn-primary"
+                mwlCalendarToday
+                [(viewDate)]="viewDate"
+                aria-label="aktueller Monat"
+                tabindex="0"
+              >
+                <i class="fas fa-2x fa-calendar-day"></i>
               </button>
-              <button #btnNextMonth mdbBtn type="button" color="blue-grey" size="sm" class="waves-light" mdbWavesEffect
-                mwlCalendarNextView [view]="view" [(viewDate)]="viewDate" aria-label="nächster Monat" tabindex="0"
-                [disabled]="isRangeMonth(viewDate)">
-                <mdb-icon fas size="2x" icon="angle-right"></mdb-icon>
+              <button
+                #btnNextMonth
+                type="button"
+                class="btn btn-primary"
+                mwlCalendarNextView
+                [view]="view"
+                [(viewDate)]="viewDate"
+                aria-label="nächster Monat"
+                tabindex="0"
+                [disabled]="isRangeMonth(viewDate)"
+              >
+                <i class="fas fa-2x fa-angle-right"></i>
               </button>
             </div>
           </div>
-        </mdb-card-header>
-        <mdb-card-body>
-          <mwl-calendar-month-view class="dark-theme" [locale]="locale" [weekStartsOn]="weekStartsOn"
-            [weekendDays]="weekendDays" [viewDate]="viewDate" [events]="events" [refresh]="refresh"
-            [activeDayIsOpen]="activeDayIsOpen" (dayClicked)="dayClicked($event.day)"
-            (beforeViewRender)="beforeMonthViewRender($event)">
+        </div>
+        <div class="card-body">
+          <mwl-calendar-month-view
+            class="dark-theme"
+            [locale]="locale"
+            [weekStartsOn]="weekStartsOn"
+            [weekendDays]="weekendDays"
+            [viewDate]="viewDate"
+            [events]="events"
+            [refresh]="refresh"
+            [activeDayIsOpen]="activeDayIsOpen"
+            (dayClicked)="dayClicked($event.day)"
+            (beforeViewRender)="beforeMonthViewRender($event)"
+          >
           </mwl-calendar-month-view>
-        </mdb-card-body>
-      </mdb-card>
+        </div>
+      </div>
     </div>
     <div class="col-lg-4 col-md-12 mt-5 mt-lg-0">
-      <mdb-card class="elegant-color z-depth-3">
-        <mdb-card-body>
+      <div class="card bg-dark shadow-5-strong">
+        <div class="card-body">
           <form #buchenForm="ngForm" (ngSubmit)="onSubmit()">
-            <label for="buchenFormName">Name *</label>
-            <input mdbInput type="text" autocomplete="name" [(ngModel)]="model.name" id="buchenFormName" name="name"
-              class="form-control mb-4" placeholder="Name" required maxlength="150" tabindex="0" />
+            <mdb-form-control class="form-white">
+              <input
+                mdbInput
+                type="text"
+                autocomplete="name"
+                [(ngModel)]="model.name"
+                id="buchenFormName"
+                name="name"
+                class="form-control mb-4"
+                placeholder="Name"
+                required
+                maxlength="150"
+                tabindex="0"
+              />
+              <label mdbLabel class="form-label" for="buchenFormName">Name *</label>
+            </mdb-form-control>
 
-            <label for="buchenFormEmail">E-Mail *</label>
-            <input mdbInput type="email" autocomplete="email" [(ngModel)]="model.email" id="buchenFormEmail"
-              name="email" class="form-control mb-4" placeholder="E-Mail" required maxlength="150" tabindex="0" />
+            <mdb-form-control class="form-white">
+              <input
+                mdbInput
+                type="text"
+                autocomplete="email"
+                [(ngModel)]="model.email"
+                id="buchenFormEmail"
+                name="email"
+                class="form-control mb-4"
+                placeholder="E-Mail"
+                required
+                maxlength="150"
+                tabindex="0"
+              />
+              <label mdbLabel class="form-label" for="buchenFormEmail">E-Mail *</label>
+            </mdb-form-control>
 
-            <label for="buchenFormPhone">Telefonnummer</label>
-            <input mdbInput type="tel" autocomplete="tel" [(ngModel)]="model.phone" id="buchenFormPhone" name="phone"
-              class="form-control mb-2" placeholder="Telefonnummer" maxlength="50" tabindex="0" />
+            <mdb-form-control class="form-white">
+              <input
+                mdbInput
+                type="tel"
+                autocomplete="tel"
+                [(ngModel)]="model.phone"
+                id="buchenFormPhone"
+                name="phone"
+                class="form-control mb-2"
+                placeholder="Telefonnummer"
+                maxlength="50"
+                tabindex="0"
+              />
+              <label mdbLabel class="form-label" for="buchenFormPhone">Telefonnummer</label>
+            </mdb-form-control>
 
-            <div class="custom-control custom-switch mb-4">
-              <input type="checkbox" class="custom-control-input" id="customSwitches" name="call"
-                [(ngModel)]="model.call" [disabled]="model.phone === ''" tabindex="0" />
-              <label class="custom-control-label" for="customSwitches">Rückrufwunsch</label>
+            <div class="form-check form-switch mb-3">
+              <input
+                mdbCheckbox
+                class="form-check-input"
+                type="checkbox"
+                name="call"
+                [(ngModel)]="model.call"
+                [disabled]="model.phone === ''"
+                tabindex="0"
+              />
+              <label class="form-check-label" for="checkRuckruf">Rückrufwunsch</label>
             </div>
 
-            <label for="buchenFormLocation">Veranstaltungsort</label>
-            <input mdbInput type="text" [(ngModel)]="model.location" id="buchenFormLocation" name="location"
-              class="form-control mb-4" placeholder="Ort" maxlength="500" tabindex="0" />
+            <mdb-form-control class="form-white">
+              <input
+                mdbInput
+                type="text"
+                [(ngModel)]="model.location"
+                id="buchenFormLocation"
+                name="location"
+                class="form-control mb-2"
+                placeholder="Ort"
+                maxlength="500"
+                tabindex="0"
+              />
+              <label mdbLabel class="form-label" for="buchenFormLocation">Veranstaltungsort</label>
+            </mdb-form-control>
 
             <label for="buchenFormDate">Datum</label>
             <p id="buchenFormDate">
@@ -109,87 +181,151 @@
             </p>
 
             <div class="mb-4 form-group" id="buchenFormTimes">
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text blue-grey darken-1 text-white border-0">vorraussichtlicher Start </span>
-                </div>
-
-                <input id="timeStart" class="form-control border-0" type="text" mdbInput placeholder="Start"
-                  aria-label="Startzeit" [ngxTimepicker]="timeStart" [format]="24" readonly name="timeStart"
-                  [(ngModel)]="model.times.start" [disabled]="!model.date" tabindex="0" />
-                <div class="input-group-append">
-                  <button mdbBtn color="blue-grey" (click)="model.times.start = ''" size="md"
-                    class="m-0 px-2 py-2 border-0" type="button" aria-label="Zeit löschen" tabindex="0">
-                    <mdb-icon fas icon="backspace"></mdb-icon>
-                  </button>
-                </div>
+              <div class="input-group mb-4">
+                <span class="text-white input-group-text">vsl. Beginn</span>
+                <input
+                  id="timeStart"
+                  class="form-control"
+                  type="text"
+                  mdbInput
+                  [placeholder]="!model.date ? 'Bitte Datum auswählen' : 'Beginn'"
+                  aria-label="vorraussichtlicher Beginn"
+                  [ngxTimepicker]="timeStart"
+                  [format]="24"
+                  readonly
+                  name="timeStart"
+                  [(ngModel)]="model.times.start"
+                  [disabled]="!model.date"
+                  tabindex="0"
+                />
+                <button
+                  (click)="model.times.start = ''"
+                  class="btn btn-primary m-0 px-2 py-2"
+                  type="button"
+                  aria-label="Zeit löschen"
+                  [disabled]="!model.date"
+                  tabindex="0"
+                >
+                  <i class="fas fa-backspace"></i>
+                </button>
               </div>
 
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text blue-grey darken-1 text-white border-0">vorraussichtliches Ende </span>
-                </div>
-
-                <input id="timeEnd" class="form-control border-0 border-left-1" type="text" mdbInput placeholder="Ende"
-                  aria-label="Endzeit" [ngxTimepicker]="timeEnd" [format]="24" readonly name="timeEnd"
-                  [(ngModel)]="model.times.end" [disabled]="!model.date" tabindex="0" />
-                <div class="input-group-append">
-                  <button mdbBtn color="blue-grey" (click)="model.times.end = ''" size="md"
-                    class="m-0 px-2 py-2 border-0" type="button" aria-label="Zeit löschen" tabindex="0">
-                    <mdb-icon fas icon="backspace"></mdb-icon>
-                  </button>
-                </div>
+              <div class="input-group mb-4">
+                <span class="text-white input-group-text">vsl. Ende</span>
+                <input
+                  id="timeStart"
+                  class="form-control"
+                  type="text"
+                  mdbInput
+                  [placeholder]="!model.date ? 'Bitte Datum auswählen' : 'Ende'"
+                  aria-label="vorraussichtliches Ende"
+                  [ngxTimepicker]="timeEnd"
+                  [format]="24"
+                  readonly
+                  name="timeEnd"
+                  [(ngModel)]="model.times.end"
+                  [disabled]="!model.date"
+                  tabindex="0"
+                />
+                <button
+                  (click)="model.times.end = ''"
+                  class="btn btn-primary m-0 px-2 py-2"
+                  type="button"
+                  aria-label="Zeit löschen"
+                  [disabled]="!model.date"
+                  tabindex="0"
+                >
+                  <i class="fas fa-backspace"></i>
+                </button>
               </div>
 
-              <ngx-material-timepicker #timeStart [theme]="darkTheme" [cancelBtnTmpl]="cancelBtn"
-                [confirmBtnTmpl]="confirmBtn"></ngx-material-timepicker>
-              <ngx-material-timepicker #timeEnd [theme]="darkTheme" [cancelBtnTmpl]="cancelBtn"
-                [confirmBtnTmpl]="confirmBtn"></ngx-material-timepicker>
+              <ngx-material-timepicker
+                #timeStart
+                [theme]="darkTheme"
+                [cancelBtnTmpl]="cancelBtn"
+                [confirmBtnTmpl]="confirmBtn"
+              ></ngx-material-timepicker>
+              <ngx-material-timepicker
+                #timeEnd
+                [theme]="darkTheme"
+                [cancelBtnTmpl]="cancelBtn"
+                [confirmBtnTmpl]="confirmBtn"
+              ></ngx-material-timepicker>
 
               <ng-template #cancelBtn>
-                <button mdbBtn class="px-2" size="sm" type="button" color="blue-grey">Abbrechen</button>
+                <button class="btn btn-primary px-2 btn-sm me-2" type="button">Abbrechen</button>
               </ng-template>
               <ng-template #confirmBtn>
-                <button mdbBtn class="px-2" size="sm" type="button" color="blue-grey">Bestätigen</button>
+                <button class="btn btn-primary px-2 btn-sm" type="button">Bestätigen</button>
               </ng-template>
             </div>
 
-            <label for="buchenFormMessage">Nachricht</label>
-            <textarea mdbInput [(ngModel)]="model.message" id="buchenFormMessage" class="form-control mb-4"
-              placeholder="Nachricht" name="message" maxlength="10000" tabindex="0"></textarea>
+            <mdb-form-control class="form-white">
+              <textarea
+                mdbInput
+                [(ngModel)]="model.message"
+                id="buchenFormMessage"
+                class="form-control mb-4"
+                placeholder="Nachricht"
+                name="message"
+                maxlength="10000"
+                tabindex="0"
+                rows="4"
+              ></textarea>
+              <label mdbLabel class="form-label" for="buchenFormMessage">Nachricht</label>
+            </mdb-form-control>
 
-            <p class="text-center">
-              Aufgrund der manuellen Bearbeitung kann es zu Zeitverzögerungen zwischen Eingang und Auftragsbestätigung
-              kommen. Fehleinträge
+            <p class="note note-light text-dark">
+              Aufgrund der manuellen Bearbeitung kann es zu Zeitverzögerungen zwischen Eingang und Auftragsbestätigung kommen. Fehleinträge
               und Absagen sind vorbehalten.
             </p>
 
             <div class="d-flex justify-content-center mb-2">
-              <re-captcha (resolved)="resolved($event)" siteKey="6LchheYUAAAAABK3F5HtlemJkmwOL2DkJ1yZ8rer"
-                [theme]="'dark'" required [(ngModel)]="captchaResponse" name="captcha"></re-captcha>
+              <re-captcha
+                (resolved)="resolved($event)"
+                siteKey="6LchheYUAAAAABK3F5HtlemJkmwOL2DkJ1yZ8rer"
+                [theme]="'dark'"
+                required
+                [(ngModel)]="captchaResponse"
+                name="captcha"
+              ></re-captcha>
             </div>
 
-            <div class="custom-control custom-switch mb-4">
-              <input type="checkbox" class="custom-control-input" id="customSwitchAGB" name="agb"
-                [(ngModel)]="model.agb" [disabled]="false" tabindex="0" required />
-              <label class="custom-control-label" for="customSwitchAGB">AGB und <u><a
-                  (click)="datenschutzModalService.showModal()">Datenschutzerklärung</a></u> gelesen und akzeptiert.</label>
-            </div>
-
-            <button type="submit" (click)="onSubmit()" class="text-dark" mdbBtn type="button" color="blue-grey"
-              block="true" [disabled]="!buchenForm.form.valid" mdbWavesEffect tabindex="0">
+            <button
+              type="submit"
+              (click)="onSubmit()"
+              class="btn btn-primary w-100 mb-2"
+              type="button"
+              [disabled]="!buchenForm.form.valid"
+              tabindex="0"
+            >
               <h4 class="mb-0">Jetzt anfragen!</h4>
             </button>
 
-            <div #alert class="alert alert-dark mt-3 alert-dismissible fade d-none" role="alert">
-              <b>Ihre Anfrage war erfolgreich!</b><br />Sie erhalten in Kürze nochmal eine E&#8209;Mail mit Ihren
-              eingegeben
-              Informationen.<br />
-              Ich werde mich in den nächsten Tagen mit Ihnen in Verbindung setzen.
+            <div class="form-check form-switch mb-4">
+              <input
+                mdbCheckbox
+                class="form-check-input me-0"
+                type="checkbox"
+                id="checkAGB"
+                name="agb"
+                [(ngModel)]="model.agb"
+                tabindex="0"
+              />
+              <label class="form-check-label pe-none" for="checkAGB">
+                AGB und <u><a class="pe-auto text-white" (click)="openDatenschutzModal()">Datenschutzerklärung</a></u>
+                gelesen und akzeptiert.
+              </label>
             </div>
+
+            <p #alert class="note note-light text-dark d-none">
+              <b>Ihre Anfrage war erfolgreich!</b><br />
+              Sie erhalten in Kürze eine E&#8209;Mail mit Ihren eingegeben Informationen.<br />
+              Ich werde mich in den nächsten Tagen mit Ihnen in Verbindung setzen.
+            </p>
           </form>
-        </mdb-card-body>
-      </mdb-card>
+        </div>
+      </div>
     </div>
   </div>
 </main>

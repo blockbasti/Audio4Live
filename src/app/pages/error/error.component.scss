@@ -1,11 +1,11 @@
-.no-webp .view0 {
-  background: url('/assets/images/fader.jpg') no-repeat center center;
-  background-size: cover;
-  height: 100vh;
+html.webp {
+  .intro-image-error {
+    background-image: url('/assets/images/fader.webp');
+    height: 100vh;
+  }
 }
 
-.webp .view0 {
-  background: url('/assets/images/fader.webp') no-repeat center center;
-  background-size: cover;
+.intro-image-error {
+  background-image: url('/assets/images/fader.jpg');
   height: 100vh;
 }
