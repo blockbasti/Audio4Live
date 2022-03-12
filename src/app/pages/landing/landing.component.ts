@@ -1,10 +1,10 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
-import { PreloadImgService } from '../../preload-img.service';
 import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { DatenschutzComponent } from 'src/app/shared/datenschutz/datenschutz.component';
 import { ImpressumComponent } from 'src/app/shared/impressum/impressum.component';
+import { PreloadImgService } from '../../preload-img.service';
 
 @Component({
   selector: 'app-landing',

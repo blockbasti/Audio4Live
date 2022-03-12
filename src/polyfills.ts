@@ -52,5 +52,4 @@
 /***************************************************************************************************
  * APPLICATION IMPORTS
  */
-import 'first-input-delay';
 import 'zone.js/dist/zone'; // Included with Angular CLI.
