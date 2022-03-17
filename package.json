@@ -58,7 +58,7 @@
     "firebase-tools": "9.23.3",
     "husky": "7.0.4",
     "inquirer-autocomplete-prompt": "2.0.0",
-    "lint-staged": "12.3.6",
+    "lint-staged": "12.3.7",
     "modernizr": "3.12.0",
     "prettier": "2.6.0",
     "prettier-plugin-organize-imports": "2.3.4",
