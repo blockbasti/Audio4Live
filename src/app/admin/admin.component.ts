@@ -78,10 +78,12 @@ export class AdminComponent implements OnInit {
         rb.forEach((srb) => {
           const b = srb.payload.doc.data();
           const buchung: Buchung = b as Buchung;
-          buchung.date = {
-            start: (b.date.start as firebase.firestore.Timestamp).toDate(),
-            end: (b.date.end as firebase.firestore.Timestamp).toDate(),
-          };
+          if (b.date.start && b.date.end) {
+            buchung.date = {
+              start: (b.date.start as firebase.firestore.Timestamp).toDate(),
+              end: (b.date.end as firebase.firestore.Timestamp).toDate(),
+            };
+          }
           arr[srb.payload.doc.id] = buchung;
         });
 
@@ -100,11 +102,16 @@ export class AdminComponent implements OnInit {
   }
 
   formatDate(date: Date, hours: boolean): string {
-    if (hours) {
-      return format(date, 'dd.MM.yyyy HH:mm');
-    } else {
-      return format(date, 'dd.MM.yyyy');
+    try {
+      if (hours) {
+        return format(date, 'dd.MM.yyyy HH:mm');
+      } else {
+        return format(date, 'dd.MM.yyyy');
+      }
+    } catch (error) {
+      return '';
     }
+
   }
 
   addBlocker() {

@@ -7,8 +7,8 @@ import { FooterComponent } from './footer/footer.component';
 import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
-  declarations: [NavbarComponent, FooterComponent /* DatenschutzComponent, ImpressumComponent */],
+  declarations: [NavbarComponent, FooterComponent],
   imports: [CommonModule, RouterModule, MdbModalModule, MdbCollapseModule],
-  exports: [NavbarComponent, FooterComponent, /* DatenschutzComponent, ImpressumComponent, */ RouterModule, MdbModalModule],
+  exports: [NavbarComponent, FooterComponent, RouterModule, MdbModalModule],
 })
 export class SharedModule {}

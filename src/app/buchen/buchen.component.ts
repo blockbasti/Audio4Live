@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, ElementRef, Injectable, ViewChild } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AngularFireFunctions } from '@angular/fire/compat/functions';
 import { Title } from '@angular/platform-browser';
 import { CalendarEvent, CalendarMonthViewDay, CalendarUtils, CalendarView, DAYS_OF_WEEK } from 'angular-calendar';
 import { GetMonthViewArgs, MonthView } from 'calendar-utils';
@@ -29,7 +30,6 @@ import { PreloadImgService } from '../preload-img.service';
 import { DatenschutzComponent } from '../shared/datenschutz/datenschutz.component';
 import { ImpressumComponent } from '../shared/impressum/impressum.component';
 import { Buchung } from './buchung';
-import { SubmitService } from './submit.service';
 
 @Injectable()
 export class MyCalendarUtils extends CalendarUtils {
@@ -61,9 +61,11 @@ export class MyCalendarUtils extends CalendarUtils {
   ],
 })
 export class BuchenComponent {
+  submit: any;
+  verify: any;
   constructor(
     afs: AngularFirestore,
-    private submitService: SubmitService,
+    private fns: AngularFireFunctions,
     private preloadService: PreloadImgService,
     titleService: Title,
     private modalService: MdbModalService
@@ -81,6 +83,8 @@ export class BuchenComponent {
         });
         this.refresh.next(null);
       });
+    this.submit = fns.httpsCallable('submit');
+    this.verify = fns.httpsCallable('verify');
   }
 
   datenschutzModalRef: MdbModalRef<DatenschutzComponent> | null = null;
@@ -279,19 +283,18 @@ export class BuchenComponent {
     );
   }
 
-  resolved(captchaResponse: string) {
+  async resolved(captchaResponse: string) {
     if (captchaResponse === null) {
       return;
     }
-    fetch('https://us-central1-audio4live-1d621.cloudfunctions.net/verify?response=' + captchaResponse)
-      .then((resp) => {
-        if (resp.ok) {
-          this.captchaResponse = captchaResponse;
-        } else {
-          this.captchaResponse = '';
-        }
-      })
-      .catch(() => (this.captchaResponse = ''));
+
+    this.verify(captchaResponse).subscribe((resp: { status: 'ok' | 'error' }) => {
+      if (resp.status == 'ok') {
+        this.captchaResponse = captchaResponse;
+      } else {
+        this.captchaResponse = '';
+      }
+    });
   }
 
   openDatenschutzModal() {
@@ -299,7 +302,7 @@ export class BuchenComponent {
   }
 
   onSubmit(): void {
-    this.submitService.submitForm(this.model).subscribe((_) => {
+    this.submit(this.model).subscribe((_: any) => {
       this.alert.nativeElement.classList.remove('d-none');
       setTimeout(() => {
         this.alert.nativeElement.classList.add('d-none');

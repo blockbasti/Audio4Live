@@ -2,6 +2,7 @@ import { CommonModule, registerLocaleData } from '@angular/common';
 import localeDe from '@angular/common/locales/de';
 import { NgModule } from '@angular/core';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFireFunctionsModule, REGION } from '@angular/fire/compat/functions';
 import { FormsModule } from '@angular/forms';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
@@ -28,6 +29,7 @@ registerLocaleData(localeDe);
     MdbModalModule,
     MdbCheckboxModule,
     AngularFirestoreModule,
+    AngularFireFunctionsModule,
     CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
   ],
   providers: [
@@ -35,6 +37,7 @@ registerLocaleData(localeDe);
       provide: RECAPTCHA_LANGUAGE,
       useValue: 'de',
     },
+    { provide: REGION, useValue: 'us-central1' },
   ],
 })
 export class BuchenModule {}

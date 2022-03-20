@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  useEmulators: true,
   firebase: {
     apiKey: 'AIzaSyA48L0pFHqgmhd1_B8-NAt_vBLbj-Dw8Y8',
     authDomain: 'audio4live-1d621.firebaseapp.com',

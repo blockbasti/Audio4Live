@@ -4,7 +4,7 @@
     "lint": "eslint ./src/index.ts --fix",
     "build": "tsc",
     "mjml": "mjml ./src/booking.mjml -o ./src/booking.html --config.minify true --config.minifyOptions='{\"minifyCSS\": true, \"removeEmptyAttributes\": false}'",
-    "serve": "npm run build && firebase emulators:start --only functions",
+    "serve": "tsc --watch & firebase emulators:start",
     "shell": "npm run build && firebase functions:shell",
     "start": "npm run shell",
     "deploy": "firebase deploy --only functions",
@@ -13,7 +13,7 @@
   "engines": {
     "node": "16"
   },
-  "main": "lib/index.js",
+  "main": "lib/functions/src/index.js",
   "dependencies": {
     "axios": "0.26.1",
     "cors": "2.8.5",
