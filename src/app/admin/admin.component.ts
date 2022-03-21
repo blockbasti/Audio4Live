@@ -113,6 +113,7 @@ export class AdminComponent implements OnInit {
     } catch (error) {
       return '';
     }
+
   }
 
   addBlocker() {
