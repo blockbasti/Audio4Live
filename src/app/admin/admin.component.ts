@@ -25,6 +25,7 @@ export class AdminComponent implements OnInit {
               end: (b.end as firebase.firestore.Timestamp).toDate(),
             },
             id: b.id,
+            isSingleDay: b.isSingleDay,
           };
         });
         this.refresh.next(null);
@@ -49,12 +50,13 @@ export class AdminComponent implements OnInit {
     id: string;
   }[];
 
-  blocker: { interval: Interval; id: string }[];
+  blocker: { interval: Interval; id: string; isSingleDay?: boolean }[];
 
   range = new FormGroup({
     start: new FormControl(),
     end: new FormControl(),
   });
+  isSingleDay = new FormControl();
 
   ngOnInit(): void {
     document.getElementById('loader')?.classList.add('hidden');
@@ -78,10 +80,12 @@ export class AdminComponent implements OnInit {
         rb.forEach((srb) => {
           const b = srb.payload.doc.data();
           const buchung: Buchung = b as Buchung;
-          buchung.date = {
-            start: (b.date.start as firebase.firestore.Timestamp).toDate(),
-            end: (b.date.end as firebase.firestore.Timestamp).toDate(),
-          };
+          if (b.date.start && b.date.end) {
+            buchung.date = {
+              start: (b.date.start as firebase.firestore.Timestamp).toDate(),
+              end: (b.date.end as firebase.firestore.Timestamp).toDate(),
+            };
+          }
           arr[srb.payload.doc.id] = buchung;
         });
 
@@ -100,10 +104,14 @@ export class AdminComponent implements OnInit {
   }
 
   formatDate(date: Date, hours: boolean): string {
-    if (hours) {
-      return format(date, 'dd.MM.yyyy HH:mm');
-    } else {
-      return format(date, 'dd.MM.yyyy');
+    try {
+      if (hours) {
+        return format(date, 'dd.MM.yyyy HH:mm');
+      } else {
+        return format(date, 'dd.MM.yyyy');
+      }
+    } catch (error) {
+      return '';
     }
   }
 
@@ -111,7 +119,10 @@ export class AdminComponent implements OnInit {
     if (!this.range.get('start').value || !this.range.get('end').value) {
       return;
     }
-    this.db.collection<any>('blocker').add({ start: this.range.get('start').value, end: this.range.get('end').value });
+    console.log(this.isSingleDay.value);
+    this.db
+      .collection<any>('blocker')
+      .add({ start: this.range.get('start').value, end: this.range.get('end').value, isSingleDay: this.isSingleDay.value });
   }
 
   nextWeek() {
@@ -119,8 +130,8 @@ export class AdminComponent implements OnInit {
       return;
     }
     this.range.setValue({
-      start: addWeeks(new Date(this.range.get('start').value), 1).toISOString(),
-      end: addWeeks(new Date(this.range.get('end').value), 1).toISOString(),
+      start: addWeeks(new Date(this.range.get('start').value), 1),
+      end: addWeeks(new Date(this.range.get('end').value), 1),
     });
   }
 

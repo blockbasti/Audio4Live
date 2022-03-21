@@ -90,6 +90,20 @@
             (beforeViewRender)="beforeMonthViewRender($event)"
           >
           </mwl-calendar-month-view>
+          <div class="mt-3">
+            <b>Legende</b>
+            <p>
+              <i class="fas fa-square me-2" style="color: #1f262d"></i> An den dunkel hinterlegten Tagen können Sie ohne Einschränkungen
+              Termine erstellen.
+            </p>
+            <p>
+              <i class="fas fa-square me-2" style="color: #dcedc8"></i>An hellgrün hinterlegten Tagen können Sie nur Anfragen für
+              Veranstaltungen stellen, welche an diesem Tag stattfinden, also sich nicht über mehrere Tage erstrecken.
+            </p>
+            <p>
+              <i class="fas fa-square me-2" style="color: #ef9a9a"></i>Für rot hinterlegte Tage können Sie leider keine Anfragen stellen.
+            </p>
+          </div>
         </div>
       </div>
     </div>
@@ -311,6 +325,7 @@
                 name="agb"
                 [(ngModel)]="model.agb"
                 tabindex="0"
+                required
               />
               <label class="form-check-label pe-none" for="checkAGB">
                 AGB und <u><a class="pe-auto text-white" (click)="openDatenschutzModal()">Datenschutzerklärung</a></u>

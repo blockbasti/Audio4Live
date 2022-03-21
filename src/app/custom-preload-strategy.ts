@@ -5,7 +5,7 @@ export class CustomPreloadStrategy implements PreloadingStrategy {
   preload(route: Route, load: Function): Observable<any> {
     const shouldPreload = () => {
       var connection = (navigator as any).connection;
-      if (connection) {
+      if (connection && route.path != 'admin') {
         if (
           connection.effectiveType === '3g' ||
           connection.effectiveType === '2g' ||
@@ -14,6 +14,8 @@ export class CustomPreloadStrategy implements PreloadingStrategy {
         )
           return false;
         return true;
+      } else {
+        return false;
       }
     };
 

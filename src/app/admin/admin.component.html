@@ -9,7 +9,7 @@
       <span class="h-100 align-bottom">{{ user?.email }}</span>
     </div>
     <div class="col-12 col-sm-4">
-      <button mdbBtn color="blue-grey" class="" type="button" (click)="signout()">Abmelden</button>
+      <button mdbBtn class="btn btn-primary" type="button" (click)="signout()">Abmelden</button>
     </div>
   </div>
   <div class="row overflow-auto">
@@ -33,25 +33,28 @@
                         <input matStartDate formControlName="start" placeholder="Start date" />
                         <input matEndDate formControlName="end" placeholder="End date" />
                       </mat-date-range-input>
+
                       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                       <mat-date-range-picker #picker></mat-date-range-picker>
 
                       <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')">Ungültiger Starttag </mat-error>
                       <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')">Ungültiger Endtag</mat-error>
                     </mat-form-field>
+                    <mat-checkbox class="" [formControl]="isSingleDay">Nur eintägige Events</mat-checkbox>
                     <br />
                     <div class="btn-group" role="group">
-                      <button type="button" size="sm" mdbBtn color="blue-grey" (click)="addBlocker()">Hinzufügen</button>
-                      <button type="button" size="sm" mdbBtn color="blue-grey" (click)="nextWeek()">nächste Woche</button>
+                      <button class="btn btn-primary btn-sm" type="button" mdbBtn (click)="addBlocker()">Hinzufügen</button>
+                      <button class="btn btn-primary btn-sm" type="button" mdbBtn (click)="nextWeek()">nächste Woche</button>
                     </div>
                   </div>
                   <div class="col-sm-12 col-md-8 mt-3 mt-md-0 overflow-auto" style="height: 20vh">
                     <ul class="list-group">
                       <li class="list-group-item grey darken-3" *ngFor="let block of blocker; let i = index">
-                        {{ formatDate(block.interval.start, false) }} - {{ formatDate(block.interval.end, false) }}
-                        <div style="cursor: pointer" class="badge bg-danger rounded-pill close" (click)="deleteBlocker(block.id)">
+                        <div style="cursor: pointer" class="close badge rounded-pill bg-danger" (click)="deleteBlocker(block.id)">
                           <span aria-hidden="true">×</span>
                         </div>
+                        {{ formatDate(block.interval.start, false) }} - {{ formatDate(block.interval.end, false) }}
+                        {{ block.isSingleDay ? '(Nur eintägige Events)' : '' }}
                       </li>
                     </ul>
                   </div>
@@ -73,7 +76,7 @@
                 <h3 class="m-0">Buchung #{{ i + 1 }}</h3>
                 <div
                   style="cursor: pointer"
-                  class="close badge bg-danger rounded-pill"
+                  class="close badge rounded-pill bg-danger"
                   style="font-size: 1rem"
                   (click)="deleteBooking(booking.id)"
                 >

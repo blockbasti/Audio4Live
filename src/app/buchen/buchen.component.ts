@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, ElementRef, Injectable, ViewChild } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AngularFireFunctions } from '@angular/fire/compat/functions';
 import { Title } from '@angular/platform-browser';
 import { CalendarEvent, CalendarMonthViewDay, CalendarUtils, CalendarView, DAYS_OF_WEEK } from 'angular-calendar';
 import { GetMonthViewArgs, MonthView } from 'calendar-utils';
@@ -19,6 +20,7 @@ import {
   isThisMonth,
   isWithinInterval,
   startOfMonth,
+  toDate,
 } from 'date-fns';
 import { de } from 'date-fns/locale';
 import firebase from 'firebase/compat/app';
@@ -29,7 +31,6 @@ import { PreloadImgService } from '../preload-img.service';
 import { DatenschutzComponent } from '../shared/datenschutz/datenschutz.component';
 import { ImpressumComponent } from '../shared/impressum/impressum.component';
 import { Buchung } from './buchung';
-import { SubmitService } from './submit.service';
 
 @Injectable()
 export class MyCalendarUtils extends CalendarUtils {
@@ -61,9 +62,11 @@ export class MyCalendarUtils extends CalendarUtils {
   ],
 })
 export class BuchenComponent {
+  submit: any;
+  verify: any;
   constructor(
     afs: AngularFirestore,
-    private submitService: SubmitService,
+    private fns: AngularFireFunctions,
     private preloadService: PreloadImgService,
     titleService: Title,
     private modalService: MdbModalService
@@ -75,12 +78,17 @@ export class BuchenComponent {
       .subscribe((blocker) => {
         this.blocker = blocker.map((b) => {
           return {
-            start: (b.start as firebase.firestore.Timestamp).toDate(),
-            end: (b.end as firebase.firestore.Timestamp).toDate(),
+            interval: {
+              start: (b.start as firebase.firestore.Timestamp).toDate(),
+              end: (b.end as firebase.firestore.Timestamp).toDate(),
+            },
+            isSingleDay: b.isSingleDay,
           };
         });
         this.refresh.next(null);
       });
+    this.submit = fns.httpsCallable('submit');
+    this.verify = fns.httpsCallable('verify');
   }
 
   datenschutzModalRef: MdbModalRef<DatenschutzComponent> | null = null;
@@ -107,7 +115,7 @@ export class BuchenComponent {
   weekStartsOn: number = DAYS_OF_WEEK.MONDAY;
   weekendDays: number[] = [DAYS_OF_WEEK.SATURDAY, DAYS_OF_WEEK.SUNDAY];
 
-  blocker: Interval[];
+  blocker: { interval: Interval; isSingleDay?: boolean }[];
 
   events: CalendarEvent[] = [];
 
@@ -147,18 +155,27 @@ export class BuchenComponent {
     return date > this.minDate && date < addMonths(Date.now(), 3);
   }
 
+  dateIsSingleDate(date: Date): boolean {
+    if (!this.blocker) {
+      return false;
+    }
+    return this.blocker.some((blocker) => {
+      return blocker.isSingleDay && isWithinInterval(date, blocker.interval);
+    });
+  }
+
   dateIsBlocked(date: Date): boolean {
     if (!this.blocker) {
       return false;
     }
-    return this.blocker.some((intv) => {
-      return isWithinInterval(date, intv);
+    return this.blocker.some((blocker) => {
+      return !blocker.isSingleDay && isWithinInterval(date, blocker.interval);
     });
   }
 
   containsBlockedDate(interval: Interval): boolean {
     return this.blocker.some((blocker) => {
-      return areIntervalsOverlapping(blocker, interval, { inclusive: true });
+      return !blocker.isSingleDay && areIntervalsOverlapping(blocker.interval, interval, { inclusive: true });
     });
   }
 
@@ -168,9 +185,14 @@ export class BuchenComponent {
     }
     this.selectedMonthViewDay = day;
 
-    const oldInterval = Object.assign({}, this.selectedInterval);
+    const oldInterval: Interval = Object.assign({}, this.selectedInterval);
 
-    if (this.selectedInterval === undefined) {
+    if (
+      this.selectedInterval === undefined ||
+      this.dateIsSingleDate(day.date) ||
+      this.dateIsSingleDate(toDate(oldInterval.start)) ||
+      this.dateIsSingleDate(toDate(oldInterval.end))
+    ) {
       this.selectedInterval = {
         start: day.date,
         end: day.date,
@@ -258,7 +280,13 @@ export class BuchenComponent {
       } else if (this.dateIsBlocked(day.date)) {
         day.cssClass = 'cal-blocked';
       } else if (this.selectedInterval !== undefined && isWithinInterval(day.date, this.selectedInterval)) {
-        day.cssClass = 'cal-day-selected';
+        if (this.dateIsSingleDate(day.date)) {
+          day.cssClass = 'cal-single cal-day-selected';
+        } else {
+          day.cssClass = 'cal-day-selected';
+        }
+      } else if (this.dateIsSingleDate(day.date)) {
+        day.cssClass = 'cal-single';
       }
     });
   }
@@ -279,19 +307,18 @@ export class BuchenComponent {
     );
   }
 
-  resolved(captchaResponse: string) {
+  async resolved(captchaResponse: string) {
     if (captchaResponse === null) {
       return;
     }
-    fetch('https://us-central1-audio4live-1d621.cloudfunctions.net/verify?response=' + captchaResponse)
-      .then((resp) => {
-        if (resp.ok) {
-          this.captchaResponse = captchaResponse;
-        } else {
-          this.captchaResponse = '';
-        }
-      })
-      .catch(() => (this.captchaResponse = ''));
+
+    this.verify(captchaResponse).subscribe((resp: { status: 'ok' | 'error' }) => {
+      if (resp.status == 'ok') {
+        this.captchaResponse = captchaResponse;
+      } else {
+        this.captchaResponse = '';
+      }
+    });
   }
 
   openDatenschutzModal() {
@@ -299,7 +326,7 @@ export class BuchenComponent {
   }
 
   onSubmit(): void {
-    this.submitService.submitForm(this.model).subscribe((_) => {
+    this.submit(this.model).subscribe((_: any) => {
       this.alert.nativeElement.classList.remove('d-none');
       setTimeout(() => {
         this.alert.nativeElement.classList.add('d-none');

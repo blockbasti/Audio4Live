@@ -68,8 +68,23 @@
     pointer-events: none;
   }
 
+  .cal-single {
+    background-color: #dcedc8;
+    .cal-day-number {
+      color: #000;
+    }
+  }
+  .cal-single:hover {
+    background-color: lighten($color: #dcedc8, $amount: 3) !important;
+  }
+
   .cal-day-selected,
   .cal-day-selected:hover {
+    background-color: #4fc3f7 !important;
+  }
+
+  .cal-day-selected.cal-single,
+  .cal-day-selected:hover.cal-single {
     background-color: #4fc3f7 !important;
   }
 
