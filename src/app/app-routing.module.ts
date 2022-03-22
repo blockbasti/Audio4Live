@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { ErrorComponent } from './pages/error/error.component';
+import {QuicklinkStrategy} from 'ngx-quicklink';
 
 const routes: Routes = [
   { path: '', loadChildren: () => import('./pages/pages.module').then((m) => m.PagesModule) },
@@ -13,7 +14,7 @@ const routes: Routes = [
   imports: [
     RouterModule.forRoot(routes, {
       scrollPositionRestoration: 'top',
-      preloadingStrategy: PreloadAllModules,
+      preloadingStrategy: QuicklinkStrategy,
     }),
   ],
   exports: [RouterModule],

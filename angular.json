@@ -29,8 +29,12 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "aot": true,
+            "optimization": false,
+            "buildOptimizer": false,
             "sourceMap": true,
             "extractLicenses": true,
+            "namedChunks": true,
+            "vendorChunk": true,
             "assets": ["src/favicon.ico", "src/assets", "src/manifest.webmanifest"],
             "styles": [
               "node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
@@ -82,12 +86,6 @@
             "production": {
               "browserTarget": "audio4live:build:production"
             }
-          }
-        },
-        "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "browserTarget": "audio4live:build"
           }
         },
         "deploy": {
