@@ -28,8 +28,8 @@ import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { NgxMaterialTimepickerTheme } from 'ngx-material-timepicker';
 import { Subject } from 'rxjs';
 import { PreloadImgService } from '../preload-img.service';
+import { AGBComponent } from '../shared/agb/agb.component';
 import { DatenschutzComponent } from '../shared/datenschutz/datenschutz.component';
-import { ImpressumComponent } from '../shared/impressum/impressum.component';
 import { Buchung } from './buchung';
 
 @Injectable()
@@ -92,7 +92,7 @@ export class BuchenComponent {
   }
 
   datenschutzModalRef: MdbModalRef<DatenschutzComponent> | null = null;
-  impressumModalRef: MdbModalRef<ImpressumComponent> | null = null;
+  AGBModalRef: MdbModalRef<AGBComponent> | null = null;
 
   config = {
     animation: true,
@@ -323,6 +323,10 @@ export class BuchenComponent {
 
   openDatenschutzModal() {
     this.datenschutzModalRef = this.modalService.open(DatenschutzComponent, this.config);
+  }
+
+  openAGBModal() {
+    this.AGBModalRef = this.modalService.open(AGBComponent, this.config);
   }
 
   onSubmit(): void {

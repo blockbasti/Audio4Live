@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
+import { AGBComponent } from 'src/app/shared/agb/agb.component';
 import { DatenschutzComponent } from 'src/app/shared/datenschutz/datenschutz.component';
 import { ImpressumComponent } from 'src/app/shared/impressum/impressum.component';
 import { PreloadImgService } from '../../preload-img.service';
@@ -14,6 +15,7 @@ import { PreloadImgService } from '../../preload-img.service';
 export class LandingComponent {
   datenschutzModalRef: MdbModalRef<DatenschutzComponent> | null = null;
   impressumModalRef: MdbModalRef<ImpressumComponent> | null = null;
+  AGBModalRef: MdbModalRef<AGBComponent> | null = null;
 
   config = {
     animation: true,
@@ -37,6 +39,9 @@ export class LandingComponent {
       }
       if (data.openImprint) {
         this.impressumModalRef = this.modalService.open(ImpressumComponent, this.config);
+      }
+      if (data.openAGB) {
+        this.AGBModalRef = this.modalService.open(AGBComponent, this.config);
       }
     });
   }

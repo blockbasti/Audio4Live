@@ -27,6 +27,11 @@ const routes: Routes = [
     loadChildren: () => import('./leistungen/leistungen.module').then((m) => m.LeistungenModule),
     data: { animation: 'LeistungenPage' },
   },
+  {
+    path: 'agb',
+    loadChildren: () => import('./landing/landing.module').then((m) => m.LandingModule),
+    data: { animation: 'LandingPage', openAGB: true },
+  },
 ];
 
 @NgModule({

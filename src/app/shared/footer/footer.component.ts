@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
+import { AGBComponent } from '../agb/agb.component';
 import { DatenschutzComponent } from '../datenschutz/datenschutz.component';
 import { ImpressumComponent } from '../impressum/impressum.component';
 
@@ -13,6 +14,7 @@ export class FooterComponent {
 
   datenschutzModalRef: MdbModalRef<DatenschutzComponent> | null = null;
   impressumModalRef: MdbModalRef<ImpressumComponent> | null = null;
+  AGBModalRef: MdbModalRef<AGBComponent> | null = null;
 
   config = {
     animation: true,
@@ -31,5 +33,9 @@ export class FooterComponent {
 
   openImpressumModal() {
     this.impressumModalRef = this.modalService.open(ImpressumComponent, this.config);
+  }
+
+  openAGBModal() {
+    this.AGBModalRef = this.modalService.open(AGBComponent, this.config);
   }
 }
