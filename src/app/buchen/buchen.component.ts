@@ -186,6 +186,12 @@ export class BuchenComponent {
     });
   }
 
+  containsSingleDate(interval: Interval): boolean {
+    return this.blocker.some((blocker) => {
+      return blocker.isSingleDay && areIntervalsOverlapping(blocker.interval, interval, { inclusive: true });
+    });
+  }
+
   dayClicked(day: CalendarMonthViewDay): void {
     if (!this.dateIsValid(day.date) || this.dateIsBlocked(day.date)) {
       return;
@@ -211,7 +217,7 @@ export class BuchenComponent {
 
     if (isBefore(day.date, this.selectedInterval.start)) {
       this.selectedInterval.start = day.date;
-      if (this.containsBlockedDate(this.selectedInterval)) {
+      if (this.containsBlockedDate(this.selectedInterval) || this.containsSingleDate(this.selectedInterval)) {
         this.selectedInterval = oldInterval;
         return;
       }
@@ -222,7 +228,7 @@ export class BuchenComponent {
 
     if (isAfter(day.date, this.selectedInterval.end)) {
       this.selectedInterval.end = day.date;
-      if (this.containsBlockedDate(this.selectedInterval)) {
+      if (this.containsBlockedDate(this.selectedInterval) || this.containsSingleDate(this.selectedInterval)) {
         this.selectedInterval = oldInterval;
         return;
       }
@@ -241,7 +247,7 @@ export class BuchenComponent {
       if (isSameDay(day.date, this.selectedInterval.end) || isSameDay(day.date, this.selectedInterval.start)) {
         this.selectedInterval.start = day.date;
         this.selectedInterval.end = day.date;
-        if (this.containsBlockedDate(this.selectedInterval)) {
+        if (this.containsBlockedDate(this.selectedInterval) || this.containsSingleDate(this.selectedInterval)) {
           this.selectedInterval = oldInterval;
           return;
         }
@@ -252,7 +258,7 @@ export class BuchenComponent {
 
       if (closestIndexTo(day.date, [this.selectedInterval.start, this.selectedInterval.end]) === 0) {
         this.selectedInterval.start = day.date;
-        if (this.containsBlockedDate(this.selectedInterval)) {
+        if (this.containsBlockedDate(this.selectedInterval) || this.containsSingleDate(this.selectedInterval)) {
           this.selectedInterval = oldInterval;
           return;
         }
@@ -261,7 +267,7 @@ export class BuchenComponent {
         return;
       } else {
         this.selectedInterval.end = day.date;
-        if (this.containsBlockedDate(this.selectedInterval)) {
+        if (this.containsBlockedDate(this.selectedInterval) || this.containsSingleDate(this.selectedInterval)) {
           this.selectedInterval = oldInterval;
           return;
         }
