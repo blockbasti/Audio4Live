@@ -25,7 +25,7 @@ export class FooterComponent {
     modalClass: 'modal-top-right modal-dialog-scrollable',
   };
 
-  constructor(private modalService: MdbModalService) {}
+  constructor(private readonly modalService: MdbModalService) {}
 
   openDatenschutzModal() {
     this.datenschutzModalRef = this.modalService.open(DatenschutzComponent, this.config);

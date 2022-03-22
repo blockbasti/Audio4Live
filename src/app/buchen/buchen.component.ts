@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, ElementRef, Injectable, ViewChild } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { AngularFireFunctions } from '@angular/fire/compat/functions';
+import { collection, collectionData, Firestore, query, Timestamp, where } from '@angular/fire/firestore';
+import { Functions, httpsCallableData } from '@angular/fire/functions';
 import { Title } from '@angular/platform-browser';
 import { CalendarEvent, CalendarMonthViewDay, CalendarUtils, CalendarView, DAYS_OF_WEEK } from 'angular-calendar';
 import { GetMonthViewArgs, MonthView } from 'calendar-utils';
@@ -23,13 +23,13 @@ import {
   toDate,
 } from 'date-fns';
 import { de } from 'date-fns/locale';
-import firebase from 'firebase/compat/app';
 import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { NgxMaterialTimepickerTheme } from 'ngx-material-timepicker';
 import { Subject } from 'rxjs';
 import { PreloadImgService } from '../preload-img.service';
 import { AGBComponent } from '../shared/agb/agb.component';
 import { DatenschutzComponent } from '../shared/datenschutz/datenschutz.component';
+import { Blocker } from './blocker';
 import { Buchung } from './buchung';
 
 @Injectable()
@@ -65,30 +65,37 @@ export class BuchenComponent {
   submit: any;
   verify: any;
   constructor(
-    afs: AngularFirestore,
-    private fns: AngularFireFunctions,
-    private preloadService: PreloadImgService,
-    titleService: Title,
-    private modalService: MdbModalService
+    readonly afs: Firestore,
+    readonly fns: Functions,
+    private readonly preloadService: PreloadImgService,
+    readonly titleService: Title,
+    private readonly modalService: MdbModalService
   ) {
     titleService.setTitle('Buchungsanfrage - Audio4Live');
-    afs
-      .collection<any>('blocker', (ref) => ref.where('end', '>=', new Date()))
-      .valueChanges()
-      .subscribe((blocker) => {
-        this.blocker = blocker.map((b) => {
-          return {
-            interval: {
-              start: (b.start as firebase.firestore.Timestamp).toDate(),
-              end: (b.end as firebase.firestore.Timestamp).toDate(),
-            },
-            isSingleDay: b.isSingleDay,
-          };
-        });
-        this.refresh.next(null);
-      });
-    this.submit = fns.httpsCallable('submit');
-    this.verify = fns.httpsCallable('verify');
+
+    // get all blocker
+    const blockerCollection = collection(afs, 'blocker').withConverter<Blocker>({
+      fromFirestore: (snapshot) => {
+        return new Blocker(
+          {
+            start: (snapshot.data().start as Timestamp).toDate(),
+            end: (snapshot.data().end as Timestamp).toDate(),
+          },
+          snapshot.data().isSingleDay,
+          snapshot.id
+        );
+      },
+      toFirestore: (it: any) => it,
+    });
+
+    const blockerquery = query(blockerCollection, where('end', '>=', new Date()));
+
+    collectionData(blockerquery).subscribe((blocker) => {
+      this.blocker = blocker;
+      this.refresh.next(null);
+    });
+    this.submit = httpsCallableData(fns, 'submit');
+    this.verify = httpsCallableData(fns, 'verify');
   }
 
   datenschutzModalRef: MdbModalRef<DatenschutzComponent> | null = null;
@@ -115,7 +122,7 @@ export class BuchenComponent {
   weekStartsOn: number = DAYS_OF_WEEK.MONDAY;
   weekendDays: number[] = [DAYS_OF_WEEK.SATURDAY, DAYS_OF_WEEK.SUNDAY];
 
-  blocker: { interval: Interval; isSingleDay?: boolean }[];
+  blocker: Blocker[];
 
   events: CalendarEvent[] = [];
 

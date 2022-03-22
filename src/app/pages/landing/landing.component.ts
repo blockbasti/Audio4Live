@@ -27,10 +27,10 @@ export class LandingComponent {
   };
 
   constructor(
-    route: ActivatedRoute,
-    private preloadImageService: PreloadImgService,
-    titleService: Title,
-    private modalService: MdbModalService
+    readonly route: ActivatedRoute,
+    private readonly preloadImageService: PreloadImgService,
+    readonly titleService: Title,
+    private readonly modalService: MdbModalService
   ) {
     titleService.setTitle('Audio4Live Veranstaltungstechnik');
     route.data.subscribe((data) => {

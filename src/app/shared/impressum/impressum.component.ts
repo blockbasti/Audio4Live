@@ -7,5 +7,5 @@ import { MdbModalRef } from 'mdb-angular-ui-kit/modal';
   styleUrls: ['./impressum.component.scss'],
 })
 export class ImpressumComponent {
-  constructor(public modalRef: MdbModalRef<ImpressumComponent>) {}
+  constructor(public readonly modalRef: MdbModalRef<ImpressumComponent>) {}
 }

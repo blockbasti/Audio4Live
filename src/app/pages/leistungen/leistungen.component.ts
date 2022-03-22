@@ -9,7 +9,7 @@ import { PreloadImgService } from '../../preload-img.service';
   styleUrls: ['./leistungen.component.scss'],
 })
 export class LeistungenComponent {
-  constructor(private PreloadImgService: PreloadImgService, titleService: Title) {
+  constructor(private readonly PreloadImgService: PreloadImgService, readonly titleService: Title) {
     titleService.setTitle('Leistungen - Audio4Live');
   }
 

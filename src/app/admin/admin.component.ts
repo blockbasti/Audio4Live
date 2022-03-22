@@ -1,56 +1,40 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Auth, signOut, user, User } from '@angular/fire/auth';
+import {
+  addDoc,
+  collection,
+  collectionData,
+  CollectionReference,
+  deleteDoc,
+  doc,
+  Firestore,
+  orderBy,
+  query,
+  Timestamp,
+  where,
+} from '@angular/fire/firestore';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { addWeeks, format } from 'date-fns';
-import firebase from 'firebase/compat/app';
 import { Subject } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Blocker } from '../buchen/blocker';
 import { Buchung } from '../buchen/buchung';
 
+type Booking = Buchung | { id: string };
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.scss'],
 })
 export class AdminComponent implements OnInit {
-  constructor(private auth: AngularFireAuth, private db: AngularFirestore) {
-    db.collection<any>('blocker', (ref) => ref.where('end', '>=', new Date()))
-      .valueChanges({ idField: 'id' })
-      .subscribe((blocker) => {
-        this.blocker = blocker.map((b) => {
-          return {
-            interval: {
-              start: (b.start as firebase.firestore.Timestamp).toDate(),
-              end: (b.end as firebase.firestore.Timestamp).toDate(),
-            },
-            id: b.id,
-            isSingleDay: b.isSingleDay,
-          };
-        });
-        this.refresh.next(null);
-      });
-  }
-
   refresh: Subject<any> = new Subject();
-  user?: firebase.User;
+  user?: User;
 
-  bookings: {
-    name: string;
-    email: string;
-    phone: string;
-    call: boolean;
-    message: string;
-    date?: Interval;
-    location: string;
-    times: {
-      start: string;
-      end: string;
-    };
-    id: string;
-  }[];
+  blockerCollection: CollectionReference<Blocker>;
+  blocker: Blocker[];
 
-  blocker: { interval: Interval; id: string; isSingleDay?: boolean }[];
+  bookingCollection: CollectionReference<Buchung | { id: string }>;
+  bookings: Booking[];
 
   range = new FormGroup({
     start: new FormControl(),
@@ -58,48 +42,67 @@ export class AdminComponent implements OnInit {
   });
   isSingleDay = new FormControl();
 
+  constructor(private readonly auth: Auth, private readonly db: Firestore, private readonly router: Router) {
+    user(auth).subscribe((user) => (this.user = user));
+
+    // get blocker
+    this.blockerCollection = collection(db, 'blocker').withConverter<Blocker>({
+      fromFirestore: (snapshot) => {
+        return new Blocker(
+          {
+            start: (snapshot.data().start as Timestamp).toDate(),
+            end: (snapshot.data().end as Timestamp).toDate(),
+          },
+          snapshot.data().isSingleDay,
+          snapshot.id
+        );
+      },
+      toFirestore: (blocker: Blocker) => {
+        return { start: blocker.interval.start, end: blocker.interval.end, isSingleDay: blocker.isSingleDay };
+      },
+    });
+
+    const blockerquery = query(this.blockerCollection, where('end', '>=', new Date()), orderBy('end'));
+
+    collectionData(blockerquery, { idField: 'id' }).subscribe((blocker) => {
+      this.blocker = blocker;
+      this.refresh.next(null);
+    });
+
+    // get bookings
+    this.bookingCollection = collection(db, 'booking').withConverter<Booking>({
+      fromFirestore: (snapshot) => {
+        let buchung = snapshot.data() as Buchung;
+        if (snapshot.data().date.start && snapshot.data().date.end) {
+          buchung.date = {
+            start: (snapshot.data().date.start as Timestamp).toDate(),
+            end: (snapshot.data().date.end as Timestamp).toDate(),
+          };
+        }
+        return {
+          ...buchung,
+          id: snapshot.id,
+        };
+      },
+      toFirestore: (it: any) => it,
+    });
+
+    collectionData(this.bookingCollection, { idField: 'id' }).subscribe((bookings) => {
+      this.bookings = bookings;
+      this.refresh.next(null);
+    });
+  }
+
   ngOnInit(): void {
     document.getElementById('loader')?.classList.add('hidden');
     setTimeout(() => {
       document.getElementById('loader')?.remove();
     }, 2000);
-
-    this.auth.currentUser.then((user) => (this.user = user));
-    this.db
-      .collection<any>('booking')
-      .snapshotChanges()
-      .pipe(
-        map((actions) =>
-          actions.map((action) => {
-            return action;
-          })
-        )
-      )
-      .subscribe((rb) => {
-        const arr: { [key: string]: Buchung } = {};
-        rb.forEach((srb) => {
-          const b = srb.payload.doc.data();
-          const buchung: Buchung = b as Buchung;
-          if (b.date.start && b.date.end) {
-            buchung.date = {
-              start: (b.date.start as firebase.firestore.Timestamp).toDate(),
-              end: (b.date.end as firebase.firestore.Timestamp).toDate(),
-            };
-          }
-          arr[srb.payload.doc.id] = buchung;
-        });
-
-        this.bookings = [
-          ...Object.entries(arr).map((b) => {
-            return { id: b[0], ...b[1] };
-          }),
-        ];
-      });
   }
 
   signout() {
-    this.auth.signOut().then(() => {
-      window.location.replace('/');
+    signOut(this.auth).then(() => {
+      this.router.navigateByUrl('/admin');
     });
   }
 
@@ -119,10 +122,14 @@ export class AdminComponent implements OnInit {
     if (!this.range.get('start').value || !this.range.get('end').value) {
       return;
     }
-    console.log(this.isSingleDay.value);
-    this.db
-      .collection<any>('blocker')
-      .add({ start: this.range.get('start').value, end: this.range.get('end').value, isSingleDay: this.isSingleDay.value });
+
+    addDoc(this.blockerCollection, {
+      interval: {
+        start: this.range.get('start').value,
+        end: this.range.get('end').value,
+      },
+      isSingleDay: this.isSingleDay.value,
+    });
   }
 
   nextWeek() {
@@ -135,21 +142,15 @@ export class AdminComponent implements OnInit {
     });
   }
 
-  deleteBooking(id: string) {
+  async deleteBooking(id: string) {
     if (confirm('Wirklich löschen?')) {
-      this.db
-        .doc(`booking/${id}`)
-        .delete()
-        .then(() => {});
+      await deleteDoc(doc(this.db, this.bookingCollection.path, id));
     }
   }
 
-  deleteBlocker(id: string) {
+  async deleteBlocker(id: string) {
     if (confirm('Wirklich löschen?')) {
-      this.db
-        .doc(`blocker/${id}`)
-        .delete()
-        .then(() => {});
+      await deleteDoc(doc(this.db, this.blockerCollection.path, id));
     }
   }
 }

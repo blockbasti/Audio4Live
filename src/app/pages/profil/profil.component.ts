@@ -9,7 +9,7 @@ import { PreloadImgService } from '../../preload-img.service';
   styleUrls: ['./profil.component.scss'],
 })
 export class ProfilComponent {
-  constructor(private preloadService: PreloadImgService, titleService: Title) {
+  constructor(private readonly preloadService: PreloadImgService, readonly titleService: Title) {
     titleService.setTitle('Über mich - Audio4Live');
   }
 

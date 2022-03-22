@@ -7,5 +7,5 @@ import { MdbModalRef } from 'mdb-angular-ui-kit/modal';
   styleUrls: ['./datenschutz.component.scss'],
 })
 export class DatenschutzComponent {
-  constructor(public modalRef: MdbModalRef<DatenschutzComponent>) {}
+  constructor(public readonly modalRef: MdbModalRef<DatenschutzComponent>) {}
 }
