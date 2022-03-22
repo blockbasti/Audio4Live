@@ -26,7 +26,6 @@ import { de } from 'date-fns/locale';
 import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { NgxMaterialTimepickerTheme } from 'ngx-material-timepicker';
 import { Subject } from 'rxjs';
-import { PreloadImgService } from '../preload-img.service';
 import { AGBComponent } from '../shared/agb/agb.component';
 import { DatenschutzComponent } from '../shared/datenschutz/datenschutz.component';
 import { Blocker } from './blocker';
@@ -51,9 +50,7 @@ export class MyCalendarUtils extends CalendarUtils {
 @Component({
   selector: 'app-buchen',
   changeDetection: ChangeDetectionStrategy.OnPush,
-
   templateUrl: './buchen.component.html',
-  styleUrls: ['./buchen.component.scss'],
   providers: [
     {
       provide: CalendarUtils,
@@ -67,7 +64,6 @@ export class BuchenComponent {
   constructor(
     readonly afs: Firestore,
     readonly fns: Functions,
-    private readonly preloadService: PreloadImgService,
     readonly titleService: Title,
     private readonly modalService: MdbModalService
   ) {
@@ -94,6 +90,7 @@ export class BuchenComponent {
       this.blocker = blocker;
       this.refresh.next(null);
     });
+
     this.submit = httpsCallableData(fns, 'submit');
     this.verify = httpsCallableData(fns, 'verify');
   }
@@ -149,14 +146,6 @@ export class BuchenComponent {
   @ViewChild('alert', { static: true }) alert: ElementRef;
 
   captchaResponse = '';
-
-  loaded() {
-    this.preloadService.preloadImages();
-    document.getElementById('loader')?.classList.add('hidden');
-    setTimeout(() => {
-      document.getElementById('loader')?.remove();
-    }, 2000);
-  }
 
   dateIsValid(date: Date): boolean {
     return date > this.minDate && date < addMonths(Date.now(), 3);

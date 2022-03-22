@@ -1,4 +1,5 @@
 @import './app/buchen/calendar.scss';
+@import './background.scss';
 
 @import 'node_modules/mdb-angular-ui-kit/assets/scss/mdb.scss';
 
@@ -12,17 +13,6 @@ body {
   overflow-x: hidden;
   color: #fff;
   //min-width: 0 !important;
-}
-.modal-open {
-  overflow-x: hidden !important;
-}
-
-.intro-image {
-  z-index: 1;
-  width: 100vw;
-  height: 100vh;
-  object-fit: cover;
-  position: absolute;
 }
 
 .vignette-radial:after {

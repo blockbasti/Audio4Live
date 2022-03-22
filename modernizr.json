@@ -1,6 +1,9 @@
 {
   "minify": true,
-  "dest": "src/lib",
-  "options": ["setClasses"],
-  "feature-detects": ["test/img/webp"]
+  "options": [
+    "setClasses"
+  ],
+  "feature-detects": [
+    "test/img/webp"
+  ]
 }

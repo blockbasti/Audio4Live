@@ -5,12 +5,10 @@ import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { AGBComponent } from 'src/app/shared/agb/agb.component';
 import { DatenschutzComponent } from 'src/app/shared/datenschutz/datenschutz.component';
 import { ImpressumComponent } from 'src/app/shared/impressum/impressum.component';
-import { PreloadImgService } from '../../preload-img.service';
 
 @Component({
   selector: 'app-landing',
-  templateUrl: './landing.component.html',
-  styleUrls: ['./landing.component.scss'],
+  templateUrl: './landing.component.html'
 })
 export class LandingComponent {
   datenschutzModalRef: MdbModalRef<DatenschutzComponent> | null = null;
@@ -26,12 +24,7 @@ export class LandingComponent {
     modalClass: 'modal-top-right modal-dialog-scrollable',
   };
 
-  constructor(
-    readonly route: ActivatedRoute,
-    private readonly preloadImageService: PreloadImgService,
-    readonly titleService: Title,
-    private readonly modalService: MdbModalService
-  ) {
+  constructor(readonly route: ActivatedRoute, readonly titleService: Title, private readonly modalService: MdbModalService) {
     titleService.setTitle('Audio4Live Veranstaltungstechnik');
     route.data.subscribe((data) => {
       if (data.openPrivacy) {
@@ -44,13 +37,5 @@ export class LandingComponent {
         this.AGBModalRef = this.modalService.open(AGBComponent, this.config);
       }
     });
-  }
-
-  loaded() {
-    this.preloadImageService.preloadImages();
-    document.getElementById('loader')?.classList.add('hidden');
-    setTimeout(() => {
-      document.getElementById('loader')?.remove();
-    }, 2000);
   }
 }

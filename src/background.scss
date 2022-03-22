@@ -1,0 +1,38 @@
+.webp {
+  .intro-image-profile {
+    background-image: url('/assets/images/drums.webp');
+  }
+  .intro-image-leistungen {
+    background-image: url('/assets/images/speaker2.webp');
+  }
+  .intro-image-landing {
+    background-image: url('/assets/images/fader.webp');
+  }
+  .intro-image-error {
+  background-image: url('/assets/images/fader.webp');
+  }
+  .intro-image-error {
+    background-image: url('/assets/images/fader.webp');
+  }
+  .intro-image-buchen {
+    background-image: url('/assets/images/speaker1.webp');
+  }
+}
+
+.no-webp {
+  .intro-image-profile {
+    background-image: url('/assets/images/drums.jpg');
+  }
+  .intro-image-leistungen {
+    background-image: url('/assets/images/speaker2.jpg');
+  }
+  .intro-image-landing {
+    background-image: url('/assets/images/fader.jpg');
+  }
+  .intro-image-error {
+    background-image: url('/assets/images/fader.jpg');
+  }
+  .intro-image-buchen {
+    background-image: url('/assets/images/speaker1.jpg');
+  }
+}
