@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { QuicklinkStrategy } from 'ngx-quicklink';
 import { ErrorComponent } from './pages/error/error.component';
-import {QuicklinkStrategy} from 'ngx-quicklink';
 
 const routes: Routes = [
   { path: '', loadChildren: () => import('./pages/pages.module').then((m) => m.PagesModule) },

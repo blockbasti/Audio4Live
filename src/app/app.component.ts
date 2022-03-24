@@ -1,4 +1,4 @@
-import { AfterContentInit, AfterViewInit, Component } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { slideInAnimation } from './animations';
 
@@ -9,7 +9,6 @@ import { slideInAnimation } from './animations';
   animations: [slideInAnimation],
 })
 export class AppComponent implements AfterViewInit {
-
   constructor() {}
 
   prepareRoute(outlet: RouterOutlet) {

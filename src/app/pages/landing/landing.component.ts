@@ -8,7 +8,7 @@ import { ImpressumComponent } from 'src/app/shared/impressum/impressum.component
 
 @Component({
   selector: 'app-landing',
-  templateUrl: './landing.component.html'
+  templateUrl: './landing.component.html',
 })
 export class LandingComponent {
   datenschutzModalRef: MdbModalRef<DatenschutzComponent> | null = null;
