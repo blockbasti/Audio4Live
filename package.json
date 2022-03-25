@@ -61,7 +61,7 @@
     "inquirer-autocomplete-prompt": "2.0.0",
     "lint-staged": "12.3.7",
     "modernizr": "3.12.0",
-    "prettier": "2.6.0",
+    "prettier": "2.6.1",
     "prettier-plugin-organize-imports": "2.3.4",
     "ts-node": "10.7.0",
     "typescript": "4.6.3",
