@@ -13,7 +13,7 @@ import {
   Timestamp,
   where,
 } from '@angular/fire/firestore';
-import { FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { addWeeks, format } from 'date-fns';
 import { Subject } from 'rxjs';
@@ -35,11 +35,11 @@ export class AdminComponent implements OnInit {
   bookingCollection: CollectionReference<Buchung | { id: string }>;
   bookings: Booking[];
 
-  range = new FormGroup({
-    start: new FormControl(),
-    end: new FormControl(),
+  range = new UntypedFormGroup({
+    start: new UntypedFormControl(),
+    end: new UntypedFormControl(),
   });
-  isSingleDay = new FormControl();
+  isSingleDay = new UntypedFormControl();
 
   constructor(private readonly auth: Auth, private readonly db: Firestore, private readonly router: Router) {
     user(auth).subscribe((user) => (this.user = user));

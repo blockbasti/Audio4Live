@@ -39,7 +39,7 @@ jobs:
         run: npm ci
 
       - name: build (Frontend)
-        run: npx ng build --prod
+        run: npx ng build --configuration production
 
       - name: lint (Frontend)
         continue-on-error: true
