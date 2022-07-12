@@ -22,7 +22,8 @@ jobs:
         with:
           filters: |
             app:
-              - '[!f]*/**'
+              - './*.json'
+              - 'src/**'
             functions:
               - 'functions/**'
 
