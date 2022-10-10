@@ -33,7 +33,7 @@
     "animate.css": "4.1.1",
     "date-fns": "2.29.2",
     "firebase": "9.9.4",
-    "mdb-angular-ui-kit": "2.3.0",
+    "mdb-angular-ui-kit": "3.0.0",
     "ng-recaptcha": "10.0.0",
     "ngx-material-timepicker": "5.5.3",
     "ngx-quicklink": "^0.3.0",
