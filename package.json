@@ -52,7 +52,7 @@
     "@angular/cli": "14.2.6",
     "@angular/compiler-cli": "14.2.0",
     "@angular/language-service": "14.2.6",
-    "@types/node": "18.7.14",
+    "@types/node": "18.8.5",
     "@typescript-eslint/eslint-plugin": "5.40.0",
     "@typescript-eslint/parser": "5.36.1",
     "eslint": "8.25.0",
