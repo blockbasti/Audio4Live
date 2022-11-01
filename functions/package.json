@@ -3,8 +3,8 @@
   "scripts": {
     "lint": "eslint ./src/index.ts --fix",
     "build": "tsc",
-    "mjml": "mjml ./src/booking.mjml -o ./src/booking.html --config.minify true --config.minifyOptions='{\"minifyCSS\": true, \"removeEmptyAttributes\": false}'",
-    "serve": "tsc --watch & firebase emulators:start",
+    "mjml": "mjml ./src/booking.mjml -o ./src/booking.html --config.minify true",
+    "serve": "firebase emulators:start & tsc --watch",
     "shell": "npm run build && firebase functions:shell",
     "start": "npm run shell",
     "deploy": "firebase deploy --only functions",

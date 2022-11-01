@@ -1,0 +1,114 @@
+<div class="container">
+  <div class="row overflow-auto">
+    <div class="container">
+      <div class="row">
+        <div class="col my-3">
+          <div class="card bg-dark">
+            <div class="card-header">
+              <div class="card-title">
+                <h3 class="m-0">Blocker</h3>
+              </div>
+            </div>
+
+            <div class="card-body">
+              <div class="container">
+                <div class="row">
+                  <div class="col-sm-12 col-md-4">
+                    <mat-form-field appearance="fill">
+                      <mat-label>Datumsbereich</mat-label>
+                      <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
+                        <input matStartDate formControlName="start" placeholder="Start date" />
+                        <input matEndDate formControlName="end" placeholder="End date" />
+                      </mat-date-range-input>
+
+                      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                      <mat-date-range-picker #picker></mat-date-range-picker>
+
+                      <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')">Ungültiger Starttag </mat-error>
+                      <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')">Ungültiger Endtag</mat-error>
+                    </mat-form-field>
+                    <mat-checkbox class="" [formControl]="isSingleDay">Nur eintägige Events</mat-checkbox>
+                    <br />
+                    <div class="btn-group" role="group">
+                      <button class="btn btn-primary btn-sm" type="button" mdbBtn (click)="addBlocker()">Hinzufügen</button>
+                      <button class="btn btn-primary btn-sm" type="button" mdbBtn (click)="nextWeek()">nächste Woche</button>
+                    </div>
+                  </div>
+                  <div class="col-sm-12 col-md-8 mt-3 mt-md-0 overflow-auto" style="height: 20vh">
+                    <ul class="list-group">
+                      <li class="list-group-item grey darken-3" *ngFor="let block of blocker; let i = index">
+                        <div style="cursor: pointer" class="close badge rounded-pill bg-danger" (click)="deleteBlocker(block.id)">
+                          <span aria-hidden="true">×</span>
+                        </div>
+                        {{ formatDate(block.interval.start, false) }} - {{ formatDate(block.interval.end, false) }}
+                        {{ block.isSingleDay ? '(Nur eintägige Events)' : '' }}
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row overflow-auto mt-3" style="height: 80vh">
+    <div class="container">
+      <div class="row" *ngFor="let booking of bookings; let i = index">
+        <div class="col my-3">
+          <div class="card bg-dark">
+            <div class="card-header">
+              <div class="card-title d-flex justify-content-between mb-0">
+                <h3 class="m-0">Buchung #{{ i + 1 }}</h3>
+                <div
+                  style="cursor: pointer"
+                  class="close badge rounded-pill bg-danger"
+                  style="font-size: 1rem"
+                  (click)="deleteBooking(booking.id)"
+                >
+                  <span aria-hidden="true">×</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-body p-0 px-md-3">
+              <table mdbTable>
+                <colgroup>
+                  <col style="width: max-content" />
+                  <col />
+                </colgroup>
+                <tbody class="text-white">
+                  <tr>
+                    <td>Name</td>
+                    <td>{{ booking.name }}</td>
+                  </tr>
+                  <tr>
+                    <td>Datum</td>
+                    <td>{{ formatDate(booking.date.start, true) }} - {{ formatDate(booking.date.end, true) }}</td>
+                  </tr>
+                  <tr>
+                    <td>Ort</td>
+                    <td>{{ booking.location }}</td>
+                  </tr>
+                  <tr>
+                    <td>Email</td>
+                    <td>{{ booking.email }}</td>
+                  </tr>
+                  <tr>
+                    <td>Telefonnummer</td>
+                    <td>{{ booking.phone }}</td>
+                  </tr>
+                  <tr>
+                    <td>Nachricht</td>
+                    <td>{{ booking.message }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

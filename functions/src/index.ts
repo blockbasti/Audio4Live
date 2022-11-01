@@ -3,6 +3,7 @@ import { addHours, addMinutes, format, isSameDay } from 'date-fns';
 import { utcToZonedTime } from 'date-fns-tz';
 import * as functions from 'firebase-functions';
 import { Buchung } from '../../src/app/buchen/buchung';
+import { Mail } from '../../src/app/admin/mail';
 
 const admin = require('firebase-admin');
 admin.initializeApp(functions.config().firebase);
@@ -101,4 +102,9 @@ export const verify = functions.https.onCall(async (data, context) => {
   } else {
     return { status: 'error' };
   }
+});
+
+export const mail = functions.https.onCall((data: Mail, _context) => {
+  /* Email to customer */
+  db.collection('mail').add(data);
 });

@@ -14,9 +14,13 @@ import { environment } from 'src/environments/environment';
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from './admin.component';
 import { LoginComponent } from './login/login.component';
+import { MdbTabsModule } from 'mdb-angular-ui-kit/tabs';
+import { QuillModule } from 'ngx-quill';
+import { BookingComponent } from './booking.component';
+import { MailComponent } from './mail.component';
 
 @NgModule({
-  declarations: [AdminComponent, LoginComponent],
+  declarations: [AdminComponent, LoginComponent, BookingComponent, MailComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,
@@ -28,6 +32,8 @@ import { LoginComponent } from './login/login.component';
     MatCheckboxModule,
     FirestoreModule,
     FunctionsModule,
+    MdbTabsModule,
+    QuillModule.forRoot(),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFunctions(() => {
       const functions = getFunctions();
