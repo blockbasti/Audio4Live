@@ -2,19 +2,19 @@ import axios from 'axios';
 import { addHours, addMinutes, format, isSameDay } from 'date-fns';
 import { utcToZonedTime } from 'date-fns-tz';
 import * as functions from 'firebase-functions';
-import { Buchung } from '../../src/app/buchen/buchung';
 import { Mail } from '../../src/app/admin/mail';
+import { Buchung } from '../../src/app/buchen/buchung';
 
-const admin = require('firebase-admin');
+import admin = require('firebase-admin');
 admin.initializeApp(functions.config().firebase);
 
 const db = admin.firestore();
 
-export const submit = functions.https.onCall((data: Buchung, _context) => {
+export const submit = functions.https.onCall(async (data: Buchung, _context) => {
   const date = data.date
     ? {
         start: utcToZonedTime(data.date.start, 'Europe/Berlin'),
-        end: utcToZonedTime(data.date.end, 'Europe/Berlin'),
+        end: utcToZonedTime(data.date.end, 'Europe/Berlin')
       }
     : undefined;
   const times = data.times;
@@ -54,7 +54,7 @@ export const submit = functions.https.onCall((data: Buchung, _context) => {
   }
 
   /* Email to customer */
-  db.collection('mail').add({
+  await db.collection('mail').add({
     to: data.email,
     bcc: 'info@audio4live.de',
     template: {
@@ -66,24 +66,24 @@ export const submit = functions.https.onCall((data: Buchung, _context) => {
         email: data.email,
         callback: data.phone !== '' ? (data.call ? '(Rückruf gewünscht)' : '(kein Rückruf)') : '',
         location: data.location !== '' ? data.location : 'kein Ort angegeben',
-        message: data.message,
-      },
-    },
+        message: data.message
+      }
+    }
   });
 
   /* Add to booking DB */
-  db.collection('booking').add({
+  await db.collection('booking').add({
     date: date
       ? {
           start: new Date(date.start),
-          end: new Date(date.end),
+          end: new Date(date.end)
         }
       : {},
     name: data.name,
     email: data.email,
     location: data.location,
     phone: data.phone,
-    message: data.message,
+    message: data.message
   });
 });
 
@@ -104,7 +104,7 @@ export const verify = functions.https.onCall(async (data, context) => {
   }
 });
 
-export const mail = functions.https.onCall((data: Mail, _context) => {
+export const mail = functions.https.onCall(async (data: Mail, _context) => {
   /* Email to customer */
-  db.collection('mail').add(data);
+  await db.collection('mail').add(data);
 });

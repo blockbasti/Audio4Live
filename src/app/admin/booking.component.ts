@@ -10,7 +10,7 @@ import {
   orderBy,
   query,
   Timestamp,
-  where,
+  where
 } from '@angular/fire/firestore';
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { addWeeks, format } from 'date-fns';
@@ -21,7 +21,7 @@ import { Buchung } from '../buchen/buchung';
 type Booking = Buchung | { id: string };
 @Component({
   selector: 'app-booking',
-  templateUrl: './booking.component.html',
+  templateUrl: './booking.component.html'
 })
 export class BookingComponent implements OnInit {
   refresh: Subject<any> = new Subject();
@@ -34,19 +34,18 @@ export class BookingComponent implements OnInit {
 
   range = new UntypedFormGroup({
     start: new UntypedFormControl(),
-    end: new UntypedFormControl(),
+    end: new UntypedFormControl()
   });
   isSingleDay = new UntypedFormControl();
 
   constructor(private readonly db: Firestore) {
-
     // get blocker
     this.blockerCollection = collection(db, 'blocker').withConverter<Blocker>({
       fromFirestore: (snapshot) => {
         return new Blocker(
           {
             start: (snapshot.data().start as Timestamp).toDate(),
-            end: (snapshot.data().end as Timestamp).toDate(),
+            end: (snapshot.data().end as Timestamp).toDate()
           },
           snapshot.data().isSingleDay,
           snapshot.id
@@ -54,7 +53,7 @@ export class BookingComponent implements OnInit {
       },
       toFirestore: (blocker: Blocker) => {
         return { start: blocker.interval.start, end: blocker.interval.end, isSingleDay: blocker.isSingleDay };
-      },
+      }
     });
 
     const blockerquery = query(this.blockerCollection, where('end', '>=', new Date()), orderBy('end'));
@@ -71,15 +70,15 @@ export class BookingComponent implements OnInit {
         if (snapshot.data().date.start && snapshot.data().date.end) {
           buchung.date = {
             start: (snapshot.data().date.start as Timestamp).toDate(),
-            end: (snapshot.data().date.end as Timestamp).toDate(),
+            end: (snapshot.data().date.end as Timestamp).toDate()
           };
         }
         return {
           ...buchung,
-          id: snapshot.id,
+          id: snapshot.id
         };
       },
-      toFirestore: (it: any) => it,
+      toFirestore: (it: any) => it
     });
 
     collectionData(this.bookingCollection, { idField: 'id' }).subscribe((bookings) => {
@@ -115,9 +114,9 @@ export class BookingComponent implements OnInit {
     addDoc(this.blockerCollection, {
       interval: {
         start: this.range.get('start').value,
-        end: this.range.get('end').value,
+        end: this.range.get('end').value
       },
-      isSingleDay: this.isSingleDay.value,
+      isSingleDay: this.isSingleDay.value
     });
   }
 
@@ -127,7 +126,7 @@ export class BookingComponent implements OnInit {
     }
     this.range.setValue({
       start: addWeeks(new Date(this.range.get('start').value), 1),
-      end: addWeeks(new Date(this.range.get('end').value), 1),
+      end: addWeeks(new Date(this.range.get('end').value), 1)
     });
   }
 

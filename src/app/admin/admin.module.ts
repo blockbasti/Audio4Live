@@ -1,4 +1,5 @@
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { provideFirebaseApp } from '@angular/fire/app';
 import { connectAuthEmulator, getAuth, provideAuth } from '@angular/fire/auth';
@@ -10,13 +11,13 @@ import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { initializeApp } from 'firebase/app';
+import { MdbTabsModule } from 'mdb-angular-ui-kit/tabs';
+import { QuillModule } from 'ngx-quill';
 import { environment } from 'src/environments/environment';
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from './admin.component';
-import { LoginComponent } from './login/login.component';
-import { MdbTabsModule } from 'mdb-angular-ui-kit/tabs';
-import { QuillModule } from 'ngx-quill';
 import { BookingComponent } from './booking.component';
+import { LoginComponent } from './login/login.component';
 import { MailComponent } from './mail.component';
 
 @NgModule({
@@ -33,7 +34,10 @@ import { MailComponent } from './mail.component';
     FirestoreModule,
     FunctionsModule,
     MdbTabsModule,
-    QuillModule.forRoot(),
+    HttpClientModule,
+    QuillModule.forRoot({
+      theme: 'snow'
+    }),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFunctions(() => {
       const functions = getFunctions();
@@ -55,8 +59,8 @@ import { MailComponent } from './mail.component';
         connectAuthEmulator(auth, 'http://localhost:9099', { disableWarnings: true });
       }
       return auth;
-    }),
+    })
   ],
-  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'de-DE' }],
+  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'de-DE' }]
 })
 export class AdminModule {}

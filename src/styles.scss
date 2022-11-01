@@ -2,8 +2,7 @@
 @import './background.scss';
 
 @import 'node_modules/mdb-angular-ui-kit/assets/scss/mdb.scss';
-
-@import '../node_modules/quill/dist/quill.bubble.css';
+@import '~quill/dist/quill.snow.css';
 
 html,
 body {
@@ -88,4 +87,20 @@ footer.bg-dark {
 
 a {
   cursor: pointer;
+}
+
+.ql-snow .ql-stroke {
+  stroke: #fff;
+}
+
+.ql-snow .ql-fill {
+  fill: #fff;
+}
+
+.ql-snow .ql-picker {
+  color: #fff;
+}
+
+.ql-snow .ql-picker-options .ql-picker-item {
+  color: #000;
 }
