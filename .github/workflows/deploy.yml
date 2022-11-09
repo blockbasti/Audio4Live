@@ -43,7 +43,7 @@ jobs:
 
       - name: Audit URLs using Lighthouse
         continue-on-error: true
-        uses: treosh/lighthouse-ci-action@9.3.0
+        uses: treosh/lighthouse-ci-action@9.3.1
         with:
           runs: 3
           urls: |
