@@ -4,6 +4,7 @@ import { addDoc, collection, CollectionReference, DocumentData, Firestore } from
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Subject } from 'rxjs';
+import { Mail } from './mail';
 const mjml2html = require('mjml-browser');
 
 @Component({
@@ -37,8 +38,18 @@ export class MailComponent implements OnInit {
     }, 2000);
   }
 
+  onSubmit(): void {
+    console.log(this.form.value);
+    console.log(this.getFormattedMessage());
+    this.sendMail();
+  }
+
   sendMail(): void {
-    addDoc(this.mailCollection, {});
+    let mail = new Mail(this.form.value.to, this.form.value.from, this.form.value.cc, this.form.value.bcc, {
+      subject: this.form.value.subject,
+      html: this.getFormattedMessage()
+    });
+    addDoc(this.mailCollection, JSON.parse(JSON.stringify(mail)));
   }
 
   byPassHTML(html: string) {
@@ -48,6 +59,6 @@ export class MailComponent implements OnInit {
   getFormattedMessage() {
     let html: string = mjml2html(this.template, {}).html;
     html = html.replace('{{body}}', this.form.get('content').value);
-    return this.byPassHTML(html);
+    return html;
   }
 }

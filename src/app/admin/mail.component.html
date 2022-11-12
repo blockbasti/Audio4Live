@@ -1,10 +1,32 @@
 <div class="container">
   <div class="row" style="height: 80vh">
-    <div class="col-12 col-md-6">
-      <form [formGroup]="form">
+    <div class="card bg-dark shadow-5-strong col-12 col-md-6">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <mat-form-field class="w-100 text-white">
+          <mat-label>Empfänger Email Adresse</mat-label>
+          <input matInput type="email" placeholder="Email" formControlName="to" />
+        </mat-form-field>
+        <mat-form-field class="w-100 text-white">
+          <mat-label>Absender Email Adresse</mat-label>
+          <input matInput type="email" placeholder="Email" formControlName="from" />
+        </mat-form-field>
+        <mat-form-field class="w-100 text-white">
+          <mat-label>CC Email Adresse</mat-label>
+          <input matInput type="email" placeholder="Email" formControlName="cc" />
+        </mat-form-field>
+        <mat-form-field class="w-100 text-white">
+          <mat-label>BCC Email Adresse</mat-label>
+          <input matInput type="email" placeholder="Email" formControlName="bcc" />
+        </mat-form-field>
+        <mat-form-field class="w-100 text-white">
+          <mat-label>Betreff</mat-label>
+          <input matInput type="email" placeholder="Email" formControlName="subject" />
+        </mat-form-field>
+        <button class="btn btn-primary my-4" type="submit">Senden</button>
+
         <quill-editor format="html" [styles]="{ height: '500px' }" formControlName="content"></quill-editor>
       </form>
     </div>
-    <iframe class="col-12 col-md-6" style="height: 600px" [srcdoc]="getFormattedMessage()"></iframe>
+    <iframe class="col-12 col-md-6" style="height: 600px" [srcdoc]="byPassHTML(getFormattedMessage())"></iframe>
   </div>
 </div>
