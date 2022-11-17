@@ -3,7 +3,7 @@ import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-profil',
-  templateUrl: './profil.component.html',
+  templateUrl: './profil.component.html'
 })
 export class ProfilComponent {
   constructor(readonly titleService: Title) {

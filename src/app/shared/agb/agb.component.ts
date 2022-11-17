@@ -4,7 +4,7 @@ import { MdbModalRef } from 'mdb-angular-ui-kit/modal';
 @Component({
   selector: 'app-agb',
   templateUrl: './agb.component.html',
-  styleUrls: ['./agb.component.scss'],
+  styleUrls: ['./agb.component.scss']
 })
 export class AGBComponent {
   constructor(public readonly modalRef: MdbModalRef<AGBComponent>) {}

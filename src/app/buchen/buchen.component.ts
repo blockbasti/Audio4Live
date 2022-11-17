@@ -20,7 +20,7 @@ import {
   isThisMonth,
   isWithinInterval,
   startOfMonth,
-  toDate,
+  toDate
 } from 'date-fns';
 import { de } from 'date-fns/locale';
 import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
@@ -54,9 +54,9 @@ export class MyCalendarUtils extends CalendarUtils {
   providers: [
     {
       provide: CalendarUtils,
-      useClass: MyCalendarUtils,
-    },
-  ],
+      useClass: MyCalendarUtils
+    }
+  ]
 })
 export class BuchenComponent {
   submit: any;
@@ -75,13 +75,13 @@ export class BuchenComponent {
         return new Blocker(
           {
             start: (snapshot.data().start as Timestamp).toDate(),
-            end: (snapshot.data().end as Timestamp).toDate(),
+            end: (snapshot.data().end as Timestamp).toDate()
           },
           snapshot.data().isSingleDay,
           snapshot.id
         );
       },
-      toFirestore: (it: any) => it,
+      toFirestore: (it: any) => it
     });
 
     const blockerquery = query(blockerCollection, where('end', '>=', new Date()));
@@ -104,7 +104,7 @@ export class BuchenComponent {
     containerClass: 'right',
     ignoreBackdropClick: false,
     keyboard: true,
-    modalClass: 'modal-top-right modal-dialog-scrollable',
+    modalClass: 'modal-top-right modal-dialog-scrollable'
   };
 
   refresh: Subject<any> = new Subject();
@@ -126,16 +126,16 @@ export class BuchenComponent {
   darkTheme: NgxMaterialTimepickerTheme = {
     container: {
       bodyBackgroundColor: '#424242',
-      buttonColor: '#fff',
+      buttonColor: '#fff'
     },
     dial: {
-      dialBackgroundColor: '#555',
+      dialBackgroundColor: '#555'
     },
     clockFace: {
       clockFaceBackgroundColor: '#555',
       clockHandColor: '#78909c',
-      clockFaceTimeInactiveColor: '#fff',
-    },
+      clockFaceTimeInactiveColor: '#fff'
+    }
   };
 
   selectedMonthViewDay: CalendarMonthViewDay;
@@ -197,7 +197,7 @@ export class BuchenComponent {
     ) {
       this.selectedInterval = {
         start: day.date,
-        end: day.date,
+        end: day.date
       };
       this.refresh.next(null);
       this.model.date = this.selectedInterval;

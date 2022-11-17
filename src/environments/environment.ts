@@ -13,8 +13,8 @@ export const environment = {
     storageBucket: 'audio4live-1d621.appspot.com',
     messagingSenderId: '972818261280',
     appId: '1:972818261280:web:3592d5b547b2234700a345',
-    measurementId: 'G-QSEWCK4ZST',
-  },
+    measurementId: 'G-QSEWCK4ZST'
+  }
 };
 
 /*

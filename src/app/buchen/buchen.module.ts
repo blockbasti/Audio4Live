@@ -47,17 +47,17 @@ registerLocaleData(localeDe);
       }
       return firestore;
     }),
-    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
+    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory })
   ],
   providers: [
     {
       provide: RECAPTCHA_LANGUAGE,
-      useValue: 'de',
+      useValue: 'de'
     },
     {
       provide: TIME_LOCALE,
-      useValue: '',
-    },
-  ],
+      useValue: ''
+    }
+  ]
 })
 export class BuchenModule {}

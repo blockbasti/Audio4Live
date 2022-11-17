@@ -12,18 +12,18 @@ const routes: Routes = [
     path: '',
     component: AdminComponent,
     canActivate: [AuthGuard],
-    data: { authGuardPipe: redirectUnauthorizedToLogin },
+    data: { authGuardPipe: redirectUnauthorizedToLogin }
   },
   {
     path: 'login',
     component: LoginComponent,
     canActivate: [AuthGuard],
-    data: { authGuardPipe: redirectLoggedInToAdmin },
-  },
+    data: { authGuardPipe: redirectLoggedInToAdmin }
+  }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
 export class AdminRoutingModule {}

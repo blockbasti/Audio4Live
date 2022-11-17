@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { addDoc, collection, CollectionReference, DocumentData, Firestore } from '@angular/fire/firestore';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Subject } from 'rxjs';
 import { Mail } from './mail';
@@ -18,12 +18,12 @@ export class MailComponent implements OnInit {
   template: string;
 
   form: FormGroup = this.fb.group({
-    to: new FormControl(''),
-    from: new FormControl('info@audio4live.de'),
-    cc: new FormControl(''),
-    bcc: new FormControl(''),
-    subject: new FormControl('Nachricht'),
-    content: new FormControl('')
+    to: new FormControl(null, [Validators.required, Validators.email]),
+    from: new FormControl('info@audio4live.de', [Validators.required, Validators.email]),
+    cc: new FormControl(null, [Validators.email]),
+    bcc: new FormControl(null, [Validators.email]),
+    subject: new FormControl('Nachricht', [Validators.required]),
+    content: new FormControl(null, [Validators.required])
   });
 
   constructor(private sanitizer: DomSanitizer, private fb: FormBuilder, db: Firestore, http: HttpClient) {
@@ -39,6 +39,7 @@ export class MailComponent implements OnInit {
   }
 
   onSubmit(): void {
+    if (!this.form.valid) return;
     console.log(this.form.value);
     console.log(this.getFormattedMessage());
     this.sendMail();

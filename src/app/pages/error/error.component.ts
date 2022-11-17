@@ -3,7 +3,7 @@ import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-error',
-  templateUrl: './error.component.html',
+  templateUrl: './error.component.html'
 })
 export class ErrorComponent implements OnInit {
   constructor(titleService: Title) {

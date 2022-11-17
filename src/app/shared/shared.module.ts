@@ -10,6 +10,6 @@ import { NavbarComponent } from './navbar/navbar.component';
 @NgModule({
   declarations: [NavbarComponent, FooterComponent],
   imports: [CommonModule, RouterModule, MdbModalModule, MdbCollapseModule, QuicklinkModule],
-  exports: [NavbarComponent, FooterComponent, RouterModule, MdbModalModule, QuicklinkModule],
+  exports: [NavbarComponent, FooterComponent, RouterModule, MdbModalModule, QuicklinkModule]
 })
 export class SharedModule {}

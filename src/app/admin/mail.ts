@@ -4,9 +4,9 @@ export class Mail {
     public from: string = '',
     public cc: string = '',
     public bcc: string = '',
-    public message : {
-      subject: string,
-      html: string,
+    public message: {
+      subject: string;
+      html: string;
     }
   ) {}
 }

@@ -5,37 +5,37 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('./landing/landing.module').then((m) => m.LandingModule),
-    data: { animation: 'LandingPage' },
+    data: { animation: 'LandingPage' }
   },
   {
     path: 'profil',
     loadChildren: () => import('./profil/profil.module').then((m) => m.ProfilModule),
-    data: { animation: 'ProfilPage', openPrivacy: false },
+    data: { animation: 'ProfilPage', openPrivacy: false }
   },
   {
     path: 'datenschutz',
     loadChildren: () => import('./landing/landing.module').then((m) => m.LandingModule),
-    data: { animation: 'LandingPage', openPrivacy: true },
+    data: { animation: 'LandingPage', openPrivacy: true }
   },
   {
     path: 'impressum',
     loadChildren: () => import('./landing/landing.module').then((m) => m.LandingModule),
-    data: { animation: 'LandingPage', openImprint: true },
+    data: { animation: 'LandingPage', openImprint: true }
   },
   {
     path: 'leistungen',
     loadChildren: () => import('./leistungen/leistungen.module').then((m) => m.LeistungenModule),
-    data: { animation: 'LeistungenPage' },
+    data: { animation: 'LeistungenPage' }
   },
   {
     path: 'agb',
     loadChildren: () => import('./landing/landing.module').then((m) => m.LandingModule),
-    data: { animation: 'LandingPage', openAGB: true },
-  },
+    data: { animation: 'LandingPage', openAGB: true }
+  }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
 export class PagesRoutingModule {}

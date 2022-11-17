@@ -5,6 +5,6 @@ import { LeistungenComponent } from './leistungen.component';
 
 @NgModule({
   declarations: [LeistungenComponent],
-  imports: [CommonModule, LeistungenRoutingModule],
+  imports: [CommonModule, LeistungenRoutingModule]
 })
 export class LeistungenModule {}

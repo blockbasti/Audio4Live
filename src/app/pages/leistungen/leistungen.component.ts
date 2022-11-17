@@ -3,7 +3,7 @@ import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-leistungen',
-  templateUrl: './leistungen.component.html',
+  templateUrl: './leistungen.component.html'
 })
 export class LeistungenComponent {
   constructor(readonly titleService: Title) {

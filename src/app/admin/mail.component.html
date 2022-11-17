@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row" style="height: 80vh">
     <div class="card bg-dark shadow-5-strong col-12 col-md-6">
-      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <form class="pt-1" [formGroup]="form" (ngSubmit)="onSubmit()">
         <mat-form-field class="w-100 text-white">
           <mat-label>Empfänger Email Adresse</mat-label>
           <input matInput type="email" placeholder="Email" formControlName="to" />

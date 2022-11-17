@@ -14,13 +14,13 @@ Happy linting! 💖
 module.exports = {
   env: {
     browser: true,
-    es6: true,
+    es6: true
   },
   extends: ['prettier'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     project: 'tsconfig.json',
-    sourceType: 'module',
+    sourceType: 'module'
   },
   rules: {
     '@typescript-eslint/adjacent-overload-signatures': 'error',
@@ -41,8 +41,8 @@ module.exports = {
     'no-empty': [
       'error',
       {
-        allowEmptyCatch: true,
-      },
+        allowEmptyCatch: true
+      }
     ],
     'no-invalid-this': 'error',
     'no-new-wrappers': 'error',
@@ -51,14 +51,14 @@ module.exports = {
     'no-shadow': [
       'error',
       {
-        hoist: 'all',
-      },
+        hoist: 'all'
+      }
     ],
     'no-throw-literal': 'error',
     'no-unsafe-finally': 'error',
     'no-unused-labels': 'error',
     'no-var': 'warn',
     'no-void': 'error',
-    'prefer-const': 'warn',
-  },
+    'prefer-const': 'warn'
+  }
 };

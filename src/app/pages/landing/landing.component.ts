@@ -8,7 +8,7 @@ import { ImpressumComponent } from 'src/app/shared/impressum/impressum.component
 
 @Component({
   selector: 'app-landing',
-  templateUrl: './landing.component.html',
+  templateUrl: './landing.component.html'
 })
 export class LandingComponent {
   datenschutzModalRef: MdbModalRef<DatenschutzComponent> | null = null;
@@ -21,7 +21,7 @@ export class LandingComponent {
     containerClass: 'right',
     ignoreBackdropClick: false,
     keyboard: true,
-    modalClass: 'modal-top-right modal-dialog-scrollable',
+    modalClass: 'modal-top-right modal-dialog-scrollable'
   };
 
   constructor(readonly route: ActivatedRoute, readonly titleService: Title, private readonly modalService: MdbModalService) {
