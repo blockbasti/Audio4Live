@@ -28,11 +28,11 @@ jobs:
           key: ${{ runner.os }}-angular
 
       - name: Install dependencies (Frontend)
-        run: npm ci
+        run: npm install
 
       - name: Install dependencies (Functions)
         working-directory: ./functions
-        run: npm ci
+        run: npm install
 
       - name: Deploy
         env:
