@@ -37,6 +37,7 @@
     "mjml": "^4.13.0",
     "mjml-browser": "^4.13.0",
     "ng-recaptcha": "10.0.0",
+    "ngx-material-file-input": "^4.0.0",
     "ngx-material-timepicker": "5.5.3",
     "ngx-quicklink": "0.3.0",
     "ngx-quill": "19.0.1",

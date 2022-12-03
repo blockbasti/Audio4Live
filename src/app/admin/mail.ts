@@ -7,6 +7,10 @@ export class Mail {
     public message: {
       subject: string;
       html: string;
-    }
+    },
+    public attatchments: {
+      filename: string;
+      path: string;
+    }[]
   ) {}
 }

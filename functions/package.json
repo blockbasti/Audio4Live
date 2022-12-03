@@ -4,7 +4,7 @@
     "lint": "eslint ./src/index.ts --fix",
     "build": "tsc",
     "mjml": "mjml ./src/booking.mjml -o ./src/booking.html --config.minify true",
-    "serve": "firebase emulators:start & tsc --watch",
+    "serve": "firebase emulators:start",
     "shell": "npm run build && firebase functions:shell",
     "start": "npm run shell",
     "deploy": "firebase deploy --only functions",

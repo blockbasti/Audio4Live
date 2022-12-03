@@ -12,6 +12,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { initializeApp } from 'firebase/app';
 import { MdbTabsModule } from 'mdb-angular-ui-kit/tabs';
+import { MaterialFileInputModule } from 'ngx-material-file-input';
 import { QuillModule } from 'ngx-quill';
 import { environment } from 'src/environments/environment';
 import { AdminRoutingModule } from './admin-routing.module';
@@ -35,6 +36,7 @@ import { MailComponent } from './mail.component';
     FunctionsModule,
     MdbTabsModule,
     HttpClientModule,
+    MaterialFileInputModule,
     QuillModule.forRoot({
       theme: 'snow'
     }),

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { addDoc, collection, CollectionReference, DocumentData, Firestore } from '@angular/fire/firestore';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
+import { FileInput, FileValidator } from 'ngx-material-file-input';
 import { Subject } from 'rxjs';
 import { Mail } from './mail';
 const mjml2html = require('mjml-browser');
@@ -23,7 +24,8 @@ export class MailComponent implements OnInit {
     cc: new FormControl(null, [Validators.email]),
     bcc: new FormControl(null, [Validators.email]),
     subject: new FormControl('Nachricht', [Validators.required]),
-    content: new FormControl(null, [Validators.required])
+    content: new FormControl('', [Validators.required]),
+    attatchments: [undefined, [FileValidator.maxContentSize(1 * 2 ** 20)]]
   });
 
   constructor(private sanitizer: DomSanitizer, private fb: FormBuilder, db: Firestore, http: HttpClient) {
@@ -45,11 +47,40 @@ export class MailComponent implements OnInit {
     this.sendMail();
   }
 
-  sendMail(): void {
-    let mail = new Mail(this.form.value.to, this.form.value.from, this.form.value.cc, this.form.value.bcc, {
-      subject: this.form.value.subject,
-      html: this.getFormattedMessage()
+  getBase64Attatchment(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = (error) => reject(error);
     });
+  }
+
+  async getAttatchments() {
+    return await Promise.all(
+      (this.form.get('attatchments').value as FileInput).files.map(async (file) => {
+        return {
+          filename: file.name,
+          path: (await this.getBase64Attatchment(file)) as string
+        };
+      })
+    );
+  }
+
+  async sendMail(): Promise<void> {
+    let attatchments = await this.getAttatchments();
+
+    let mail = new Mail(
+      this.form.value.to,
+      this.form.value.from,
+      this.form.value.cc,
+      this.form.value.bcc,
+      {
+        subject: this.form.value.subject,
+        html: this.getFormattedMessage()
+      },
+      attatchments
+    );
     addDoc(this.mailCollection, JSON.parse(JSON.stringify(mail)));
   }
 
