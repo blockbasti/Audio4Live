@@ -24,20 +24,20 @@
         </mat-form-field>
         <mat-form-field class="w-100 text-white">
           <ngx-mat-file-input
-            formControlName="attatchments"
+            formControlName="attachments"
             placeholder="Anhänge"
             valuePlaceholder="Anhänge auswählen (max. 1MB)"
             multiple
           ></ngx-mat-file-input>
-          <mat-error *ngIf="form.get('attatchments').hasError('maxContentSize')">
-            The total size must not exceed {{ form.get('attatchments')?.getError('maxContentSize').maxSize | byteFormat }} ({{
-              form.get('attatchments')?.getError('maxContentSize').actualSize | byteFormat
+          <mat-error *ngIf="form.get('attachments').hasError('maxContentSize')">
+            The total size must not exceed {{ form.get('attachments')?.getError('maxContentSize').maxSize | byteFormat }} ({{
+              form.get('attachments')?.getError('maxContentSize').actualSize | byteFormat
             }}).
           </mat-error>
         </mat-form-field>
         <button class="btn btn-primary my-4" type="submit">Senden</button>
 
-        <quill-editor format="html" [styles]="{ height: '500px' }" formControlName="content"></quill-editor>
+        <quill-editor format="html" [styles]="{ height: '450px' }" formControlName="content"></quill-editor>
       </form>
     </div>
     <iframe class="col-12 col-md-6" style="height: 600px" [srcdoc]="byPassHTML(getFormattedMessage())"></iframe>

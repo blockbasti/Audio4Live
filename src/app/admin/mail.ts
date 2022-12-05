@@ -8,7 +8,7 @@ export class Mail {
       subject: string;
       html: string;
     },
-    public attatchments: {
+    public attachments: {
       filename: string;
       path: string;
     }[]

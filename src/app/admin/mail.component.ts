@@ -25,7 +25,7 @@ export class MailComponent implements OnInit {
     bcc: new FormControl(null, [Validators.email]),
     subject: new FormControl('Nachricht', [Validators.required]),
     content: new FormControl('', [Validators.required]),
-    attatchments: [undefined, [FileValidator.maxContentSize(1 * 2 ** 20)]]
+    attachments: [undefined, [FileValidator.maxContentSize(1 * 2 ** 20)]]
   });
 
   constructor(private sanitizer: DomSanitizer, private fb: FormBuilder, db: Firestore, http: HttpClient) {
@@ -47,7 +47,7 @@ export class MailComponent implements OnInit {
     this.sendMail();
   }
 
-  getBase64Attatchment(file) {
+  getBase64Attachment(file) {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
       reader.readAsDataURL(file);
@@ -56,19 +56,19 @@ export class MailComponent implements OnInit {
     });
   }
 
-  async getAttatchments() {
+  async getAttachments() {
     return await Promise.all(
-      (this.form.get('attatchments').value as FileInput).files.map(async (file) => {
+      (this.form.get('attachments').value as FileInput).files.map(async (file) => {
         return {
           filename: file.name,
-          path: (await this.getBase64Attatchment(file)) as string
+          path: (await this.getBase64Attachment(file)) as string
         };
       })
     );
   }
 
   async sendMail(): Promise<void> {
-    let attatchments = await this.getAttatchments();
+    let attachments = await this.getAttachments();
 
     let mail = new Mail(
       this.form.value.to,
@@ -79,7 +79,7 @@ export class MailComponent implements OnInit {
         subject: this.form.value.subject,
         html: this.getFormattedMessage()
       },
-      attatchments
+      attachments
     );
     addDoc(this.mailCollection, JSON.parse(JSON.stringify(mail)));
   }
