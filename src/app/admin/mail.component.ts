@@ -77,9 +77,9 @@ export class MailComponent implements OnInit {
       this.form.value.bcc,
       {
         subject: this.form.value.subject,
-        html: this.getFormattedMessage()
+        html: this.getFormattedMessage(),
+        attachments: attachments
       },
-      attachments
     );
     addDoc(this.mailCollection, JSON.parse(JSON.stringify(mail)));
   }

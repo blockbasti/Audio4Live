@@ -7,10 +7,10 @@ export class Mail {
     public message: {
       subject: string;
       html: string;
-    },
-    public attachments: {
-      filename: string;
-      path: string;
-    }[]
+      attachments: {
+        filename: string;
+        path: string;
+      }[];
+    }
   ) {}
 }
