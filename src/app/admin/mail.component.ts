@@ -42,8 +42,6 @@ export class MailComponent implements OnInit {
 
   onSubmit(): void {
     if (!this.form.valid) return;
-    console.log(this.form.value);
-    console.log(this.getFormattedMessage());
     this.sendMail();
   }
 
@@ -57,6 +55,7 @@ export class MailComponent implements OnInit {
   }
 
   async getAttachments() {
+    if (this.form.get('attachments').value == null || this.form.get('attachments').value.length == 0) return null;
     return await Promise.all(
       (this.form.get('attachments').value as FileInput).files.map(async (file) => {
         return {
@@ -70,18 +69,17 @@ export class MailComponent implements OnInit {
   async sendMail(): Promise<void> {
     let attachments = await this.getAttachments();
 
-    let mail = new Mail(
-      this.form.value.to,
-      this.form.value.from,
-      this.form.value.cc,
-      this.form.value.bcc,
-      {
-        subject: this.form.value.subject,
-        html: this.getFormattedMessage(),
-        attachments: attachments
-      },
-    );
-    addDoc(this.mailCollection, JSON.parse(JSON.stringify(mail)));
+    let mail = new Mail(this.form.value.to, this.form.value.from, this.form.value.cc, this.form.value.bcc, {
+      subject: this.form.value.subject,
+      html: this.getFormattedMessage(),
+      attachments: attachments
+    });
+
+    console.log(mail);
+
+    addDoc(this.mailCollection, JSON.parse(JSON.stringify(mail)))
+      .then((_) => alert('Email erfolgreich gesendet!'))
+      .catch((reason) => alert(reason));
   }
 
   byPassHTML(html: string) {
