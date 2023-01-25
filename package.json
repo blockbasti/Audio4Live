@@ -20,7 +20,7 @@
     "@angular/fire": "7.5.0",
     "@angular/forms": "14.2.8",
     "@angular/localize": "14.2.8",
-    "@angular/material": "14.2.6",
+    "@angular/material": "15.1.2",
     "@angular/platform-browser": "14.2.8",
     "@angular/platform-browser-dynamic": "14.2.8",
     "@angular/router": "14.2.8",
