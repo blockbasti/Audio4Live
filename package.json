@@ -59,7 +59,7 @@
     "@angular/language-service": "14.2.10",
     "@types/node": "18.14.0",
     "@types/quill": "2.0.10",
-    "@typescript-eslint/eslint-plugin": "5.52.0",
+    "@typescript-eslint/eslint-plugin": "5.53.0",
     "@typescript-eslint/parser": "5.53.0",
     "eslint": "8.34.0",
     "firebase-tools": "11.23.1",
