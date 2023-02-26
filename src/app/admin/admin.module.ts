@@ -1,3 +1,4 @@
+import { NgxMatFileInputModule } from '@angular-material-components/file-input';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
@@ -9,10 +10,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { initializeApp } from 'firebase/app';
 import { MdbTabsModule } from 'mdb-angular-ui-kit/tabs';
-import { MaterialFileInputModule } from 'ngx-material-file-input';
 import { QuillModule } from 'ngx-quill';
 import { environment } from 'src/environments/environment';
 import { AdminRoutingModule } from './admin-routing.module';
@@ -20,7 +21,6 @@ import { AdminComponent } from './admin.component';
 import { BookingComponent } from './booking.component';
 import { LoginComponent } from './login/login.component';
 import { MailComponent } from './mail.component';
-
 @NgModule({
   declarations: [AdminComponent, LoginComponent, BookingComponent, MailComponent],
   imports: [
@@ -32,11 +32,12 @@ import { MailComponent } from './mail.component';
     MatDatepickerModule,
     MatInputModule,
     MatCheckboxModule,
+    MatIconModule,
     FirestoreModule,
     FunctionsModule,
     MdbTabsModule,
     HttpClientModule,
-    MaterialFileInputModule,
+    NgxMatFileInputModule,
     QuillModule.forRoot({
       theme: 'snow'
     }),

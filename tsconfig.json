@@ -10,9 +10,13 @@
     "module": "es2020",
     "moduleResolution": "node",
     "importHelpers": false,
-    "target": "es2020",
-    "lib": ["es2018", "dom"],
-    "skipLibCheck": true
+    "target": "ES2022",
+    "lib": [
+      "es2018",
+      "dom"
+    ],
+    "skipLibCheck": true,
+    "useDefineForClassFields": false
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,

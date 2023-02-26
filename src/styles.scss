@@ -1,6 +1,7 @@
 @import './app/buchen/calendar.scss';
 @import './background.scss';
 
+@import url('node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css');
 @import 'node_modules/mdb-angular-ui-kit/assets/scss/mdb.scss';
 @import '~quill/dist/quill.snow.css';
 
@@ -14,6 +15,10 @@ body {
   overflow-x: hidden;
   color: #fff;
   //min-width: 0 !important;
+}
+
+.bg-dark {
+  background-color: rgba(38, 38, 38, var(--mdb-bg-opacity)) !important;
 }
 
 .vignette-radial:after {

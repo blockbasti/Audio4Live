@@ -1,12 +1,12 @@
+import { MaxSizeValidator } from '@angular-material-components/file-input';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { addDoc, collection, CollectionReference, DocumentData, Firestore } from '@angular/fire/firestore';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
-import { FileInput, FileValidator } from 'ngx-material-file-input';
+import * as mjml2html from 'mjml-browser';
 import { Subject } from 'rxjs';
 import { Mail } from './mail';
-const mjml2html = require('mjml-browser');
 
 @Component({
   selector: 'app-mail',
@@ -18,14 +18,21 @@ export class MailComponent implements OnInit {
 
   template: string;
 
+  public files: File[];
+
   form: FormGroup = this.fb.group({
     to: new FormControl(null, [Validators.required, Validators.email]),
-    from: new FormControl('info@audio4live.de', [Validators.required, Validators.email]),
+    from: new FormControl('"Audio4Live" info@audio4live.de', [
+      Validators.required,
+      Validators.pattern(
+        /^("?.*" )?([a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)$/
+      )
+    ]),
     cc: new FormControl(null, [Validators.email]),
     bcc: new FormControl(null, [Validators.email]),
     subject: new FormControl('Nachricht', [Validators.required]),
-    content: new FormControl('', [Validators.required]),
-    attachments: [undefined, [FileValidator.maxContentSize(1 * 2 ** 20)]]
+    content: new FormControl('Text', [Validators.required]),
+    attachments: new FormControl(undefined, MaxSizeValidator(900 * 1000))
   });
 
   constructor(private sanitizer: DomSanitizer, private fb: FormBuilder, db: Firestore, http: HttpClient) {
@@ -38,6 +45,14 @@ export class MailComponent implements OnInit {
     setTimeout(() => {
       document.getElementById('loader')?.remove();
     }, 2000);
+
+    this.form.get('attachments').valueChanges.subscribe((files: any) => {
+      if (!Array.isArray(files)) {
+        this.files = [files];
+      } else {
+        this.files = files;
+      }
+    });
   }
 
   onSubmit(): void {
@@ -45,7 +60,7 @@ export class MailComponent implements OnInit {
     this.sendMail();
   }
 
-  getBase64Attachment(file) {
+  getBase64Attachment(file: File) {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
       reader.readAsDataURL(file);
@@ -57,7 +72,7 @@ export class MailComponent implements OnInit {
   async getAttachments() {
     if (this.form.get('attachments').value == null || this.form.get('attachments').value.length == 0) return null;
     return await Promise.all(
-      (this.form.get('attachments').value as FileInput).files.map(async (file) => {
+      this.files.map(async (file) => {
         return {
           filename: file.name,
           path: (await this.getBase64Attachment(file)) as string
@@ -69,7 +84,7 @@ export class MailComponent implements OnInit {
   async sendMail(): Promise<void> {
     let attachments = await this.getAttachments();
 
-    let mail = new Mail(this.form.value.to, this.form.value.from, this.form.value.cc, this.form.value.bcc, {
+    let mail = new Mail(this.form.value.to, this.form.value.from, this.form.value.from, this.form.value.cc, this.form.value.bcc, {
       subject: this.form.value.subject,
       html: this.getFormattedMessage(),
       attachments: attachments

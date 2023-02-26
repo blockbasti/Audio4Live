@@ -2,7 +2,6 @@ import axios from 'axios';
 import { addHours, addMinutes, format, isSameDay } from 'date-fns';
 import { utcToZonedTime } from 'date-fns-tz';
 import * as functions from 'firebase-functions';
-import { Mail } from '../../src/app/admin/mail';
 import { Buchung } from '../../src/app/buchen/buchung';
 
 import admin = require('firebase-admin');
@@ -102,9 +101,4 @@ export const verify = functions.https.onCall(async (data, context) => {
   } else {
     return { status: 'error' };
   }
-});
-
-export const mail = functions.https.onCall(async (data: Mail, _context) => {
-  /* Email to customer */
-  await db.collection('mail').add(data);
 });
