@@ -61,7 +61,7 @@
     "@types/node": "18.15.8",
     "@types/quill": "2.0.10",
     "@typescript-eslint/eslint-plugin": "^5.56.0",
-    "@typescript-eslint/parser": "^5.56.0",
+    "@typescript-eslint/parser": "^5.57.0",
     "eslint": "^8.36.0",
     "firebase-tools": "11.25.1",
     "husky": "8.0.3",
