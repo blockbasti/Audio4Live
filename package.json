@@ -62,7 +62,7 @@
     "@types/quill": "2.0.10",
     "@typescript-eslint/eslint-plugin": "^5.59.11",
     "@typescript-eslint/parser": "^5.59.11",
-    "eslint": "^8.42.0",
+    "eslint": "^8.43.0",
     "firebase-tools": "11.30.0",
     "husky": "8.0.3",
     "inquirer-autocomplete-prompt": "3.0.0",
