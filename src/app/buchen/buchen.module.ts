@@ -11,7 +11,7 @@ import { MdbCheckboxModule } from 'mdb-angular-ui-kit/checkbox';
 import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
 import { MdbModalModule } from 'mdb-angular-ui-kit/modal';
 import { RecaptchaFormsModule, RecaptchaModule, RECAPTCHA_LANGUAGE } from 'ng-recaptcha';
-import { NgxMaterialTimepickerModule, ɵe as TIME_LOCALE } from 'ngx-material-timepicker';
+import { NgxMaterialTimepickerModule, TIME_LOCALE } from 'ngx-material-timepicker';
 import { environment } from '../../environments/environment';
 import { BuchenRoutingModule } from './buchen-routing.module';
 import { BuchenComponent } from './buchen.component';
@@ -23,16 +23,16 @@ registerLocaleData(localeDe);
   imports: [
     CommonModule,
     BuchenRoutingModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
     FormsModule,
     RecaptchaModule,
     RecaptchaFormsModule,
-    NgxMaterialTimepickerModule.setLocale('de-DE'),
+    NgxMaterialTimepickerModule.setOpts('de-DE'),
     MdbFormsModule,
     MdbModalModule,
     MdbCheckboxModule,
     FirestoreModule,
     FunctionsModule,
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFunctions(() => {
       const functions = getFunctions();
       if (environment.useEmulators) {
@@ -56,7 +56,7 @@ registerLocaleData(localeDe);
     },
     {
       provide: TIME_LOCALE,
-      useValue: ''
+      useValue: 'de-DE'
     }
   ]
 })
