@@ -58,7 +58,7 @@
     "@angular/cli": "16.2.1",
     "@angular/compiler-cli": "16.1.8",
     "@angular/language-service": "16.2.4",
-    "@types/node": "20.5.9",
+    "@types/node": "20.6.0",
     "@types/quill": "2.0.11",
     "@typescript-eslint/eslint-plugin": "^6.6.0",
     "@typescript-eslint/parser": "^6.6.0",
