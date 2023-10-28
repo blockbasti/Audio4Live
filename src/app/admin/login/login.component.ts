@@ -7,7 +7,10 @@ import { Router } from '@angular/router';
   templateUrl: './login.component.html'
 })
 export class LoginComponent implements OnInit {
-  constructor(private fireauth: Auth, private readonly router: Router) {}
+  constructor(
+    private fireauth: Auth,
+    private readonly router: Router
+  ) {}
 
   credentials = { email: '', password: '' };
 

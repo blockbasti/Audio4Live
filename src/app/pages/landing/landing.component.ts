@@ -24,7 +24,11 @@ export class LandingComponent {
     modalClass: 'modal-top-right modal-dialog-scrollable'
   };
 
-  constructor(readonly route: ActivatedRoute, readonly titleService: Title, private readonly modalService: MdbModalService) {
+  constructor(
+    readonly route: ActivatedRoute,
+    readonly titleService: Title,
+    private readonly modalService: MdbModalService
+  ) {
     titleService.setTitle('Audio4Live Veranstaltungstechnik');
     route.data.subscribe((data) => {
       if (data.openPrivacy) {

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Auth, signOut, user, User } from '@angular/fire/auth';
+import { Auth, User, signOut, user } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 
@@ -11,7 +11,10 @@ export class AdminComponent implements OnInit {
   refresh: Subject<any> = new Subject();
   user?: User;
 
-  constructor(private readonly auth: Auth, private readonly router: Router) {
+  constructor(
+    private readonly auth: Auth,
+    private readonly router: Router
+  ) {
     user(auth).subscribe((user) => (this.user = user));
   }
 

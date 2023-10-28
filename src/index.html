@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
   <head>
     <meta charset="utf-8" />
@@ -49,7 +49,9 @@
     <style>
       @font-face {
         font-family: 'Lato';
-        src: url('/assets/fonts/lato-bold.woff2') format('woff2'), url('/assets/fonts/lato-bold.woff') format('woff');
+        src:
+          url('/assets/fonts/lato-bold.woff2') format('woff2'),
+          url('/assets/fonts/lato-bold.woff') format('woff');
         font-weight: bold;
         font-style: normal;
         font-display: swap;
@@ -57,7 +59,9 @@
 
       @font-face {
         font-family: 'Lato';
-        src: url('/assets/fonts/lato-regular.woff2') format('woff2'), url('/assets/fonts/lato-regular.woff') format('woff');
+        src:
+          url('/assets/fonts/lato-regular.woff2') format('woff2'),
+          url('/assets/fonts/lato-regular.woff') format('woff');
         font-weight: normal;
         font-style: normal;
         font-display: swap;
@@ -85,7 +89,9 @@
       .app-loading.hidden {
         visibility: hidden;
         opacity: 0;
-        transition: visibility 0s 2s, opacity 1s linear 1s;
+        transition:
+          visibility 0s 2s,
+          opacity 1s linear 1s;
       }
 
       .app-loading .spinner {

@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import {
+  CollectionReference,
+  Firestore,
+  Timestamp,
   addDoc,
   collection,
   collectionData,
-  CollectionReference,
   deleteDoc,
   doc,
-  Firestore,
   orderBy,
   query,
-  Timestamp,
   where
 } from '@angular/fire/firestore';
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
@@ -81,7 +81,7 @@ export class BookingComponent implements OnInit {
       toFirestore: (it: any) => it
     });
 
-    collectionData(this.bookingCollection, { idField: 'id' }).subscribe((bookings) => {
+    collectionData(this.bookingCollection).subscribe((bookings) => {
       this.bookings = bookings;
       this.refresh.next(null);
     });

@@ -1,7 +1,7 @@
 import { MaxSizeValidator } from '@angular-material-components/file-input';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { addDoc, collection, CollectionReference, DocumentData, Firestore } from '@angular/fire/firestore';
+import { CollectionReference, DocumentData, Firestore, addDoc, collection } from '@angular/fire/firestore';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import * as mjml2html from 'mjml-browser';
@@ -35,7 +35,12 @@ export class MailComponent implements OnInit {
     attachments: new FormControl(undefined, MaxSizeValidator(900 * 1000))
   });
 
-  constructor(private sanitizer: DomSanitizer, private fb: FormBuilder, db: Firestore, http: HttpClient) {
+  constructor(
+    private sanitizer: DomSanitizer,
+    private fb: FormBuilder,
+    db: Firestore,
+    http: HttpClient
+  ) {
     this.mailCollection = collection(db, 'mail');
     http.get('assets/message.mjml', { responseType: 'text' }).subscribe((data) => (this.template = data));
   }

@@ -1,10 +1,11 @@
 import { ChangeDetectionStrategy, Component, ElementRef, Injectable, ViewChild } from '@angular/core';
-import { collection, collectionData, Firestore, query, Timestamp, where } from '@angular/fire/firestore';
+import { Firestore, Timestamp, collection, collectionData, query, where } from '@angular/fire/firestore';
 import { Functions, httpsCallableData } from '@angular/fire/functions';
 import { Title } from '@angular/platform-browser';
 import { CalendarEvent, CalendarMonthViewDay, CalendarUtils, CalendarView, DAYS_OF_WEEK } from 'angular-calendar';
 import { GetMonthViewArgs, MonthView } from 'calendar-utils';
 import {
+  Interval,
   addMonths,
   addWeeks,
   areIntervalsOverlapping,
@@ -12,7 +13,6 @@ import {
   endOfMonth,
   format,
   getWeeksInMonth,
-  Interval,
   isAfter,
   isBefore,
   isSameDay,
