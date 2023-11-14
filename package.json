@@ -40,7 +40,7 @@
     "mjml-browser": "^4.14.1",
     "ng-recaptcha": "12.0.2",
     "ngx-material-timepicker": "13.1.1",
-    "ngx-quicklink": "0.4.2",
+    "ngx-quicklink": "0.4.3",
     "ngx-quill": "23.0.0",
     "quill": "1.3.7",
     "rxjs": "7.8.1",
