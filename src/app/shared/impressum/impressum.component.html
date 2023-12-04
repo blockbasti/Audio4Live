@@ -14,10 +14,12 @@
   </address>
 
   <h5>Kontakt</h5>
-  <p>
+  <div>
     Telefon: <a href="tel:+491788055110">+49 178 8055110</a><br />
-    E-Mail: <a href="mailto:info@audio4live.de">info@audio4live.de</a>
-  </p>
+    <a onclick="return false;" [style.display]="showEmail ? 'none' : 'block'" href="#" (click)="decodeEmail()">Email anzeigen</a>
+    <div [innerHTML]="emailContent"></div>
+    <br />
+  </div>
 
   <h5>Umsatzsteuer-ID</h5>
   <p>
