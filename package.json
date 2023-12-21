@@ -33,7 +33,7 @@
     "@fortawesome/free-solid-svg-icons": "6.5.1",
     "angular-calendar": "0.31.0",
     "animate.css": "4.1.1",
-    "date-fns": "2.30.0",
+    "date-fns": "3.0.5",
     "email-scramble": "^3.0.0",
     "firebase": "10.7.1",
     "mdb-angular-ui-kit": "5.2.0",
