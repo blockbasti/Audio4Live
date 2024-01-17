@@ -18,7 +18,7 @@ jobs:
           cache: 'npm'
 
       - name: Cache Angular build cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: /home/runner/work/Audio4Live/Audio4Live/.angular/cache
           key: ${{ runner.os }}-angular
