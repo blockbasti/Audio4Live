@@ -28,7 +28,7 @@ jobs:
               - 'functions/**'
 
       - name: Cache npm
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: |
             /home/runner/work/Audio4Live/Audio4Live/node_modules
@@ -37,7 +37,7 @@ jobs:
 
       - name: Cache Angular build cache
         if: ${{ steps.changes.outputs.app == 'true' }}
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: /home/runner/work/Audio4Live/Audio4Live/.angular/cache
           key: ${{ runner.os }}-angular
