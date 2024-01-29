@@ -9,7 +9,7 @@ admin.initializeApp(functions.config().firebase);
 
 const db = admin.firestore();
 
-export const submit = functions.https.onCall(async (data: Buchung, _context) => {
+export const submit = functions.https.onCall(async (data: Buchung) => {
   const date = data.date
     ? {
         start: utcToZonedTime(data.date.start, 'Europe/Berlin'),
