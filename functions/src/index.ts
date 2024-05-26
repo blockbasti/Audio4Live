@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { addHours, addMinutes, format, isSameDay } from 'date-fns';
-import { utcToZonedTime } from 'date-fns-tz';
+import { toZonedTime } from 'date-fns-tz';
 import * as functions from 'firebase-functions';
 import { Buchung } from '../../src/app/buchen/buchung';
 
@@ -12,8 +12,8 @@ const db = admin.firestore();
 export const submit = functions.https.onCall(async (data: Buchung) => {
   const date = data.date
     ? {
-        start: utcToZonedTime(data.date.start, 'Europe/Berlin'),
-        end: utcToZonedTime(data.date.end, 'Europe/Berlin')
+        start: toZonedTime(data.date.start, 'Europe/Berlin'),
+        end: toZonedTime(data.date.end, 'Europe/Berlin')
       }
     : undefined;
   const times = data.times;
