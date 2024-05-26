@@ -5,6 +5,10 @@ updates:
     open-pull-requests-limit: 99
     schedule:
       interval: "daily"
+    groups:
+      angular:
+        patterns:
+          - "@angular/*"
 
   - package-ecosystem: "npm"
     directory: "/functions"
