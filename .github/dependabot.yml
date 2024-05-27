@@ -11,6 +11,9 @@ updates:
           - "@angular/*"
           - "@angular-devkit/*"
           - "@angular-eslint/*"
+          - "typescript"
+          - "zone.js"
+          
 
   - package-ecosystem: "npm"
     directory: "/functions"
