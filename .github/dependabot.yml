@@ -9,6 +9,8 @@ updates:
       angular:
         patterns:
           - "@angular/*"
+          - "@angular-devkit/*"
+          - "@angular-eslint/*"
 
   - package-ecosystem: "npm"
     directory: "/functions"
