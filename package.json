@@ -62,7 +62,7 @@
     "@types/node": "20.14.11",
     "@types/quill": "2.0.14",
     "@typescript-eslint/eslint-plugin": "7.16.1",
-    "@typescript-eslint/parser": "7.16.1",
+    "@typescript-eslint/parser": "7.17.0",
     "eslint": "^8.57.0",
     "firebase-tools": "13.13.3",
     "husky": "9.1.0",
