@@ -65,7 +65,7 @@
     "@typescript-eslint/parser": "7.17.0",
     "eslint": "^8.57.0",
     "firebase-tools": "13.14.2",
-    "husky": "9.1.2",
+    "husky": "9.1.3",
     "inquirer-autocomplete-prompt": "3.0.1",
     "lint-staged": "15.2.7",
     "modernizr": "3.13.0",
