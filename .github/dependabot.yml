@@ -13,10 +13,10 @@ updates:
           - "@angular-eslint/*"
           - "typescript"
           - "zone.js"
-        eslint-parser:
+      eslint-parser:
+        patterns:
           - "@typescript-eslint/*"
           
-
   - package-ecosystem: "npm"
     directory: "/functions"
     open-pull-requests-limit: 99
@@ -24,6 +24,7 @@ updates:
       interval: "daily"
     groups:
       eslint-parser:
+        patterns:
           - "@typescript-eslint/*"
 
   - package-ecosystem: "github-actions"
