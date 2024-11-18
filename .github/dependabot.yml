@@ -16,6 +16,9 @@ updates:
       eslint-parser:
         patterns:
           - "@typescript-eslint/*"
+      firebase:
+        patterns:
+          - "firebase-*"
           
   - package-ecosystem: "npm"
     directory: "/functions"
