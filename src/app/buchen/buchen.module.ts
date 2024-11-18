@@ -10,7 +10,7 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { MdbCheckboxModule } from 'mdb-angular-ui-kit/checkbox';
 import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
 import { MdbModalModule } from 'mdb-angular-ui-kit/modal';
-import { RECAPTCHA_LANGUAGE, RecaptchaFormsModule, RecaptchaModule } from 'ng-recaptcha';
+import { RECAPTCHA_LANGUAGE, RecaptchaFormsModule, RecaptchaModule } from 'ng-recaptcha-2';
 import { NgxMaterialTimepickerModule, TIME_LOCALE } from 'ngx-material-timepicker';
 import { environment } from '../../environments/environment';
 import { BuchenRoutingModule } from './buchen-routing.module';

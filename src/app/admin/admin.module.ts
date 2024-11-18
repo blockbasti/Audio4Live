@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { provideFirebaseApp } from '@angular/fire/app';
 import { connectAuthEmulator, getAuth, provideAuth } from '@angular/fire/auth';
@@ -37,7 +37,6 @@ import { MailComponent } from './mail.component';
     FirestoreModule,
     FunctionsModule,
     MdbTabsModule,
-    HttpClientModule,
     QuillModule.forRoot({
       theme: 'snow'
     }),
@@ -67,7 +66,8 @@ import { MailComponent } from './mail.component';
       }
       return auth;
     }),
-    provideFirebaseApp(() => initializeApp(environment.firebase))
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideHttpClient(withInterceptorsFromDi())
   ]
 })
 export class AdminModule {}
