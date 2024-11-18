@@ -1,4 +1,3 @@
-import { NgxMatFileInputModule } from '@angular-material-components/file-input';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
@@ -10,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { initializeApp } from 'firebase/app';
@@ -26,6 +26,7 @@ import { MailComponent } from './mail.component';
   imports: [
     CommonModule,
     AdminRoutingModule,
+    MatFormFieldModule,
     FormsModule,
     ReactiveFormsModule,
     MatNativeDateModule,
@@ -37,11 +38,14 @@ import { MailComponent } from './mail.component';
     FunctionsModule,
     MdbTabsModule,
     HttpClientModule,
-    NgxMatFileInputModule,
     QuillModule.forRoot({
       theme: 'snow'
     }),
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    FirestoreModule,
+    FunctionsModule
+  ],
+  providers: [
+    { provide: MAT_DATE_LOCALE, useValue: 'de-DE' },
     provideFunctions(() => {
       const functions = getFunctions();
       if (environment.useEmulators) {
@@ -62,8 +66,32 @@ import { MailComponent } from './mail.component';
         connectAuthEmulator(auth, 'http://localhost:9099', { disableWarnings: true });
       }
       return auth;
-    })
-  ],
-  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'de-DE' }]
+    }),
+    provideFirebaseApp(() => initializeApp(environment.firebase))
+  ]
 })
 export class AdminModule {}
+providers: [
+  { provide: MAT_DATE_LOCALE, useValue: 'de-DE' },
+  provideFunctions(() => {
+    const functions = getFunctions();
+    if (environment.useEmulators) {
+      connectFunctionsEmulator(functions, 'localhost', 5001);
+    }
+    return functions;
+  }),
+  provideFirestore(() => {
+    const firestore = getFirestore();
+    if (environment.useEmulators) {
+      connectFirestoreEmulator(firestore, 'localhost', 8080);
+    }
+    return firestore;
+  }),
+  provideAuth(() => {
+    const auth = getAuth();
+    if (environment.useEmulators) {
+      connectAuthEmulator(auth, 'http://localhost:9099', { disableWarnings: true });
+    }
+    return auth;
+  })
+];
