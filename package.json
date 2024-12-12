@@ -35,7 +35,7 @@
     "audio4live": "file:",
     "date-fns": "^4.1.0",
     "email-scramble": "^3.0.0",
-    "firebase": "^11.0.2",
+    "firebase": "^11.1.0",
     "mdb-angular-ui-kit": "^7.1.0",
     "mjml": "^4.15.3",
     "mjml-browser": "^4.15.3",
