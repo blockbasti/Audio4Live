@@ -54,4 +54,3 @@ firebase-debug.log
 functions/ui-debug.log
 functions/firestore-debug.log
 functions/.runtimeconfig.json
-report.html

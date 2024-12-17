@@ -3,7 +3,7 @@
     {
       "predeploy": ["npm run build"],
       "target": "audio4live",
-      "public": "dist/audio4live/browser",
+      "public": "dist/audio4live",
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
       "redirects": [
         {

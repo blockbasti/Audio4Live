@@ -1,9 +1,10 @@
+import { MaxSizeValidator } from '@angular-material-components/file-input';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { CollectionReference, DocumentData, Firestore, addDoc, collection } from '@angular/fire/firestore';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
-import mjml2html from 'mjml-browser';
+import * as mjml2html from 'mjml-browser';
 import { Subject } from 'rxjs';
 import { Mail } from './mail';
 
@@ -17,7 +18,7 @@ export class MailComponent implements OnInit {
 
   template: string;
 
-  public files: FileList;
+  public files: File[];
 
   form: FormGroup = this.fb.group({
     to: new FormControl(null, [Validators.required, Validators.email]),
@@ -31,7 +32,7 @@ export class MailComponent implements OnInit {
     bcc: new FormControl(null, [Validators.email]),
     subject: new FormControl('Nachricht', [Validators.required]),
     content: new FormControl('Text', [Validators.required]),
-    attachments: new FormControl(undefined, [])
+    attachments: new FormControl(undefined, MaxSizeValidator(900 * 1000))
   });
 
   constructor(
@@ -49,6 +50,14 @@ export class MailComponent implements OnInit {
     setTimeout(() => {
       document.getElementById('loader')?.remove();
     }, 2000);
+
+    this.form.get('attachments').valueChanges.subscribe((files: any) => {
+      if (!Array.isArray(files)) {
+        this.files = [files];
+      } else {
+        this.files = files;
+      }
+    });
   }
 
   onSubmit(): void {
@@ -66,10 +75,9 @@ export class MailComponent implements OnInit {
   }
 
   async getAttachments() {
-    console.log(this.files);
-    if (this.files.length == 0) return null;
+    if (this.form.get('attachments').value == null || this.form.get('attachments').value.length == 0) return null;
     return await Promise.all(
-      Array.from(this.files).map(async (file) => {
+      this.files.map(async (file) => {
         return {
           filename: file.name,
           path: (await this.getBase64Attachment(file)) as string

@@ -22,19 +22,20 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular/build:application",
+          "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": {
-              "base": "dist/audio4live"
-            },
+            "outputPath": "dist/audio4live",
             "index": "src/index.html",
-            "polyfills": ["zone.js"],
+            "main": "src/main.ts",
+            "polyfills": "zone.js",
             "tsConfig": "tsconfig.app.json",
             "aot": true,
             "optimization": false,
+            "buildOptimizer": false,
             "sourceMap": true,
             "extractLicenses": true,
             "namedChunks": true,
+            "vendorChunk": true,
             "assets": ["src/favicon.ico", "src/assets", "src/manifest.webmanifest"],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
@@ -47,11 +48,7 @@
               "./node_modules/animate.css/animate.css",
               "src/styles.scss"
             ],
-            "scripts": ["src/lib/modernizr.js", "./node_modules/quill/dist/quill.js"],
-            "browser": "src/main.ts",
-            "stylePreprocessorOptions": {
-              "includePaths": ["."]
-            }
+            "scripts": ["src/lib/modernizr.js", "./node_modules/quill/dist/quill.min.js"]
           },
           "configurations": {
             "production": {
@@ -66,6 +63,8 @@
               "sourceMap": false,
               "namedChunks": false,
               "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
               "budgets": [
                 {
                   "type": "initial",
@@ -82,13 +81,13 @@
           }
         },
         "serve": {
-          "builder": "@angular/build:dev-server",
+          "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "buildTarget": "audio4live:build"
+            "browserTarget": "audio4live:build"
           },
           "configurations": {
             "production": {
-              "buildTarget": "audio4live:build:production"
+              "browserTarget": "audio4live:build:production"
             }
           }
         },
