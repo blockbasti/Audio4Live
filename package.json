@@ -64,7 +64,7 @@
     "@typescript-eslint/eslint-plugin": "8.26.1",
     "@typescript-eslint/parser": "8.26.1",
     "eslint": "^8.57.0",
-    "firebase-tools": "13.34.0",
+    "firebase-tools": "13.35.1",
     "husky": "9.1.7",
     "inquirer-autocomplete-prompt": "3.0.1",
     "lint-staged": "15.5.0",
