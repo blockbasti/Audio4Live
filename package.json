@@ -36,7 +36,7 @@
     "date-fns": "4.1.0",
     "email-scramble": "^3.0.0",
     "firebase": "10.14.1",
-    "mdb-angular-ui-kit": "6.1.0",
+    "mdb-angular-ui-kit": "8.0.0",
     "mjml": "^4.15.3",
     "mjml-browser": "^4.15.3",
     "ng-recaptcha": "13.2.1",
