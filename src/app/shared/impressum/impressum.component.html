@@ -15,7 +15,8 @@
 
   <h5>Kontakt</h5>
   <div>
-    Telefon: <a href="tel:+491788055110">+49 178 8055110</a><br />
+    <a onclick="return false;" [style.display]="showPhone ? 'none' : 'block'" href="#" (click)="decodePhone()">Telefonnummer anzeigen</a>
+    <div [innerHTML]="phoneContent"></div>
     <a onclick="return false;" [style.display]="showEmail ? 'none' : 'block'" href="#" (click)="decodeEmail()">Email anzeigen</a>
     <div [innerHTML]="emailContent"></div>
     <br />

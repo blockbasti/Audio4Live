@@ -18,5 +18,14 @@ export class ImpressumComponent {
     this.showEmail = true;
   }
 
+  public showPhone = false;
+  public phoneContent = '';
+
+  public decodePhone() {
+    let phone = emailScramble.decode('+946233500665');
+    this.phoneContent = 'Telefon: <a href="tel:' + phone + '">' + phone + '</a></br>';
+    this.showPhone = true;
+  }
+
   constructor(public readonly modalRef: MdbModalRef<ImpressumComponent>) {}
 }
