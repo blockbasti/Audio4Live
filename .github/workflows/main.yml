@@ -16,17 +16,7 @@ jobs:
           cache-dependency-path: |
             package-lock.json
             functions/package-lock.json
-
-      - uses: dorny/paths-filter@v3
-        id: changes
-        with:
-          filters: |
-            app:
-              - './*.json'
-              - 'src/**'
-            functions:
-              - 'functions/**'
-
+      
       - name: Cache npm
         uses: actions/cache@v4
         with:
@@ -36,7 +26,6 @@ jobs:
           key: ${{ runner.os }}-npm
 
       - name: Cache Angular build cache
-        if: ${{ steps.changes.outputs.app == 'true' }}
         uses: actions/cache@v4
         with:
           path: /home/runner/work/Audio4Live/Audio4Live/.angular/cache
@@ -46,26 +35,21 @@ jobs:
         run: npm ci
 
       - name: Install dependencies (Functions)
-        if: ${{ steps.changes.outputs.functions == 'true' }}
         working-directory: ./functions
         run: npm ci
 
       - name: build (Frontend)
-        if: ${{ steps.changes.outputs.app == 'true' }}
         run: npx ng build --configuration production
 
       - name: lint (Frontend)
-        if: ${{ steps.changes.outputs.app == 'true' }}
         continue-on-error: true
         run: npx ng lint
 
       - name: build (Functions)
-        if: ${{ steps.changes.outputs.functions == 'true' }}
         working-directory: ./functions
         run: npm run build
 
       - name: lint (Functions)
-        if: ${{ steps.changes.outputs.functions == 'true' }}
         working-directory: ./functions
         continue-on-error: true
         run: npm run lint
