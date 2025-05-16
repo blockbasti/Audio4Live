@@ -18,7 +18,10 @@ updates:
           - "@typescript-eslint/*"
       firebase:
         patterns:
-          - "firebase-*"
+          - "*firebase*"
+      quill:
+        patterns:
+          - "*quill*"
           
   - package-ecosystem: "npm"
     directory: "/functions"
