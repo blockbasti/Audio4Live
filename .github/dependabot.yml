@@ -22,6 +22,9 @@ updates:
       quill:
         patterns:
           - "*quill*"
+      fontawesome:
+        patterns:
+          - "@fortawesome*"
           
   - package-ecosystem: "npm"
     directory: "/functions"
