@@ -70,7 +70,7 @@
     "lint-staged": "16.1.5",
     "modernizr": "3.13.1",
     "prettier": "3.6.2",
-    "prettier-plugin-organize-imports": "4.2.0",
+    "prettier-plugin-organize-imports": "4.3.0",
     "ts-node": "10.9.2",
     "typescript": "5.3.3",
     "webpack-bundle-analyzer": "^4.10.2"
