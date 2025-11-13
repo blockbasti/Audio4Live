@@ -37,7 +37,7 @@
     "email-scramble": "^3.0.0",
     "firebase": "10.14.1",
     "mdb-angular-ui-kit": "6.1.0",
-    "mjml": "^4.16.1",
+    "mjml": "^4.17.0",
     "mjml-browser": "^4.16.1",
     "ng-recaptcha": "13.2.1",
     "ngx-material-timepicker": "13.1.1",
