@@ -16,7 +16,7 @@
     "@angular-material-components/file-input": "^16.0.1",
     "@angular/animations": "17.1.1",
     "@angular/cdk": "17.1.1",
-    "@angular/common": "17.1.1",
+    "@angular/common": "19.2.16",
     "@angular/compiler": "17.1.1",
     "@angular/core": "17.1.1",
     "@angular/fire": "17.0.1",
