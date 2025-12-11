@@ -18,7 +18,7 @@ jobs:
             functions/package-lock.json
       
       - name: Cache npm
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: |
             /home/runner/work/Audio4Live/Audio4Live/node_modules
@@ -26,7 +26,7 @@ jobs:
           key: ${{ runner.os }}-npm
 
       - name: Cache Angular build cache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: /home/runner/work/Audio4Live/Audio4Live/.angular/cache
           key: ${{ runner.os }}-angular
