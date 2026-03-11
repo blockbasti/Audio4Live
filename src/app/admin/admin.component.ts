@@ -4,8 +4,9 @@ import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 
 @Component({
-  selector: 'app-admin',
-  templateUrl: './admin.component.html'
+    selector: 'app-admin',
+    templateUrl: './admin.component.html',
+    standalone: false
 })
 export class AdminComponent implements OnInit {
   refresh: Subject<any> = new Subject();
