@@ -23,14 +23,17 @@
           <input matInput type="email" placeholder="Email" formControlName="subject" />
         </mat-form-field>
         <mat-form-field class="w-100 text-white">
-          <ngx-mat-file-input
-            formControlName="attachments"
-            multiple="true"
-            placeholder="Anhänge"
-            valuePlaceholder="Anhänge auswählen (max. 900kB)"
-          >
-          </ngx-mat-file-input>
-          <mat-error *ngIf="form.get('attachments').errors"> Die Anhänge dürfen nicht größer als 900 kB sein!</mat-error>
+          <mat-label>Anhänge</mat-label>
+          <input matInput type="text" style="display:none" />
+          <input
+            type="file"
+            multiple
+            style="padding: 0.5rem 0; width: 100%"
+            (change)="onFilesChange($event)"
+          />
+          @if (form.get('attachments').errors) {
+            <mat-error> Die Anhänge dürfen nicht größer als 900 kB sein!</mat-error>
+          }
         </mat-form-field>
         <button class="btn btn-primary my-4" type="submit">Senden</button>
 

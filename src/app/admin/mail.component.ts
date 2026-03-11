@@ -1,16 +1,16 @@
-import { MaxSizeValidator } from '@angular-material-components/file-input';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { CollectionReference, DocumentData, Firestore, addDoc, collection } from '@angular/fire/firestore';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
-import * as mjml2html from 'mjml-browser';
+import mjml2html from 'mjml-browser';
 import { Subject } from 'rxjs';
 import { Mail } from './mail';
 
 @Component({
-  selector: 'app-mail',
-  templateUrl: './mail.component.html'
+    selector: 'app-mail',
+    templateUrl: './mail.component.html',
+    standalone: false
 })
 export class MailComponent implements OnInit {
   refresh: Subject<any> = new Subject();
@@ -32,7 +32,12 @@ export class MailComponent implements OnInit {
     bcc: new FormControl(null, [Validators.email]),
     subject: new FormControl('Nachricht', [Validators.required]),
     content: new FormControl('Text', [Validators.required]),
-    attachments: new FormControl(undefined, MaxSizeValidator(900 * 1000))
+    attachments: new FormControl<File[] | null>(null, (control) => {
+      const files: File[] | null = control.value;
+      if (!files || files.length === 0) return null;
+      const totalSize = files.reduce((sum, f) => sum + f.size, 0);
+      return totalSize > 900 * 1000 ? { maxSize: true } : null;
+    })
   });
 
   constructor(
@@ -51,13 +56,15 @@ export class MailComponent implements OnInit {
       document.getElementById('loader')?.remove();
     }, 2000);
 
-    this.form.get('attachments').valueChanges.subscribe((files: any) => {
-      if (!Array.isArray(files)) {
-        this.files = [files];
-      } else {
-        this.files = files;
-      }
+    this.form.get('attachments').valueChanges.subscribe((files: File[] | null) => {
+      this.files = files ?? [];
     });
+  }
+
+  onFilesChange(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    const files = input.files ? Array.from(input.files) : null;
+    this.form.get('attachments').setValue(files);
   }
 
   onSubmit(): void {

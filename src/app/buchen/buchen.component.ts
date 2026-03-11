@@ -48,15 +48,16 @@ export class MyCalendarUtils extends CalendarUtils {
 }
 
 @Component({
-  selector: 'app-buchen',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  templateUrl: './buchen.component.html',
-  providers: [
-    {
-      provide: CalendarUtils,
-      useClass: MyCalendarUtils
-    }
-  ]
+    selector: 'app-buchen',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    templateUrl: './buchen.component.html',
+    providers: [
+        {
+            provide: CalendarUtils,
+            useClass: MyCalendarUtils
+        }
+    ],
+    standalone: false
 })
 export class BuchenComponent {
   submit: any;
@@ -87,7 +88,7 @@ export class BuchenComponent {
     const blockerquery = query(blockerCollection, where('end', '>=', new Date()));
 
     collectionData(blockerquery).subscribe((blocker) => {
-      this.blocker = blocker;
+      this.blocker = blocker as Blocker[];
       this.refresh.next(null);
     });
 

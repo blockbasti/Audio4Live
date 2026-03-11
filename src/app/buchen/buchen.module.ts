@@ -10,7 +10,7 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { MdbCheckboxModule } from 'mdb-angular-ui-kit/checkbox';
 import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
 import { MdbModalModule } from 'mdb-angular-ui-kit/modal';
-import { RECAPTCHA_LANGUAGE, RecaptchaFormsModule, RecaptchaModule } from 'ng-recaptcha';
+import { RECAPTCHA_LANGUAGE, RecaptchaComponent } from './recaptcha.component';
 import { NgxMaterialTimepickerModule, TIME_LOCALE } from 'ngx-material-timepicker';
 import { environment } from '../../environments/environment';
 import { BuchenRoutingModule } from './buchen-routing.module';
@@ -19,20 +19,21 @@ import { BuchenComponent } from './buchen.component';
 registerLocaleData(localeDe);
 
 @NgModule({
-  declarations: [BuchenComponent],
+  declarations: [BuchenComponent, RecaptchaComponent],
   imports: [
     CommonModule,
     BuchenRoutingModule,
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
     FormsModule,
-    RecaptchaModule,
-    RecaptchaFormsModule,
     NgxMaterialTimepickerModule.setOpts('de-DE'),
     MdbFormsModule,
     MdbModalModule,
     MdbCheckboxModule,
     FirestoreModule,
     FunctionsModule,
+    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory })
+  ],
+  providers: [
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFunctions(() => {
       const functions = getFunctions();
       if (environment.useEmulators) {
@@ -47,9 +48,6 @@ registerLocaleData(localeDe);
       }
       return firestore;
     }),
-    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory })
-  ],
-  providers: [
     {
       provide: RECAPTCHA_LANGUAGE,
       useValue: 'de'

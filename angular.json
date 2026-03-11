@@ -6,7 +6,8 @@
       "enabled": true,
       "environment": "all"
     },
-    "analytics": false
+    "analytics": false,
+    "schematicCollections": ["angular-eslint"]
   },
   "newProjectRoot": "projects",
   "projects": {
@@ -22,20 +23,21 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular/build:application",
           "options": {
-            "outputPath": "dist/audio4live",
+            "outputPath": {
+              "base": "dist/audio4live"
+            },
             "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "zone.js",
+            "polyfills": [
+              "zone.js"
+            ],
             "tsConfig": "tsconfig.app.json",
             "aot": true,
             "optimization": false,
-            "buildOptimizer": false,
             "sourceMap": true,
             "extractLicenses": true,
             "namedChunks": true,
-            "vendorChunk": true,
             "assets": ["src/favicon.ico", "src/assets", "src/manifest.webmanifest"],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
@@ -48,7 +50,19 @@
               "./node_modules/animate.css/animate.css",
               "src/styles.scss"
             ],
-            "scripts": ["src/lib/modernizr.js", "./node_modules/quill/dist/quill.min.js"]
+            "scripts": [
+              "src/lib/modernizr.js",
+              "./node_modules/quill/dist/quill.js"
+            ],
+            "browser": "src/main.ts",
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "."
+              ],
+              "sass": {
+                "silenceDeprecations": ["import", "color-functions", "global-builtin", "if-function"]
+              }
+            }
           },
           "configurations": {
             "production": {
@@ -63,8 +77,6 @@
               "sourceMap": false,
               "namedChunks": false,
               "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
               "budgets": [
                 {
                   "type": "initial",
@@ -77,19 +89,25 @@
                   "maximumError": "10kb"
                 }
               ]
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
             }
           }
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "browserTarget": "audio4live:build"
-          },
+          "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "audio4live:build:production"
+              "buildTarget": "audio4live:build:production"
+            },
+            "development": {
+              "buildTarget": "audio4live:build:development"
             }
-          }
+          },
+          "defaultConfiguration": "development"
         },
         "deploy": {
           "builder": "@angular/fire:deploy",
@@ -110,6 +128,30 @@
     },
     "@angular-eslint/schematics:library": {
       "setParserOptionsProject": true
+    },
+    "@schematics/angular:component": {
+      "type": "component"
+    },
+    "@schematics/angular:directive": {
+      "type": "directive"
+    },
+    "@schematics/angular:service": {
+      "type": "service"
+    },
+    "@schematics/angular:guard": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:interceptor": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:module": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:pipe": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:resolver": {
+      "typeSeparator": "."
     }
   }
 }
