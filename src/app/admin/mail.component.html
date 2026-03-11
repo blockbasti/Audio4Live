@@ -28,9 +28,11 @@
             multiple="true"
             placeholder="Anhänge"
             valuePlaceholder="Anhänge auswählen (max. 900kB)"
-          >
+            >
           </ngx-mat-file-input>
-          <mat-error *ngIf="form.get('attachments').errors"> Die Anhänge dürfen nicht größer als 900 kB sein!</mat-error>
+          @if (form.get('attachments').errors) {
+            <mat-error> Die Anhänge dürfen nicht größer als 900 kB sein!</mat-error>
+          }
         </mat-form-field>
         <button class="btn btn-primary my-4" type="submit">Senden</button>
 
