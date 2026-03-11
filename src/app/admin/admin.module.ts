@@ -1,6 +1,6 @@
 import { NgxMatFileInputModule } from '@angular-material-components/file-input';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { provideFirebaseApp } from '@angular/fire/app';
 import { connectAuthEmulator, getAuth, provideAuth } from '@angular/fire/auth';
@@ -21,49 +21,42 @@ import { AdminComponent } from './admin.component';
 import { BookingComponent } from './booking.component';
 import { LoginComponent } from './login/login.component';
 import { MailComponent } from './mail.component';
-@NgModule({
-  declarations: [AdminComponent, LoginComponent, BookingComponent, MailComponent],
-  imports: [
-    CommonModule,
-    AdminRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatNativeDateModule,
-    MatDatepickerModule,
-    MatInputModule,
-    MatCheckboxModule,
-    MatIconModule,
-    FirestoreModule,
-    FunctionsModule,
-    MdbTabsModule,
-    HttpClientModule,
-    NgxMatFileInputModule,
-    QuillModule.forRoot({
-      theme: 'snow'
-    }),
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideFunctions(() => {
-      const functions = getFunctions();
-      if (environment.useEmulators) {
-        connectFunctionsEmulator(functions, 'localhost', 5001);
-      }
-      return functions;
-    }),
-    provideFirestore(() => {
-      const firestore = getFirestore();
-      if (environment.useEmulators) {
-        connectFirestoreEmulator(firestore, 'localhost', 8080);
-      }
-      return firestore;
-    }),
-    provideAuth(() => {
-      const auth = getAuth();
-      if (environment.useEmulators) {
-        connectAuthEmulator(auth, 'http://localhost:9099', { disableWarnings: true });
-      }
-      return auth;
-    })
-  ],
-  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'de-DE' }]
-})
+@NgModule({ declarations: [AdminComponent, LoginComponent, BookingComponent, MailComponent], imports: [CommonModule,
+        AdminRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatNativeDateModule,
+        MatDatepickerModule,
+        MatInputModule,
+        MatCheckboxModule,
+        MatIconModule,
+        FirestoreModule,
+        FunctionsModule,
+        MdbTabsModule,
+        NgxMatFileInputModule,
+        QuillModule.forRoot({
+            theme: 'snow'
+        }),
+        provideFirebaseApp(() => initializeApp(environment.firebase)),
+        provideFunctions(() => {
+            const functions = getFunctions();
+            if (environment.useEmulators) {
+                connectFunctionsEmulator(functions, 'localhost', 5001);
+            }
+            return functions;
+        }),
+        provideFirestore(() => {
+            const firestore = getFirestore();
+            if (environment.useEmulators) {
+                connectFirestoreEmulator(firestore, 'localhost', 8080);
+            }
+            return firestore;
+        }),
+        provideAuth(() => {
+            const auth = getAuth();
+            if (environment.useEmulators) {
+                connectAuthEmulator(auth, 'http://localhost:9099', { disableWarnings: true });
+            }
+            return auth;
+        })], providers: [{ provide: MAT_DATE_LOCALE, useValue: 'de-DE' }, provideHttpClient(withInterceptorsFromDi())] })
 export class AdminModule {}
