@@ -1,9 +1,9 @@
-@import './app/buchen/calendar.scss';
-@import './background.scss';
+@use './app/buchen/calendar.scss';
+@use './background.scss';
 
-@import url('node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css');
+// MDB variables needed below (loaded via @import for variable visibility)
+// sass @import kept intentionally; silenced via stylePreprocessorOptions.sass.silenceDeprecations
 @import 'node_modules/mdb-angular-ui-kit/assets/scss/mdb.scss';
-@import 'quill/dist/quill.snow.css';
 
 html,
 body {

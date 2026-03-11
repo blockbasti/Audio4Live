@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { CollectionReference, DocumentData, Firestore, addDoc, collection } from '@angular/fire/firestore';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
-import * as mjml2html from 'mjml-browser';
+import mjml2html from 'mjml-browser';
 import { Subject } from 'rxjs';
 import { Mail } from './mail';
 

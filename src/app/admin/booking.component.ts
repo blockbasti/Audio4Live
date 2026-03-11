@@ -60,7 +60,7 @@ export class BookingComponent implements OnInit {
     const blockerquery = query(this.blockerCollection, where('end', '>=', new Date()), orderBy('end'));
 
     collectionData(blockerquery, { idField: 'id' }).subscribe((blocker) => {
-      this.blocker = blocker;
+      this.blocker = blocker as Blocker[];
       this.refresh.next(null);
     });
 

@@ -58,7 +58,10 @@
             "stylePreprocessorOptions": {
               "includePaths": [
                 "."
-              ]
+              ],
+              "sass": {
+                "silenceDeprecations": ["import", "color-functions", "global-builtin", "if-function"]
+              }
             }
           },
           "configurations": {

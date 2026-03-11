@@ -88,7 +88,7 @@ export class BuchenComponent {
     const blockerquery = query(blockerCollection, where('end', '>=', new Date()));
 
     collectionData(blockerquery).subscribe((blocker) => {
-      this.blocker = blocker;
+      this.blocker = blocker as Blocker[];
       this.refresh.next(null);
     });
 
