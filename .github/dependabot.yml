@@ -16,9 +16,6 @@ updates:
       eslint-parser:
         patterns:
           - "@typescript-eslint/*"
-      firebase:
-        patterns:
-          - "*firebase*"
       quill:
         patterns:
           - "*quill*"
