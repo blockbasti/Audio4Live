@@ -86,19 +86,25 @@
                   "maximumError": "10kb"
                 }
               ]
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
             }
           }
         },
         "serve": {
           "builder": "@angular/build:dev-server",
-          "options": {
-            "browserTarget": "audio4live:build"
-          },
           "configurations": {
             "production": {
-              "browserTarget": "audio4live:build:production"
+              "buildTarget": "audio4live:build:production"
+            },
+            "development": {
+              "buildTarget": "audio4live:build:development"
             }
-          }
+          },
+          "defaultConfiguration": "development"
         },
         "deploy": {
           "builder": "@angular/fire:deploy",
