@@ -23,7 +23,6 @@ registerLocaleData(localeDe);
   imports: [
     CommonModule,
     BuchenRoutingModule,
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
     FormsModule,
     RecaptchaModule,
     RecaptchaFormsModule,
@@ -33,6 +32,10 @@ registerLocaleData(localeDe);
     MdbCheckboxModule,
     FirestoreModule,
     FunctionsModule,
+    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory })
+  ],
+  providers: [
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFunctions(() => {
       const functions = getFunctions();
       if (environment.useEmulators) {
@@ -47,9 +50,6 @@ registerLocaleData(localeDe);
       }
       return firestore;
     }),
-    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory })
-  ],
-  providers: [
     {
       provide: RECAPTCHA_LANGUAGE,
       useValue: 'de'

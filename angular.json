@@ -52,7 +52,7 @@
             ],
             "scripts": [
               "src/lib/modernizr.js",
-              "./node_modules/quill/dist/quill.min.js"
+              "./node_modules/quill/dist/quill.js"
             ],
             "browser": "src/main.ts",
             "stylePreprocessorOptions": {

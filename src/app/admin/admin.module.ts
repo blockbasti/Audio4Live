@@ -1,4 +1,3 @@
-import { NgxMatFileInputModule } from '@angular-material-components/file-input';
 import { CommonModule } from '@angular/common';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { NgModule } from '@angular/core';
@@ -33,10 +32,9 @@ import { MailComponent } from './mail.component';
         FirestoreModule,
         FunctionsModule,
         MdbTabsModule,
-        NgxMatFileInputModule,
         QuillModule.forRoot({
             theme: 'snow'
-        }),
+        })], providers: [
         provideFirebaseApp(() => initializeApp(environment.firebase)),
         provideFunctions(() => {
             const functions = getFunctions();
@@ -58,5 +56,8 @@ import { MailComponent } from './mail.component';
                 connectAuthEmulator(auth, 'http://localhost:9099', { disableWarnings: true });
             }
             return auth;
-        })], providers: [{ provide: MAT_DATE_LOCALE, useValue: 'de-DE' }, provideHttpClient(withInterceptorsFromDi())] })
+        }),
+        { provide: MAT_DATE_LOCALE, useValue: 'de-DE' },
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class AdminModule {}

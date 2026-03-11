@@ -13,12 +13,12 @@ import {
   where
 } from '@angular/fire/firestore';
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
-import { addWeeks, format } from 'date-fns';
+import { addWeeks, format, type DateArg } from 'date-fns';
 import { Subject } from 'rxjs';
 import { Blocker } from '../buchen/blocker';
 import { Buchung } from '../buchen/buchung';
 
-type Booking = Buchung | { id: string };
+type Booking = Buchung & { id: string };
 @Component({
     selector: 'app-booking',
     templateUrl: './booking.component.html',
@@ -83,7 +83,7 @@ export class BookingComponent implements OnInit {
     });
 
     collectionData(this.bookingCollection).subscribe((bookings) => {
-      this.bookings = bookings;
+      this.bookings = bookings as Booking[];
       this.refresh.next(null);
     });
   }
@@ -95,7 +95,7 @@ export class BookingComponent implements OnInit {
     }, 2000);
   }
 
-  formatDate(date: Date, hours: boolean): string {
+  formatDate(date: DateArg<Date>, hours: boolean): string {
     try {
       if (hours) {
         return format(date, 'dd.MM.yyyy HH:mm');
