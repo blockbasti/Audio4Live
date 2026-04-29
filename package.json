@@ -35,7 +35,7 @@
     "animate.css": "4.1.1",
     "date-fns": "4.1.0",
     "email-scramble": "^3.0.0",
-    "firebase": "10.14.1",
+    "firebase": "12.12.1",
     "mdb-angular-ui-kit": "6.1.0",
     "mjml": "^5.1.0",
     "mjml-browser": "^4.18.0",
