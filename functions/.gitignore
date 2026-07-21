@@ -1,7 +1,7 @@
 ## Compiled JavaScript files
 **/*.js
 **/*.js.map
-!.eslintrc.js
+!eslint.config.js
 
 # Typescript v1 declaration files
 typings/
