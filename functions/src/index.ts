@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { addHours, addMinutes, format, isSameDay } from 'date-fns';
 import { toZonedTime } from 'date-fns-tz';
-import * as functions from 'firebase-functions';
+import * as functions from 'firebase-functions/v1';
 import { Buchung } from '../../src/app/buchen/buchung';
 
 import admin = require('firebase-admin');
