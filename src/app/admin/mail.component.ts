@@ -9,8 +9,9 @@ import { maxSizeValidator } from '../shared/validators/max-size.validator';
 import { Mail } from './mail';
 
 @Component({
-  selector: 'app-mail',
-  templateUrl: './mail.component.html'
+    selector: 'app-mail',
+    templateUrl: './mail.component.html',
+    standalone: false
 })
 export class MailComponent implements OnInit {
   refresh: Subject<any> = new Subject();

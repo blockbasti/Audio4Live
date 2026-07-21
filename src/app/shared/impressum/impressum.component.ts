@@ -3,10 +3,11 @@ import emailScramble from 'email-scramble';
 import { MdbModalRef } from 'mdb-angular-ui-kit/modal';
 
 @Component({
-  selector: 'app-impressum',
-  templateUrl: './impressum.component.html',
-  styleUrls: ['./impressum.component.scss'],
-  changeDetection: ChangeDetectionStrategy.Default
+    selector: 'app-impressum',
+    templateUrl: './impressum.component.html',
+    styleUrls: ['./impressum.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Default,
+    standalone: false
 })
 export class ImpressumComponent {
   public showEmail = false;

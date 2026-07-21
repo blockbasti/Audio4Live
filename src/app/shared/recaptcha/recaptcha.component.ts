@@ -27,15 +27,16 @@ function loadRecaptchaScript(lang?: string): Promise<void> {
 }
 
 @Component({
-  selector: 'app-re-captcha',
-  template: '<div #captchaContainer></div>',
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => RecaptchaComponent),
-      multi: true
-    }
-  ]
+    selector: 'app-re-captcha',
+    template: '<div #captchaContainer></div>',
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => RecaptchaComponent),
+            multi: true
+        }
+    ],
+    standalone: false
 })
 export class RecaptchaComponent implements AfterViewInit, OnDestroy, ControlValueAccessor {
   @Input() siteKey: string;
