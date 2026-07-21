@@ -92,5 +92,14 @@
   },
   "lint-staged": {
     "*.--write": "ng lint --fix && prettier --write"
+  },
+  "allowScripts": {
+    "@scarf/scarf@1.4.0": true,
+    "esbuild@0.20.1": true,
+    "esbuild@0.19.12": true,
+    "nice-napi@1.0.2": true,
+    "nx@19.8.14": true,
+    "protobufjs@7.6.5": true,
+    "re2@1.26.1": true
   }
 }
