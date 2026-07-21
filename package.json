@@ -85,11 +85,14 @@
   },
   "allowScripts": {
     "@scarf/scarf@1.4.0": true,
-    "esbuild@0.20.1": true,
-    "esbuild@0.19.12": true,
     "nice-napi@1.0.2": true,
     "nx@19.8.14": true,
     "protobufjs@7.6.5": true,
-    "re2@1.26.1": true
+    "re2@1.26.1": true,
+    "@firebase/util@1.12.1": true,
+    "@parcel/watcher@2.6.0": true,
+    "esbuild@0.28.1": true,
+    "lmdb@3.4.2": true,
+    "msgpackr-extract@3.0.4": true
   }
 }
