@@ -295,14 +295,14 @@
             </div>
 
             <div class="d-flex justify-content-center mb-2">
-              <re-captcha
+              <app-re-captcha
                 (resolved)="resolved($event)"
                 siteKey="6LchheYUAAAAABK3F5HtlemJkmwOL2DkJ1yZ8rer"
                 [theme]="'dark'"
                 required
                 [(ngModel)]="captchaResponse"
                 name="captcha"
-              ></re-captcha>
+              ></app-re-captcha>
             </div>
 
             <button

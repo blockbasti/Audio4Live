@@ -1,6 +1,5 @@
-import { NgxMatFileInputModule } from '@angular-material-components/file-input';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { provideFirebaseApp } from '@angular/fire/app';
 import { connectAuthEmulator, getAuth, provideAuth } from '@angular/fire/auth';
@@ -16,13 +15,15 @@ import { initializeApp } from 'firebase/app';
 import { MdbTabsModule } from 'mdb-angular-ui-kit/tabs';
 import { QuillModule } from 'ngx-quill';
 import { environment } from 'src/environments/environment';
+import { FileInputDirective } from '../shared/file-input/file-input.directive';
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from './admin.component';
 import { BookingComponent } from './booking.component';
 import { LoginComponent } from './login/login.component';
 import { MailComponent } from './mail.component';
+
 @NgModule({
-  declarations: [AdminComponent, LoginComponent, BookingComponent, MailComponent],
+  declarations: [AdminComponent, LoginComponent, BookingComponent, MailComponent, FileInputDirective],
   imports: [
     CommonModule,
     AdminRoutingModule,
@@ -36,11 +37,13 @@ import { MailComponent } from './mail.component';
     FirestoreModule,
     FunctionsModule,
     MdbTabsModule,
-    HttpClientModule,
-    NgxMatFileInputModule,
     QuillModule.forRoot({
       theme: 'snow'
-    }),
+    })
+  ],
+  providers: [
+    { provide: MAT_DATE_LOCALE, useValue: 'de-DE' },
+    provideHttpClient(withInterceptorsFromDi()),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFunctions(() => {
       const functions = getFunctions();
@@ -63,7 +66,6 @@ import { MailComponent } from './mail.component';
       }
       return auth;
     })
-  ],
-  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'de-DE' }]
+  ]
 })
 export class AdminModule {}

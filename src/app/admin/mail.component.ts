@@ -1,4 +1,3 @@
-import { MaxSizeValidator } from '@angular-material-components/file-input';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { CollectionReference, DocumentData, Firestore, addDoc, collection } from '@angular/fire/firestore';
@@ -6,6 +5,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { DomSanitizer } from '@angular/platform-browser';
 import * as mjml2html from 'mjml-browser';
 import { Subject } from 'rxjs';
+import { maxSizeValidator } from '../shared/validators/max-size.validator';
 import { Mail } from './mail';
 
 @Component({
@@ -32,7 +32,7 @@ export class MailComponent implements OnInit {
     bcc: new FormControl(null, [Validators.email]),
     subject: new FormControl('Nachricht', [Validators.required]),
     content: new FormControl('Text', [Validators.required]),
-    attachments: new FormControl(undefined, MaxSizeValidator(900 * 1000))
+    attachments: new FormControl(undefined, maxSizeValidator(900 * 1000))
   });
 
   constructor(

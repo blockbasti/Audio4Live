@@ -48,7 +48,7 @@
               "./node_modules/animate.css/animate.css",
               "src/styles.scss"
             ],
-            "scripts": ["src/lib/modernizr.js", "./node_modules/quill/dist/quill.min.js"]
+            "scripts": ["src/lib/modernizr.js"]
           },
           "configurations": {
             "production": {
