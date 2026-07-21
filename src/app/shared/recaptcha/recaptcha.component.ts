@@ -10,7 +10,7 @@ export const RECAPTCHA_LANGUAGE = new InjectionToken<string>('recaptcha-language
 let scriptLoadingPromise: Promise<void> | null = null;
 
 function loadRecaptchaScript(lang?: string): Promise<void> {
-  if (grecaptcha?.render) {
+  if (window.grecaptcha?.render) {
     return Promise.resolve();
   }
   if (!scriptLoadingPromise) {
@@ -60,13 +60,13 @@ export class RecaptchaComponent implements AfterViewInit, OnDestroy, ControlValu
 
   ngOnDestroy(): void {
     if (this.widgetId !== null) {
-      grecaptcha?.reset(this.widgetId);
+      window.grecaptcha?.reset(this.widgetId);
     }
   }
 
   writeValue(value: string | null): void {
     if (!value && this.widgetId !== null) {
-      grecaptcha?.reset(this.widgetId);
+      window.grecaptcha?.reset(this.widgetId);
     }
   }
 
@@ -79,10 +79,10 @@ export class RecaptchaComponent implements AfterViewInit, OnDestroy, ControlValu
   }
 
   private renderWidget(): void {
-    if (this.widgetId !== null || !this.container || !grecaptcha) {
+    if (this.widgetId !== null || !this.container || !window.grecaptcha) {
       return;
     }
-    this.widgetId = grecaptcha.render(this.container.nativeElement, {
+    this.widgetId = window.grecaptcha.render(this.container.nativeElement, {
       sitekey: this.siteKey,
       theme: this.theme,
       callback: (response: string) =>
