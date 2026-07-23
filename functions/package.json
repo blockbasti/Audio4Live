@@ -28,7 +28,7 @@
     "@typescript-eslint/parser": "^8.65.0",
     "eslint": "^10.7.0",
     "eslint-config-prettier": "10.1.8",
-    "typescript": "^6.0.3"
+    "typescript": "^7.0.2"
   },
   "overrides": {
     "minimatch": "5.1.2",
