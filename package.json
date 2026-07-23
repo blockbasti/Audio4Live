@@ -37,7 +37,7 @@
     "firebase": "^11.10.0",
     "mdb-angular-ui-kit": "^9.1.0",
     "mjml": "^5.4.0",
-    "mjml-browser": "^4.18.0",
+    "mjml-browser": "^5.4.0",
     "ngx-material-timepicker": "13.1.1",
     "ngx-quill": "^28.0.2",
     "quill": "^2.0.3",

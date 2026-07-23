@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { CollectionReference, DocumentData, Firestore, addDoc, collection } from '@angular/fire/firestore';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { DomSanitizer } from '@angular/platform-browser';
-import * as mjml2html from 'mjml-browser';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import mjml2html from 'mjml-browser';
 import { Subject } from 'rxjs';
 import { maxSizeValidator } from '../shared/validators/max-size.validator';
 import { Mail } from './mail';
@@ -18,6 +18,8 @@ export class MailComponent implements OnInit {
   mailCollection: CollectionReference<DocumentData>;
 
   template: string;
+
+  previewHtml: SafeHtml;
 
   public files: File[];
 
@@ -43,7 +45,10 @@ export class MailComponent implements OnInit {
     http: HttpClient
   ) {
     this.mailCollection = collection(db, 'mail');
-    http.get('assets/message.mjml', { responseType: 'text' }).subscribe((data) => (this.template = data));
+    http.get('assets/message.mjml', { responseType: 'text' }).subscribe((data) => {
+      this.template = data;
+      this.updatePreview();
+    });
   }
 
   ngOnInit(): void {
@@ -59,6 +64,8 @@ export class MailComponent implements OnInit {
         this.files = files;
       }
     });
+
+    this.form.get('content').valueChanges.subscribe(() => this.updatePreview());
   }
 
   onSubmit(): void {
@@ -92,7 +99,7 @@ export class MailComponent implements OnInit {
 
     let mail = new Mail(this.form.value.to, this.form.value.from, this.form.value.from, this.form.value.cc, this.form.value.bcc, {
       subject: this.form.value.subject,
-      html: this.getFormattedMessage(),
+      html: await this.getFormattedMessage(),
       attachments: attachments
     });
 
@@ -103,13 +110,18 @@ export class MailComponent implements OnInit {
       .catch((reason) => alert(reason));
   }
 
-  byPassHTML(html: string) {
+  byPassHTML(html: string): SafeHtml {
     return this.sanitizer.bypassSecurityTrustHtml(html);
   }
 
-  getFormattedMessage() {
-    let html: string = mjml2html(this.template, {}).html;
+  async getFormattedMessage(): Promise<string> {
+    if (!this.template) return '';
+    let html: string = (await mjml2html(this.template, {})).html;
     html = html.replace('{{body}}', this.form.get('content').value);
     return html;
+  }
+
+  private async updatePreview(): Promise<void> {
+    this.previewHtml = this.byPassHTML(await this.getFormattedMessage());
   }
 }

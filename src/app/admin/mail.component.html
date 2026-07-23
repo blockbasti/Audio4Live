@@ -39,6 +39,6 @@
         <quill-editor format="html" [styles]="{ height: '450px' }" formControlName="content"></quill-editor>
       </form>
     </div>
-    <iframe class="col-12 col-md-6" style="height: 600px" [srcdoc]="byPassHTML(getFormattedMessage())"></iframe>
+    <iframe class="col-12 col-md-6" style="height: 600px" [srcdoc]="previewHtml"></iframe>
   </div>
 </div>
