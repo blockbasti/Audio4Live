@@ -23,16 +23,16 @@ module.exports = [
     rules: {
       '@typescript-eslint/adjacent-overload-signatures': 'error',
       '@typescript-eslint/no-empty-function': 'error',
-      '@typescript-eslint/no-empty-interface': 'warn',
+      '@typescript-eslint/no-empty-interface': 'error',
       '@typescript-eslint/no-floating-promises': 'error',
       '@typescript-eslint/no-namespace': 'error',
       '@typescript-eslint/no-unnecessary-type-assertion': 'error',
-      '@typescript-eslint/prefer-for-of': 'warn',
+      '@typescript-eslint/prefer-for-of': 'error',
       '@typescript-eslint/triple-slash-reference': 'error',
-      '@typescript-eslint/unified-signatures': 'warn',
-      'comma-dangle': 'warn',
+      '@typescript-eslint/unified-signatures': 'error',
+      'comma-dangle': 'error',
       'constructor-super': 'error',
-      eqeqeq: ['warn', 'always'],
+      eqeqeq: ['error', 'always'],
       'no-cond-assign': 'error',
       'no-duplicate-case': 'error',
       'no-duplicate-imports': 'error',
@@ -55,9 +55,9 @@ module.exports = [
       'no-throw-literal': 'error',
       'no-unsafe-finally': 'error',
       'no-unused-labels': 'error',
-      'no-var': 'warn',
+      'no-var': 'error',
       'no-void': 'error',
-      'prefer-const': 'warn'
+      'prefer-const': 'error'
     }
   },
   prettierConfig

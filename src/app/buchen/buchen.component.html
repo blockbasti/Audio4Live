@@ -328,8 +328,13 @@
                 required
               />
               <label class="form-check-label pe-none" for="checkAGB">
-                <u><a class="pe-auto text-white" (click)="openAGBModal()">AGB</a></u> und
-                <u><a class="pe-auto text-white" (click)="openDatenschutzModal()">Datenschutzerklärung</a></u>
+                <u><a class="pe-auto text-white" tabindex="0" (click)="openAGBModal()" (keyup.enter)="openAGBModal()">AGB</a></u>
+                und
+                <u
+                  ><a class="pe-auto text-white" tabindex="0" (click)="openDatenschutzModal()" (keyup.enter)="openDatenschutzModal()"
+                    >Datenschutzerklärung</a
+                  ></u
+                >
                 gelesen und akzeptiert.
               </label>
             </div>

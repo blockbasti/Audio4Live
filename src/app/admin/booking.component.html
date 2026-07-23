@@ -37,7 +37,14 @@
                   <div class="col-sm-12 col-md-8 mt-3 mt-md-0 overflow-auto" style="height: 20vh">
                     <ul class="list-group">
                       <li class="list-group-item grey darken-3" *ngFor="let block of blocker; let i = index">
-                        <div style="cursor: pointer" class="close badge rounded-pill bg-danger" (click)="deleteBlocker(block.id)">
+                        <div
+                          style="cursor: pointer"
+                          class="close badge rounded-pill bg-danger"
+                          role="button"
+                          tabindex="0"
+                          (click)="deleteBlocker(block.id)"
+                          (keyup.enter)="deleteBlocker(block.id)"
+                        >
                           <span aria-hidden="true">×</span>
                         </div>
                         {{ formatDate(block.interval.start, false) }} - {{ formatDate(block.interval.end, false) }}
@@ -65,7 +72,10 @@
                   style="cursor: pointer"
                   class="close badge rounded-pill bg-danger"
                   style="font-size: 1rem"
+                  role="button"
+                  tabindex="0"
                   (click)="deleteBooking(booking.id)"
+                  (keyup.enter)="deleteBooking(booking.id)"
                 >
                   <span aria-hidden="true">×</span>
                 </div>
