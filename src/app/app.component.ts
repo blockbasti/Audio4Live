@@ -3,10 +3,11 @@ import { RouterOutlet } from '@angular/router';
 import { slideInAnimation } from './animations';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
-  animations: [slideInAnimation]
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss'],
+    animations: [slideInAnimation],
+    standalone: false
 })
 export class AppComponent implements AfterViewInit {
   constructor() {}

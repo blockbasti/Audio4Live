@@ -3,8 +3,9 @@ import { Auth, browserLocalPersistence, signInWithEmailAndPassword } from '@angu
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html'
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    standalone: false
 })
 export class LoginComponent implements OnInit {
   constructor(

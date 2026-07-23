@@ -20,8 +20,9 @@ import { Buchung } from '../buchen/buchung';
 
 type Booking = Buchung | { id: string };
 @Component({
-  selector: 'app-booking',
-  templateUrl: './booking.component.html'
+    selector: 'app-booking',
+    templateUrl: './booking.component.html',
+    standalone: false
 })
 export class BookingComponent implements OnInit {
   refresh: Subject<any> = new Subject();

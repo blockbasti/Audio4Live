@@ -1,13 +1,22 @@
 import axios from 'axios';
 import { addHours, addMinutes, format, isSameDay } from 'date-fns';
 import { toZonedTime } from 'date-fns-tz';
-import * as functions from 'firebase-functions';
+import { initializeApp } from 'firebase-admin/app';
+import { getFirestore } from 'firebase-admin/firestore';
+import * as functions from 'firebase-functions/v1';
+import { defineString } from 'firebase-functions/params';
 import { Buchung } from '../../src/app/buchen/buchung';
 
-import admin = require('firebase-admin');
-admin.initializeApp(functions.config().firebase);
+// functions.config() was removed in firebase-functions v7; the app config is
+// auto-detected in the Cloud Functions runtime, so no arguments are needed here.
+initializeApp();
 
-const db = admin.firestore();
+// Replaces the removed `functions.config().recaptcha.key`. Set via a `.env`
+// file (RECAPTCHA_KEY=...) or interactively during `firebase deploy`.
+// See: https://firebase.google.com/docs/functions/config-env#migrate-config
+const recaptchaKey = defineString('RECAPTCHA_KEY');
+
+const db = getFirestore();
 
 export const submit = functions.https.onCall(async (data: Buchung) => {
   const date = data.date
@@ -89,7 +98,7 @@ export const submit = functions.https.onCall(async (data: Buchung) => {
 export const verify = functions.https.onCall(async (data, context) => {
   const resp = await axios.post(
     'https://www.google.com/recaptcha/api/siteverify?secret=' +
-      functions.config().recaptcha.key +
+      recaptchaKey.value() +
       '&response=' +
       data +
       '&remoteip=' +

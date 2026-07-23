@@ -22,21 +22,24 @@
           <mat-label>Betreff</mat-label>
           <input matInput type="email" placeholder="Email" formControlName="subject" />
         </mat-form-field>
-        <mat-form-field class="w-100 text-white">
-          <ngx-mat-file-input
+        <div class="w-100 text-white mb-3">
+          <label class="d-block mb-1" for="attachmentsInput">Anhänge</label>
+          <input
+            id="attachmentsInput"
+            type="file"
+            multiple
+            appFileInput
             formControlName="attachments"
-            multiple="true"
-            placeholder="Anhänge"
-            valuePlaceholder="Anhänge auswählen (max. 900kB)"
-          >
-          </ngx-mat-file-input>
-          <mat-error *ngIf="form.get('attachments').errors"> Die Anhänge dürfen nicht größer als 900 kB sein!</mat-error>
-        </mat-form-field>
+            class="form-control"
+            placeholder="Anhänge auswählen (max. 900kB)"
+          />
+          <div class="text-danger" *ngIf="form.get('attachments').errors">Die Anhänge dürfen nicht größer als 900 kB sein!</div>
+        </div>
         <button class="btn btn-primary my-4" type="submit">Senden</button>
 
         <quill-editor format="html" [styles]="{ height: '450px' }" formControlName="content"></quill-editor>
       </form>
     </div>
-    <iframe class="col-12 col-md-6" style="height: 600px" [srcdoc]="byPassHTML(getFormattedMessage())"></iframe>
+    <iframe class="col-12 col-md-6" style="height: 600px" [srcdoc]="previewHtml"></iframe>
   </div>
 </div>

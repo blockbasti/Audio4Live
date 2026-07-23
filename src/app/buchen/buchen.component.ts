@@ -48,15 +48,16 @@ export class MyCalendarUtils extends CalendarUtils {
 }
 
 @Component({
-  selector: 'app-buchen',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  templateUrl: './buchen.component.html',
-  providers: [
-    {
-      provide: CalendarUtils,
-      useClass: MyCalendarUtils
-    }
-  ]
+    selector: 'app-buchen',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    templateUrl: './buchen.component.html',
+    providers: [
+        {
+            provide: CalendarUtils,
+            useClass: MyCalendarUtils
+        }
+    ],
+    standalone: false
 })
 export class BuchenComponent {
   submit: any;
