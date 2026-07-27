@@ -1,11 +1,10 @@
 /**
  * Helpers that talk to the Firebase emulators over their REST APIs.
- *
- * The project id / apiKey are duplicated from `src/environments/environment.ts` on purpose:
- * that file imports `zone.js` at the bottom, so it cannot be imported from a Node process.
  */
-export const PROJECT_ID = 'audio4live-1d621';
-export const API_KEY = 'AIzaSyA48L0pFHqgmhd1_B8-NAt_vBLbj-Dw8Y8';
+import { environment } from '../../src/environments/environment';
+
+export const PROJECT_ID = environment.firebase.projectId;
+export const API_KEY = environment.firebase.apiKey;
 
 const FIRESTORE_HOST = 'http://127.0.0.1:8080';
 const AUTH_HOST = 'http://127.0.0.1:9099';

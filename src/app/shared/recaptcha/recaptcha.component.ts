@@ -1,12 +1,12 @@
 import {
   AfterViewInit,
+  ChangeDetectorRef,
   Component,
   ElementRef,
   EventEmitter,
   Inject,
   InjectionToken,
   Input,
-  NgZone,
   OnDestroy,
   Optional,
   Output,
@@ -63,7 +63,7 @@ export class RecaptchaComponent implements AfterViewInit, OnDestroy, ControlValu
   private onTouched: () => void = () => {};
 
   constructor(
-    private zone: NgZone,
+    private changeDetector: ChangeDetectorRef,
     @Optional() @Inject(RECAPTCHA_LANGUAGE) private lang: string | null
   ) {}
 
@@ -95,25 +95,27 @@ export class RecaptchaComponent implements AfterViewInit, OnDestroy, ControlValu
     if (this.widgetId !== null || !this.container || !window.grecaptcha) {
       return;
     }
+    // grecaptcha calls back from outside Angular, so every handler has to schedule change
+    // detection itself - the app runs zoneless.
     this.widgetId = window.grecaptcha.render(this.container.nativeElement, {
       sitekey: this.siteKey,
       theme: this.theme,
-      callback: (response: string) =>
-        this.zone.run(() => {
-          this.onChange(response);
-          this.onTouched();
-          this.resolved.emit(response);
-        }),
-      'expired-callback': () =>
-        this.zone.run(() => {
-          this.onChange(null);
-          this.resolved.emit(null);
-        }),
-      'error-callback': () =>
-        this.zone.run(() => {
-          this.onChange(null);
-          this.resolved.emit(null);
-        })
+      callback: (response: string) => {
+        this.onChange(response);
+        this.onTouched();
+        this.resolved.emit(response);
+        this.changeDetector.markForCheck();
+      },
+      'expired-callback': () => {
+        this.onChange(null);
+        this.resolved.emit(null);
+        this.changeDetector.markForCheck();
+      },
+      'error-callback': () => {
+        this.onChange(null);
+        this.resolved.emit(null);
+        this.changeDetector.markForCheck();
+      }
     });
   }
 }
