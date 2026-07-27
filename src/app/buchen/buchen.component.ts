@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, ElementRef, Injectable, ViewChild, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
@@ -58,7 +57,7 @@ export class MyCalendarUtils extends CalendarUtils {
   selector: 'app-buchen',
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './buchen.component.html',
-  imports: [CommonModule, FormsModule, CalendarModule, MdbFormsModule, MdbCheckboxModule, NgxMaterialTimepickerModule, RecaptchaComponent],
+  imports: [FormsModule, CalendarModule, MdbFormsModule, MdbCheckboxModule, NgxMaterialTimepickerModule, RecaptchaComponent],
   providers: [
     {
       provide: CalendarUtils,

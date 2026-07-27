@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import { ReactiveFormsModule, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -6,7 +5,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { addWeeks, format } from 'date-fns';
+import { DateArg, addWeeks, format } from 'date-fns';
 import { CollectionReference, Firestore, Timestamp, addDoc, collection, deleteDoc, doc, orderBy, query, where } from 'firebase/firestore';
 import { Subject } from 'rxjs';
 import { Blocker } from '../buchen/blocker';
@@ -14,11 +13,11 @@ import { Buchung } from '../buchen/buchung';
 import { collectionData } from '../firebase/collection-data';
 import { FIRESTORE } from '../firebase/firebase.providers';
 
-type Booking = Buchung | { id: string };
+type Booking = Buchung & { id: string };
 @Component({
   selector: 'app-booking',
   templateUrl: './booking.component.html',
-  imports: [CommonModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatDatepickerModule, MatCheckboxModule, MatIconModule]
+  imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatDatepickerModule, MatCheckboxModule, MatIconModule]
 })
 export class BookingComponent implements OnInit {
   refresh: Subject<any> = new Subject();
@@ -26,7 +25,7 @@ export class BookingComponent implements OnInit {
   blockerCollection: CollectionReference<Blocker>;
   blocker: Blocker[];
 
-  bookingCollection: CollectionReference<Buchung | { id: string }>;
+  bookingCollection: CollectionReference<Booking>;
   bookings: Booking[];
 
   range = new UntypedFormGroup({
@@ -96,7 +95,7 @@ export class BookingComponent implements OnInit {
     }, 2000);
   }
 
-  formatDate(date: Date, hours: boolean): string {
+  formatDate(date: DateArg<Date>, hours: boolean): string {
     try {
       if (hours) {
         return format(date, 'dd.MM.yyyy HH:mm');

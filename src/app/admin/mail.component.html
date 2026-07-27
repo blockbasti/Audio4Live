@@ -33,7 +33,9 @@
             class="form-control"
             placeholder="Anhänge auswählen (max. 900kB)"
           />
-          <div class="text-danger" *ngIf="form.get('attachments').errors">Die Anhänge dürfen nicht größer als 900 kB sein!</div>
+          @if (form.get('attachments').errors) {
+            <div class="text-danger">Die Anhänge dürfen nicht größer als 900 kB sein!</div>
+          }
         </div>
         <button class="btn btn-primary my-4" type="submit">Senden</button>
 
