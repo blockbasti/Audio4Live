@@ -3,8 +3,8 @@ import { addHours, addMinutes, format, isSameDay } from 'date-fns';
 import { toZonedTime } from 'date-fns-tz';
 import { initializeApp } from 'firebase-admin/app';
 import { getFirestore } from 'firebase-admin/firestore';
-import * as functions from 'firebase-functions/v1';
 import { defineString } from 'firebase-functions/params';
+import * as functions from 'firebase-functions/v1';
 import { Buchung } from '../../src/app/buchen/buchung';
 
 // functions.config() was removed in firebase-functions v7; the app config is

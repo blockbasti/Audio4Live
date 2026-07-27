@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 
 @Component({
-    selector: 'app-error',
-    templateUrl: './error.component.html',
-    standalone: false
+  selector: 'app-error',
+  templateUrl: './error.component.html',
+  standalone: false
 })
 export class ErrorComponent implements OnInit {
   constructor(titleService: Title) {

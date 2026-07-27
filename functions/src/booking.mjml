@@ -30,7 +30,7 @@
     <mj-section background-color="#212121" padding-top="0" padding-bottom="0px">
       <mj-column>
         <mj-text>
-          Sehr geehrte/r Herr/Frau {{name}}, <br /><br />
+          Sehr geehrte/r Herr/Frau {{ name }}, <br /><br />
           ich werde mich in den nächsten Tagen mit Ihnen in Verbindung setzen, um das weitere Vorgehen zu besprechen. Sollten Sie noch
           Fragen, Änderungen oder Anmerkungen haben, so können Sie gerne auf diese E-Mail antworten.
         </mj-text>
@@ -48,28 +48,28 @@
               <td style="text-align: right; padding-right: 10px">
                 <b>Datum</b>
               </td>
-              <td>{{date}}</td>
+              <td>{{ date }}</td>
             </tr>
             <tr>
               <td style="text-align: right; padding-right: 10px; vertical-align: top; width: 100px">
                 <b>Kontaktdaten</b>
               </td>
               <td>
-                {{email}}<br />
-                {{phone}} {{callback}}
+                {{ email }}<br />
+                {{ phone }} {{ callback }}
               </td>
             </tr>
             <tr>
               <td style="text-align: right; padding-right: 10px">
                 <b>Ort</b>
               </td>
-              <td>{{location}}</td>
+              <td>{{ location }}</td>
             </tr>
             <tr>
               <td style="text-align: right; padding-right: 10px; vertical-align: top">
                 <b>Nachricht</b>
               </td>
-              <td>{{message}}</td>
+              <td>{{ message }}</td>
             </tr>
           </tbody>
         </mj-table>

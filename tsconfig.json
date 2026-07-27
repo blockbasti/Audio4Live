@@ -11,10 +11,7 @@
     "moduleResolution": "bundler",
     "importHelpers": false,
     "target": "ES2022",
-    "lib": [
-      "es2018",
-      "dom"
-    ],
+    "lib": ["es2018", "dom"],
     "skipLibCheck": true,
     "useDefineForClassFields": false
   },

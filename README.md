@@ -21,9 +21,9 @@ build.
 
 ## Running end-to-end tests
 
-Run `npm run e2e` to execute the [Playwright](https://playwright.dev) smoke suite in `e2e/`, or
-`npm run e2e:ui` for the interactive runner. The suite starts the Firebase emulators and the dev
-server on its own, so no manual setup is required. There are no unit tests in this project.
+Run `npm run e2e` to execute the [Playwright](https://playwright.dev) smoke suite in `e2e/`, or `npm run e2e:ui` for the interactive runner.
+The suite starts the Firebase emulators and the dev server on its own, so no manual setup is required. There are no unit tests in this
+project.
 
 ## Further help
 
