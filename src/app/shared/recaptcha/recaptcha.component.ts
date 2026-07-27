@@ -1,4 +1,18 @@
-import { AfterViewInit, Component, ElementRef, EventEmitter, Inject, InjectionToken, Input, NgZone, OnDestroy, Optional, Output, ViewChild, forwardRef } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Inject,
+  InjectionToken,
+  Input,
+  NgZone,
+  OnDestroy,
+  Optional,
+  Output,
+  ViewChild,
+  forwardRef
+} from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 // Minimal replacement for `ng-recaptcha`, which is unmaintained and only supports @angular/core ^17.
@@ -27,16 +41,15 @@ function loadRecaptchaScript(lang?: string): Promise<void> {
 }
 
 @Component({
-    selector: 'app-re-captcha',
-    template: '<div #captchaContainer></div>',
-    providers: [
-        {
-            provide: NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => RecaptchaComponent),
-            multi: true
-        }
-    ],
-    standalone: false
+  selector: 'app-re-captcha',
+  template: '<div #captchaContainer></div>',
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => RecaptchaComponent),
+      multi: true
+    }
+  ]
 })
 export class RecaptchaComponent implements AfterViewInit, OnDestroy, ControlValueAccessor {
   @Input() siteKey: string;

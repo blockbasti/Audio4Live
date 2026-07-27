@@ -19,13 +19,11 @@ Run `ng generate component component-name` to generate a new component. You can 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production
 build.
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
 ## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Run `npm run e2e` to execute the [Playwright](https://playwright.dev) smoke suite in `e2e/`, or
+`npm run e2e:ui` for the interactive runner. The suite starts the Firebase emulators and the dev
+server on its own, so no manual setup is required. There are no unit tests in this project.
 
 ## Further help
 

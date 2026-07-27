@@ -1,8 +1,8 @@
-import { ChangeDetectionStrategy, Component, ElementRef, Injectable, ViewChild } from '@angular/core';
-import { Firestore, Timestamp, collection, collectionData, query, where } from '@angular/fire/firestore';
-import { Functions, httpsCallableData } from '@angular/fire/functions';
+import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, ElementRef, Injectable, ViewChild, inject } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
-import { CalendarEvent, CalendarMonthViewDay, CalendarUtils, CalendarView, DAYS_OF_WEEK } from 'angular-calendar';
+import { CalendarEvent, CalendarModule, CalendarMonthViewDay, CalendarUtils, CalendarView, DAYS_OF_WEEK } from 'angular-calendar';
 import { GetMonthViewArgs, MonthView } from 'calendar-utils';
 import {
   Interval,
@@ -23,11 +23,18 @@ import {
   toDate
 } from 'date-fns';
 import { de } from 'date-fns/locale';
+import { Timestamp, collection, query, where } from 'firebase/firestore';
+import { MdbCheckboxModule } from 'mdb-angular-ui-kit/checkbox';
+import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
 import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
-import { NgxMaterialTimepickerTheme } from 'ngx-material-timepicker';
+import { NgxMaterialTimepickerModule, NgxMaterialTimepickerTheme } from 'ngx-material-timepicker';
 import { Subject } from 'rxjs';
+import { collectionData } from '../firebase/collection-data';
+import { FIRESTORE, FUNCTIONS } from '../firebase/firebase.providers';
+import { httpsCallableData } from '../firebase/https-callable-data';
 import { AGBComponent } from '../shared/agb/agb.component';
 import { DatenschutzComponent } from '../shared/datenschutz/datenschutz.component';
+import { RecaptchaComponent } from '../shared/recaptcha/recaptcha.component';
 import { Blocker } from './blocker';
 import { Buchung } from './buchung';
 
@@ -48,26 +55,31 @@ export class MyCalendarUtils extends CalendarUtils {
 }
 
 @Component({
-    selector: 'app-buchen',
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    templateUrl: './buchen.component.html',
-    providers: [
-        {
-            provide: CalendarUtils,
-            useClass: MyCalendarUtils
-        }
-    ],
-    standalone: false
+  selector: 'app-buchen',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  templateUrl: './buchen.component.html',
+  imports: [CommonModule, FormsModule, CalendarModule, MdbFormsModule, MdbCheckboxModule, NgxMaterialTimepickerModule, RecaptchaComponent],
+  providers: [
+    {
+      provide: CalendarUtils,
+      useClass: MyCalendarUtils
+    }
+  ]
 })
 export class BuchenComponent {
   submit: any;
   verify: any;
+
+  readonly afs = inject(FIRESTORE);
+  readonly fns = inject(FUNCTIONS);
+
   constructor(
-    readonly afs: Firestore,
-    readonly fns: Functions,
     readonly titleService: Title,
     private readonly modalService: MdbModalService
   ) {
+    const afs = this.afs;
+    const fns = this.fns;
+
     titleService.setTitle('Buchungsanfrage - Audio4Live');
 
     // get all blocker

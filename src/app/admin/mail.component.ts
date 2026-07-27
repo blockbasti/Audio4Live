@@ -1,17 +1,23 @@
+import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { CollectionReference, DocumentData, Firestore, addDoc, collection } from '@angular/fire/firestore';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, inject } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { CollectionReference, DocumentData, addDoc, collection } from 'firebase/firestore';
 import mjml2html from 'mjml-browser';
+import { QuillEditorComponent } from 'ngx-quill';
 import { Subject } from 'rxjs';
+import { FIRESTORE } from '../firebase/firebase.providers';
+import { FileInputDirective } from '../shared/file-input/file-input.directive';
 import { maxSizeValidator } from '../shared/validators/max-size.validator';
 import { Mail } from './mail';
 
 @Component({
-    selector: 'app-mail',
-    templateUrl: './mail.component.html',
-    standalone: false
+  selector: 'app-mail',
+  templateUrl: './mail.component.html',
+  imports: [CommonModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, QuillEditorComponent, FileInputDirective]
 })
 export class MailComponent implements OnInit {
   refresh: Subject<any> = new Subject();
@@ -41,9 +47,9 @@ export class MailComponent implements OnInit {
   constructor(
     private sanitizer: DomSanitizer,
     private fb: FormBuilder,
-    db: Firestore,
     http: HttpClient
   ) {
+    const db = inject(FIRESTORE);
     this.mailCollection = collection(db, 'mail');
     http.get('assets/message.mjml', { responseType: 'text' }).subscribe((data) => {
       this.template = data;

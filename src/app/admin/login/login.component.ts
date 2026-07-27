@@ -1,17 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { Auth, browserLocalPersistence, signInWithEmailAndPassword } from '@angular/fire/auth';
+import { Component, OnInit, inject } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { browserLocalPersistence, signInWithEmailAndPassword } from 'firebase/auth';
+import { AUTH } from '../../firebase/firebase.providers';
 
 @Component({
-    selector: 'app-login',
-    templateUrl: './login.component.html',
-    standalone: false
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  imports: [FormsModule]
 })
 export class LoginComponent implements OnInit {
-  constructor(
-    private fireauth: Auth,
-    private readonly router: Router
-  ) {}
+  private fireauth = inject(AUTH);
+
+  constructor(private readonly router: Router) {}
 
   credentials = { email: '', password: '' };
 

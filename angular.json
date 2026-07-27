@@ -91,10 +91,6 @@
             }
           }
         },
-        "deploy": {
-          "builder": "@angular/fire:deploy",
-          "options": {}
-        },
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
