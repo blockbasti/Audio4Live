@@ -1,22 +1,26 @@
-import { Component, OnInit } from '@angular/core';
-import { Auth, User, signOut, user } from '@angular/fire/auth';
+import { Component, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { User, signOut } from 'firebase/auth';
+import { MdbTabsModule } from 'mdb-angular-ui-kit/tabs';
 import { Subject } from 'rxjs';
+import { authState } from '../firebase/auth-state';
+import { AUTH } from '../firebase/firebase.providers';
+import { BookingComponent } from './booking.component';
+import { MailComponent } from './mail.component';
 
 @Component({
-    selector: 'app-admin',
-    templateUrl: './admin.component.html',
-    standalone: false
+  selector: 'app-admin',
+  templateUrl: './admin.component.html',
+  imports: [MdbTabsModule, BookingComponent, MailComponent]
 })
 export class AdminComponent implements OnInit {
   refresh: Subject<any> = new Subject();
   user?: User;
 
-  constructor(
-    private readonly auth: Auth,
-    private readonly router: Router
-  ) {
-    user(auth).subscribe((user) => (this.user = user));
+  private readonly auth = inject(AUTH);
+
+  constructor(private readonly router: Router) {
+    authState(this.auth).subscribe((user) => (this.user = user));
   }
 
   ngOnInit(): void {

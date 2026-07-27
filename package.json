@@ -8,7 +8,6 @@
     "start_prod": "ng serve --configuration production -o",
     "build": "ng build --configuration production --stats-json",
     "analyze": "webpack-bundle-analyzer dist/audio4live/stats.json -m static",
-    "deploy": "ng run audio4live:deploy",
     "lint": "ng lint"
   },
   "private": true,
@@ -18,7 +17,6 @@
     "@angular/common": "20.3.26",
     "@angular/compiler": "20.3.26",
     "@angular/core": "20.3.26",
-    "@angular/fire": "^20.0.1",
     "@angular/forms": "20.3.26",
     "@angular/localize": "20.3.26",
     "@angular/material": "20.2.14",
