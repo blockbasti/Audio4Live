@@ -4,8 +4,9 @@ import { stubRecaptcha } from '../fixtures/recaptcha';
 
 /**
  * The booking page is the only place that combines `OnPush` change detection with live
- * Firestore snapshots and callable functions, so it is where a broken NgZone bridge would
- * show up first.
+ * Firestore snapshots and callable functions, so it is where a broken change detection
+ * bridge would show up first. The app runs zoneless, so nothing schedules change detection
+ * implicitly any more.
  */
 test.describe('booking page', () => {
   test.beforeEach(async ({ page }) => {
@@ -65,5 +66,30 @@ test.describe('booking page', () => {
     // The function writes both the persisted booking and the "Trigger Email" document.
     await waitForDocument('booking', (document) => JSON.stringify(document).includes(name));
     await waitForDocument('mail', (document) => JSON.stringify(document).includes(name));
+  });
+
+  test('updates the selected date when a calendar day is clicked', async ({ page }) => {
+    await page.goto('/anfragen');
+    await expect(page.locator('mwl-calendar-month-view')).toBeVisible();
+
+    const selectedDate = page.locator('#buchenFormDate');
+    await expect(selectedDate).toHaveText('kein Datum gewählt');
+
+    // `angular-calendar` renders OnPush and is refreshed through the component's `refresh`
+    // subject, which only repaints if the click schedules change detection.
+    await page.locator('.cal-day-cell:not(.cal-disabled):not(.cal-blocked)').first().click();
+
+    await expect(selectedDate).not.toHaveText('kein Datum gewählt');
+    await expect(page.locator('.cal-day-cell.cal-day-selected')).toHaveCount(1);
+  });
+
+  test('opens the mdb modal for the terms and conditions', async ({ page }) => {
+    await page.goto('/anfragen');
+
+    // The AGB link is an anchor without href, so it has no implicit link role.
+    await page.locator('label[for="checkAGB"] a', { hasText: 'AGB' }).click();
+
+    // mdb's modal used to be shown through `BrowserAnimationsModule`; it is CSS driven now.
+    await expect(page.getByRole('heading', { name: 'Allgemeine Geschäftsbedingungen', exact: true })).toBeVisible();
   });
 });

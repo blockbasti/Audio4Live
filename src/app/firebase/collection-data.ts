@@ -1,15 +1,15 @@
 import { Query, onSnapshot } from 'firebase/firestore';
 import { Observable } from 'rxjs';
-import { currentZone, runInZone } from './zone';
+import { changeDetectionNotifier } from './change-detection';
 
 /**
  * Replacement for `collectionData` from `@angular/fire/firestore`.
  *
- * Must be called from an injection context (e.g. a component constructor) so that emissions can be
- * delivered inside the Angular zone.
+ * Must be called from an injection context (e.g. a component constructor) so that emissions can
+ * trigger change detection.
  */
 export function collectionData<T>(query: Query<T>, options: { idField?: string } = {}): Observable<T[]> {
-  const zone = currentZone();
+  const notify = changeDetectionNotifier();
 
   return new Observable<T[]>((subscriber) => {
     const unsubscribe = onSnapshot(
@@ -24,9 +24,13 @@ export function collectionData<T>(query: Query<T>, options: { idField?: string }
           }
           return data;
         });
-        runInZone(zone, () => subscriber.next(items));
+        subscriber.next(items);
+        notify();
       },
-      (error) => runInZone(zone, () => subscriber.error(error))
+      (error) => {
+        subscriber.error(error);
+        notify();
+      }
     );
 
     return unsubscribe;

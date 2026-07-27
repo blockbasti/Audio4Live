@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -46,6 +46,7 @@ export class MailComponent implements OnInit {
   constructor(
     private sanitizer: DomSanitizer,
     private fb: FormBuilder,
+    private changeDetector: ChangeDetectorRef,
     http: HttpClient
   ) {
     const db = inject(FIRESTORE);
@@ -122,11 +123,16 @@ export class MailComponent implements OnInit {
   async getFormattedMessage(): Promise<string> {
     if (!this.template) return '';
     let html: string = (await mjml2html(this.template, {})).html;
-    html = html.replace('{{body}}', this.form.get('content').value);
+    // `message.mjml` writes the placeholder as `{{ body }}`, so match it whitespace tolerant -
+    // an exact `{{body}}` match silently produced mails without any content.
+    html = html.replace(/\{\{\s*body\s*\}\}/, this.form.get('content').value);
     return html;
   }
 
   private async updatePreview(): Promise<void> {
     this.previewHtml = this.byPassHTML(await this.getFormattedMessage());
+    // Both the initial template fetch and the Quill editor's own DOM listeners run outside of
+    // anything that would schedule change detection in a zoneless app.
+    this.changeDetector.markForCheck();
   }
 }

@@ -110,3 +110,59 @@ a {
 .ql-snow .ql-picker-options .ql-picker-item {
   color: #000;
 }
+
+// Route transitions, replacing the deprecated `@angular/animations` slide trigger.
+// `enableViewTransitions` (see `app-routing.module.ts`) runs the route activation inside
+// `document.startViewTransition()`; naming the routed content lifts it out of the root snapshot so
+// only it slides while the navbar and the footer stay put. `AppComponent` toggles `.nav-back` on
+// <html> to flip the direction. Browsers without the View Transitions API simply swap the view.
+#content {
+  view-transition-name: content;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+}
+
+@keyframes a4l-slide-out-to-left {
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes a4l-slide-in-from-right {
+  from {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes a4l-slide-out-to-right {
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes a4l-slide-in-from-left {
+  from {
+    transform: translateX(-100%);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  ::view-transition-old(content) {
+    animation: 300ms ease-out both a4l-slide-out-to-left;
+  }
+
+  ::view-transition-new(content) {
+    animation: 300ms ease-out both a4l-slide-in-from-right;
+  }
+
+  .nav-back::view-transition-old(content) {
+    animation-name: a4l-slide-out-to-right;
+  }
+
+  .nav-back::view-transition-new(content) {
+    animation-name: a4l-slide-in-from-left;
+  }
+}
