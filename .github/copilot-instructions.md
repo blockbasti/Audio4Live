@@ -14,7 +14,8 @@ Root (Angular app):
 - `npm run build` — `ng build --configuration production --stats-json`
 - `npm run lint` — `ng lint` (angular-eslint, config in `.eslintrc.json`)
 - `npm run format` — `prettier . --write` (config in `.prettierrc.json`; runs via lint-staged/husky pre-commit)
-- There are **no unit test files** in `src/` despite the generated README mentioning `ng test`/`ng e2e` — don't assume test infrastructure exists; verify changes by building/linting instead.
+- `npm run e2e` — Playwright smoke suite in `e2e/` (`npm run e2e:ui` for the interactive runner)
+- There are **no unit test files** in `src/` despite the generated README mentioning `ng test` — don't assume unit test infrastructure exists. The `e2e/` Playwright suite is the only automated test coverage.
 
 Functions (`functions/`):
 - `npm run build` — `tsc` compiles `src/` to `lib/`
@@ -22,7 +23,20 @@ Functions (`functions/`):
 - `npm run serve` / `npm run shell` — Firebase emulators (`firebase emulators:start`)
 - `npm run mjml` — regenerates `src/booking.html` from `src/booking.mjml` (email template source of truth is the `.mjml` file, not the `.html`)
 
-CI (`.github/workflows/main.yml`) on every PR: installs both projects, runs `ng build --configuration production`, `ng lint` (non-blocking), functions `npm run build`, functions `npm run lint` (non-blocking). Match this locally before pushing — a broken production build is the only hard CI gate.
+CI (`.github/workflows/main.yml`) on every PR: a `build` job (installs both projects, runs `ng build --configuration production`, `ng lint` (non-blocking), functions `npm run build`, functions `npm run lint` (non-blocking)) and an `e2e` job running the Playwright suite. Match these locally before pushing — the production build and the e2e suite are the hard CI gates.
+
+## E2E tests
+
+`npm run e2e` runs the Playwright smoke suite in `e2e/` and is fully self-contained: `playwright.config.ts` boots the Firebase emulators (auth, firestore, functions) and `ng serve` on port 4200 itself, so no manual setup is needed. It covers the things a build cannot prove — `collectionData` re-entering `NgZone` so the `OnPush` booking calendar updates from live Firestore snapshots, the `submit`/`verify` callables round-tripping, and the functional auth guards redirecting.
+
+Things worth knowing before touching it:
+- The suite is serial (`workers: 1`) because the emulators are shared mutable state; `resetEmulators()` in `beforeEach` wipes Firestore and Auth so retries are safe.
+- The emulator resolves the `RECAPTCHA_KEY` param only from a dotenv file inside `functions/`, never from the shell environment. `e2e/setup/write-env.mjs` writes a gitignored `functions/.env.local` before startup — without it the functions emulator prompts interactively and registers zero triggers.
+- `e2e/fixtures/recaptcha.ts` installs a fake `window.grecaptcha` before app code runs, so `RecaptchaComponent` never fetches Google's script and the real form flow is testable offline.
+- Project id and API key are duplicated in `e2e/fixtures/emulator.ts` because `src/environments/environment.ts` imports `zone.js` and cannot be loaded from Node.
+- Blocker dates must be aligned to **local** midnight and within the next three months, otherwise the calendar will not mark the cell.
+- If a run is interrupted, the Firestore emulator's JVM child process can survive and hold port 8080; kill it before re-running.
+
 
 Deploys are scheduled/manual GitHub Actions (`deploy.yml` weekly, `deploy_dev.yml` daily to a `dev` hosting channel), not triggered by every push — see those workflows if changing deploy behavior.
 
