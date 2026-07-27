@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -17,7 +16,7 @@ import { Mail } from './mail';
 @Component({
   selector: 'app-mail',
   templateUrl: './mail.component.html',
-  imports: [CommonModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, QuillEditorComponent, FileInputDirective]
+  imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, QuillEditorComponent, FileInputDirective]
 })
 export class MailComponent implements OnInit {
   refresh: Subject<any> = new Subject();
