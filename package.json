@@ -54,7 +54,7 @@
     "@eslint/js": "^10.0.1",
     "@playwright/test": "^1.62.1",
     "@types/grecaptcha": "^3.0.9",
-    "@types/node": "^26.1.2",
+    "@types/node": "^26.2.0",
     "@types/quill": "2.0.14",
     "angular-eslint": "^21.4.0",
     "eslint": "^10.8.0",
