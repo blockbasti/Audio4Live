@@ -56,7 +56,7 @@
     "@types/grecaptcha": "^3.0.9",
     "@types/node": "^26.6.5",
     "@types/quill": "2.0.14",
-    "angular-eslint": "^22.5.0",
+    "angular-eslint": "^22.6.0",
     "eslint": "^10.12.0",
     "firebase-tools": "^15.32.1",
     "husky": "9.1.7",
