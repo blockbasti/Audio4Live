@@ -58,7 +58,7 @@
     "@types/quill": "2.0.14",
     "angular-eslint": "^22.6.0",
     "eslint": "^10.13.0",
-    "firebase-tools": "^15.33.0",
+    "firebase-tools": "^15.34.0",
     "husky": "9.1.7",
     "inquirer-autocomplete-prompt": "3.0.1",
     "lint-staged": "^17.6.0",
